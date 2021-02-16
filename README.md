@@ -32,10 +32,10 @@ TEST: Everything related to testing<br>
 DOCS: Everything related to documentation<br>
 
 ### Usage
-The first word of the commit should be the keyword from the ‘Type of change’ listed above with capitalization of the first character.
-Followed by a semicolon and space character.
-Followed by a brief description of the change where the first character of the sentence is capitalized.
-Total length of the commit message is limited to 50 chars.
+-The first word of the commit should be the keyword from the ‘Type of change’ listed above with capitalization of the first character.<br>
+-Followed by a semicolon and space character.<br>
+-Followed by a brief description of the change where the first character of the sentence is capitalized.<br>
+-Total length of the commit message is limited to 50 chars.
 
 ### Example
 For fixing a bug in code, the commit message would be similar to below:
