@@ -40,5 +40,5 @@ DOCS: Everything related to documentation<br>
 ### Example
 For fixing a bug in code, the commit message would be similar to below:
 
-Fix: Null Exception in Function GetWeather
+FIX: Null Exception in Function GetWeather
 
