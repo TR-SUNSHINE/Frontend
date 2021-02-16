@@ -4,12 +4,12 @@ As part of this project the Frontend repository will be used to version control 
 
 ## Steps to clone the repository locally
 Navigate to working directory <br>
-  git clone https://github.com/TR-SUNSHINE/Frontend.git <br>
+&ensp; git clone https://github.com/TR-SUNSHINE/Frontend.git <br>
 Install additional frameworks and components <br>
-  React Routers <br>
-npm install react-router-dom <br>
-  Material UI <br>
-npm install @material-ui/core <br>
-  React Bootstrap  <br>
-npm install react-bootstrap bootstrap <br>
+React Routers <br>
+&ensp; npm install react-router-dom <br>
+Material UI <br>
+&ensp; npm install @material-ui/core <br>
+React Bootstrap  <br>
+&ensp; npm install react-bootstrap bootstrap <br>
 
