@@ -9,13 +9,13 @@ Bootstrap includes a responsive, mobile first fluid grid system that appropriate
 <br>
 ## Steps to clone the repository locally
 ### Navigate to working directory <br>
-&ensp; git clone https://github.com/TR-SUNSHINE/Frontend.git <br>
+git clone https://github.com/TR-SUNSHINE/Frontend.git <br>
 ### Install additional frameworks and components <br>
 #### React Routers <br>
-&ensp; npm install react-router-dom <br>
+npm install react-router-dom <br>
 #### Material UI <br>
-&ensp; npm install @material-ui/core <br>
-&ensp; Note: Material UI framework is installed but not used.
+npm install @material-ui/core <br>
+Note: Material UI framework is installed but not used.
 #### React Bootstrap  <br>
-&ensp; npm install react-bootstrap bootstrap <br>
+npm install react-bootstrap bootstrap <br>
 
