@@ -14,6 +14,7 @@ Bootstrap includes a responsive, mobile first fluid grid system that appropriate
 &ensp; npm install react-router-dom <br>
 #### Material UI <br>
 &ensp; npm install @material-ui/core <br>
+&ensp; Note: Material UI framework is installed but not used.
 #### React Bootstrap  <br>
 &ensp; npm install react-bootstrap bootstrap <br>
 
