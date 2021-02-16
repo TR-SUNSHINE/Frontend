@@ -4,6 +4,7 @@ As part of this project the Frontend repository will be used to version control 
 <br>
 React is an open-source, front end, JavaScript library for building user interfaces or UI components.
 <br>
+<br>
 Bootstrap includes a responsive, mobile first fluid grid system that appropriately scales up to 12 columns as the device or viewport size increases.
 <br>
 ## Steps to clone the repository locally
