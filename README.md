@@ -69,7 +69,6 @@ Pull requests let you tell others about changes you've pushed to a branch in a r
 
 ### Commit Messages
 The commit command is used to save changes to a local repository after staging in Git.
-
 The below naming convention and rules should be used when committing any change to any repository in this project:
 
 1) The first word of the commit should be the keyword from the ‘Change Type’ list above in this document with capitalization of each character.
