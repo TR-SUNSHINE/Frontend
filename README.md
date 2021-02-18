@@ -79,7 +79,7 @@ The below naming convention and rules should be used when committing any change 
 5) Commits to the repository should be little and often
 
 #### Usage
-1) For fixing a bug in code the git command would be similar to below:
+1) For fixing a bug in code the git command would be similar to below:  <br/>
 -git commit -m “FIX: Null Exception in Function GetWeather”
 
 ### Branch Rules
