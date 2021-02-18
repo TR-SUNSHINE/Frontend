@@ -56,7 +56,7 @@ Pull requests let you tell others about changes you've pushed to a branch in a r
 <i>-git checkout main <br/></i>
 <i>-git pull origin main <br/></i>
 <i>-git checkout FEAT_sunshine_api <br/></i>
-<i>-git merge main <br/><,i>
+<i>-git merge main <br/></i>
 <i>-git push origin FEAT_sunshine_api <br/></i>
 3) Before merging the changes to the remote main branch you should initiate a pull request via the pull request menu at the top of the repository in GitHub.
 4) Set the base branch as main
