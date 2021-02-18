@@ -43,21 +43,21 @@ The below naming convention and rules should be used when creating a new branch:
 1) For creating a new branch the git command would be similar to below:
 2) git checkout -b FEAT_sunshine_api
 For pushing a change to the remote branch the git command would be similar to the below commands:
--git add .  <br/>
--git commit -m “FEAT: Individual_walk”  <br/>
--git push origin br_sunshine_api  <br/>
+<i>-git add .  <br/></i>
+<i>-git commit -m “FEAT: Individual_walk”  <br/></i>
+<i>-git push origin br_sunshine_api  <br/></i>
 	
 ### Merging changes to the main branch
 Pull requests let you tell others about changes you've pushed to a branch in a repository on GitHub. Once a pull request is opened, you can discuss and review the potential changes with collaborators and add follow-up commits before your changes are merged into the base branch.
 
 #### Usage
 1) Merging to the main branch should happen by each team member once per day
-2) When a member of the team has completed work in their branch they should first initiate a pull from the remote main branch to their local main branch following the below commands (FEAT_sunshine_api represents the name of the branch that was created which contains the code changes):
--git checkout main <br/>
--git pull origin main <br/>
--git checkout FEAT_sunshine_api <br/>
--git merge main <br/>
--git push origin FEAT_sunshine_api <br/>
+2) When a member of the team has completed work in their branch they should first initiate a pull from the remote main branch to their local main branch following the below commands (FEAT_sunshine_api represents the name of the branch that was created which contains the code changes): <br>
+<i>-git checkout main <br/></i>
+<i>-git pull origin main <br/></i>
+<i>-git checkout FEAT_sunshine_api <br/></i>
+<i>-git merge main <br/><,i>
+<i>-git push origin FEAT_sunshine_api <br/></i>
 3) Before merging the changes to the remote main branch you should initiate a pull request via the pull request menu at the top of the repository in GitHub.
 4) Set the base branch as main
 5) Set the compare branch to the branch containing the change
@@ -80,7 +80,7 @@ The below naming convention and rules should be used when committing any change 
 
 #### Usage
 1) For fixing a bug in code the git command would be similar to below:  <br/>
-<i>-git commit -m “FIX: Null Exception in Function GetWeather”
+<i>-git commit -m “FIX: Null Exception in Function GetWeather” </i>
 
 ### Branch Rules
 In this project we are enforcing a two step review and approval by the code owner for each change to each branch.
