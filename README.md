@@ -80,7 +80,7 @@ The below naming convention and rules should be used when committing any change 
 
 #### Usage
 1) For fixing a bug in code the git command would be similar to below:  <br/>
--git commit -m “FIX: Null Exception in Function GetWeather”
+<i>-git commit -m “FIX: Null Exception in Function GetWeather”
 
 ### Branch Rules
 In this project we are enforcing a two step review and approval by the code owner for each change to each branch.
