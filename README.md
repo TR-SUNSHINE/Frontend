@@ -72,10 +72,10 @@ The commit command is used to save changes to a local repository after staging i
 
 The below naming convention and rules should be used when committing any change to any repository in this project:
 
-1) The first word of the commit should be the keyword from the ‘Change Type’ list above in this document with capitalization of each character. <br/>
-2) Followed by a semicolon and space character <br/>
-3) Followed by a brief description of the change where the first character of the sentence is capitalized <br/>
-4) Total length of the commit message is limited to 50 chars <br/>
+1) The first word of the commit should be the keyword from the ‘Change Type’ list above in this document with capitalization of each character.
+2) Followed by a semicolon and space character
+3) Followed by a brief description of the change where the first character of the sentence is capitalized
+4) Total length of the commit message is limited to 50 chars
 5) Commits to the repository should be little and often
 
 #### Usage
