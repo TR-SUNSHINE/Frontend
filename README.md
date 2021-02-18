@@ -36,12 +36,12 @@ A branch represents an independent line of development. Branches serve as an abs
 
 The below naming convention and rules should be used when creating a new branch:
 
-1) The new branch name must be created with the change type (listed above) in capital letters, followed by underscore, followed by a short description of what you are developing all in lowercase   <br/>
+1) The new branch name must be created with the change type (listed above) in capital letters, followed by underscore, followed by a short description of what you are developing all in lowercase
 2) If the feature name is more than one word then each word must be separated with a _
 
 #### Usage
 1) For creating a new branch the git command would be similar to below:
-2) git checkout -b FEAT_sunshine_api  <br/>
+2) git checkout -b FEAT_sunshine_api
 For pushing a change to the remote branch the git command would be similar to the below commands:
 -git add .  <br/>
 -git commit -m “FEAT: Individual_walk”  <br/>
