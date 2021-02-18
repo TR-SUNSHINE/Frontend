@@ -53,7 +53,9 @@ Pull requests let you tell others about changes you've pushed to a branch in a r
 #### Usage
 1) Merging to the main branch should happen by each team member once per day
 2) When a member of the team has completed work in their branch they should first initiate a pull from the remote main branch to their local main branch following the below commands (FEAT_sunshine_api represents the name of the branch that was created which contains the code changes): <br>
-<i>-git checkout main <br/></i>
+<i>-git add . <br/></i>
+<i>-git commit -m “FEAT: Individual_walk”</i>
+<i>-git checkout main </i>
 <i>-git pull origin main <br/></i>
 <i>-git checkout FEAT_sunshine_api <br/></i>
 <i>-git merge main <br/></i>
@@ -84,3 +86,4 @@ The below naming convention and rules should be used when committing any change 
 ### Branch Rules
 1) A two step review and one step approval is required to merge from the remote branch to the remote repository.
 2) All administrators are allowed to override the two step review and one step approval.
+
