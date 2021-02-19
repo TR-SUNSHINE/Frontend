@@ -11,13 +11,7 @@ Bootstrap includes a responsive, mobile first fluid grid system that appropriate
 ### Navigate to working directory <br>
 git clone https://github.com/TR-SUNSHINE/Frontend.git <br>
 ### Install additional frameworks and components <br>
-#### React Routers <br>
-npm install react-router-dom <br>
-#### Material UI <br>
-npm install @material-ui/core <br>
-Note: Material UI framework is installed but not used.
-#### React Bootstrap  <br>
-npm install react-bootstrap bootstrap <br>
+npm install <br>
 
 ## Repository Rules
 
