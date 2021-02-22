@@ -16,7 +16,8 @@
 
 body {
   background-color: white;
-  color: #296EB4
+  color: #296EB4;
+  text-align: center;
 
 }
 
@@ -36,4 +37,31 @@ body {
 
 .frame {
   border: 5px solid #1789FC;
+}
+
+/* Media Queries to match Bootstrap viewport sizes */
+
+/* Small - ≥576px */
+
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+}
+
+/* Medium - ≥768px */
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+}
+
+/* Large - ≥992px */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* Extra Large - ≥1200px */
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+}
+
+/* Extra extra Large - ≥1400px */
+
+@media only screen and (min-width: 1400px) {
 }
