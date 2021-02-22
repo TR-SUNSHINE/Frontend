@@ -1,3 +1,193 @@
-.App {
+/* General styling */
+
+body {
+  background-color: white;
+  color: #296eb4;
+}
+
+.header {
   text-align: center;
+  margin-top: 5%;
+}
+
+.heading {
+  color: #296eb4;
+}
+
+.heading3 {
+  text-align: center;
+  color: #296eb4;
+}
+
+.frame {
+  border: 5px solid #1789fc;
+}
+
+/* index.html page */
+
+.button__container {
+  text-align: center;
+  padding: 1rem;
+}
+
+.frame--sunshine {
+  margin: 2% auto;
+}
+
+.img--sunshine {
+  display: block;
+  margin: 0 auto;
+}
+
+/*** My Walks CSS **/
+
+.card {
+  width: 380px;
+  border: none;
+  height: 280px;
+}
+
+.ratings {
+  margin-right: 10px;
+}
+
+.ratings i {
+  color: #cecece;
+  font-size: 32px;
+}
+
+.rating-color {
+  color: #fbc634 !important;
+}
+
+.review-count {
+  font-weight: 400;
+  color: #296eb4;
+  margin-bottom: 2px;
+  font-size: 24px !important;
+}
+
+.small-ratings i {
+  color: #cecece;
+}
+
+.review-stat {
+  font-weight: 500;
+  color: #296eb4;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.line-horizontal {
+  color: #296eb4;
+  size: 5;
+  width: 100%;
+}
+
+/* individual_walk.html page */
+
+.frame--map {
+  margin: 0% auto;
+  height: 80%;
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+/*
+.col{
+    border: 1px solid red;
+}
+*/
+
+.iframe--map {
+  display: block;
+  margin: 0 auto;
+  height: 80%;
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+/* weather_page */
+
+.frame--weather {
+  margin: 2% auto;
+}
+
+.img--map {
+  display: block;
+  margin: 0 auto;
+  height: 30vh;
+  width: 70vw;
+}
+
+.weather__container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.individual__weather__container {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.individual__weather__container .weather {
+  display: inline-block;
+}
+
+.weather {
+  padding: 1rem;
+}
+
+/* Media Queries to match Bootstrap viewport sizes */
+
+/* Small - ≥576px */
+
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+}
+
+/* Medium - ≥768px */
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+}
+
+/* Large - ≥992px */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* Extra Large - ≥1200px */
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+}
+
+/* Extra extra Large - ≥1400px */
+
+@media only screen and (min-width: 1400px) {
+}
+
+/* register page */
+
+.form-register {
+  padding-block: 5px;
+  color: #296eb4;
+  padding: 10px;
+  margin: 5%;
+  border: 2px solid #fdbb33;
+}
+
+.form-control {
+  border: 1px solid #fdbb33;
+  padding: 8px;
+  margin-top: 4px;
+}
+
+.form-label {
+  padding: 8px;
+  margin: 0px 0px 8px 8px;
+}
+
+.row {
+  align-items: center;
 }
