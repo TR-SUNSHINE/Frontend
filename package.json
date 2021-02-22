@@ -22,6 +22,20 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "rules": {
+      "quotes": [
+        "error",
+        "double"
+      ],
+      "jsx-quotes": [
+        "error",
+        "prefer-double"
+      ],
+      "semi": [
+        2,
+        "always"
+      ]
+    },
     "extends": [
       "react-app",
       "react-app/jest"
