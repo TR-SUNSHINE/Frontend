@@ -1,0 +1,13 @@
+.button__container {
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .frame--sunshine {
+    margin: 2% auto;
+  }
+  
+  .img--sunshine{
+    display: block;
+    margin: 0 auto;
+  }
