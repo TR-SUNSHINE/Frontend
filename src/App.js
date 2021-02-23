@@ -2,13 +2,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import "./App.css";
 import { BrowserRouter, Route } from "react-router-dom";
+import Container from "react-bootstrap/Container";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
+import Header from "./components/Header/Header";
+
 
 function App() {
   return (
-    <div className="App container">
-      {/* think navbar goes here so appears on all pages, i.e. above the router for individal pages */}
+    <Container>
+      <Header />
       <BrowserRouter>
         <Route exact path="/" component={WelcomePage} />
         <Route exact path="/register" component={RegisterPage} />
@@ -16,8 +19,7 @@ function App() {
         {/* add other pages here */}
 
       </BrowserRouter>
-
-    </div>
+    </Container>
   );
 }
 

@@ -8,16 +8,16 @@
     border: 1px solid #296eb4;
   }
   
-.form-row {
-    /* border: 1px solid #fdbb33 */
-    padding: 8px;
-    margin-top: 4px;
+.Form.Control {
+    border: 1px solid #fdbb33
+    /* padding: 8px;
+    margin-top: 4px; */
 }
   
-  .form-label {
+  /* .Form-Label {
     padding: 8px;
     margin: 0px 0px 8px 8px;
-  }
+  }      */
   
   /* .row {
     align-items: center;

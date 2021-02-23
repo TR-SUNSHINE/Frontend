@@ -1,5 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import "../../index.css";
 import "./WelcomePage.css";
 
@@ -7,24 +9,27 @@ const Welcome = () => {
 
 
     return (
-        <div class="row">
-            <div class="col">
-                <h3 class="heading heading--main">Welcome to Sunshine</h3>
-                <div class="frame--sunshine">
-                    <img class="img--sunshine" src="./images/welcomeSunshine.jfif" alt=""></img>
+        <Row>
+            <Col>
+                <h3 className="heading heading--main">Welcome to Sunshine</h3>
+                <div className="frame--sunshine">
+                    <img className="img--sunshine" src="./images/welcomeSunshine.jfif" alt=""></img>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-4">
-                        <Button>Register</Button>
-                    </div>
-                    <div class="col-sm-4">
-                        <Button>Login</Button>
-                    </div>
-                    <div class="col-sm-2"></div>
-                </div>
-            </div>
-        </div>
+                <Row>
+                    <Col xs={12} sm={12} md={6}>
+                        <div className="button__container button__container--left" >
+                            <Button variant="accessible">Register</Button>
+                        </div>
+                    </Col>
+
+                    <Col xs={12} sm={12} md={6}>
+                        <div className="button__container button__container--right" >
+                            <Button variant="accessible">Login</Button>
+                        </div>
+                    </Col>
+                </Row>
+            </Col>
+        </Row>
     );
 };
 
