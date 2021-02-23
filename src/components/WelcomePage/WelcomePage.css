@@ -1,29 +1,88 @@
-.button__container {
-    text-align: center;
-    padding: 1rem;
-  }
-  
-  .frame--sunshine {
+
+.frame--sunshine {
     margin: 2% auto;
-  }
+}
   
-  .img--sunshine{
+.img--sunshine{
     display: block;
     margin: 0 auto;
-  }
+}
 
-  .col-sm-4 {
-    background-color: aqua;
-  }
+.button__container {
+  text-align: center;
+  padding: 1rem;
+}
 
-  .col-sm-2{
-    background-color: coral;
-  }
+.btn-accessible{
+  background-color: #296eb4;
+  color: white;
+  font-size: 24px;
+}
 
-  .one {
-    background-color: cornflowerblue;
-  }
+/* Media Queries to match Bootstrap viewport sizes */
 
-  .two {
-    background-color: darkgoldenrod;
-  }
+/* Small - ≥576px */
+
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+}
+
+/* Medium - ≥768px */
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    .button__container--left {
+        text-align: right;
+        padding: 1rem;
+      }
+
+    .button__container--right {
+        text-align: left;
+        padding: 1rem;
+      }
+
+}
+
+/* Large - ≥992px */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+    .button__container--left {
+        text-align: right;
+        padding: 1rem;
+      }
+
+    .button__container--right {
+        text-align: left;
+        padding: 1rem;
+      }
+}
+
+/* Extra Large - ≥1200px */
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
+    .button__container--left {
+        text-align: right;
+        padding: 1rem;
+      }
+
+    .button__container--right {
+        text-align: left;
+        padding: 1rem;
+      }
+}
+
+/* Extra extra Large - ≥1400px */
+
+@media only screen and (min-width: 1400px) {
+
+    .button__container--left {
+        text-align: right;
+        padding: 1rem;
+      }
+
+    .button__container--right {
+        text-align: left;
+        padding: 1rem;
+      }
+}

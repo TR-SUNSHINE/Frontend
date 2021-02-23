@@ -5,14 +5,21 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 //import WelcomePage from "./components/WelcomePage/WelcomePage";
 import MyWalk from "./components/MyWalksPage/MyWalksPage";
+import WelcomePage from "./components/WelcomePage/WelcomePage";
+import RegisterPage from "./components/RegisterPage/RegisterPage";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
     <Container>
-      {/* think navbar goes here so appears on all pages, i.e. above the router for individal pages */}
+      <Header />
       <BrowserRouter>
         <Route exact path="/" component={MyWalk} />
+        <Route exact path="/" component={WelcomePage} />
+        <Route exact path="/register" component={RegisterPage} />
+
         {/* add other pages here */}
+
       </BrowserRouter>
     </Container>
   );
