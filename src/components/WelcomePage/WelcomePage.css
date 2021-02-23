@@ -1,29 +1,29 @@
 .button__container {
     text-align: center;
     padding: 1rem;
-  }
-  
-  .frame--sunshine {
+}
+
+.frame--sunshine {
     margin: 2% auto;
-  }
-  
-  .img--sunshine{
+}
+
+.img--sunshine {
     display: block;
     margin: 0 auto;
-  }
+}
 
-  .col-sm-4 {
+.col-sm-4 {
     background-color: aqua;
-  }
+}
 
-  .col-sm-2{
+.col-sm-2 {
     background-color: coral;
-  }
+}
 
-  .one {
+.one {
     background-color: cornflowerblue;
-  }
+}
 
-  .two {
+.two {
     background-color: darkgoldenrod;
-  }
+}
