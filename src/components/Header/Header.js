@@ -6,8 +6,10 @@ import Image from "react-bootstrap/Image";
 function Header() {
     return (
         <Row>
-            <Col />
-            <Col />
+            <Col>
+            </Col>
+            <Col>
+            </Col>
             <Col>
                 <Image
                     src="./images/welcomeSunshine.jfif"
