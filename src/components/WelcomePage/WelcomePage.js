@@ -9,7 +9,7 @@ const Welcome = () => {
     return (
         <div class="row">
             <div class="col">
-                <h2 class="heading heading--main">Welcome to Sunshine</h2>
+                <h3 class="heading heading--main">Welcome to Sunshine</h3>
                 <div class="frame--sunshine">
                     <img class="img--sunshine" src="./images/welcomeSunshine.jfif" alt=""></img>
                 </div>
