@@ -1,0 +1,10 @@
+.button__container {
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .btn-accessible{
+    background-color: #296eb4;
+    color: white;
+    font-size: 18px;
+  }
