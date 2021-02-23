@@ -15,6 +15,7 @@
 /* General styling */
 
 body {
+  margin: 0;
   background-color: white;
   color: #296EB4;
   text-align: center;
@@ -23,11 +24,12 @@ body {
 
 .header {
     text-align: center;
-    margin-top: 5%;
 }
 
 .heading {
-    color: #296EB4
+    color: #296EB4;
+    text-align: center;
+    padding-top: 5%;
 }
 
 .heading3 {
