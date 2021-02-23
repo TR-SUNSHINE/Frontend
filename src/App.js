@@ -1,19 +1,27 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import "./App.css";
-import { BrowserRouter, Route } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import WelcomePage from "./components/WelcomePage/WelcomePage";
 import Header from "./components/Header/Header";
+import Routes from "./components/Routes/Routes";
+import NaviBar from "./components/NaviBar/NaviBar";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function App() {
   return (
     <Container>
       <Header />
-      <BrowserRouter>
-        <Route exact path="/" component={WelcomePage} />
-        {/* add other pages here */}
-      </BrowserRouter>
+      <Row>
+        <Col>
+          <NaviBar />
+        </Col>
+        <Col>
+          <Routes />
+        </Col>
+        <Col>
+        </Col>
+      </Row>
     </Container>
   );
 }
