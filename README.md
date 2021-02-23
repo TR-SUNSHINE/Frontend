@@ -83,7 +83,7 @@ The below naming convention and rules should be used when committing any change 
 
 ## Coding Editors
 ### Visual Studio Code
-Visual Studio code (VS code) will be used for the development of the following file types:
+Visual Studio code (VS code) will be used for the development of the following file types:<br/>
 .js <br/>
 .jsx <br/>
 .css <br/>
