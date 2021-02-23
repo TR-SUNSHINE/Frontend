@@ -24,8 +24,10 @@
   
   .individual__weather__container .weather{
     display: inline-block;
-  }
-  .weather {
     padding: 1rem;
   }
+
+ .selected {
+   background-color: #FFD07B;
+ }
   
