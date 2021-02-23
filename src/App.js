@@ -6,7 +6,10 @@ import Container from "react-bootstrap/Container";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import Header from "./components/Header/Header";
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 
 function App() {
   return (
