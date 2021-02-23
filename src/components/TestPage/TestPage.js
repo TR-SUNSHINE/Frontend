@@ -1,11 +1,10 @@
-import React from "react";
 
-const TestPage = () => {
+function TestPage() {
     return (
-        <div>
-            TEST PAGE
-        </div>
+        <header class="header">
+            <h2>TEST PAGE</h2>
+        </header>
     );
-};
+}
 
 export default TestPage;
