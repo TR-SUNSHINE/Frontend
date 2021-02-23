@@ -81,3 +81,26 @@ The below naming convention and rules should be used when committing any change 
 1) A two step review and one step approval is required to merge from the remote branch to the remote repository.
 2) To facilitate a roll back procedure, no deletions of branches will be allowed in any repository.
 
+## Coding Editors
+### Visual Studio Code
+Visual Studio code (VS code) will be used for the development of the following file types:
+.js <br/>
+.jsx <br/>
+.css <br/>
+.html <br/>
+
+The below settings will be applied for each member of the team in VS Code to ensure all code files are formatted consistently to avoid code differences when merging to the main branch related to formatting:
+
+<b>Format On Save</b> will be checked to ensure no team member forgets to format their code before committing their changes to remote branches.
+<b>TypeScript and JavaScript</b> Language Features will be used as the default code formatter.
+
+### ESLint
+The JavaScript language is flexible in its coding style meaning quite often you can choose whether to use single or double quotes in strings or choose whether to end coding lines with a semicolon or not, very much like what you are enforced to do in the Java language.  Because of this flexibility in the coding style this leaves room for inconsistent coding styles between different developers in the team which leads to unnecessary differences in code files when pushing to GitHub.. To ensure each team member codes consistently the below rules have been applied in the ESLint configuration in the packages.json file:
+
+<b>semi</b> is used to enforce a semicolon at the end of coding lines. The rule accepts as its first parameter a number of 1 or 2. 1 is for warning and 2 is for error. In this project we want an error to be raised should a semicolon be missing at the end of a statement so we have chosen option number 2.
+
+<b>quotes</b> is used to enforce consistent coding styles when defining strings and class names. The error parameter ensures the developer has no option but to use double quotes in these circumstances.
+
+<b>jsx-quotes</b> is used to enforce consistent coding styles when defining strings and class names. The error parameter ensures the developer has no option but to use double quotes in these circumstances.
+
+
