@@ -1,45 +1,18 @@
-import logo from "./logo.svg";
-import { Button, ButtonToolbar } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
 import "./App.css";
+import { BrowserRouter, Route } from "react-router-dom";
+import WelcomePage from "./components/WelcomePage/WelcomePage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="header">
-        <h2 className="heading heading--main">Welcome to Sunshine</h2>
-      </header>
+    <div className="App container">
+      {/* think navbar goes here so appears on all pages, i.e. above the router for individal pages */}
+      <BrowserRouter>
+        <Route exact path="/" component={WelcomePage} />
+        {/* add other pages here */}
+      </BrowserRouter>
 
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <div className="frame--sunshine">
-              <img
-                className="img--sunshine"
-                src="./images/welcomeSunshine.jfif"
-                alt=""
-              />
-            </div>
-            <div className="row">
-              <div className="col-sm-2"></div>
-              <div className="col-sm-4">
-                <div className="button__container">
-                  <Button variant="secondary" className="ml-1">
-                    Register
-                  </Button>
-                </div>
-              </div>
-              <div className="col-sm-4">
-                <div className="button__container">
-                  <Button variant="secondary" className="ml-1">
-                    Login
-                  </Button>
-                </div>
-              </div>
-              <div className="col-sm-2"></div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

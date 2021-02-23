@@ -1,42 +1,26 @@
-/* General styling */
+/* register page */
 
-body {
-  background-color: white;
+.form-register {
+  padding-block: 5px;
   color: #296eb4;
+  padding: 10px;
+  margin: 5%;
+  border: 2px solid #fdbb33;
 }
 
-.header {
-  text-align: center;
-  margin-top: 5%;
+.form-control {
+  border: 1px solid #fdbb33;
+  padding: 8px;
+  margin-top: 4px;
 }
 
-.heading {
-  color: #296eb4;
+.form-label {
+  padding: 8px;
+  margin: 0px 0px 8px 8px;
 }
 
-.heading3 {
-  text-align: center;
-  color: #296eb4;
-}
-
-.frame {
-  border: 5px solid #1789fc;
-}
-
-/* index.html page */
-
-.button__container {
-  text-align: center;
-  padding: 1rem;
-}
-
-.frame--sunshine {
-  margin: 2% auto;
-}
-
-.img--sunshine {
-  display: block;
-  margin: 0 auto;
+.row {
+  align-items: center;
 }
 
 /*** My Walks CSS **/
@@ -165,29 +149,4 @@ body {
 /* Extra extra Large - ≥1400px */
 
 @media only screen and (min-width: 1400px) {
-}
-
-/* register page */
-
-.form-register {
-  padding-block: 5px;
-  color: #296eb4;
-  padding: 10px;
-  margin: 5%;
-  border: 2px solid #fdbb33;
-}
-
-.form-control {
-  border: 1px solid #fdbb33;
-  padding: 8px;
-  margin-top: 4px;
-}
-
-.form-label {
-  padding: 8px;
-  margin: 0px 0px 8px 8px;
-}
-
-.row {
-  align-items: center;
 }
