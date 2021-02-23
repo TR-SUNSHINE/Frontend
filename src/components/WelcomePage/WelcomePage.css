@@ -11,3 +11,19 @@
     display: block;
     margin: 0 auto;
   }
+
+  .col-sm-4 {
+    background-color: aqua;
+  }
+
+  .col-sm-2{
+    background-color: coral;
+  }
+
+  .one {
+    background-color: cornflowerblue;
+  }
+
+  .two {
+    background-color: darkgoldenrod;
+  }
