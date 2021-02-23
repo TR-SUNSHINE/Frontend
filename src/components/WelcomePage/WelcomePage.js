@@ -18,13 +18,13 @@ const Welcome = () => {
                 <Row>
                     <Col xs={12} sm={12} md={6}>
                         <div className="button__container button__container--left" >
-                            <Button>Register</Button>
+                            <Button variant="accessible">Register</Button>
                         </div>
                     </Col>
 
                     <Col xs={12} sm={12} md={6}>
                         <div className="button__container button__container--right" >
-                            <Button>Login</Button>
+                            <Button variant="accessible">Login</Button>
                         </div>
                     </Col>
                 </Row>

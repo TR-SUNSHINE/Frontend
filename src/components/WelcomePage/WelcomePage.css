@@ -12,6 +12,12 @@
   padding: 1rem;
 }
 
+.btn-accessible{
+  background-color: #296eb4;
+  color: white;
+  font-size: 24px;
+}
+
 /* Media Queries to match Bootstrap viewport sizes */
 
 /* Small - ≥576px */
