@@ -3,9 +3,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { faSun, faBolt, faWind, faSmog, faCloud, faRainbow, faPooStorm, faCloudSunRain, faCloudSun, faCloudShowersHeavy, faCloudRain, faSnowflake } from "@fortawesome/free-solid-svg-icons";
-import Weather from "../Weather/Weather";
 import WeatherContainer from "../WeatherContainer/WeatherContainer";
 import "./WeatherPage.css";
+import "../Button/Button.css";
 
 const WeatherPage = () => {
 
@@ -69,14 +69,14 @@ const WeatherPage = () => {
                 <WeatherContainer weatherTimes={weatherTimes} selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected} />
 
                 <Row>
-                    <Col>
+                    <Col xs={12}>
                         <div className="reminder__container">
                             <p hidden={reminder.time ? false : true}>Reminder set for your walk at {`${reminder.time}.`}</p>
                         </div>
                     </Col>
 
-                    <Col xs={12} sm={12} md={6}>
-                        <div className="button__container button__container--left" >
+                    <Col>
+                        <div xs={12} className="button__container button__container--center" >
                             <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="accessible">Set Reminder</Button>
                         </div>
                     </Col>
@@ -84,8 +84,8 @@ const WeatherPage = () => {
 
 
                 <Row>
-                    <Col xs={12} sm={12} md={6}>
-                        <div className="button__container button__container--right" >
+                    <Col>
+                        <div className="button__container button__container--center" >
                             <Button href="/" variant="accessible">My Walks</Button>
                         </div>
                     </Col>
