@@ -13,8 +13,13 @@
     /* padding: 8px;
     margin-top: 4px; */
 }
-  
-  /* .Form-Label {
+.button__container--center {
+  text-align: center;
+  padding: 1rem;
+
+}  
+
+/* .Form-Label {
     padding: 8px;
     margin: 0px 0px 8px 8px;
   }      */
