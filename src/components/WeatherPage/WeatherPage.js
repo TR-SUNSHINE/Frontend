@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faBolt, faWind, faSmog, faCloud, faRainbow, faPooStorm, faCloudSunRain, faCloudSun, faCloudShowersHeavy, faCloudRain, faSnowflake } from "@fortawesome/free-solid-svg-icons";
 import Weather from "../Weather/Weather";
+import WeatherContainer from "../WeatherContainer/WeatherContainer";
 import "./WeatherPage.css";
 
 const WeatherPage = () => {
@@ -58,7 +58,7 @@ const WeatherPage = () => {
 
                 <Row>
                     <Col>
-                        <p> Alun's map component here</p>
+                        <p> Map component here</p>
                         <div className="frame--weather">
                             <img className="img--map" src="./images/Manchester.png" alt="map"></img>
                         </div>
@@ -66,30 +66,24 @@ const WeatherPage = () => {
                 </Row>
 
 
-                <Row>
-                    <Col>
-                        <div className="weather__container">
-                            <h4 className="heading heading--secondary">Best walk times</h4>
-                            <p> Click on a time then set your walk time reminder for today.</p>
-                            <Weather weatherTimes={weatherTimes} selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected} />
-                        </div>
-                    </Col>
-                </Row>
+                <WeatherContainer weatherTimes={weatherTimes} selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected} />
+
                 <Row>
                     <Col>
                         <div className="reminder__container">
                             <p hidden={reminder.time ? false : true}>Reminder set for your walk at {`${reminder.time}.`}</p>
                         </div>
                     </Col>
-                </Row>
 
-                <Row>
                     <Col xs={12} sm={12} md={6}>
                         <div className="button__container button__container--left" >
                             <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="accessible">Set Reminder</Button>
                         </div>
                     </Col>
+                </Row>
 
+
+                <Row>
                     <Col xs={12} sm={12} md={6}>
                         <div className="button__container button__container--right" >
                             <Button href="/" variant="accessible">My Walks</Button>

@@ -99,7 +99,7 @@
 
 /* weather_page */
 
-.frame--weather {
+/* .frame--weather {
     margin: 2% auto;
 }
 
@@ -126,7 +126,7 @@
 
 .weather {
     padding: 1rem;
-}
+} */
 
 
 /* Media Queries to match Bootstrap viewport sizes */

@@ -18,27 +18,9 @@ body {
     width:70vw;
   }
   
-  .weather__container {
-    text-align: center;
-    margin-top: 1rem; 
-  
-  }
-  
-  .individual__weather__container {
-    overflow: auto;
-    white-space: nowrap;
-  }
-  
-  .individual__weather__container .weather{
-    display: inline-block;
-    padding: 1rem;
-  }
-
- .selected {
-   background-color: #FFD07B;
- }
-
  .reminder__container {
    text-align: center;
  }
   
+
+
