@@ -15,7 +15,7 @@ const Weather = ({ weatherTimes, selectedWeatherTime, toggleWeatherTimeSelected 
                                 <div>{weather.time}</div>
                                 <FontAwesomeIcon icon={weather.icon} />
                                 <div>{weather.temperature}</div>
-                                <div>{weather.description}</div>
+                                <p className="weather--description">{weather.description}</p>
                             </div>
                         );
                     })}
