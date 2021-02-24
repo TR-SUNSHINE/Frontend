@@ -1,7 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { queryHelpers, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Weather from "./Weather";
-import { faSun, faBolt, faWind, faSmog, faCloud, faRainbow, faPooStorm, faCloudSunRain, faCloudSun, faCloudShowersHeavy, faCloudRain, faSnowflake } from "@fortawesome/free-solid-svg-icons";
+import { faSun, faBolt, faWind } from "@fortawesome/free-solid-svg-icons";
 
 describe("Weather component", () => {
     afterEach(() => jest.clearAllMocks());
@@ -21,6 +21,8 @@ describe("Weather component", () => {
 
         render(<Weather weatherTimes={requiredWeatherTimes} selectedWeatherTime={requiredSelectedWeatherTime} toggleWeatherTimeSelected={requiredToggleWeatherTimeSelected} />);
 
+        screen.debug();
+
         expect(screen.getByText("windy")).toBeInTheDocument();
         expect(screen.getByText("lightening")).toBeInTheDocument();
         expect(screen.getByText("sunny")).toBeInTheDocument();
@@ -30,7 +32,8 @@ describe("Weather component", () => {
         expect(screen.getByText("22°")).toBeInTheDocument();
         expect(screen.getByText("23°")).toBeInTheDocument();
         expect(screen.getByText("24°")).toBeInTheDocument();
-
     });
+
+
 });
 
