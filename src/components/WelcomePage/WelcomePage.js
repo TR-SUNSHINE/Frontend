@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "../../index.css";
 import "./WelcomePage.css";
+import "../Button/Button.css";
 
 const Welcome = () => {
 

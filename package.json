@@ -30,7 +30,10 @@
     "rules": {
       "quotes": [
         "error",
-        "double"
+        "double",
+        {
+          "allowTemplateLiterals": true
+        }
       ],
       "jsx-quotes": [
         "error",
