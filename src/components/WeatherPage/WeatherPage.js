@@ -47,9 +47,6 @@ const WeatherPage = () => {
 
     };
 
-    console.log(selectedWeatherTime);
-    console.log(reminder);
-    console.log(reminder.time);
     return (
 
         <Row>
@@ -58,9 +55,9 @@ const WeatherPage = () => {
 
                 <Row>
                     <Col>
-                        <p> Map component here</p>
-                        <div className="frame--weather">
-                            <img className="img--map" src="./images/Manchester.png" alt="map"></img>
+                        <div class="frame--map">
+                            <iframe title="Map of user's local area" className="iframe--map"
+                                src="https://www.google.com/maps/d/embed?mid=1F0OhEou31qd5wCPlKahJ8INJa75su22D"></iframe>
                         </div>
                     </Col>
                 </Row>
