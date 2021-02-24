@@ -96,39 +96,6 @@
     align-items: center;
 }
 
-
-/* weather_page */
-
-.frame--weather {
-    margin: 2% auto;
-}
-
-.img--map {
-    display: block;
-    margin: 0 auto;
-    height: 30vh;
-    width: 70vw;
-}
-
-.weather__container {
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.individual__weather__container {
-    overflow: auto;
-    white-space: nowrap;
-}
-
-.individual__weather__container .weather {
-    display: inline-block;
-}
-
-.weather {
-    padding: 1rem;
-}
-
-
 /* Media Queries to match Bootstrap viewport sizes */
 
 

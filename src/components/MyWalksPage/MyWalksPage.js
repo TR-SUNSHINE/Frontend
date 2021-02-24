@@ -18,7 +18,7 @@ const MyWalks = () => {
                     <div className="card p-3">
                         <div className="mt-5 d-flex justify-content-between align-items-center">
                             <h5 className="review-stat">Walk Name</h5>
-                            <div className="review-stat"> Walk Rating</div>
+                            <div className="review-stat"> Walk Ave Rating</div>
                         </div>
                         <hr className="line-horizontal" />
                         <div className="mt-1 d-flex justify-content-between align-items-center">
@@ -28,9 +28,11 @@ const MyWalks = () => {
                     </div>
                 </div>
                 <Row>
-                    <div className="button__container button__container--center">
-                        <Button>Create New Walk</Button>
-                    </div>
+                    <Col xs={12} sm={12} md={12}>
+                        <div className="button__container button__container--centre" >
+                            <Button variant="accessible">Create New Walk</Button>
+                        </div>
+                    </Col>
                 </Row>
             </Col>
         </Row>

@@ -6,19 +6,9 @@
 .img--sunshine{
     display: block;
     margin: 0 auto;
+    width: -webkit-fill-available;
+    overflow-y: hidden;
 }
-
-/* .button__container {
-  text-align: center;
-  padding: 1rem;
-}
-
-.btn-accessible{
-  background-color: #296eb4;
-  color: white;
-  font-size: 18px;
-} */
-
 /* Media Queries to match Bootstrap viewport sizes */
 
 /* Small - ≥576px */
