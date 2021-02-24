@@ -11,6 +11,7 @@ import Logout from "../Logout/Logout";
 */
 import MyWalksPage from "../MyWalksPage/MyWalksPage";
 import TestPage from "../TestPage/TestPage";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 function Routes() {
     return (
@@ -32,6 +33,7 @@ function Routes() {
                     */}
                     <Route exact path="/MyWalksPage" component={MyWalksPage} />
                     <Route exact path="/TestPage" component={TestPage} />
+                    <Route exact path="/NotFoundPage" component={NotFoundPage} />
                 </Switch>
             </BrowserRouter>
         </div>
