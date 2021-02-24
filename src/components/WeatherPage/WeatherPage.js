@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -24,6 +25,7 @@ const WeatherPage = () => {
     ]);
 
     const [selectedWeatherTime, setSelectedWeatherTime] = useState("");
+    const [reminder, setReminder] = useState({});
 
     const toggleWeatherTimeSelected = (weatherId) => {
 
@@ -31,15 +33,23 @@ const WeatherPage = () => {
             setSelectedWeatherTime(weatherId);
         } else {
             setSelectedWeatherTime("");
+            setReminder({});
         }
 
     };
 
     const toggleReminder = () => {
 
+        if (selectedWeatherTime) {
+            let selected = weatherTimes.filter(weather => weather.id === selectedWeatherTime);
+            setReminder(selected[0]);
+        }
+
     };
 
     console.log(selectedWeatherTime);
+    console.log(reminder);
+    console.log(reminder.time);
     return (
 
         <Row>
@@ -60,7 +70,7 @@ const WeatherPage = () => {
                     <Col>
                         <div className="weather__container">
                             <h4 className="heading heading--secondary">Best walk times</h4>
-                            <p> Click on a time to set your walk time reminder for today.</p>
+                            <p> Click on a time then set your walk time reminder for today.</p>
                             <Row>
                                 <Col>
                                     <div className="individual__weather__container">
@@ -81,17 +91,24 @@ const WeatherPage = () => {
                         </div>
                     </Col>
                 </Row>
+                <Row>
+                    <Col>
+                        <div className="reminder__container">
+                            <p hidden={reminder.time ? false : true}>Reminder set for your walk at {`${reminder.time}.`}</p>
+                        </div>
+                    </Col>
+                </Row>
 
                 <Row>
                     <Col xs={12} sm={12} md={6}>
                         <div className="button__container button__container--left" >
-                            <Button onClick={toggleReminder} variant="accessible">Set Reminder</Button>
+                            <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="accessible">Set Reminder</Button>
                         </div>
                     </Col>
 
                     <Col xs={12} sm={12} md={6}>
                         <div className="button__container button__container--right" >
-                            <Button variant="accessible">My Walks</Button>
+                            <Button href="/" variant="accessible">My Walks</Button>
                         </div>
                     </Col>
                 </Row>
