@@ -3,8 +3,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import RatingsBar from "../RatingsBar/RatingsBar";
+import Graph from "../Graph/Graph";
 
-function IndividualWalkPage() {
+const IndividualWalkPage = () => {
     return (
         <Row>
             <Col>
@@ -16,12 +17,12 @@ function IndividualWalkPage() {
                     </div>
                 </div>
                 <Row>
+                    <Graph />
                 </Row>
                 <Row>
                     <RatingsBar />
                 </Row>
                 <Row>
-
                     <div className="button__container button__container--center">
                         <Button>Add New Rating</Button>
                     </div>
@@ -29,6 +30,6 @@ function IndividualWalkPage() {
             </Col>
         </Row>
     );
-}
+};
 export default IndividualWalkPage;
 

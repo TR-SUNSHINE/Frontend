@@ -11,7 +11,7 @@ import IndividualWalkPage from "../IndividualWalkPage/IndividualWalkPage";
 import MyWalksPage from "../MyWalksPage/MyWalksPage";
 import TestPage from "../TestPage/TestPage";
 
-function Routes() {
+const Routes = () => {
     return (
         <div>
             <BrowserRouter>
@@ -34,7 +34,7 @@ function Routes() {
             </BrowserRouter>
         </div>
     );
-}
+};
 export default Routes;
 
 

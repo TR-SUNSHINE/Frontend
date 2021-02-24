@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import NaviBar from "../NaviBar/NaviBar";
 
-function Header() {
+const Header = () => {
     return (
         <Row>
             <Row>
@@ -25,6 +25,6 @@ function Header() {
             </Col>
         </Row>
     );
-}
+};
 
 export default Header;

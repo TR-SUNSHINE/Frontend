@@ -2,7 +2,7 @@ import "./NaviBar.css";
 import Row from "react-bootstrap/Row";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 
-function NaviBar() {
+const NaviBar = () => {
     return (
         <Row>
             <Navbar fixed="right" bg="light" expand="lg" className="cust-nav-bar">
@@ -10,9 +10,8 @@ function NaviBar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="/WelcomePage">Home</Nav.Link>
+                        <Nav.Link href="/WeatherPage">My Weather</Nav.Link>
                         <Nav.Link href="/Location">Location</Nav.Link>
-                        <Nav.Link href="/Weather">Weather</Nav.Link>
                         <Nav.Link href="/Reminders">Reminders</Nav.Link>
                         <Nav.Link href="/MyWalksPage">My Walks</Nav.Link>
                         <Nav.Link href="/AddWalksPage">Add Walks</Nav.Link>
@@ -42,6 +41,6 @@ function NaviBar() {
             */ }
         </Row>
     );
-}
+};
 
 export default NaviBar;
