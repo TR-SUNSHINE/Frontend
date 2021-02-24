@@ -1,5 +1,4 @@
-import { queryHelpers, render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from "@testing-library/react";
 import Weather from "./Weather";
 import { faSun, faBolt, faWind } from "@fortawesome/free-solid-svg-icons";
 
