@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import "../../index.css";
 import "./RegisterPage.css";
 import { Form } from "react-bootstrap";
+import FormInput from "../FormInput/FormInput";
 
 
 const RegisterPage = () => {
@@ -27,6 +28,9 @@ const RegisterPage = () => {
             <Col>
                 <h3 class="heading heading--main">Register with Sunshine</h3>
                 <Form className="form-register">
+
+                    {/* <FormInput labelText={"Text to be used as label"} /> */}
+                    {/* <FormInput labelText={"Namefor test", "small", "userName", userName, setName, "Enter your name..."} /> */}
 
                     <Form.Group className="form-row">
                         <Col sm={3}>
