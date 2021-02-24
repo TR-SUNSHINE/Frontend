@@ -8,3 +8,17 @@
     size: 5;
     width: 100%;
   }
+  .card {
+    width: 380px;
+    border: none;
+    height: 280px
+}
+
+.ratings {
+    margin-right: 10px
+}
+
+.ratings i {
+    color: #cecece;
+    font-size: 32px;
+}
