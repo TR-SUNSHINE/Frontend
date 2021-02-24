@@ -1,0 +1,13 @@
+.individual__weather__container {
+    overflow: auto;
+    white-space: nowrap;
+  }
+  
+  .individual__weather__container .weather{
+    display: inline-block;
+    padding: 1rem;
+  }
+
+ .selected {
+   background-color: #FFD07B;
+ }
