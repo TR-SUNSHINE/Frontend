@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Link from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faBolt, faWind, faSmog, faCloud, faRainbow, faPooStorm, faCloudSunRain, faCloudSun, faCloudShowersHeavy, faCloudRain, faSnowflake } from "@fortawesome/free-solid-svg-icons";
+import Weather from "../Weather/Weather";
 import "./WeatherPage.css";
 
 const WeatherPage = () => {
@@ -71,23 +71,7 @@ const WeatherPage = () => {
                         <div className="weather__container">
                             <h4 className="heading heading--secondary">Best walk times</h4>
                             <p> Click on a time then set your walk time reminder for today.</p>
-                            <Row>
-                                <Col>
-                                    <div className="individual__weather__container">
-                                        {weatherTimes.map((weather) => {
-                                            return (
-                                                <div className={selectedWeatherTime === weather.id ? "weather selected" : "weather"} onClick={(event) => { toggleWeatherTimeSelected(weather.id); }}>
-                                                    <div>{weather.time}</div>
-                                                    <FontAwesomeIcon icon={weather.icon} />
-                                                    <div>{weather.temperature}</div>
-                                                    <div>{weather.description}</div>
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-                                </Col>
-                            </Row>
-
+                            <Weather weatherTimes={weatherTimes} selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected} />
                         </div>
                     </Col>
                 </Row>
