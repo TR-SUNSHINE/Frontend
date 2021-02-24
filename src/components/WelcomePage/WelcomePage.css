@@ -8,7 +8,7 @@
     margin: 0 auto;
 }
 
-.button__container {
+/* .button__container {
   text-align: center;
   padding: 1rem;
 }
@@ -16,8 +16,8 @@
 .btn-accessible{
   background-color: #296eb4;
   color: white;
-  font-size: 24px;
-}
+  font-size: 18px;
+} */
 
 /* Media Queries to match Bootstrap viewport sizes */
 
