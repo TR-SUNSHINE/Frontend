@@ -7,13 +7,40 @@ export default class Graph extends Component {
 
     componentDidMount() {
         const myChartRef = this.chartRef.current.getContext("2d");
+        const { data } = this.props;
 
+        //data.avgRatings.Feb
         new Chart(myChartRef, {
             type: "bar",
             data: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                labels: [
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Aug",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dec"],
                 datasets: [{
-                    data: [4, 2, 3, 4, 5, 3, 2, 4, 4, 4, 5, 3],
+                    data: [
+                        data.avgRatings.Jan,
+                        data.avgRatings.Feb,
+                        data.avgRatings.Mar,
+                        data.avgRatings.Apr,
+                        data.avgRatings.May,
+                        data.avgRatings.Jun,
+                        data.avgRatings.Jul,
+                        data.avgRatings.Aug,
+                        data.avgRatings.Sep,
+                        data.avgRatings.Oct,
+                        data.avgRatings.Nov,
+                        data.avgRatings.Dec
+                    ],
                     label: "Star Rating",
                     borderColor: "yellow",
                     backgroundColor: "#296EB4",
@@ -38,6 +65,7 @@ export default class Graph extends Component {
                 }
             }
         });
+
     }
     render() {
         return (
