@@ -1,19 +1,21 @@
-
 import "../../index.css";
 import "./RatingsBar.css";
-import React, { Component } from "react";
+import Rating from "@material-ui/lab/Rating";
+import { useState } from "react";
 
-import Rater from "react-rater";
-import "react-rater/lib/react-rater.css";
+const RatingsBar = ({ stars, disabled }) => {
+    const [value, setValue] = useState(stars);
 
-export default class RatingsBar extends Component {
-    constructor(props) {
-        super(props);
-        this.stars = props.stars;
-    }
-    render() {
-        return (<Rater total={5} rating={this.stars} />);
-    }
+    return (
+        <Rating
+            name="simple-controlled"
+            value={value}
+            disabled={disabled}
+            onChange={(event) => {
+                setValue(Number(event.target.value));
+            }}
+        />
+    );
+
 };
-
-
+export default RatingsBar;
