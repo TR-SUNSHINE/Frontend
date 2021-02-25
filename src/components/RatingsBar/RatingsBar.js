@@ -1,20 +1,19 @@
-import React from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-regular-svg-icons";
+
 import "../../index.css";
 import "./RatingsBar.css";
+import React, { Component } from "react";
 
-const RatingsBar = () => {
-    return (
-        <Row>
-            <Col>
-                <div className="small-ratings"><FontAwesomeIcon className="rating-color" icon={faStar} /><FontAwesomeIcon className="rating-color" icon={faStar} /><FontAwesomeIcon className="rating-color" icon={faStar} /><FontAwesomeIcon className="rating-color" icon={faStar} /><FontAwesomeIcon className="rating-color" icon={faStar} />
-                </div>
-            </Col>
-        </Row>
-    );
+import Rater from "react-rater";
+import "react-rater/lib/react-rater.css";
+
+export default class RatingsBar extends Component {
+    constructor(props) {
+        super(props);
+        this.stars = props.stars;
+    }
+    render() {
+        return (<Rater total={5} rating={this.stars} />);
+    }
 };
 
-export default RatingsBar;
+
