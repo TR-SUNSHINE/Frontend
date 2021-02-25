@@ -23,14 +23,8 @@ const Routes = () => {
                         <Redirect to="/WelcomePage" />
                     </Route>
                     <Route exact path="/WelcomePage" component={WelcomePage} />
-                    {/*
-                    <Route exact path="/Location" component={Location} />
-                    <Route exact path="/Reminders" component={Reminders} />
-                    <Route exact path="/AddWalksPage" component={AddWalksPage} />
-                    <Route exact path="/Logout" component={Logout} />
-                    */}
                     <Route exact path="/IndividualWalkPage" component={IndividualWalkPage} />
-                    <Route exact path="/Weather" component={WeatherPage} />
+                    <Route exact path="/WeatherPage" component={WeatherPage} />
                     <Route exact path="/MyWalksPage" component={MyWalksPage} />
                     <Route exact path="/TestPage" component={TestPage} />
                     <Route exact path="/NotFoundPage" component={NotFoundPage} />

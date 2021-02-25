@@ -1,10 +1,11 @@
 import "./NaviBar.css";
 import Row from "react-bootstrap/Row";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import React, { Component } from "react";
 
-const NaviBar = () => {
-    return (
-        <Row>
+export default class NaviBar extends Component {
+    render() {
+        return (
             <Navbar fixed="right" bg="light" expand="lg" className="cust-nav-bar">
                 <Navbar.Brand href="#home"></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -21,26 +22,6 @@ const NaviBar = () => {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            {
-            /*
-                <Navbar fixed="left" expand="lg" variant="dark" className="cust-nav-bar">
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav"></Navbar.Collapse>
-                <Nav defaultActiveKey="/WelcomePage" className="flex-column">
-                    <Nav.Link href="/WelcomePage">Home</Nav.Link>
-                    <Nav.Link href="/Location">Location</Nav.Link>
-                    <Nav.Link href="/Weather">Weather</Nav.Link>
-                    <Nav.Link href="/Reminders">Reminders</Nav.Link>
-                    <Nav.Link href="/MyWalksPage">My Walks</Nav.Link>
-                    <Nav.Link href="/AddWalksPage">Add Walks</Nav.Link>
-                    <Nav.Link href="/IndividualWalkPage">Individual Walk</Nav.Link>
-                    <Nav.Link href="/Logout">Logout</Nav.Link>
-                    <Nav.Link href="/TestPage">TestPage</Nav.Link>
-                </Nav>
-            </Navbar>
-            */ }
-        </Row>
-    );
+        );
+    }
 };
-
-export default NaviBar;
