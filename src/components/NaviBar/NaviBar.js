@@ -21,4 +21,6 @@ export default class NaviBar extends Component {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
+        );
+    }
 };
