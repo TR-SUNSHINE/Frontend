@@ -8,8 +8,6 @@ import Walks from "../Walks/Walks";
 import RatingsBar from "../RatingsBar/RatingsBar";
 
 const MyWalks = () => {
-
-
     return (
         <Row>
             <Col>
@@ -23,7 +21,7 @@ const MyWalks = () => {
                         <hr className="line-horizontal" />
                         <div className="mt-1 d-flex justify-content-between align-items-center">
                             <Walks></Walks>
-                            <RatingsBar></RatingsBar>
+                            <RatingsBar stars={3} />
                         </div>
                     </div>
                 </div>
