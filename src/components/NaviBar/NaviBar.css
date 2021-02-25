@@ -1,4 +1,7 @@
 .cust-nav-bar {
     background-color: #296EB4;
-    color: white;
+    color: red;
+    position: absolute;
+    z-index: 2;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
 }
