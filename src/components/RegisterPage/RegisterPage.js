@@ -48,7 +48,7 @@ const RegisterPage = () => {
                         </Col>
                     </Form.Group>
                     <FormInput labelInput="Firstname" typeInput="small" nameInput="userFirstName" placeHolderInput="Enter your first name" />
-                    <FormInput labelInput="Email" typeInput="small" nameInput="userEmail" placeHolderInput="Enter your email address" />
+                    <FormInput labelInput="Email" typeInput="email" nameInput="userEmail" placeHolderInput="Enter your email address" />
                     <FormInput labelInput="Password" typeInput="password" nameInput="userPassword" placeHolderInput="Enter password" />
                     <FormInput labelInput="Confirm Password" typeInput="password" nameInput="userConfirmPassowrd" placeHolderInput="Confirm password" />
 
