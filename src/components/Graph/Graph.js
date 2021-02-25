@@ -3,11 +3,14 @@ import React, { Component } from "react";
 import Chart from "chart.js";
 
 export default class Graph extends Component {
+    constructor(props) {
+        super(props);
+        this.data = props.data;
+    }
     chartRef = React.createRef();
 
     componentDidMount() {
         const myChartRef = this.chartRef.current.getContext("2d");
-        const { data } = this.props;
 
         //data.avgRatings.Feb
         new Chart(myChartRef, {
@@ -28,18 +31,18 @@ export default class Graph extends Component {
                     "Dec"],
                 datasets: [{
                     data: [
-                        data.avgRatings.Jan,
-                        data.avgRatings.Feb,
-                        data.avgRatings.Mar,
-                        data.avgRatings.Apr,
-                        data.avgRatings.May,
-                        data.avgRatings.Jun,
-                        data.avgRatings.Jul,
-                        data.avgRatings.Aug,
-                        data.avgRatings.Sep,
-                        data.avgRatings.Oct,
-                        data.avgRatings.Nov,
-                        data.avgRatings.Dec
+                        this.data.avgRatings.Jan,
+                        this.data.avgRatings.Feb,
+                        this.data.avgRatings.Mar,
+                        this.data.avgRatings.Apr,
+                        this.data.avgRatings.May,
+                        this.data.avgRatings.Jun,
+                        this.data.avgRatings.Jul,
+                        this.data.avgRatings.Aug,
+                        this.data.avgRatings.Sep,
+                        this.data.avgRatings.Oct,
+                        this.data.avgRatings.Nov,
+                        this.data.avgRatings.Dec
                     ],
                     label: "Star Rating",
                     borderColor: "yellow",
