@@ -6,8 +6,6 @@ import "../../index.css";
 import "./RegisterPage.css";
 import { Form } from "react-bootstrap";
 import FormInput from "../FormInput/FormInput";
-import Header from "../Header/Header";
-
 
 const RegisterPage = () => {
 
