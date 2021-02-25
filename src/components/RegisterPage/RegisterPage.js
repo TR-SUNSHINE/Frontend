@@ -7,17 +7,16 @@ import "./RegisterPage.css";
 import { Form } from "react-bootstrap";
 import FormInput from "../FormInput/FormInput";
 
-
 const RegisterPage = () => {
 
     const [userName, setName] = useState("");
-    const [userFirstName, setFirstName] = useState("");
-    const [userEmail, setEmail] = useState("");
-    const [userPassword, setPass] = useState("");
-    const [userConfirmPassword, setConfirmPass] = useState("");
+    // const [userFirstName, setFirstName] = useState("");
+    // const [userEmail, setEmail] = useState("");
+    // const [userPassword, setPass] = useState("");
+    // const [userConfirmPassword, setConfirmPass] = useState("");
 
     const handleClick = () => {
-        console.log("onclick", userName, userFirstName, userEmail, userPassword, userConfirmPassword);
+        console.log("onclick", userName);
     };
     // check if user exist already
     // check password +confirma password are the same
@@ -26,11 +25,12 @@ const RegisterPage = () => {
     return (
         <Row>
             <Col>
+
                 <h3 class="heading heading--main">Register with Sunshine</h3>
+
                 <Form className="form-register">
 
-                    {/* <FormInput labelText={"Text to be used as label"} /> */}
-                    {/* <FormInput labelText={"Namefor test", "small", "userName", userName, setName, "Enter your name..."} /> */}
+                    {/* <FormInput labelInput="Name" typeInput="small" nameInput="userName" placeHolderInput="Enter your name" /> */}
 
                     <Form.Group className="form-row">
                         <Col sm={3}>
@@ -42,11 +42,15 @@ const RegisterPage = () => {
                                 name="userName"
                                 value={userName}
                                 onChange={(event) => setName(event.target.value)}
-                                placeholder="Enter your Name" />
+                                placeholder="Enter your name" />
                         </Col>
                     </Form.Group>
+                    <FormInput labelInput="Firstname" typeInput="small" nameInput="userFirstName" placeHolderInput="Enter your first name" />
+                    <FormInput labelInput="Email" typeInput="email" nameInput="userEmail" placeHolderInput="Enter your email address" />
+                    <FormInput labelInput="Password" typeInput="password" nameInput="userPassword" placeHolderInput="Enter password" />
+                    <FormInput labelInput="Confirm Password" typeInput="password" nameInput="userConfirmPassowrd" placeHolderInput="Confirm password" />
 
-                    <Form.Group className="form-row">
+                    {/* <Form.Group className="form-row">
                         <Col sm={3}>
                             <Form.Label for="firstNameInput">First name</Form.Label>
                         </Col>
@@ -73,8 +77,8 @@ const RegisterPage = () => {
                                 placeholder="Enter your email" />
                         </Col>
                     </Form.Group>
-
-                    <Form.Group className="form-row">
+ */}
+                    {/* <Form.Group className="form-row">
                         <Col sm={3}>
                             <Form.Label for="PasswordInput">Password</Form.Label>
                         </Col>
@@ -100,7 +104,7 @@ const RegisterPage = () => {
                                 onChange={(event) => setConfirmPass(event.target.value)}
                                 placeholder="Confirm your password" />
                         </Col>
-                    </Form.Group>
+                    </Form.Group> */}
 
                     <Row>
                         <Col xs={12} >
@@ -110,17 +114,6 @@ const RegisterPage = () => {
                         </Col>
                     </Row>
                 </Form>
-
-                {/* <Row>
-                        <Col xs={12} >
-                            <div className="button__container--center">
-                                <Button  >Register</Button>
-                            </div>
-                        </Col>
-                    </Row> */}
-
-
-
 
 
             </Col>
