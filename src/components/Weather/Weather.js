@@ -11,7 +11,7 @@ const Weather = ({ weatherTimes, selectedWeatherTime, toggleWeatherTimeSelected 
                 <div className="individual__weather__container">
                     {weatherTimes.map((weather) => {
                         return (
-                            <div className={selectedWeatherTime === weather.id ? "weather selected" : "weather"} onClick={(event) => { toggleWeatherTimeSelected(weather.id); }}>
+                            <div key={weather.id} className={selectedWeatherTime === weather.id ? "weather selected" : "weather"} onClick={(event) => { toggleWeatherTimeSelected(weather.id); }}>
                                 <div>{weather.time}</div>
                                 <FontAwesomeIcon icon={weather.icon} />
                                 <div>{weather.temperature}</div>

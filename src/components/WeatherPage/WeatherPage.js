@@ -55,7 +55,7 @@ const WeatherPage = () => {
 
                 <Row>
                     <Col>
-                        <div class="frame--map">
+                        <div className="frame--map">
                             <iframe title="Map of user's local area" className="iframe--map"
                                 src="https://www.google.com/maps/d/embed?mid=1F0OhEou31qd5wCPlKahJ8INJa75su22D"></iframe>
                         </div>
