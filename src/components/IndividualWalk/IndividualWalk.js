@@ -1,12 +1,13 @@
-import "./IndividualWalkPage.css";
+import "./IndividualWalk.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import RatingsBar from "../RatingsBar/RatingsBar";
 import Graph from "../Graph/Graph";
+import Map from "../Map/Map";
 import { useState } from "react";
 
-const IndividualWalkPage = ({ id }) => {
+const IndividualWalk = ({ id }) => {
     const [users, setUser] = useState([
         {
             id: 1,
@@ -60,12 +61,7 @@ const IndividualWalkPage = ({ id }) => {
         <Row>
             <Col>
                 <h3 className="heading heading--main">Individual Walk</h3>
-                <div className="container d-flex justify-content-center align-items-center">
-                    <div className="card p-1">
-                        <iframe className="iframe--map"
-                            src="https://www.google.com/maps/d/embed?mid=1F0OhEou31qd5wCPlKahJ8INJa75su22D"></iframe>
-                    </div>
-                </div>
+                <Map />
                 <Row>
                     <Graph data={filteredUser} />
                 </Row>
@@ -81,5 +77,5 @@ const IndividualWalkPage = ({ id }) => {
         </Row>
     );
 };
-export default IndividualWalkPage;
+export default IndividualWalk;
 
