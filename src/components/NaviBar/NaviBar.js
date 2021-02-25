@@ -1,5 +1,4 @@
 import "./NaviBar.css";
-import Row from "react-bootstrap/Row";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import React, { Component } from "react";
 
