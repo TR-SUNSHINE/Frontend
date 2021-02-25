@@ -1,4 +1,4 @@
-import "./IndividualWalkPage.css";
+import "./IndividualWalk.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -6,7 +6,7 @@ import RatingsBar from "../RatingsBar/RatingsBar";
 import Graph from "../Graph/Graph";
 import { useState } from "react";
 
-const IndividualWalkPage = ({ id }) => {
+const IndividualWalk = ({ id }) => {
     const [users, setUser] = useState([
         {
             id: 1,
@@ -81,5 +81,5 @@ const IndividualWalkPage = ({ id }) => {
         </Row>
     );
 };
-export default IndividualWalkPage;
+export default IndividualWalk;
 
