@@ -8,27 +8,34 @@ import { Form } from "react-bootstrap";
 
 
 const LoginPage = () => {
+    // const [users, setTasks] = useState([
+    //     { userFirstaName: 'Myriam', userName: "Thursch", password: "12345", id: '001' },
+    //     { userFirstaName: 'John', userName: "Smith", password: "12345", id: '002' },
+    //     { userFirstaName: 'Joan', userName: "Prijs", password: "12345", id: '003' },
+    //     { userFirstaName: 'Ana', userName: "Saunders", password: "12345", id: '004' },
+    // ])
 
     const [userName, setName] = useState("");
     const [userFirstName, setFirstName] = useState("");
-    const [userEmail, setEmail] = useState("");
+    const [userPassword, setPassword] = useState("");
+
 
     const handleClick = () => {
-        console.log("onclick", userName, userFirstName, userEmail);
+        console.log("onclick", userName, userFirstName, userPassword);
     };
 
     return (
         <Row>
-            <Col>
+            <Col sm={10}>
 
                 <h3 class="heading heading--main">Login with Sunshine</h3>
 
                 <Form className="form-register">
                     <Form.Group className="form-row">
-                        <Col sm={3}>
+                        <Col sm={4}>
                             <Form.Label for="nameInput">Name</Form.Label>
                         </Col>
-                        <Col sm={9}>
+                        <Col sm={8}>
                             <Form.Control
                                 type="small"
                                 name="userName"
@@ -38,11 +45,11 @@ const LoginPage = () => {
                         </Col>
                     </Form.Group>
 
-                    <Form.Group className="form-row">
-                        <Col sm={3}>
+                    <Form.Group className="form-row" sm={8}>
+                        <Col sm={4}>
                             <Form.Label for="firstNameInput">First name</Form.Label>
                         </Col>
-                        <Col sm={9}>
+                        <Col sm={8}>
                             <Form.Control
                                 type="small"
                                 name="userFirstName"
@@ -53,16 +60,16 @@ const LoginPage = () => {
                     </Form.Group>
 
                     <Form.Group className="form-row">
-                        <Col sm={3}>
-                            <Form.Label for="EmailInput">Email</Form.Label>
+                        <Col sm={4}>
+                            <Form.Label for="EmailInput">Password</Form.Label>
                         </Col>
-                        <Col sm={9}>
+                        <Col sm={8}>
                             <Form.Control
-                                type="small"
-                                name="userEmail"
-                                value={userEmail}
-                                onChange={(event) => setEmail(event.target.value)}
-                                placeholder="Enter your email" />
+                                type="password"
+                                name="userPassword"
+                                value={userPassword}
+                                onChange={(event) => setPassword(event.target.value)}
+                                placeholder="Enter your password" />
                         </Col>
                     </Form.Group>
 
@@ -70,7 +77,7 @@ const LoginPage = () => {
                     <Row>
                         <Col xs={12} >
                             <div className="button__container--center">
-                                <Button onClick={handleClick} >Login</Button>
+                                <Button type="submit" onClick={handleClick} >Login</Button>
                             </div>
                         </Col>
                     </Row>
