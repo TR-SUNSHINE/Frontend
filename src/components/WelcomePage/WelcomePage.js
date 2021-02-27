@@ -19,13 +19,21 @@ const Welcome = () => {
                 <Row>
                     <Col xs={12} sm={12} md={6}>
                         <div className="button__container button__container--left" >
-                            <Button variant="accessible"><Link className="button--link" to="/register">Register</Link></Button>
+                            <Button variant="accessible">
+                                <Link className="button--link" to="/register">
+                                    Register
+                                </Link>
+                            </Button>
                         </div>
                     </Col>
 
                     <Col xs={12} sm={12} md={6}>
                         <div className="button__container button__container--right" >
-                            <Button variant="accessible"><Link className="button--link" to="/login">Login</Link></Button>
+                            <Button variant="accessible">
+                                <Link className="button--link" to="/login">
+                                    Login
+                                </Link>
+                            </Button>
                         </div>
                     </Col>
                 </Row>
