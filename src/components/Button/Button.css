@@ -25,6 +25,11 @@
 
 @media only screen and (min-width: 768px) and (max-width: 992px) {}
 
+.btn-accessible{
+  background-color: #296eb4;
+  color: white;
+  font-size: 24px;
+}
 
 /* Large - ≥992px */
 
