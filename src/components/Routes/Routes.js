@@ -18,7 +18,7 @@ const Routes = () => {
                     </Route>
                     <Route exact path="/WelcomePage" component={WelcomePage} />
                     <Route exact path="/IndividualWalk" component={IndividualWalk} />
-                    <Route exact path="/WeatherPage" component={WeatherPage} />
+                    <Route exact path="/Weather" component={WeatherPage} />
                     <Route exact path="/MyWalksPage" component={MyWalksPage} />
                     <Route exact path="/TestPage" component={TestPage} />
                     <Route exact path="/NotFoundPage" component={NotFoundPage} />
