@@ -26,11 +26,11 @@ const LoginPage = () => {
 
     return (
         <Row>
-            <Col sm={10}>
+            <Col xs={12} sm={12} md={6}>
 
                 <h3 class="heading heading--main">Login with Sunshine</h3>
 
-                <Form className="form-register">
+                <Form className="form-xs={12} sm={12} md={6}register">
                     <Form.Group className="form-row">
                         <Col sm={4}>
                             <Form.Label for="nameInput">Name</Form.Label>
