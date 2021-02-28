@@ -21,7 +21,7 @@ const MyWalks = () => {
                         <hr className="line-horizontal" />
                         <div className="mt-1 d-flex justify-content-between align-items-center">
                             <Walks></Walks>
-                            <RatingsBar stars={3} />
+                            <RatingsBar stars={4} disabled={true} />
                         </div>
                     </div>
                 </div>
