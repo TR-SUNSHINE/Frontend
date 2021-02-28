@@ -19,10 +19,8 @@ const WeatherPage = () => {
     const [weatherTimes, setWeatherTimes] = useState([]);
     const [date, setDate] = useState("");
     const [noResults, setNoResults] = useState(false);
-
     const [selectedWeatherTime, setSelectedWeatherTime] = useState(0);
     const [reminder, setReminder] = useState({ time: 0, walk: "" });
-
     const weatherKey = process.env.REACT_APP_WEATHER_API_KEY;
 
 
@@ -49,6 +47,12 @@ const WeatherPage = () => {
     const getWeather = useCallback(async () => {
 
         try {
+
+            // get a 404 using UK postcodes
+            /* const getLatLong = await axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=m155ax,gb&appid=${weatherKey}
+             `);
+             console.log(getLatLong);
+            */
 
             const weatherApi = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=daily,minutely,alerts&units=metric&appid=${weatherKey}`);
 
