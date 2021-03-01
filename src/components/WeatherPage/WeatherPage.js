@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 // import { faSun, faBolt, faWind, faSmog, faCloud, faRainbow, faPooStorm, faCloudSunRain, faCloudSun, faCloudShowersHeavy, faCloudRain, faSnowflake } from "@fortawesome/free-solid-svg-icons";
+import ReactGoogleMap from "../ReactGoogleMap/ReactGoogleMap";
 import WeatherContainer from "../WeatherContainer/WeatherContainer";
 import "./WeatherPage.css";
 import "../Button/Button.css";
@@ -44,14 +45,23 @@ const WeatherPage = () => {
     };
 
     const getCoords = useCallback(async () => {
-        const coords = new Promise((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(resolve, reject);
-        });
 
-        const position = await coords;
-        setLatitude(position.coords.latitude);
-        setLongitude(position.coords.longitude);
+        try {
+            const coords = new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(resolve, reject);
+            });
+
+            const position = await coords;
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
+
+        } catch (error) {
+            console.log(error);
+            // redirect to error page
+        }
     }, []);
+
+
 
 
     const getWeather = useCallback(async () => {
@@ -74,9 +84,9 @@ const WeatherPage = () => {
 
 
     useEffect(() => {
-        getWeather();
         getCoords();
-    }, [getWeather, getCoords]);
+        getWeather();
+    }, [getCoords, getWeather]);
 
     if (noResults) {
         return <Redirect to="/NotFoundPage" />;
@@ -91,22 +101,21 @@ const WeatherPage = () => {
                 <h3 className="heading heading--main">Weather today: {date}</h3>
 
                 <Row>
-                    {/* <Col>
-                        <div className="frame--map">
-                            <iframe title="Map of user's local area" className="iframe--map"
-                                src="https://www.google.com/maps/d/embed?mid=1F0OhEou31qd5wCPlKahJ8INJa75su22D"></iframe>
-                        </div>
-                    </Col> */}
-
-                    <Col>
-
-
-
-                    </Col>
+                    <ReactGoogleMap
+                        isMarkerShown={true}
+                        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${googleKey}&v=3.exp&libraries=geometry,drawing,places`}
+                        loadingElement={<div style={{ height: "100%" }}
+                        />}
+                        containerElement={<div style={{ height: "400px" }} />}
+                        mapElement={<div style={{ height: "100%" }} />}
+                    />
                 </Row>
 
 
-                <WeatherContainer weatherTimes={weatherTimes} selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected} />
+                <WeatherContainer
+                    weatherTimes={weatherTimes}
+                    selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
+                />
 
                 <Row>
                     <Col xs={12}>
