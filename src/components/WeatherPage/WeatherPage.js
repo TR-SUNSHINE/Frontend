@@ -22,8 +22,7 @@ const WeatherPage = () => {
     const [selectedWeatherTime, setSelectedWeatherTime] = useState(0);
     const [reminder, setReminder] = useState({ time: 0, walk: "" });
     const weatherKey = process.env.REACT_APP_WEATHER_API_KEY;
-
-
+    const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
     const toggleWeatherTimeSelected = (weatherId) => {
 
@@ -44,15 +43,20 @@ const WeatherPage = () => {
 
     };
 
+    const getCoords = useCallback(async () => {
+        const coords = new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
+
+        const position = await coords;
+        setLatitude(position.coords.latitude);
+        setLongitude(position.coords.longitude);
+    }, []);
+
+
     const getWeather = useCallback(async () => {
 
         try {
-
-            // get a 404 using UK postcodes
-            /* const getLatLong = await axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=m155ax,gb&appid=${weatherKey}
-             `);
-             console.log(getLatLong);
-            */
 
             const weatherApi = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=daily,minutely,alerts&units=metric&appid=${weatherKey}`);
 
@@ -71,12 +75,15 @@ const WeatherPage = () => {
 
     useEffect(() => {
         getWeather();
-    }, [getWeather]);
+        getCoords();
+    }, [getWeather, getCoords]);
 
     if (noResults) {
         return <Redirect to="/NotFoundPage" />;
     }
 
+    console.log(latitude);
+    console.log(longitude);
     return (
 
         <Row>
@@ -84,11 +91,17 @@ const WeatherPage = () => {
                 <h3 className="heading heading--main">Weather today: {date}</h3>
 
                 <Row>
-                    <Col>
+                    {/* <Col>
                         <div className="frame--map">
                             <iframe title="Map of user's local area" className="iframe--map"
                                 src="https://www.google.com/maps/d/embed?mid=1F0OhEou31qd5wCPlKahJ8INJa75su22D"></iframe>
                         </div>
+                    </Col> */}
+
+                    <Col>
+
+
+
                     </Col>
                 </Row>
 
