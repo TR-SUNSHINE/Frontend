@@ -6,7 +6,7 @@ import MyWalksPage from "../MyWalksPage/MyWalksPage";
 import TestPage from "../TestPage/TestPage";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
-import LoginPage from "../RegisterPage/RegisterPage";
+import LoginPage from "../LoginPage/LoginPage";
 
 const Routes = () => {
     return (
