@@ -101,8 +101,8 @@ const WeatherPage = () => {
                 <h3 className="heading heading--main">Weather today: {date}</h3>
 
                 <Row>
-                    <ReactGoogleMap
-                    />
+                    {/* <ReactGoogleMap
+                    /> */}
                 </Row>
 
 
