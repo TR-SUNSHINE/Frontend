@@ -122,16 +122,6 @@ const WeatherPage = () => {
                         </div>
                     </Col>
                 </Row>
-
-
-                <Row>
-                    <Col>
-                        <div className="button__container button__container--center" >
-                            <Button href="/" variant="accessible">My Walks</Button>
-                        </div>
-                    </Col>
-                </Row>
-
             </Col>
         </Row >
     );
