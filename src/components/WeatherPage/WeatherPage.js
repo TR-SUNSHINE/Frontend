@@ -62,8 +62,6 @@ const WeatherPage = () => {
     }, []);
 
 
-
-
     const getWeather = useCallback(async () => {
 
         try {
@@ -94,6 +92,7 @@ const WeatherPage = () => {
 
     console.log(latitude);
     console.log(longitude);
+    console.log(weatherTimes);
     return (
 
         <Row>
@@ -101,8 +100,7 @@ const WeatherPage = () => {
                 <h3 className="heading heading--main">Weather today: {date}</h3>
 
                 <Row>
-                    {/* <ReactGoogleMap
-                    /> */}
+                    {/* map to go here */}
                 </Row>
 
 
