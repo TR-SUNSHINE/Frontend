@@ -1,10 +1,8 @@
 import "./IndividualWalk.css";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import RatingsBar from "../RatingsBar/RatingsBar";
 import Graph from "../Graph/Graph";
-import Map from "../Map/Map";
+import RouteMap from "../Map/RouteMap";
 import { useState } from "react";
 
 const IndividualWalk = ({ id }) => {
@@ -60,7 +58,7 @@ const IndividualWalk = ({ id }) => {
     return (
         <div>
             <h3 className="heading heading--main">Individual Walk</h3>
-            <Map />
+            <RouteMap />
             <Graph data={filteredUser} />
             <RatingsBar />
             <div className="button__container button__container--center">

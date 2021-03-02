@@ -1,56 +1,16 @@
-import React, { Component } from "react";
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
+import MapContainer from "../Map/MapContainer";
 
-import CurrentLocation from "../Map/CurrLocationMap";
+const TestPage = () => {
+    return (
+        <div>
+            <header class="header">
+                <h2>TEST PAGE</h2>
+            </header>
 
-const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
-console.log("hello");
-console.log(API_KEY);
-export class MapContainer extends Component {
-    state = {
-        showingInfoWindow: false,
-        activeMarker: {},
-        selectedPlace: {}
-    };
+            <MapContainer />
+        </div>
 
-    onMarkerClick = (props, marker, e) =>
-        this.setState({
-            selectedPlace: props,
-            activeMarker: marker,
-            showingInfoWindow: true
-        });
+    );
+};
 
-    onClose = props => {
-        if (this.state.showingInfoWindow) {
-            this.setState({
-                showingInfoWindow: false,
-                activeMarker: null
-            });
-        }
-    };
-
-    render() {
-        return (
-            <CurrentLocation
-                centerAroundCurrentLocation
-                google={this.props.google}
-            >
-                <Marker onClick={this.onMarkerClick} name={"Current Location"} />
-                <InfoWindow
-                    marker={this.state.activeMarker}
-                    visible={this.state.showingInfoWindow}
-                    onClose={this.onClose}
-                >
-                    <div>
-                        <h4>{this.state.selectedPlace.name}</h4>
-                    </div>
-                </InfoWindow>
-            </CurrentLocation>
-        );
-    }
-}
-
-
-export default GoogleApiWrapper({
-    apiKey: API_KEY
-})(MapContainer);
+export default TestPage;
