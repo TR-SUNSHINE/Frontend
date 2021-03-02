@@ -58,23 +58,15 @@ const IndividualWalk = ({ id }) => {
     const filteredUser = users.find((user) => user.id === id);
 
     return (
-        <Row>
-            <Col>
-                <h3 className="heading heading--main">Individual Walk</h3>
-                <Map />
-                <Row>
-                    <Graph data={filteredUser} />
-                </Row>
-                <Row>
-                    <RatingsBar />
-                </Row>
-                <Row>
-                    <div className="button__container button__container--center">
-                        <Button>Add New Rating</Button>
-                    </div>
-                </Row>
-            </Col>
-        </Row>
+        <div>
+            <h3 className="heading heading--main">Individual Walk</h3>
+            <Map />
+            <Graph data={filteredUser} />
+            <RatingsBar />
+            <div className="button__container button__container--center">
+                <Button>Add New Rating</Button>
+            </div>
+        </div>
     );
 };
 export default IndividualWalk;
