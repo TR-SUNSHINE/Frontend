@@ -1,5 +1,5 @@
 .individual__weather__container {
-    overflow: auto;
+    overflow-x: auto;
     white-space: nowrap;
     box-sizing: border-box;
   }
@@ -10,8 +10,6 @@
     width: 175px;
     border-left: 1px solid #296EB4;
   }
-
-  
 
  .selected {
    background-color: #FFD07B;
