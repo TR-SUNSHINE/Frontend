@@ -11,17 +11,8 @@ function App() {
   return (
     <Container>
       <Header />
-      <Row>
-        <Col>
-        </Col>
-        <Col>
-          <Routes />
-        </Col>
-        <Col>
-        </Col>
-      </Row>
+      <Routes />
     </Container>
   );
 }
-
 export default App;
