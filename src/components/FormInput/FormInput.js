@@ -8,7 +8,7 @@ import { Form } from "react-bootstrap";
 
 function FormInput({ labelInput, typeInput, nameInput, placeHolderInput }) {
 
-    console.log(labelInput, typeInput, nameInput, placeHolderInput);
+    // console.log(labelInput, typeInput, nameInput, placeHolderInput);
 
     const [text, setInput] = useState("");
 
