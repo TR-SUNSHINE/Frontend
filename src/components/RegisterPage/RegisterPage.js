@@ -16,10 +16,24 @@ const RegisterPage = () => {
     const [userPassword, setPass] = useState("");
     const [userConfirmPassword, setConfirmPass] = useState("");
 
+    const [errors, setErrors] = useState({});
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        if (!userName.trim()) {
+            errors.userName = "Name required";
+        }
+        if (!userEmail.trim()) {
+            errors.userEmail = "Email required";
+        }
+        if (!userPassword.length.length < 6) {
+            errors.userPassword = "Password needs to be 6 characters or more";
+        }
+        if (!userConfirmPassword !== userPassword) {
+            errors.userConfirmPassword = "Passwords do not match";
+        }
+    };
     const handleClick = () => {
-        // check if user exist already
-        // check password +confirma password are the same
-        // add user to user database
         console.log("onclick", userName, userEmail, userPassword, userConfirmPassword);
     };
 
@@ -29,15 +43,15 @@ const RegisterPage = () => {
 
                 <h3 class="heading heading--main">Register with Sunshine</h3>
 
-                <Form className="form-register">
+                <Form className="form-register" onSubmit={handleSubmit}>
 
                     {/* <FormInput labelInput="Name" typeInput="small" nameInput="userName" placeHolderInput="Enter your name" /> */}
 
                     <Form.Group className="form-row">
-                        <Col sm={3}>
+                        <Col sm={12}>
                             <Form.Label for="nameInput">Name</Form.Label>
                         </Col>
-                        <Col sm={9}>
+                        <Col sm={12}>
                             <Form.Control
                                 type="small"
                                 name="userName"
@@ -45,15 +59,20 @@ const RegisterPage = () => {
                                 onChange={(event) => setName(event.target.value)}
                                 placeholder="Enter your name" />
                         </Col>
+                        <div className="form-error">
+                            {errors.userName && <p>{errors.userName} </p>}
+                        </div>
                     </Form.Group>
+
+
 
                     {/* <FormInput labelInput="Firstname" typeInput="small" nameInput="userFirstName" placeHolderInput="Enter your first name" /> */}
 
                     <Form.Group className="form-row">
-                        <Col sm={3}>
+                        <Col sm={12}>
                             <Form.Label for="EmailInput">Email</Form.Label>
                         </Col>
-                        <Col sm={9}>
+                        <Col sm={12}>
                             <Form.Control
                                 type="email"
                                 name="userEmail"
@@ -64,10 +83,10 @@ const RegisterPage = () => {
                     </Form.Group>
 
                     <Form.Group className="form-row">
-                        <Col sm={3}>
+                        <Col sm={12}>
                             <Form.Label for="PasswordInput">Password</Form.Label>
                         </Col>
-                        <Col sm={9}>
+                        <Col sm={12}>
                             <Form.Control
                                 type="password"
                                 name="userPassword"
@@ -78,10 +97,10 @@ const RegisterPage = () => {
                     </Form.Group>
 
                     <Form.Group className="form-row">
-                        <Col sm={3}>
+                        <Col sm={12}>
                             <Form.Label for="confirmPasswordInput">Confirm Password</Form.Label>
                         </Col>
-                        <Col sm={9}>
+                        <Col sm={12}>
                             <Form.Control
                                 type="password"
                                 name="userConfirmPassword"
@@ -89,11 +108,8 @@ const RegisterPage = () => {
                                 onChange={(event) => setConfirmPass(event.target.value)}
                                 placeholder="Confirm your password" />
                         </Col>
-                    </Form.Group>
-                    {/* <FormInput labelInput="Email" typeInput="email" nameInput="userEmail" placeHolderInput="Enter your email address" />
-                    <FormInput labelInput="Password" typeInput="password" nameInput="userPassword" placeHolderInput="Enter password" />
-                    <FormInput labelInput="Confirm Password" typeInput="password" nameInput="userConfirmPassowrd" placeHolderInput="Confirm password" /> */}
 
+                    </Form.Group>
                     <Row>
                         <Col xs={12} sm={12} md={6}>
                             <div className="button__container button__container--left" >
@@ -103,7 +119,9 @@ const RegisterPage = () => {
 
                         <Col xs={12} sm={12} md={6}>
                             <div className="button__container button__container--right" >
-                                <Button variant="accessible" type="submit" onClick={handleClick} >Register</Button>
+                                <Button variant="accessible" type="submit" >
+                                    Register
+                                </Button>
                             </div>
                         </Col>
                     </Row>
