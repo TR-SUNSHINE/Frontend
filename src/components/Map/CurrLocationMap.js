@@ -97,8 +97,8 @@ export class CurrentLocation extends React.Component {
 
         return (
 
-            <div class="location__container">
-                <div class="location__map" ref="map">
+            <div className="location__container">
+                <div className="location__map" ref="map">
                     Loading map...
             </div>
                 { this.renderChildren()}
