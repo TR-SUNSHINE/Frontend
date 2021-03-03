@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import { showLocalDate, showLocalTime } from "../../helperFunctions";
+import { showLocalDate, showLocalTime, replaceIcons } from "../../helperFunctions";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -86,10 +86,15 @@ const WeatherPage = () => {
 
             const currentDate = showLocalDate(weatherApi.data.current.dt);
 
-            const weatherArray = weatherApi.data.hourly;
+            const sunrise = weatherApi.data.current.sunrise;
+            const sunset = weatherApi.data.current.sunset;
 
+            const weatherArray = weatherApi.data.hourly.slice(0, 24);
+
+            const updatedIconsArray = replaceIcons(weatherArray, sunrise, sunset);
+            console.log(updatedIconsArray);
             setDate(currentDate);
-            setWeatherTimes(weatherApi.data.hourly);
+            setWeatherTimes(updatedIconsArray);
 
         } catch (error) {
             console.log(error);
@@ -108,8 +113,6 @@ const WeatherPage = () => {
         return <Redirect to="/NotFoundPage" />;
     }
 
-    console.log(latitude);
-    console.log(longitude);
     console.log(weatherTimes);
     return (
         <>
