@@ -16,6 +16,12 @@ const showLocalDate = (unixTime) => {
     return dateFormated;
 };
 
+const dayTime = (time, sunrise, sunset) => {
+
+    return time > sunrise && time < sunset;
+
+};
+
 const substituteIconsDay = (id) => {
 
     let replacementIcon = "";
@@ -197,6 +203,7 @@ const substituteIconsNight = (id) => {
 module.exports = {
     showLocalTime,
     showLocalDate,
+    dayTime,
     substituteIconsDay,
     substituteIconsNight
 };
