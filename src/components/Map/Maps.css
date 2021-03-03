@@ -1,0 +1,10 @@
+/** CurrLocation component **/
+
+.location__container {
+    height: 200px;
+}
+
+.location__map {
+    width: 100%;
+    height: 100%;
+}
