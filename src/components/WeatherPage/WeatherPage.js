@@ -5,12 +5,10 @@ import { showLocalDate, showLocalTime } from "../../helperFunctions";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-// import { faSun, faBolt, faWind, faSmog, faCloud, faRainbow, faPooStorm, faCloudSunRain, faCloudSun, faCloudShowersHeavy, faCloudRain, faSnowflake } from "@fortawesome/free-solid-svg-icons";
 import WeatherContainer from "../WeatherContainer/WeatherContainer";
 import MapContainer from "../Map/MapContainer";
 import "./WeatherPage.css";
 import "../Button/Button.css";
-
 
 const WeatherPage = () => {
 
@@ -88,6 +86,8 @@ const WeatherPage = () => {
 
             const currentDate = showLocalDate(weatherApi.data.current.dt);
 
+            const weatherArray = weatherApi.data.hourly;
+
             setDate(currentDate);
             setWeatherTimes(weatherApi.data.hourly);
 
@@ -116,9 +116,7 @@ const WeatherPage = () => {
             <Row>
                 <Col>
                     <h3 className="heading heading--main">Weather today: {date}</h3>
-
                     <MapContainer />
-
                     <WeatherContainer
                         weatherTimes={weatherTimes}
                         selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
