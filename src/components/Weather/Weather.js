@@ -19,8 +19,8 @@ const Weather = ({ weatherTimes, selectedWeatherTime, toggleWeatherTimeSelected 
 
     return (
         <>
-            <Col>
-                <Button onClick={() => handleScroll("left")
+            <Col className="individual__weather__button__container" xs={1}>
+                <Button variant="pointer" onClick={() => handleScroll("left")
                 }>
                     {"<"}
                 </Button>
@@ -28,6 +28,7 @@ const Weather = ({ weatherTimes, selectedWeatherTime, toggleWeatherTimeSelected 
             <Col
                 className="individual__weather__container"
                 ref={scrollRef}
+                xs={10}
             >
                 {weatherTimes.map((weather) => {
                     return (
@@ -59,10 +60,10 @@ const Weather = ({ weatherTimes, selectedWeatherTime, toggleWeatherTimeSelected 
                     );
                 })}
             </Col>
-            <Col>
-                <Button onClick={() => handleScroll("right")}>
-                    >
-            </Button>
+            <Col className="individual__weather__button__container" xs={1}>
+                <Button variant="pointer" onClick={() => handleScroll("right")}>
+                    {">"}
+                </Button>
             </Col>
         </>
     );
