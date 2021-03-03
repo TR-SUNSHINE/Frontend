@@ -10,21 +10,15 @@
   
 .Form.Control {
     border: 1px solid #fdbb33
-    /* padding: 8px;
-    margin-top: 4px; */
+}
+.form.Label{
+  text-align: left;
+}
+.form-error {
+  color: red;
 }
 .button__container--center {
   text-align: center;
   padding: 1rem;
 
 }  
-
-/* .Form-Label {
-    padding: 8px;
-    margin: 0px 0px 8px 8px;
-  }      */
-  
-  /* .row {
-    align-items: center;
-  } */
-  
