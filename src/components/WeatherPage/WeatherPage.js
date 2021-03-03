@@ -6,10 +6,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 // import { faSun, faBolt, faWind, faSmog, faCloud, faRainbow, faPooStorm, faCloudSunRain, faCloudSun, faCloudShowersHeavy, faCloudRain, faSnowflake } from "@fortawesome/free-solid-svg-icons";
-import ReactGoogleMap from "../ReactGoogleMap/ReactGoogleMap";
 import WeatherContainer from "../WeatherContainer/WeatherContainer";
+import MapContainer from "../Map/MapContainer";
 import "./WeatherPage.css";
 import "../Button/Button.css";
+
 
 const WeatherPage = () => {
 
@@ -47,13 +48,30 @@ const WeatherPage = () => {
     const getCoords = useCallback(async () => {
 
         try {
-            const coords = new Promise((resolve, reject) => {
-                navigator.geolocation.getCurrentPosition(resolve, reject);
-            });
 
-            const position = await coords;
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
+            if (navigator && navigator.geolocation) {
+
+                const location = new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(resolve, reject);
+                });
+
+                const position = await location;
+                setLatitude(position.coords.latitude);
+                setLongitude(position.coords.longitude);
+
+            } else {
+
+                const Manchester = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Manchester,GB&appid=${weatherKey}`);
+
+                setLatitude(Manchester.data.coord.lat);
+                setLongitude(Manchester.data.coord.lon);
+
+                // hard-coded Manchester coordinates
+                /*
+                setLatitude(53.4809);
+                setLongitude(-2.2374);
+                */
+            }
 
         } catch (error) {
             console.log(error);
@@ -94,36 +112,38 @@ const WeatherPage = () => {
     console.log(longitude);
     console.log(weatherTimes);
     return (
+        <>
+            <Row>
+                <Col>
+                    <h3 className="heading heading--main">Weather today: {date}</h3>
 
-        <Row>
-            <Col>
-                <h3 className="heading heading--main">Weather today: {date}</h3>
+                    <MapContainer />
 
-                <Row>
-                    {/* map to go here */}
-                </Row>
+                    <WeatherContainer
+                        weatherTimes={weatherTimes}
+                        selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
+                    />
+
+                </Col>
+            </Row >
 
 
-                <WeatherContainer
-                    weatherTimes={weatherTimes}
-                    selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
-                />
 
-                <Row>
-                    <Col xs={12}>
-                        <div className="reminder__container">
-                            <p hidden={reminder.time ? false : true}>Reminder set for your walk at {showLocalTime(reminder.time)}</p>
-                        </div>
-                    </Col>
+            <Row>
+                <Col xs={12}>
+                    <div className="reminder__container">
+                        <p hidden={reminder.time ? false : true}>Reminder set for your walk at {showLocalTime(reminder.time)}</p>
+                    </div>
+                </Col>
 
-                    <Col>
-                        <div xs={12} className="button__container button__container--center" >
-                            <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="accessible">Set Reminder</Button>
-                        </div>
-                    </Col>
-                </Row>
-            </Col>
-        </Row >
+                <Col>
+                    <div xs={12} className="button__container button__container--center" >
+                        <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="accessible">Set Reminder</Button>
+                    </div>
+                </Col>
+            </Row>
+        </>
+
     );
 };
 
