@@ -24,7 +24,7 @@ const dayTime = (time, sunrise, sunset) => {
 
 const substituteIconsDay = (id) => {
 
-    let replacementIcon = "";
+    let replacementIcon;
 
     // daytime icons
     switch (id) {
@@ -105,14 +105,15 @@ const substituteIconsDay = (id) => {
             replacementIcon = "cloudy";
             break;
         default:
-            replacementIcon = "";
+            replacementIcon = "50d";
+
     }
     return replacementIcon;
 };
 
 const substituteIconsNight = (id) => {
 
-    let replacementIcon = "";
+    let replacementIcon;
 
     // nightime icons
     switch (id) {
@@ -193,10 +194,30 @@ const substituteIconsNight = (id) => {
             replacementIcon = "cloudy";
             break;
         default:
-            replacementIcon = "";
+            replacementIcon = "50d";
+
     }
 
     return replacementIcon;
+};
+
+const replaceIcons = (array, sunrise, sunset) => {
+
+    const substitutedIcons = array.map(elem => {
+
+        if (dayTime(elem.dt, sunrise, sunset)) {
+            console.log(elem.weather[0].id);
+            elem.weather[0].icon = substituteIconsDay(elem.weather[0].id);
+        } else {
+            elem.weather[0].icon = substituteIconsNight(elem.weather[0].id);
+        }
+
+        return elem;
+
+    });
+
+    return substitutedIcons;
+
 };
 
 
@@ -205,5 +226,6 @@ module.exports = {
     showLocalDate,
     dayTime,
     substituteIconsDay,
-    substituteIconsNight
+    substituteIconsNight,
+    replaceIcons
 };
