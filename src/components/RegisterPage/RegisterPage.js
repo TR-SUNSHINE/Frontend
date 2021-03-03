@@ -23,10 +23,11 @@ const RegisterPage = () => {
         if (!userName.trim()) {
             errors.userName = "Name required";
         }
-        if (!userEmail.trim()) {
+        if (!userEmail) {
             errors.userEmail = "Email required";
-        }
-        if (!userPassword.length.length < 6) {
+        } else if (!/\S+@\S+\.\S+/.test(userEmail)) {
+            errors.email = "Email address is invalid";
+        } if (!userPassword.length.length < 6) {
             errors.userPassword = "Password needs to be 6 characters or more";
         }
         if (!userConfirmPassword !== userPassword) {
@@ -94,6 +95,10 @@ const RegisterPage = () => {
                                 onChange={(event) => setPass(event.target.value)}
                                 placeholder="Enter your password" />
                         </Col>
+                        <div className="form-error">
+                            {errors.userPassword && <p>{errors.userPassword} </p>}
+                        </div>
+
                     </Form.Group>
 
                     <Form.Group className="form-row">
@@ -108,6 +113,9 @@ const RegisterPage = () => {
                                 onChange={(event) => setConfirmPass(event.target.value)}
                                 placeholder="Confirm your password" />
                         </Col>
+                        <div className="form-error">
+                            {errors.userConfirmPassword && <p>{errors.userConfirmPassword} </p>}
+                        </div>
 
                     </Form.Group>
                     <Row>
