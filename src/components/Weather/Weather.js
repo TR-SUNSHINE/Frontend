@@ -52,7 +52,7 @@ const Weather = ({ weatherTimes, selectedWeatherTime, toggleWeatherTimeSelected 
                             </Row>
                             <Row>
                                 <Col>
-                                    <Image src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} />
+                                    <Image src={weather.weather[0].icon === "50d" ? `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png` : `./images/weather_icons_dovora_interactive_2/SVG/${weather.weather[0].icon}.svg`} fluid />
                                 </Col>
                             </Row>
                             <p className="weather--description">{weather.description}</p>
