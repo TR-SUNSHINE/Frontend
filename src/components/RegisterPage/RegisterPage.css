@@ -16,6 +16,7 @@
 }
 .form-error {
   color: red;
+  margin-bottom: 0%;
 }
 .button__container--center {
   text-align: center;

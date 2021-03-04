@@ -67,20 +67,23 @@ const RegisterPage = () => {
             setErrors(errorsCopy);
         }
         else if (!/\S+@\S+\.\S+/.test(email)) {
-            errors.email = "Email address is invalid";
+            let errorsCopy = { ...errors };
+            errorsCopy.email = "Email address is invalid";
+            setErrors(errorsCopy);
         }
+
         if (password.length < 6) {
-            errors.password = "Password needs to be 6 characters or more";
+            let errorsCopy = { ...errors };
+            errorsCopy.password = "Password needs to be 6 characters or more";
+            setErrors(errorsCopy);
         }
         if (confirmPassword !== password) {
-            errors.confirmPassword = "Passwords do not match";
+            let errorsCopy = { ...errors };
+            errorsCopy.confirmPassword = "Passwords do not match";
+            setErrors(errorsCopy);
         }
-        console.log("Error-email: ", errors.email);
+
     };
-    // const handleClick = () => {
-    //     console.log("onclick", userName, email, password, confirmPassword);
-    // };
-    // console.log("onclick", userName, email, password, confirmPassword);
 
     return (
         <Row>
