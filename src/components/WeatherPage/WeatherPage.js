@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import { showLocalDate, showLocalTime } from "../../helperFunctions";
+import { showLocalDate, showLocalTime, replaceIcons } from "../../helperFunctions";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-// import { faSun, faBolt, faWind, faSmog, faCloud, faRainbow, faPooStorm, faCloudSunRain, faCloudSun, faCloudShowersHeavy, faCloudRain, faSnowflake } from "@fortawesome/free-solid-svg-icons";
-import ReactGoogleMap from "../ReactGoogleMap/ReactGoogleMap";
 import WeatherContainer from "../WeatherContainer/WeatherContainer";
+import MapContainer from "../Map/MapContainer";
 import "./WeatherPage.css";
 import "../Button/Button.css";
 
@@ -47,21 +46,36 @@ const WeatherPage = () => {
     const getCoords = useCallback(async () => {
 
         try {
-            const coords = new Promise((resolve, reject) => {
-                navigator.geolocation.getCurrentPosition(resolve, reject);
-            });
 
-            const position = await coords;
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
+            if (navigator && navigator.geolocation) {
+
+                const location = new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(resolve, reject);
+                });
+
+                const position = await location;
+                setLatitude(position.coords.latitude);
+                setLongitude(position.coords.longitude);
+
+            } else {
+
+                const Manchester = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Manchester,GB&appid=${weatherKey}`);
+
+                setLatitude(Manchester.data.coord.lat);
+                setLongitude(Manchester.data.coord.lon);
+
+                // hard-coded Manchester coordinates
+                /*
+                setLatitude(53.4809);
+                setLongitude(-2.2374);
+                */
+            }
 
         } catch (error) {
             console.log(error);
             // redirect to error page
         }
     }, []);
-
-
 
 
     const getWeather = useCallback(async () => {
@@ -72,8 +86,15 @@ const WeatherPage = () => {
 
             const currentDate = showLocalDate(weatherApi.data.current.dt);
 
+            const sunrise = weatherApi.data.current.sunrise;
+            const sunset = weatherApi.data.current.sunset;
+
+            const weatherArray = weatherApi.data.hourly.slice(0, 24);
+
+            const updatedIconsArray = replaceIcons(weatherArray, sunrise, sunset);
+            console.log(updatedIconsArray);
             setDate(currentDate);
-            setWeatherTimes(weatherApi.data.hourly);
+            setWeatherTimes(updatedIconsArray);
 
         } catch (error) {
             console.log(error);
@@ -92,50 +113,38 @@ const WeatherPage = () => {
         return <Redirect to="/NotFoundPage" />;
     }
 
-    console.log(latitude);
-    console.log(longitude);
+    console.log(weatherTimes);
     return (
+        <>
+            <Row>
+                <Col>
+                    <h3 className="heading heading--main">Weather today: {date}</h3>
+                    <MapContainer />
+                    <WeatherContainer
+                        weatherTimes={weatherTimes}
+                        selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
+                    />
 
-        <Row>
-            <Col>
-                <h3 className="heading heading--main">Weather today: {date}</h3>
-
-                <Row>
-                    {/* <ReactGoogleMap
-                    /> */}
-                </Row>
-
-
-                <WeatherContainer
-                    weatherTimes={weatherTimes}
-                    selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
-                />
-
-                <Row>
-                    <Col xs={12}>
-                        <div className="reminder__container">
-                            <p hidden={reminder.time ? false : true}>Reminder set for your walk at {showLocalTime(reminder.time)}</p>
-                        </div>
-                    </Col>
-
-                    <Col>
-                        <div xs={12} className="button__container button__container--center" >
-                            <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="accessible">Set Reminder</Button>
-                        </div>
-                    </Col>
-                </Row>
+                </Col>
+            </Row >
 
 
-                <Row>
-                    <Col>
-                        <div className="button__container button__container--center" >
-                            <Button href="/" variant="accessible">My Walks</Button>
-                        </div>
-                    </Col>
-                </Row>
 
-            </Col>
-        </Row >
+            <Row>
+                <Col xs={12}>
+                    <div className="reminder__container">
+                        <p hidden={reminder.time ? false : true}>Reminder set for your walk at {showLocalTime(reminder.time)}</p>
+                    </div>
+                </Col>
+
+                <Col>
+                    <div xs={12} className="button__container button__container--center" >
+                        <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="accessible">Set Reminder</Button>
+                    </div>
+                </Col>
+            </Row>
+        </>
+
     );
 };
 

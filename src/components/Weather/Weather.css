@@ -15,7 +15,10 @@
    background-color: #FFD07B;
  }
 
-
+ .individual__weather__button__container{
+   padding:0;
+ }
+ 
  /* this was to try out breaking words
 /* .weather--description{
   word-break: break-all;
