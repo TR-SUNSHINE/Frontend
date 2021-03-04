@@ -15,28 +15,72 @@ const RegisterPage = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({
+        userName: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+    });
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        if (!userName.trim()) {
-            errors.name = "Name required";
+    const handleChangeUserName = event => {
+        setUserName(event.target.value);
+        let errorsCopy = { ...errors };
+        errorsCopy.userName = "";
+        setErrors(errorsCopy);
+    };
+
+    const handleChangeEmail = event => {
+        setEmail(event.target.value);
+        let errorsCopy = { ...errors };
+        errorsCopy.email = "";
+        setErrors(errorsCopy);
+    };
+
+    const handleChangePassword = event => {
+        setPassword(event.target.value);
+        let errorsCopy = { ...errors };
+        errorsCopy.password = "";
+        setErrors(errorsCopy);
+    };
+
+    const handleChangeConfirmPassword = event => {
+        setConfirmPassword(event.target.value);
+        let errorsCopy = { ...errors };
+        errorsCopy.confirmPassword = "";
+        setErrors(errorsCopy);
+    };
+
+
+
+    const handleSubmit = event => {
+        console.log("handleSubmit", userName, email, password, confirmPassword);
+
+        event.preventDefault();
+        if (!userName) {
+            let errorsCopy = { ...errors };
+            errorsCopy.userName = "Username required";
+            setErrors(errorsCopy);
         }
         if (!email) {
-            errors.email = "Email required";
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            let errorsCopy = { ...errors };
+            errorsCopy.email = "Email required";
+            setErrors(errorsCopy);
+        }
+        else if (!/\S+@\S+\.\S+/.test(email)) {
             errors.email = "Email address is invalid";
-        } if (!password.length < 6) {
+        }
+        if (password.length < 6) {
             errors.password = "Password needs to be 6 characters or more";
         }
-        if (!confirmPassword !== password) {
-            errors.ConfirmPassword = "Passwords do not match";
+        if (confirmPassword !== password) {
+            errors.confirmPassword = "Passwords do not match";
         }
+        console.log("Error-email: ", errors.email);
     };
     // const handleClick = () => {
     //     console.log("onclick", userName, email, password, confirmPassword);
     // };
-    console.log("onclick", userName, email, password, confirmPassword);
+    // console.log("onclick", userName, email, password, confirmPassword);
 
     return (
         <Row>
@@ -50,14 +94,15 @@ const RegisterPage = () => {
 
                     <Form.Group className="form-row">
                         <Col sm={12}>
-                            <Form.Label for="nameInput">Name</Form.Label>
+                            <Form.Label for="nameInput">Username</Form.Label>
                         </Col>
                         <Col sm={12}>
                             <Form.Control
                                 type="small"
                                 name="userName"
                                 value={userName}
-                                onChange={(event) => setUserName(event.target.value)}
+                                onChange={event => handleChangeUserName(event)}
+                                // onChange={(event) => setUserName(event.target.value)}
                                 placeholder="Enter your name" />
                         </Col>
                         <div className="form-error">
@@ -75,12 +120,16 @@ const RegisterPage = () => {
                         </Col>
                         <Col sm={12}>
                             <Form.Control
-                                type="email"
+                                type="small"
                                 name="userEmail"
                                 value={email}
-                                onChange={(event) => setEmail(event.target.value)}
+                                onChange={event => handleChangeEmail(event)}
                                 placeholder="Enter your email" />
                         </Col>
+                        <div className="form-error">
+                            {errors.email && <p>{errors.email} </p>}
+                        </div>
+
                     </Form.Group>
 
                     <Form.Group className="form-row">
@@ -92,7 +141,7 @@ const RegisterPage = () => {
                                 type="password"
                                 name="userPassword"
                                 value={password}
-                                onChange={(event) => setPassword(event.target.value)}
+                                onChange={event => handleChangePassword(event)}
                                 placeholder="Enter your password" />
                         </Col>
                         <div className="form-error">
@@ -110,11 +159,11 @@ const RegisterPage = () => {
                                 type="password"
                                 name="userConfirmPassword"
                                 value={confirmPassword}
-                                onChange={(event) => setConfirmPassword(event.target.value)}
+                                onChange={event => handleChangeConfirmPassword(event)}
                                 placeholder="Confirm your password" />
                         </Col>
                         <div className="form-error">
-                            {errors.confirmPassword && <p>{errors.userConfirmPassword} </p>}
+                            {errors.confirmPassword && <p>{errors.confirmPassword} </p>}
                         </div>
 
                     </Form.Group>
