@@ -10,33 +10,33 @@ import FormInput from "../FormInput/FormInput";
 
 const RegisterPage = () => {
 
-    const [userName, setUserName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [userName, setName] = useState("");
+    const [userFirstName, setFirstName] = useState("");
+    const [userEmail, setEmail] = useState("");
+    const [userPassword, setPass] = useState("");
+    const [userConfirmPassword, setConfirmPass] = useState("");
 
     const [errors, setErrors] = useState({});
 
     const handleSubmit = e => {
         e.preventDefault();
         if (!userName.trim()) {
-            errors.name = "Name required";
+            errors.userName = "Name required";
         }
-        if (!email) {
-            errors.email = "Email required";
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
+        if (!userEmail) {
+            errors.userEmail = "Email required";
+        } else if (!/\S+@\S+\.\S+/.test(userEmail)) {
             errors.email = "Email address is invalid";
-        } if (!password.length < 6) {
-            errors.password = "Password needs to be 6 characters or more";
+        } if (!userPassword.length.length < 6) {
+            errors.userPassword = "Password needs to be 6 characters or more";
         }
-        if (!confirmPassword !== password) {
-            errors.ConfirmPassword = "Passwords do not match";
+        if (!userConfirmPassword !== userPassword) {
+            errors.userConfirmPassword = "Passwords do not match";
         }
     };
-    // const handleClick = () => {
-    //     console.log("onclick", userName, email, password, confirmPassword);
-    // };
-    console.log("onclick", userName, email, password, confirmPassword);
+    const handleClick = () => {
+        console.log("onclick", userName, userEmail, userPassword, userConfirmPassword);
+    };
 
     return (
         <Row>
@@ -57,7 +57,7 @@ const RegisterPage = () => {
                                 type="small"
                                 name="userName"
                                 value={userName}
-                                onChange={(event) => setUserName(event.target.value)}
+                                onChange={(event) => setName(event.target.value)}
                                 placeholder="Enter your name" />
                         </Col>
                         <div className="form-error">
@@ -77,7 +77,7 @@ const RegisterPage = () => {
                             <Form.Control
                                 type="email"
                                 name="userEmail"
-                                value={email}
+                                value={userEmail}
                                 onChange={(event) => setEmail(event.target.value)}
                                 placeholder="Enter your email" />
                         </Col>
@@ -91,12 +91,12 @@ const RegisterPage = () => {
                             <Form.Control
                                 type="password"
                                 name="userPassword"
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
+                                value={userPassword}
+                                onChange={(event) => setPass(event.target.value)}
                                 placeholder="Enter your password" />
                         </Col>
                         <div className="form-error">
-                            {errors.password && <p>{errors.password} </p>}
+                            {errors.userPassword && <p>{errors.userPassword} </p>}
                         </div>
 
                     </Form.Group>
@@ -109,12 +109,12 @@ const RegisterPage = () => {
                             <Form.Control
                                 type="password"
                                 name="userConfirmPassword"
-                                value={confirmPassword}
-                                onChange={(event) => setConfirmPassword(event.target.value)}
+                                value={userConfirmPassword}
+                                onChange={(event) => setConfirmPass(event.target.value)}
                                 placeholder="Confirm your password" />
                         </Col>
                         <div className="form-error">
-                            {errors.confirmPassword && <p>{errors.userConfirmPassword} </p>}
+                            {errors.userConfirmPassword && <p>{errors.userConfirmPassword} </p>}
                         </div>
 
                     </Form.Group>
