@@ -98,8 +98,7 @@ const WeatherPage = () => {
 
         } catch (error) {
             console.log(error);
-            //AG: temporarily removed this for testing. If you are reading this then I forgot to revert it back.
-            // setNoResults(true);
+            setNoResults(true);
         }
 
     }, [latitude, longitude, weatherKey]);

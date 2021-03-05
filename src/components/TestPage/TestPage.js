@@ -1,4 +1,4 @@
-import RouteMapContainer from "../Map/RouteMapContainer";
+
 
 const TestPage = () => {
     return (
@@ -7,7 +7,6 @@ const TestPage = () => {
                 <h2>TEST PAGE</h2>
             </header>
 
-            <RouteMapContainer />
         </div>
 
     );
