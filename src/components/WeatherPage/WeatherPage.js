@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import WeatherContainer from "../WeatherContainer/WeatherContainer";
-import MapContainer from "../Map/MapContainer";
+import CurrLocationMapContainer from "../Map/CurrLocationMapContainer";
 import "./WeatherPage.css";
 import "../Button/Button.css";
 
@@ -120,7 +120,7 @@ const WeatherPage = () => {
             <Row>
                 <Col>
                     <h3 className="heading heading--main">Weather today: {date}</h3>
-                    <MapContainer />
+                    <CurrLocationMapContainer />
                     <WeatherContainer
                         weatherTimes={weatherTimes}
                         selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}

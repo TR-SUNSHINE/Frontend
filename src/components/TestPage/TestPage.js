@@ -1,13 +1,13 @@
-import MapContainer from "../Map/MapContainer";
+import CurrLocationMapContainer from "../Map/CurrLocationMapContainer";
 
 const TestPage = () => {
     return (
         <div>
-            <header class="header">
+            <header className="header">
                 <h2>TEST PAGE</h2>
             </header>
 
-            <MapContainer />
+            <CurrLocationMapContainer />
         </div>
 
     );
