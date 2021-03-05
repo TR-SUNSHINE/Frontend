@@ -58,8 +58,10 @@ export class RouteMap extends Component {
     }
 
     onMapClick = (mapProps, map, clickEvent) => {
-        if (this.renderRoute && this.allowDrawPolyLines) {
+        if (this.allowDrawPolyLines) {
+            console.log("b " + clickEvent.latLng.lat());
             const updatedMarkers = [...this.state.markers];
+            console.log(updatedMarkers);
             updatedMarkers.push({ key: this.state.markers.length, lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() });
             this.setState({ markers: updatedMarkers });
         }
