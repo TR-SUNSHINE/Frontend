@@ -9,7 +9,7 @@ const mapStyles = {
     }
 };
 
-export class RouteMap extends React.Component {
+export class GoogleMap extends React.Component {
     constructor(props) {
         super(props);
         const { lat, lng } = this.props.initialCenter;
@@ -132,7 +132,7 @@ export class RouteMap extends React.Component {
         );
     }
 }
-RouteMap.defaultProps = {
+GoogleMap.defaultProps = {
     zoom: 13,
     initialCenter: {
         lat: 53.47783,
@@ -142,4 +142,4 @@ RouteMap.defaultProps = {
     visible: true,
     onClick: function () { }
 };
-export default RouteMap;
+export default GoogleMap;

@@ -2,9 +2,11 @@ import "./IndividualWalk.css";
 import Button from "react-bootstrap/Button";
 import RatingsBar from "../RatingsBar/RatingsBar";
 import Graph from "../Graph/Graph";
-import RouteMap from "../Map/RouteMap";
+import GoogleMap from "../Map/GoogleMap";
 import React from "react";
 import { GoogleApiWrapper, InfoWindow, Marker, Polyline } from "google-maps-react";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -60,9 +62,16 @@ export class IndividualWalk extends React.Component {
         }
     };
 
+    addRating = () => {
+
+        console.log("AddRating");
+
+    };
+
     render() {
         let lat = 0;
         let lng = 0;
+
         if (this.state.routeMarkers.length < 1) {
             //Default Manchester
             lat = 53.47783;
@@ -77,50 +86,72 @@ export class IndividualWalk extends React.Component {
 
         return (
             <div>
-                <h3 className="heading heading--main">Individual Walk</h3>
-                <RouteMap
-                    centerAroundCurrentLocation={false}
-                    lat={lat}
-                    lng={lng}
-                    google={this.props.google}
-                    zoom={13}
-                    draggable={false}
-                    disableDoubleClickZoom={true}
-                >
-                    {/*<Marker lat={this.markerLat} lng={this.markerLng} visible={this.renderMarker} clickable={this.markerClickable} />*/}
-                    {/*this.state.markers.map((coords, index) => <Marker key={`marker-${index}`} position={coords} />)*/}
-                    {this.state.routeMarkers.map((coords, index) => {
-                        if (index === 0 || index === this.state.routeMarkers.length - 1) {
-                            return <Marker key={`marker-${index}`} position={coords} />;
-                        }
-                        return null;
-                    })}
-                    <InfoWindow
-                        marker={this.state.activeMarker}
-                        visible={this.state.showingInfoWindow}
-                        onClose={this.onClose}
-                    >
-                        <div>
-                            <h4>{this.state.selectedPlace.name}</h4>
-                        </div>
-                    </InfoWindow>
-                    <Polyline
-                        visible={true}
-                        path={this.state.routeMarkers}
-                        strokeColor="#0000ff"
-                        strokeOpacity={0.8}
-                        strokeWeight={6}
-                        editable={false}
+                <Row>
+                    <Col>
+                        <h3 className="heading heading--main">Individual Walk</h3>
+                    </Col>
+                </Row>
+                <Row>
+                    <GoogleMap
+                        centerAroundCurrentLocation={false}
+                        lat={lat}
+                        lng={lng}
+                        google={this.props.google}
+                        zoom={13}
                         draggable={false}
-                    />
-                </RouteMap>
+                        disableDoubleClickZoom={true}
+                    >
+                        {/*<Marker lat={this.markerLat} lng={this.markerLng} visible={this.renderMarker} clickable={this.markerClickable} />*/}
+                        {/*this.state.markers.map((coords, index) => <Marker key={`marker-${index}`} position={coords} />)*/}
+                        {this.state.routeMarkers.map((coords, index) => {
+                            if (index === 0 || index === this.state.routeMarkers.length - 1) {
+                                return <Marker key={`marker-${index}`} position={coords} />;
+                            }
+                            return null;
+                        })}
+                        <InfoWindow
+                            marker={this.state.activeMarker}
+                            visible={this.state.showingInfoWindow}
+                            onClose={this.onClose}
+                        >
+                            <div>
+                                <h4>{this.state.selectedPlace.name}</h4>
+                            </div>
+                        </InfoWindow>
+                        <Polyline
+                            visible={true}
+                            path={this.state.routeMarkers}
+                            strokeColor="#0000ff"
+                            strokeOpacity={0.8}
+                            strokeWeight={6}
+                            editable={false}
+                            draggable={false}
+                        />
+                    </GoogleMap>
+                </Row>
+                <Row>
 
-                <Graph data={this.state.user} />
-                <RatingsBar />
-                <div className="button__container button__container--center">
-                    <Button>Add New Rating</Button>
-                </div>
-            </div>
+                    <Col>
+                        <Graph data={this.state.user} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                    </Col>
+                    <Col>
+                        <RatingsBar />
+                    </Col>
+                    <Col>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <div className="button__container button__container--center" onClick={this.addRating}>
+                            <Button>Add New Rating</Button>
+                        </div>
+                    </Col>
+                </Row >
+            </div >
         );
     }
 };

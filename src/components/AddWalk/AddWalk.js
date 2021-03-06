@@ -1,8 +1,10 @@
 import "./AddWalk.css";
 import Button from "react-bootstrap/Button";
-import RouteMap from "../Map/RouteMap";
+import GoogleMap from "../Map/GoogleMap";
 import React from "react";
 import { GoogleApiWrapper, InfoWindow, Marker, Polyline } from "google-maps-react";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -63,6 +65,12 @@ export class AddWalk extends React.Component {
         this.setState({ routeMarkers: updatedMarkers });
     };
 
+    addWalk = () => {
+
+        console.log("AddWalk");
+
+    };
+
     render() {
         let lat = 0;
         let lng = 0;
@@ -80,49 +88,60 @@ export class AddWalk extends React.Component {
 
         return (
             <div>
-                <h3 className="heading heading--main">Add Walk</h3>
-                <RouteMap
-                    centerAroundCurrentLocation={true}
-                    lat={lat}
-                    lng={lng}
-                    google={this.props.google}
-                    zoom={15}
-                    draggable={true}
-                    disableDoubleClickZoom={false}
-                    onClick={this.onMapClick}
-                >
-                    {/*<Marker onClick={this.onMarkerClick} lat={this.markerLat} lng={this.markerLng} visible={this.renderMarker} clickable={this.markerClickable} />*/}
-                    {/*this.state.markers.map((coords, index) => <Marker key={`marker-${index}`} position={coords} />)*/}
-                    {console.log(this.state.routeMarkers)}
-                    {this.state.routeMarkers.map((coords, index) => {
-                        if (index === 0 || index === this.state.routeMarkers.length - 1) {
-                            return <Marker key={`marker-${index}`} position={coords} />;
-                        }
-                        return null;
-                    })}
-                    <InfoWindow
-                        marker={this.state.activeMarker}
-                        visible={this.state.showingInfoWindow}
-                        onClose={this.onClose}
+                <Row>
+                    <Col>
+                        <h3 className="heading heading--main">Add Walk</h3>
+                    </Col>
+                </Row>
+                <Row>
+                    <GoogleMap
+                        centerAroundCurrentLocation={true}
+                        lat={lat}
+                        lng={lng}
+                        google={this.props.google}
+                        zoom={15}
+                        draggable={true}
+                        disableDoubleClickZoom={false}
+                        onClick={this.onMapClick}
                     >
-                        <div>
-                            <h4>{this.state.selectedPlace.name}</h4>
-                        </div>
-                    </InfoWindow>
-                    <Polyline
-                        visible={true}
-                        path={this.state.routeMarkers}
-                        strokeColor="#0000ff"
-                        strokeOpacity={0.8}
-                        strokeWeight={6}
-                        editable={false}
-                        draggable={false}
-                    />
-                </RouteMap>
+                        {/*<Marker onClick={this.onMarkerClick} lat={this.markerLat} lng={this.markerLng} visible={this.renderMarker} clickable={this.markerClickable} />*/}
+                        {/*this.state.markers.map((coords, index) => <Marker key={`marker-${index}`} position={coords} />)*/}
+                        {console.log(this.state.routeMarkers)}
+                        {this.state.routeMarkers.map((coords, index) => {
+                            if (index === 0 || index === this.state.routeMarkers.length - 1) {
+                                return <Marker key={`marker-${index}`} position={coords} />;
+                            }
+                            return null;
+                        })}
+                        <InfoWindow
+                            marker={this.state.activeMarker}
+                            visible={this.state.showingInfoWindow}
+                            onClose={this.onClose}
+                        >
+                            <div>
+                                <h4>{this.state.selectedPlace.name}</h4>
+                            </div>
+                        </InfoWindow>
 
-                <div className="button__container button__container--center">
-                    <Button>Add Walk</Button>
-                </div>
+                        <Polyline
+                            visible={true}
+                            path={this.state.routeMarkers}
+                            strokeColor="#0000ff"
+                            strokeOpacity={0.8}
+                            strokeWeight={6}
+                            editable={false}
+                            draggable={false}
+                        />
+                    </GoogleMap>
+
+                </Row>
+                <Row>
+                    <Col>
+                        <div className="button__container button__container--center" onClick={this.addWalk}>
+                            <Button>Add Walk</Button>
+                        </div>
+                    </Col>
+                </Row>
             </div>
         );
     }
