@@ -135,8 +135,8 @@ export class AddWalk extends React.Component {
                             strokeColor="#0000ff"
                             strokeOpacity={0.8}
                             strokeWeight={6}
-                            editable={false}
-                            draggable={false}
+                            editable={true}
+                            draggable={true}
                         />
                     </GoogleMap>
 
