@@ -15,7 +15,6 @@ const Navibar = () => {
                     <Nav.Link href="/AddWalk">Add Walk</Nav.Link>
                     <Nav.Link href="/IndividualWalk">Individual Walk</Nav.Link>
                     <Nav.Link href="/Logout">Logout</Nav.Link>
-                    <Nav.Link href="/TestPage">TestPage</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

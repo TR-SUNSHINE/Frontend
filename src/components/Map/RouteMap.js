@@ -12,9 +12,7 @@ const mapStyles = {
 export class RouteMap extends React.Component {
     constructor(props) {
         super(props);
-
         const { lat, lng } = this.props.initialCenter;
-
         this.state = {
             currentLocation: {
                 lat: lat,
@@ -43,8 +41,6 @@ export class RouteMap extends React.Component {
         }
     }
     componentDidMount() {
-        console.log("centerAroundCurrentLocation");
-        console.log(this.props.centerAroundCurrentLocation);
         if (this.props.centerAroundCurrentLocation) {
             if (navigator && navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(pos => {
@@ -71,8 +67,6 @@ export class RouteMap extends React.Component {
     loadMap() {
         if (this.props && this.props.google) {
             // checks if google is available
-            console.log("loading map");
-
             const { google } = this.props;
             const maps = google.maps;
 
@@ -84,12 +78,9 @@ export class RouteMap extends React.Component {
             let { zoom } = this.props;
             let { draggable } = this.props;
             let { disableDoubleClickZoom } = this.props;
-
-
             let { lat, lng } = this.state.currentLocation;
 
             if (!(this.props.lat === undefined || this.props.lng === undefined)) {
-                console.log("using props");
                 lat = this.props.lat;
                 lng = this.props.lng;
 
@@ -108,12 +99,14 @@ export class RouteMap extends React.Component {
 
             // maps.Map() is constructor that instantiates the map
             this.map = new maps.Map(node, mapConfig);
+
+            this.map.addListener("click", (evt) => {
+                this.props.onClick(this.props, this.map, evt);
+            });
         }
     }
     renderChildren() {
         const { children } = this.props;
-        console.log("render children");
-        console.log(children);
 
         if (!children) return;
 
@@ -129,7 +122,6 @@ export class RouteMap extends React.Component {
     }
     render() {
         const style = Object.assign({}, mapStyles.map);
-        console.log("render..");
         return (
             <div>
                 <div style={style} ref="map">
@@ -147,6 +139,7 @@ RouteMap.defaultProps = {
         lng: -2.24317
     },
     centerAroundCurrentLocation: false,
-    visible: true
+    visible: true,
+    onClick: function () { }
 };
 export default RouteMap;

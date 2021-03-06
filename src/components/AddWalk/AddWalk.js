@@ -40,12 +40,13 @@ export class AddWalk extends React.Component {
         };
     }
 
-    onMarkerClick = (props, marker, e) =>
+    onMarkerClick = (props, marker, e) => {
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
             showingInfoWindow: true
         });
+    }
 
     onClose = props => {
         if (this.state.showingInfoWindow) {
@@ -56,26 +57,27 @@ export class AddWalk extends React.Component {
         }
     };
 
-    render() {
+    onMapClick = (mapProps, map, clickEvent) => {
+        const updatedMarkers = [...this.state.routeMarkers];
+        updatedMarkers.push({ key: this.state.routeMarkers.length, lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() });
+        this.setState({ routeMarkers: updatedMarkers });
+    };
 
+    render() {
         let lat = 0;
         let lng = 0;
         if (this.state.routeMarkers.length < 1) {
             //Default Manchester
             lat = 53.47783;
             lng = -2.24317;
-            console.log("using manchester");
         }
         else {
             //From State
             const middleItem = this.state.routeMarkers[this.state.routeMarkers.length / 2 | 0];
             lat = middleItem.lat;
             lng = middleItem.lng;
-            console.log("using route");
         }
 
-        console.log(lat);
-        console.log(lng);
         return (
             <div>
                 <h3 className="heading heading--main">Add Walk</h3>
@@ -87,9 +89,11 @@ export class AddWalk extends React.Component {
                     zoom={15}
                     draggable={true}
                     disableDoubleClickZoom={false}
+                    onClick={this.onMapClick}
                 >
-                    {/*<Marker lat={this.markerLat} lng={this.markerLng} visible={this.renderMarker} clickable={this.markerClickable} />*/}
+                    {/*<Marker onClick={this.onMarkerClick} lat={this.markerLat} lng={this.markerLng} visible={this.renderMarker} clickable={this.markerClickable} />*/}
                     {/*this.state.markers.map((coords, index) => <Marker key={`marker-${index}`} position={coords} />)*/}
+                    {console.log(this.state.routeMarkers)}
                     {this.state.routeMarkers.map((coords, index) => {
                         if (index === 0 || index === this.state.routeMarkers.length - 1) {
                             return <Marker key={`marker-${index}`} position={coords} />;

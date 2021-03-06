@@ -61,25 +61,20 @@ export class IndividualWalk extends React.Component {
     };
 
     render() {
-
         let lat = 0;
         let lng = 0;
         if (this.state.routeMarkers.length < 1) {
             //Default Manchester
             lat = 53.47783;
             lng = -2.24317;
-            console.log("using manchester");
         }
         else {
             //From State
             const middleItem = this.state.routeMarkers[this.state.routeMarkers.length / 2 | 0];
             lat = middleItem.lat;
             lng = middleItem.lng;
-            console.log("using route");
         }
 
-        console.log(lat);
-        console.log(lng);
         return (
             <div>
                 <h3 className="heading heading--main">Individual Walk</h3>
