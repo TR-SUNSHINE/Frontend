@@ -1,111 +1,152 @@
-import React, { Component } from "react";
-import { Map, GoogleApiWrapper, InfoWindow, Marker, Polyline } from "google-maps-react";
-
-const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+import React from "react";
+import ReactDOM from "react-dom";
 
 const mapStyles = {
     map: {
         position: "absolute",
-        width: "200%",
-        height: "200%"
+        width: "50%",
+        height: "50%"
     }
 };
 
-export class RouteMap extends Component {
+export class RouteMap extends React.Component {
     constructor(props) {
         super(props);
-        this.google = props.google;
-        this.mapDisableDoubleClickZoom = props.mapDisableDoubleClickZoom;
-        this.mapDraggable = props.mapDraggable;
-        this.mapZoom = props.mapZoom;
-        this.mapCenterLat = props.mapCenterLat;
-        this.mapCenterLng = props.mapCenterLng;
-        this.markerLat = props.markerLat;
-        this.markerLng = props.markerLng;
-        this.markerClickable = props.markerClickable;
-        this.allowDrawPolyLines = props.allowDrawPolyLines;
 
-        if (this.props.markerLat === undefined || this.props.markerLng === undefined) {
-            this.renderMarker = false;
+        const { lat, lng } = this.props.initialCenter;
+
+        this.state = {
+            currentLocation: {
+                lat: lat,
+                lng: lng
+            }
+        };
+
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.google !== this.props.google) {
+            this.loadMap();
+        }
+        if (prevState.currentLocation !== this.state.currentLocation) {
+            this.recenterMap();
+        }
+    }
+    recenterMap() {
+        const map = this.map;
+        const current = this.state.currentLocation;
+        const google = this.props.google;
+        const maps = google.maps;
+
+        if (map) {
+            let center = new maps.LatLng(current.lat, current.lng);
+            map.panTo(center);
+        }
+    }
+    componentDidMount() {
+        console.log("centerAroundCurrentLocation");
+        console.log(this.props.centerAroundCurrentLocation);
+        if (this.props.centerAroundCurrentLocation) {
+            if (navigator && navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(pos => {
+                    const coords = pos.coords;
+                    this.setState({
+                        currentLocation: {
+                            lat: coords.latitude,
+                            lng: coords.longitude
+                        }
+                    });
+                });
+            }
         }
         else {
-            this.renderMarker = true;
+            this.setState({
+                currentLocation: {
+                    lat: this.props.lat,
+                    lng: this.props.lng
+                }
+            });
         }
+        this.loadMap();
+    }
+    loadMap() {
+        if (this.props && this.props.google) {
+            // checks if google is available
+            console.log("loading map");
 
-        if (this.props.route === undefined) {
-            this.renderRoute = false;
-        }
-        else {
-            this.renderRoute = true;
+            const { google } = this.props;
+            const maps = google.maps;
+
+            const mapRef = this.refs.map;
+
+            // reference to the actual DOM element
+            const node = ReactDOM.findDOMNode(mapRef);
+
+            let { zoom } = this.props;
+            let { draggable } = this.props;
+            let { disableDoubleClickZoom } = this.props;
+
+
+            let { lat, lng } = this.state.currentLocation;
+
+            if (!(this.props.lat === undefined || this.props.lng === undefined)) {
+                console.log("using props");
+                lat = this.props.lat;
+                lng = this.props.lng;
+
+            }
+            const center = new maps.LatLng(lat, lng);
+
+            const mapConfig = Object.assign(
+                {},
+                {
+                    center: center,
+                    zoom: zoom,
+                    draggable: draggable,
+                    disableDoubleClickZoom: disableDoubleClickZoom
+                }
+            );
+
+            // maps.Map() is constructor that instantiates the map
+            this.map = new maps.Map(node, mapConfig);
         }
     }
+    renderChildren() {
+        const { children } = this.props;
+        console.log("render children");
+        console.log(children);
 
-    state = {
-        markers: [
+        if (!children) return;
 
-        ]
-    };
+        return React.Children.map(children, c => {
+            if (!c) return;
 
-    componentWillMount() {
-        if (this.renderRoute) {
-            this.setInitialMarkers();
-        }
+            return React.cloneElement(c, {
+                map: this.map,
+                google: this.props.google,
+                mapCenter: this.state.currentLocation
+            });
+        });
     }
-
-    setInitialMarkers() {
-        this.setState({ markers: this.props.route });
-
-    }
-
-    onMapClick = (mapProps, map, clickEvent) => {
-        if (this.allowDrawPolyLines) {
-            console.log("b " + clickEvent.latLng.lat());
-            const updatedMarkers = [...this.state.markers];
-            console.log(updatedMarkers);
-            updatedMarkers.push({ key: this.state.markers.length, lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() });
-            this.setState({ markers: updatedMarkers });
-        }
-    };
     render() {
         const style = Object.assign({}, mapStyles.map);
-
+        console.log("render..");
         return (
-            <div style={style}>
-                <Map
-                    google={this.google}
-                    style={this.style}
-                    initialCenter={{
-                        lat: this.mapCenterLat,
-                        lng: this.mapCenterLng
-                    }}
-                    zoom={this.mapZoom}
-                    onClick={this.onMapClick}
-                    draggable={this.mapDraggable}
-                    disableDoubleClickZoom={this.mapDisableDoubleClickZoom}
-                >
-                    <Marker lat={this.markerLat} lng={this.markerLng} visible={this.renderMarker} clickable={this.markerClickable} />
-                    {/*this.state.markers.map((coords, index) => <Marker key={`marker-${index}`} position={coords} />)*/}
-                    {this.state.markers.map((coords, index) => {
-                        if (index === 0 || index === this.state.markers.length - 1) {
-                            return <Marker key={`marker-${index}`} position={coords} />;
-                        }
-                        return null;
-                    })}
-
-                    <Polyline
-                        visible={true}
-                        path={this.state.markers}
-                        strokeColor="#0000ff"
-                        strokeOpacity={0.8}
-                        strokeWeight={6}
-                        editable={true}
-                        draggable={true}
-                    />
-                </Map>
+            <div>
+                <div style={style} ref="map">
+                    Loading map...
+            </div>
+                {this.renderChildren()}
             </div>
         );
     }
 }
-export default GoogleApiWrapper({
-    apiKey: API_KEY
-})(RouteMap);
+RouteMap.defaultProps = {
+    zoom: 13,
+    initialCenter: {
+        lat: 53.47783,
+        lng: -2.24317
+    },
+    centerAroundCurrentLocation: false,
+    visible: true
+};
+export default RouteMap;

@@ -12,7 +12,7 @@ const Navibar = () => {
                     <Nav.Link href="/Location">Location</Nav.Link>
                     <Nav.Link href="/Reminders">Reminders</Nav.Link>
                     <Nav.Link href="/MyWalksPage">My Walks</Nav.Link>
-                    <Nav.Link href="/AddWalksPage">Add Walks</Nav.Link>
+                    <Nav.Link href="/AddWalk">Add Walk</Nav.Link>
                     <Nav.Link href="/IndividualWalk">Individual Walk</Nav.Link>
                     <Nav.Link href="/Logout">Logout</Nav.Link>
                     <Nav.Link href="/TestPage">TestPage</Nav.Link>

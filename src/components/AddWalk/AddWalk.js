@@ -1,14 +1,12 @@
-import "./IndividualWalk.css";
+import "./AddWalk.css";
 import Button from "react-bootstrap/Button";
-import RatingsBar from "../RatingsBar/RatingsBar";
-import Graph from "../Graph/Graph";
 import RouteMap from "../Map/RouteMap";
 import React from "react";
 import { GoogleApiWrapper, InfoWindow, Marker, Polyline } from "google-maps-react";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-export class IndividualWalk extends React.Component {
+export class AddWalk extends React.Component {
     constructor(props) {
         super(props);
 
@@ -34,9 +32,7 @@ export class IndividualWalk extends React.Component {
                 }
             }
             , routeMarkers: [
-                { key: 0, lat: 53.28365589513839, lng: -2.439117028758835 },
-                { key: 1, lat: 53.281240718326224, lng: -2.4595447326162567 },
-                { key: 2, lat: 53.292939417021564, lng: -2.469329431102585 }
+
             ],
             showingInfoWindow: false,
             activeMarker: {},
@@ -82,15 +78,15 @@ export class IndividualWalk extends React.Component {
         console.log(lng);
         return (
             <div>
-                <h3 className="heading heading--main">Individual Walk</h3>
+                <h3 className="heading heading--main">Add Walk</h3>
                 <RouteMap
-                    centerAroundCurrentLocation={false}
+                    centerAroundCurrentLocation={true}
                     lat={lat}
                     lng={lng}
                     google={this.props.google}
-                    zoom={13}
-                    draggable={false}
-                    disableDoubleClickZoom={true}
+                    zoom={15}
+                    draggable={true}
+                    disableDoubleClickZoom={false}
                 >
                     {/*<Marker lat={this.markerLat} lng={this.markerLng} visible={this.renderMarker} clickable={this.markerClickable} />*/}
                     {/*this.state.markers.map((coords, index) => <Marker key={`marker-${index}`} position={coords} />)*/}
@@ -120,10 +116,8 @@ export class IndividualWalk extends React.Component {
                     />
                 </RouteMap>
 
-                <Graph data={this.state.user} />
-                <RatingsBar />
                 <div className="button__container button__container--center">
-                    <Button>Add New Rating</Button>
+                    <Button>Add Walk</Button>
                 </div>
             </div>
         );
@@ -132,4 +126,4 @@ export class IndividualWalk extends React.Component {
 
 export default GoogleApiWrapper({
     apiKey: API_KEY
-})(IndividualWalk);
+})(AddWalk);
