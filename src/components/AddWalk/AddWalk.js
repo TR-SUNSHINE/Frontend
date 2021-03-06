@@ -66,9 +66,15 @@ export class AddWalk extends React.Component {
     };
 
     addWalk = () => {
+        //Add routeMarkers to DB here
+        console.log("insert routeMarkers to DB");
+        //Clear route from screen
+        this.setState({ routeMarkers: [] });
+    };
 
-        console.log("AddWalk");
-
+    clearWalk = () => {
+        //Clear route from screen
+        this.setState({ routeMarkers: [] });
     };
 
     render() {
@@ -139,6 +145,11 @@ export class AddWalk extends React.Component {
                     <Col>
                         <div className="button__container button__container--center" onClick={this.addWalk}>
                             <Button>Add Walk</Button>
+                        </div>
+                    </Col>
+                    <Col>
+                        <div className="button__container button__container--center" onClick={this.clearWalk}>
+                            <Button>Clear Walk</Button>
                         </div>
                     </Col>
                 </Row>

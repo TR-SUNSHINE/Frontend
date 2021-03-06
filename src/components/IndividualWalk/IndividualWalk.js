@@ -63,8 +63,8 @@ export class IndividualWalk extends React.Component {
     };
 
     addRating = () => {
-
-        console.log("AddRating");
+        //Add routeMarkers to DB here
+        console.log("insert rating to DB");
 
     };
 
