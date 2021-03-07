@@ -82,13 +82,18 @@ const RegisterPage = () => {
             setErrors(errorsCopy);
         }
 
+        setUserName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+
     };
 
     return (
         <Row>
             <Col>
 
-                <h3 class="heading heading--main">Register with Sunshine</h3>
+                <h3 className="heading heading--main">Register with Sunshine</h3>
 
                 <Form className="form-register" onSubmit={handleSubmit}>
 
@@ -118,7 +123,7 @@ const RegisterPage = () => {
 
                     <Form.Group className="form-row">
                         <Col sm={12}>
-                            <Form.Label for="EmailInput">Email</Form.Label>
+                            <Form.Label htmlFor="EmailInput">Email</Form.Label>
                         </Col>
                         <Col sm={12}>
                             <Form.Control
@@ -136,7 +141,7 @@ const RegisterPage = () => {
 
                     <Form.Group className="form-row">
                         <Col sm={12}>
-                            <Form.Label for="PasswordInput">Password</Form.Label>
+                            <Form.Label htmlFor="PasswordInput">Password</Form.Label>
                         </Col>
                         <Col sm={12}>
                             <Form.Control
@@ -154,7 +159,7 @@ const RegisterPage = () => {
 
                     <Form.Group className="form-row">
                         <Col sm={12}>
-                            <Form.Label for="confirmPasswordInput">Confirm Password</Form.Label>
+                            <Form.Label htmlFor="confirmPasswordInput">Confirm Password</Form.Label>
                         </Col>
                         <Col sm={12}>
                             <Form.Control
