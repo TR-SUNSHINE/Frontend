@@ -7,6 +7,7 @@ import TestPage from "../TestPage/TestPage";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import LoginPage from "../LoginPage/LoginPage";
+import RachelRegisterPage from "../RachelRegisterPage/RachelRegisterPage";
 
 const Routes = () => {
     return (
@@ -24,6 +25,7 @@ const Routes = () => {
                     <Route exact path="/NotFoundPage" component={NotFoundPage} />
                     <Route exact path="/RegisterPage" component={RegisterPage} />
                     <Route exact path="/LoginPage" component={LoginPage} />
+                    <Route exact path="/RachelRegisterPage" component={RachelRegisterPage} />
 
                 </Switch>
             </BrowserRouter>
