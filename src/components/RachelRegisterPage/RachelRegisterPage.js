@@ -71,8 +71,6 @@ const RachelRegisterPage = () => {
 
         } else {
 
-            // clear the values from states & inputs
-            // this there is a better way to do this  -with a for in loop but can be refactored for this.
             copyDetails.userName = "";
             copyDetails.email = "";
             copyDetails.password = "";
