@@ -1,12 +1,16 @@
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import WelcomePage from "../WelcomePage/WelcomePage";
 import IndividualWalk from "../IndividualWalk/IndividualWalk";
+import AddWalk from "../AddWalk/AddWalk";
 import WeatherPage from "../WeatherPage/WeatherPage";
 import MyWalksPage from "../MyWalksPage/MyWalksPage";
-import TestPage from "../TestPage/TestPage";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import LoginPage from "../LoginPage/LoginPage";
+import TestIndividualWalk from "../Test/TestIndividualWalk";
+import TestAddWalk from "../Test/TestAddWalk";
+import TestWeather from "../Test/TestWeather";
+import RachelRegisterPage from "../RachelRegisterPage/RachelRegisterPage";
 
 const Routes = () => {
     return (
@@ -18,12 +22,16 @@ const Routes = () => {
                     </Route>
                     <Route exact path="/WelcomePage" component={WelcomePage} />
                     <Route exact path="/IndividualWalk" component={IndividualWalk} />
-                    <Route exact path="/Weather" component={WeatherPage} />
+                    <Route exact path="/AddWalk" component={AddWalk} />
+                    <Route exact path="/WeatherPage" component={WeatherPage} />
                     <Route exact path="/MyWalksPage" component={MyWalksPage} />
-                    <Route exact path="/TestPage" component={TestPage} />
                     <Route exact path="/NotFoundPage" component={NotFoundPage} />
                     <Route exact path="/RegisterPage" component={RegisterPage} />
                     <Route exact path="/LoginPage" component={LoginPage} />
+                    <Route exact path="/TestIndividualWalk" component={TestIndividualWalk} />
+                    <Route exact path="/TestAddWalk" component={TestAddWalk} />
+                    <Route exact path="/TestWeather" component={TestWeather} />
+                    <Route exact path="/RachelRegisterPage" component={RachelRegisterPage} />
 
                 </Switch>
             </BrowserRouter>
