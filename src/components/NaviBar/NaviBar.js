@@ -3,7 +3,7 @@ import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 
 const Navibar = () => {
     return (
-        <Navbar fixed="right" bg="light" expand="lg" className="cust-nav-bar">
+        <Navbar fixed="top" bg="light" expand="lg" className="cust-nav-bar">
             <Navbar.Brand href="#home"></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
