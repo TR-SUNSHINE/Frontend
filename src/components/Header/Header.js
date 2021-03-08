@@ -6,24 +6,7 @@ import NaviBar from "../NaviBar/NaviBar";
 
 const Header = () => {
     return (
-        <Row>
-            <Row>
-                <NaviBar />
-            </Row>
-            <Col>
-            </Col>
-            <Col>
-            </Col>
-            <Col>
-                <Image
-                    src="./images/welcomeSunshine.jfif"
-                    alt="Info"
-                    style={{
-                        width: 100,
-                    }} fluid
-                />
-            </Col>
-        </Row >
+        <NaviBar />
     );
 };
 
