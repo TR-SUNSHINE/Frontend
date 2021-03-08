@@ -49,10 +49,8 @@ const RegisterPage = () => {
         setErrors(errorsCopy);
     };
 
-
-
     const handleSubmit = event => {
-        console.log("handleSubmit", userName, email, password, confirmPassword);
+        // console.log("handleSubmit", userName, email, password, confirmPassword);
 
         event.preventDefault();
         if (!userName) {
