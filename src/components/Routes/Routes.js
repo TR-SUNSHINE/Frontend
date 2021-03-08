@@ -10,6 +10,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import TestIndividualWalk from "../Test/TestIndividualWalk";
 import TestAddWalk from "../Test/TestAddWalk";
 import TestWeather from "../Test/TestWeather";
+import RachelRegisterPage from "../RachelRegisterPage/RachelRegisterPage";
 
 const Routes = () => {
     return (
@@ -30,6 +31,8 @@ const Routes = () => {
                     <Route exact path="/TestIndividualWalk" component={TestIndividualWalk} />
                     <Route exact path="/TestAddWalk" component={TestAddWalk} />
                     <Route exact path="/TestWeather" component={TestWeather} />
+                    <Route exact path="/RachelRegisterPage" component={RachelRegisterPage} />
+
                 </Switch>
             </BrowserRouter>
         </div>
