@@ -6,24 +6,25 @@ import "../../index.css";
 import "./FormInput.css";
 import { Form } from "react-bootstrap";
 
-function FormInput({ labelText, typeInput }) {
+function FormInput({ labelInput, typeInput, nameInput, placeHolderInput }) {
 
-    console.log(labelText);
+    // console.log(labelInput, typeInput, nameInput, placeHolderInput);
+
+    const [text, setInput] = useState("");
 
     return (
         <section>
-            < h1 > {labelText, typeInput} </h1 >
             <Form.Group className="form-row">
                 <Col sm={3}>
-                    <Form.Label for="nameInput">labelText</Form.Label>
+                    <Form.Label for="nameInput">{labelInput}</Form.Label>
                 </Col>
                 <Col sm={9}>
                     <Form.Control
                         type={typeInput}
-                        name="userName"
-                        //value={userName}
-                        //onChange={(event) => setName(event.target.value)}
-                        placeholder="Enter your Name" />
+                        name={nameInput}
+                        value={text}
+                        onChange={(event) => setInput(event.target.value)}
+                        placeholder={placeHolderInput} />
                 </Col>
             </Form.Group>
 

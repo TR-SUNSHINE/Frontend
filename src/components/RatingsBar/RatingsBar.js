@@ -1,20 +1,21 @@
-import React from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-regular-svg-icons";
 import "../../index.css";
 import "./RatingsBar.css";
+import Rating from "@material-ui/lab/Rating";
+import { useState } from "react";
 
-const RatingsBar = () => {
+const RatingsBar = ({ stars, disabled }) => {
+    const [value, setValue] = useState(stars);
+
     return (
-        <Row>
-            <Col>
-                <div className="small-ratings"><FontAwesomeIcon className="rating-color" icon={faStar} /><FontAwesomeIcon className="rating-color" icon={faStar} /><FontAwesomeIcon className="rating-color" icon={faStar} /><FontAwesomeIcon className="rating-color" icon={faStar} /><FontAwesomeIcon className="rating-color" icon={faStar} />
-                </div>
-            </Col>
-        </Row>
+        <Rating
+            name="simple-controlled"
+            value={value}
+            disabled={disabled}
+            onChange={(event) => {
+                setValue(Number(event.target.value));
+            }}
+        />
     );
-};
 
+};
 export default RatingsBar;

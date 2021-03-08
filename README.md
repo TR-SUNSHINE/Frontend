@@ -103,4 +103,6 @@ The JavaScript language is flexible in its coding style meaning quite often you 
 
 <b>jsx-quotes</b> is used to enforce consistent coding styles when defining strings and class names. The error parameter ensures the developer has no option but to use double quotes in these circumstances.
 
+<b>allowTemplateLiterals</b> is used to allow strings to use backticks.
+
 

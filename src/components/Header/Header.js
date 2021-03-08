@@ -23,8 +23,10 @@ const Header = () => {
                     }} fluid
                 />
             </Col>
-        </Row>
+        </Row >
     );
 };
 
 export default Header;
+
+
