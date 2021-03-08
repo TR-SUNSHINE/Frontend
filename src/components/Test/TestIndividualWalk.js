@@ -1,4 +1,4 @@
-
+import "./TestIndividualWalk.css";
 import Button from "react-bootstrap/Button";
 import RatingsBar from "../RatingsBar/RatingsBar";
 import Graph from "../Graph/Graph";
@@ -89,7 +89,7 @@ export class TestIndividualWalk extends React.Component {
                 <Row>
                     <Col>
                         <h3 className="heading heading--main">Individual Walk</h3>
-                        <h4 className="heading heading--secondary">Best Rated Walk</h4>
+                        <h4 className="heading heading--secondary">Top Rated Walk</h4>
                         <GoogleMap
                             centerAroundCurrentLocation={false}
                             lat={lat}
@@ -129,29 +129,23 @@ export class TestIndividualWalk extends React.Component {
                         </GoogleMap>
                     </Col>
                 </Row>
-
-
                 <Row>
-
                     <Col>
-                        <h4 className="heading heading--secondary">Walk Ratings</h4>
+                        <h4 className="heading heading--secondary">Walk Statistics</h4>
                         <Graph data={this.state.user} />
                     </Col>
                 </Row>
                 <Row>
-
                     <Col>
                         <div className="addRating__container">
-                            <h4 className="heading heading--secondary">Add Walk Rating</h4>
+                            <h4 className="heading heading--secondary">Rate Walk</h4>
                             <RatingsBar />
                             <div className="button__container button__container--center" onClick={this.addRating}>
                                 <Button variant="accessible">Add Rating</Button>
                             </div>
                         </div>
                     </Col>
-
                 </Row>
-
             </>
         );
     }
