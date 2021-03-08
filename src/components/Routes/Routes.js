@@ -7,6 +7,9 @@ import MyWalksPage from "../MyWalksPage/MyWalksPage";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import LoginPage from "../LoginPage/LoginPage";
+import TestIndividualWalk from "../Test/TestIndividualWalk";
+import TestAddWalk from "../Test/TestAddWalk";
+import TestWeather from "../Test/TestWeather";
 
 const Routes = () => {
     return (
@@ -24,7 +27,9 @@ const Routes = () => {
                     <Route exact path="/NotFoundPage" component={NotFoundPage} />
                     <Route exact path="/RegisterPage" component={RegisterPage} />
                     <Route exact path="/LoginPage" component={LoginPage} />
-
+                    <Route exact path="/TestIndividualWalk" component={TestIndividualWalk} />
+                    <Route exact path="/TestAddWalk" component={TestAddWalk} />
+                    <Route exact path="/TestWeather" component={TestWeather} />
                 </Switch>
             </BrowserRouter>
         </div>

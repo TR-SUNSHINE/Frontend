@@ -1,4 +1,4 @@
-import "./AddWalk.css";
+import "./Test.css";
 import Button from "react-bootstrap/Button";
 import GoogleMap from "../Map/GoogleMap";
 import React from "react";
@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-export class AddWalk extends React.Component {
+export class TestAddWalk extends React.Component {
     constructor(props) {
         super(props);
 
@@ -161,4 +161,4 @@ export class AddWalk extends React.Component {
 
 export default GoogleApiWrapper({
     apiKey: API_KEY
-})(AddWalk);
+})(TestAddWalk);

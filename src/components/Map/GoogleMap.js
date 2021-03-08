@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "./GoogleMap.css";
 
+/*
 const mapStyles = {
     map: {
         position: "absolute",
@@ -8,7 +10,7 @@ const mapStyles = {
         height: "50%"
     }
 };
-
+*/
 export class GoogleMap extends React.Component {
     constructor(props) {
         super(props);
@@ -121,10 +123,10 @@ export class GoogleMap extends React.Component {
         });
     }
     render() {
-        const style = Object.assign({}, mapStyles.map);
+        //const style = Object.assign({}, mapStyles.map);
         return (
-            <div>
-                <div style={style} ref="map">
+            <div className="map_location__container">
+                <div className="map_location__map" ref="map">
                     Loading map...
             </div>
                 {this.renderChildren()}

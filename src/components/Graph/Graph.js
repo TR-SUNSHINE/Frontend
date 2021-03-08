@@ -14,7 +14,7 @@ export default class Graph extends Component {
 
         //data.avgRatings.Feb
         new Chart(myChartRef, {
-            type: "bar",
+            type: "line",
             data: {
                 labels: [
                     "Jan",
@@ -45,24 +45,61 @@ export default class Graph extends Component {
                         this.data.avgRatings.Dec
                     ],
                     label: "Star Rating",
-                    borderColor: "yellow",
+                    borderColor: "#296EB4",
                     backgroundColor: "#296EB4",
-                    fill: true
+                    fill: false
                 }]
             },
             options: {
+                title: {
+                    display: true,
+                    text: "Star Rating Over Time",
+                    fontSize: 16,
+                    fontColor: "#296EB4",
+                    fontStyle: "bold"
+
+                },
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: true,
                 scales: {
                     yAxes: [{
+
                         ticks: {
                             min: 0,
                             max: 5,
                             stepSize: 1,
+                            fontSize: 20,
+                            fontStyle: "bold",
+                            fontColor: "#296EB4"
                         },
                         scaleLabel: {
                             display: true,
-                            labelString: "Stars"
+                            labelString: "Stars",
+                            fontSize: 20,
+                            fontColor: "#296EB4",
+                            fontStyle: "bold",
+                        },
+                        gridLines: {
+                            display: true,
+                            color: "#296EB4"
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 20,
+                            fontStyle: "bold",
+                            fontColor: "#296EB4"
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Months",
+                            fontSize: 20,
+                            fontColor: "#296EB4",
+                            fontStyle: "bold",
+                        },
+                        gridLines: {
+                            display: true,
+                            color: "#296EB4"
                         }
                     }]
                 }
