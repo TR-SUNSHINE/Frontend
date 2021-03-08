@@ -8,12 +8,14 @@ const RatingsBar = ({ stars, disabled }) => {
 
     return (
         <Rating
-            name="simple-controlled"
+            name="size-large"
             value={value}
             disabled={disabled}
+            size="large"
             onChange={(event) => {
                 setValue(Number(event.target.value));
             }}
+
         />
     );
 

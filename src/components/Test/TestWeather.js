@@ -6,11 +6,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import WeatherContainer from "../WeatherContainer/WeatherContainer";
-import CurrLocationMapContainer from "../Map/CurrLocationMapContainer";
-import "./WeatherPage.css";
+import "./Test.css";
 import "../Button/Button.css";
+import GoogleMap from "../Map/GoogleMap";
+import { GoogleApiWrapper, InfoWindow, Marker, Polyline } from "google-maps-react";
 
-const WeatherPage = () => {
+const TestWeather = () => {
 
     // n.b. latitude & longitude hardcoded - will need to move to App & be fetched from backend?
     // need to move api call to App - or will reload every time page reloads?
@@ -72,7 +73,7 @@ const WeatherPage = () => {
             }
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             // redirect to error page
         }
     }, []);
@@ -97,8 +98,8 @@ const WeatherPage = () => {
             setWeatherTimes(updatedIconsArray);
 
         } catch (error) {
-            console.log(error);
-            setNoResults(true);
+            //console.log(error);
+            //setNoResults(true);
         }
 
     }, [latitude, longitude, weatherKey]);
@@ -119,7 +120,18 @@ const WeatherPage = () => {
             <Row>
                 <Col>
                     <h3 className="heading heading--main">Weather today: {date}</h3>
-                    <CurrLocationMapContainer />
+                    {/* <GoogleMap
+                        centerAroundCurrentLocation={false}
+                        lat={53.46265}
+                        lng={-2.24909}
+                        google={this.props.google}
+                        zoom={13}
+                        draggable={false}
+                        disableDoubleClickZoom={true}
+                    >
+                        <Marker lat={53.46265} lng={-2.24909} visible={true} />
+                    </GoogleMap>
+                    */}
                     <WeatherContainer
                         weatherTimes={weatherTimes}
                         selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
@@ -148,4 +160,4 @@ const WeatherPage = () => {
     );
 };
 
-export default WeatherPage;
+export default TestWeather;

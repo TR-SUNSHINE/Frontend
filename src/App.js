@@ -7,10 +7,13 @@ import Routes from "./components/Routes/Routes";
 
 function App() {
   return (
-    <Container>
+    <>
       <Header />
-      <Routes />
-    </Container>
+      <Container>
+
+        <Routes />
+      </Container>
+    </>
   );
 }
 export default App;

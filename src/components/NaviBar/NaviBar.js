@@ -3,7 +3,7 @@ import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 
 const Navibar = () => {
     return (
-        <Navbar fixed="right" bg="light" expand="lg" className="cust-nav-bar">
+        <Navbar fixed="top" bg="light" expand="lg" className="cust-nav-bar">
             <Navbar.Brand href="#home"></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -12,10 +12,9 @@ const Navibar = () => {
                     <Nav.Link href="/Location">Location</Nav.Link>
                     <Nav.Link href="/Reminders">Reminders</Nav.Link>
                     <Nav.Link href="/MyWalksPage">My Walks</Nav.Link>
-                    <Nav.Link href="/AddWalksPage">Add Walks</Nav.Link>
+                    <Nav.Link href="/AddWalk">Add Walk</Nav.Link>
                     <Nav.Link href="/IndividualWalk">Individual Walk</Nav.Link>
                     <Nav.Link href="/Logout">Logout</Nav.Link>
-                    <Nav.Link href="/TestPage">TestPage</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
