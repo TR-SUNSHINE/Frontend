@@ -7,11 +7,10 @@ import React from "react";
 import { GoogleApiWrapper, InfoWindow, Marker, Polyline } from "google-maps-react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import "./IndividualWalk.css";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-export class IndividualWalk extends React.Component {
+export class TestIndividualWalk extends React.Component {
     constructor(props) {
         super(props);
 
@@ -160,4 +159,4 @@ export class IndividualWalk extends React.Component {
 
 export default GoogleApiWrapper({
     apiKey: API_KEY
-})(IndividualWalk);
+})(TestIndividualWalk);

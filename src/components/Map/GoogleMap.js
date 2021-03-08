@@ -1,13 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./CurrLocationMap.css";
+import "./GoogleMap.css";
 
-export class CurrentLocation extends React.Component {
+/*
+const mapStyles = {
+    map: {
+        position: "absolute",
+        width: "50%",
+        height: "50%"
+    }
+};
+*/
+export class GoogleMap extends React.Component {
     constructor(props) {
         super(props);
-
         const { lat, lng } = this.props.initialCenter;
-
         this.state = {
             currentLocation: {
                 lat: lat,
@@ -49,6 +56,14 @@ export class CurrentLocation extends React.Component {
                 });
             }
         }
+        else {
+            this.setState({
+                currentLocation: {
+                    lat: this.props.lat,
+                    lng: this.props.lng
+                }
+            });
+        }
         this.loadMap();
     }
     loadMap() {
@@ -63,19 +78,33 @@ export class CurrentLocation extends React.Component {
             const node = ReactDOM.findDOMNode(mapRef);
 
             let { zoom } = this.props;
-            const { lat, lng } = this.state.currentLocation;
+            let { draggable } = this.props;
+            let { disableDoubleClickZoom } = this.props;
+            let { lat, lng } = this.state.currentLocation;
+
+            if (!(this.props.lat === undefined || this.props.lng === undefined)) {
+                lat = this.props.lat;
+                lng = this.props.lng;
+
+            }
             const center = new maps.LatLng(lat, lng);
 
             const mapConfig = Object.assign(
                 {},
                 {
                     center: center,
-                    zoom: zoom
+                    zoom: zoom,
+                    draggable: draggable,
+                    disableDoubleClickZoom: disableDoubleClickZoom
                 }
             );
 
             // maps.Map() is constructor that instantiates the map
             this.map = new maps.Map(node, mapConfig);
+
+            this.map.addListener("click", (evt) => {
+                this.props.onClick(this.props, this.map, evt);
+            });
         }
     }
     renderChildren() {
@@ -94,26 +123,25 @@ export class CurrentLocation extends React.Component {
         });
     }
     render() {
-
+        //const style = Object.assign({}, mapStyles.map);
         return (
-
-            <div className="location__container">
-                <div className="location__map" ref="map">
+            <div className="map_location__container">
+                <div className="map_location__map" ref="map">
                     Loading map...
             </div>
-                { this.renderChildren()}
-
+                {this.renderChildren()}
             </div>
         );
     }
 }
-CurrentLocation.defaultProps = {
+GoogleMap.defaultProps = {
     zoom: 13,
     initialCenter: {
         lat: 53.47783,
         lng: -2.24317
     },
     centerAroundCurrentLocation: false,
-    visible: true
+    visible: true,
+    onClick: function () { }
 };
-export default CurrentLocation;
+export default GoogleMap;
