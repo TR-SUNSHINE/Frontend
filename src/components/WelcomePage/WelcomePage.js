@@ -25,7 +25,6 @@ const Welcome = () => {
 
                     <Col xs={12} sm={12} md={6}>
                         <div className="button__container button__container--right" >
-                            {/* link to correct logiin LoginPage */}
                             <Button variant="accessible"><Link className="button--link" to="/loginPage">Login</Link></Button>
                         </div>
                     </Col>
