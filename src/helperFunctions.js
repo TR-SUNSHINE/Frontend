@@ -206,7 +206,7 @@ const replaceIcons = (array, sunrise, sunset) => {
     const substitutedIcons = array.map(elem => {
 
         if (dayTime(elem.dt, sunrise, sunset)) {
-            console.log(elem.weather[0].id);
+
             elem.weather[0].icon = substituteIconsDay(elem.weather[0].id);
         } else {
             elem.weather[0].icon = substituteIconsNight(elem.weather[0].id);

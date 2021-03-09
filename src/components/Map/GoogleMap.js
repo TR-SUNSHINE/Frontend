@@ -2,15 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./GoogleMap.css";
 
-/*
-const mapStyles = {
-    map: {
-        position: "absolute",
-        width: "50%",
-        height: "50%"
-    }
-};
-*/
 export class GoogleMap extends React.Component {
     constructor(props) {
         super(props);

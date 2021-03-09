@@ -12,10 +12,7 @@ import "../Button/Button.css";
 
 const WeatherPage = () => {
 
-    // n.b. latitude & longitude hardcoded - will need to move to App & be fetched from backend?
-    // need to move api call to App - or will reload every time page reloads?
-    const [latitude, setLatitude] = useState(53.46265);
-    const [longitude, setLongitude] = useState(-2.24909);
+    const [coords, setCoords] = useState({ lat: 0, long: 0 });
     const [weatherTimes, setWeatherTimes] = useState([]);
     const [date, setDate] = useState("");
     const [noResults, setNoResults] = useState(false);
@@ -54,54 +51,48 @@ const WeatherPage = () => {
                 });
 
                 const position = await location;
-                setLatitude(position.coords.latitude);
-                setLongitude(position.coords.longitude);
+                setCoords({ lat: position.coords.latitude, long: position.coords.longitude });
 
             } else {
 
-                const Manchester = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Manchester,GB&appid=${weatherKey}`);
-
-                setLatitude(Manchester.data.coord.lat);
-                setLongitude(Manchester.data.coord.lon);
-
                 // hard-coded Manchester coordinates
-                /*
-                setLatitude(53.4809);
-                setLongitude(-2.2374);
-                */
+
+                setCoords({ lat: 53.4809, long: -2.2374 });
             }
 
         } catch (error) {
             console.log(error);
-            // redirect to error page
+            setNoResults(true);
         }
     }, []);
 
 
     const getWeather = useCallback(async () => {
 
-        try {
+        if (coords.lat && coords.long) {
+            try {
 
-            const weatherApi = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=daily,minutely,alerts&units=metric&appid=${weatherKey}`);
+                const weatherApi = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&exclude=daily,minutely,alerts&units=metric&appid=${weatherKey}`);
 
-            const currentDate = showLocalDate(weatherApi.data.current.dt);
+                const currentDate = showLocalDate(weatherApi.data.current.dt);
 
-            const sunrise = weatherApi.data.current.sunrise;
-            const sunset = weatherApi.data.current.sunset;
+                const sunrise = weatherApi.data.current.sunrise;
+                const sunset = weatherApi.data.current.sunset;
 
-            const weatherArray = weatherApi.data.hourly.slice(0, 24);
+                const weatherArray = weatherApi.data.hourly.slice(0, 24);
 
-            const updatedIconsArray = replaceIcons(weatherArray, sunrise, sunset);
-            console.log(updatedIconsArray);
-            setDate(currentDate);
-            setWeatherTimes(updatedIconsArray);
+                const updatedIconsArray = replaceIcons(weatherArray, sunrise, sunset);
 
-        } catch (error) {
-            console.log(error);
-            setNoResults(true);
+                setDate(currentDate);
+                setWeatherTimes(updatedIconsArray);
+
+            } catch (error) {
+                console.log(error);
+                setNoResults(true);
+            }
         }
 
-    }, [latitude, longitude, weatherKey]);
+    }, [coords.lat, coords.long, weatherKey]);
 
 
     useEffect(() => {
@@ -113,7 +104,6 @@ const WeatherPage = () => {
         return <Redirect to="/NotFoundPage" />;
     }
 
-    console.log(weatherTimes);
     return (
         <>
             <Row>
