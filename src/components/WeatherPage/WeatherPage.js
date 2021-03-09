@@ -82,7 +82,7 @@ const WeatherPage = () => {
                 const weatherArray = weatherApi.data.hourly.slice(0, 24);
 
                 const updatedIconsArray = replaceIcons(weatherArray, sunrise, sunset);
-                console.log(updatedIconsArray);
+
                 setDate(currentDate);
                 setWeatherTimes(updatedIconsArray);
 
