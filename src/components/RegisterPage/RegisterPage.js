@@ -159,7 +159,12 @@ const RegisterPage = () => {
                         <div className="form-error">
                             {details.confirmPasswordError && <p>{details.confirmPasswordError} </p>}
                         </div>
-
+                    </Form.Group>
+                    <Form.Group className="form-row">
+                        <Form.Check
+                            name="consent"
+                            type="checkbox"
+                            label="I consent to share my location" />
                     </Form.Group>
                     <Row>
                         <Col xs={12} sm={12} md={6}>
