@@ -2,94 +2,128 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 import "../../index.css";
-import "./LoginPage.css";
+import "../LoginPage/LoginPage.css";
 import { Form } from "react-bootstrap";
 
-
 const LoginPage = () => {
-    // const [users, setTasks] = useState([
-    //     { userFirstaName: "Myriam", userName: "Thursch", password: "12345", id: "001" },
-    //     { userFirstaName: "John", userName: "Smith", password: "12345", id: "002" },
-    //     { userFirstaName: "Joan", userName: "Prijs", password: "12345", id: "003" },
-    //     { userFirstaName: "Ana", userName: "Saunders", password: "12345", id: "004" },
-    // ]);
 
-    const [userName, setName] = useState("");
-    const [userFirstName, setFirstName] = useState("");
-    const [userPassword, setPassword] = useState("");
+    const [details, setDetails] = useState({ email: "", emailError: "", password: "", passwordError: "" });
 
+    const handleChange = (event) => {
 
-    const handleClick = () => {
-        // const item = users.filter(user => user.userFirstName === userFirstName)
-        //     .map(user => user.userName === userName)
-        //     .map(user => user.userFirstName === userFirstName);
-        const validInput = userName.length > 0 && userFirstName > 0 && userPassword.length > 0;
-        console.log("onClick", userName, userFirstName, userPassword, validInput);
+        const copyDetails = { ...details };
+
+        if (event.target.name === "email") {
+
+            copyDetails.emailError = "";
+            copyDetails.email = event.target.value;
+
+            setDetails(copyDetails);
+
+        } else if (event.target.name === "password") {
+
+            copyDetails.passwordError = "";
+            copyDetails.password = event.target.value;
+            setDetails(copyDetails);
+
+        }
     };
 
+    const handleSubmit = event => {
+        console.log("handleSubmit", details);
 
+        event.preventDefault();
+
+        const copyDetails = { ...details };
+
+        if (!/\S+@\S+\.\S+/.test(details.email)) {
+            copyDetails.emailError = "invalid email format";
+        }
+
+        if (details.password.length < 6) {
+            copyDetails.passwordError = "Password needs to be 6 characters or more";
+        }
+
+
+        if (copyDetails.emailError || copyDetails.passwordError) {
+
+            setDetails(copyDetails);
+
+        } else {
+
+            copyDetails.email = "";
+            copyDetails.password = "";
+
+            setDetails(copyDetails);
+            console.log("get details & send off to the backend.");
+        }
+
+    };
+
+    console.log(details);
     return (
         <Row>
-            <Col xs={12} sm={12} md={6}>
+            <Col>
 
-                <h3 class="heading heading--main">Login with Sunshine</h3>
-                <Form className="form-register">
+                <h3 className="heading heading--main">Login to Sunshine</h3>
 
-                    <Form.Group className="form-row" sm={8}>
-                        <Col sm={4}>
-                            <Form.Label for="firstNameInput">First name</Form.Label>
+                <Form className="form-register" onSubmit={handleSubmit}>
+
+
+                    <Form.Group className="form-row">
+                        <Col sm={12}>
+                            <Form.Label htmlFor="EmailInput">Email</Form.Label>
                         </Col>
-                        <Col sm={8}>
+                        <Col sm={12}>
                             <Form.Control
                                 type="small"
-                                name="userFirstName"
-                                value={userFirstName}
-                                onChange={(event) => setFirstName(event.target.value)}
-                                placeholder="Enter your first name" />
+                                name="email"
+                                value={details.email}
+                                onChange={handleChange}
+                                placeholder="Enter your email" />
                         </Col>
+                        <div className="form-error">
+                            {details.emailError && <p>{details.emailError} </p>}
+                        </div>
+
                     </Form.Group>
 
                     <Form.Group className="form-row">
-                        <Col sm={4}>
-                            <Form.Label for="nameInput">Name</Form.Label>
+                        <Col sm={12}>
+                            <Form.Label htmlFor="PasswordInput">Password</Form.Label>
                         </Col>
-                        <Col sm={8}>
-                            <Form.Control
-                                type="small"
-                                name="userName"
-                                value={userName}
-                                onChange={(event) => setName(event.target.value)}
-                                placeholder="Enter your name" />
-                        </Col>
-                    </Form.Group>
-
-                    <Form.Group className="form-row">
-                        <Col sm={4}>
-                            <Form.Label for="EmailInput">Password</Form.Label>
-                        </Col>
-                        <Col sm={8}>
+                        <Col sm={12}>
                             <Form.Control
                                 type="password"
-                                name="userPassword"
-                                value={userPassword}
-                                onChange={(event) => setPassword(event.target.value)}
+                                name="password"
+                                value={details.password}
+                                onChange={handleChange}
                                 placeholder="Enter your password" />
                         </Col>
+                        <div className="form-error">
+                            {details.passwordError && <p>{details.passwordError} </p>}
+                        </div>
+
                     </Form.Group>
 
-
                     <Row>
-                        <Col xs={12} >
-                            <div className="button__container--center">
+                        <Col xs={12} sm={12} md={6}>
+                            <div className="button__container button__container--left" >
+                                <Button variant="accessible"><Link className="button--link" to="WelcomePage">Back</Link></Button>
+                            </div>
+                        </Col>
 
-                                {/* <Button type="submit" onClick={handleClick} disabled={!validateForm()}> Login </Button> */}
-                                <Button type="submit" variant="accessible" onClick={handleClick}> Login </Button>
+                        <Col xs={12} sm={12} md={6}>
+                            <div className="button__container button__container--right" >
+                                <Button disabled={details.email && details.password ? false : true} variant="accessible" type="submit" >
+                                    Login
+                                </Button>
                             </div>
                         </Col>
                     </Row>
                 </Form>
-
 
 
             </Col>
