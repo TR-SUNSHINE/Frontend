@@ -10,16 +10,13 @@
   }
 
   .btn-welcome{
-    background-color: #296eb4;
-    color: white;
-    font-size: 18px;
+    background-color: #296eb4;  
     width: 112px; 
   }
 
-  
-
   .button--link {
     color: white;
+    font-size: 18px;
   }
 
   .btn-pointer{
@@ -29,32 +26,86 @@
 
   /* Media Queries to match Bootstrap viewport sizes */
 
-
 /* Small - ≥576px */
 
-@media only screen and (min-width: 576px) and (max-width: 768px) {}
+@media only screen and (min-width: 576px) and (max-width: 768px) { 
+/* @media only screen and (min-width: 576px) { */
 
+  .btn-welcome{
+    width: 150px; 
+  } 
+
+  .button--link {
+    font-size: 24px;
+  }
+
+} 
+
+/* .btn-accessible{
+  background-color: #296eb4;
+  color: white;
+  font-size: 24px;
+}
+*/
+
+
+/* .button--link {
+  color: purple;
+  font-size: 24px;
+} */
 
 /* Medium - ≥768px */
 
-@media only screen and (min-width: 768px) and (max-width: 992px) {}
+@media only screen and (min-width: 768px) and (max-width: 992px) {
 
-.btn-accessible{
+
+
+
+}
+
+/* .btn-accessible{
   background-color: #296eb4;
   color: white;
   font-size: 24px;
 }
 
+.btn-welcome{
+  background-color: #296eb4;
+  color: white;
+  width: 112px; 
+}
+
+.button--link {
+  color: purple;
+  font-size: 24px;
+}
+
+ */
+
 /* Large - ≥992px */
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+
+
+}
 
 
 /* Extra Large - ≥1200px */
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
+
+
+
+}
 
 
 /* Extra extra Large - ≥1400px */
 
-@media only screen and (min-width: 1400px) {}
+@media only screen and (min-width: 1400px) {
+
+
+
+
+}
