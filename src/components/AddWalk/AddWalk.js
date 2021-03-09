@@ -5,6 +5,7 @@ import React from "react";
 import { GoogleApiWrapper, InfoWindow, Marker, Polyline } from "google-maps-react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -150,7 +151,7 @@ export class AddWalk extends React.Component {
                         <Row>
                             <Col xs={12} sm={12} md={6}>
                                 <div className="button__container button__container--left" >
-                                    <Button variant="accessible" onClick={this.addWalk}>Add Walk</Button>
+                                    <Button variant="accessible" onClick={this.addWalk}><Link className="button--link" to="/MyWalksPage">Add Walk</Link></Button>
                                 </div>
                             </Col>
 

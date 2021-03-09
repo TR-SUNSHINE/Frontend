@@ -3,6 +3,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "../../index.css";
 import "./Walks.css";
+import { Link } from "react-router-dom";
+import "../Button/Button.css";
 
 const Walks = () => {
 
@@ -13,7 +15,7 @@ const Walks = () => {
     return (
         <Row>
             <Col>
-                <h5 className="review-stat">Manchester Museum</h5>
+                <h5 className="review-stat" ><Link className="text--hyperlink" to="/IndividualWalk">Manchester Museum</Link></h5>
             </Col>
         </Row>
     );
