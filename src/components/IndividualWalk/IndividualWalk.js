@@ -141,9 +141,19 @@ export class IndividualWalk extends React.Component {
                         <div className="addRating__container">
                             <h4 className="heading heading--secondary">Rate Walk</h4>
                             <RatingsBar />
-                            <div className="button__container button__container--center">
-                                <Button variant="accessible" onClick={this.addRating}><Link className="button--link" to="/MyWalksPage">Add Rating</Link></Button>
-                            </div>
+                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+
+                        <div xs={12} className="button__container button__container--left" >
+                            <Button variant="accessible"><Link className="button--link" to="/MyWalksPage">My Walks</Link></Button>
+                        </div>
+                    </Col>
+                    <Col>
+                        <div xs={12} className="button__container button__container--right" >
+                            <Button variant="accessible" onClick={this.addRating}><Link className="button--link" to="/MyWalksPage">Add Rating</Link></Button>
                         </div>
                     </Col>
                 </Row>
