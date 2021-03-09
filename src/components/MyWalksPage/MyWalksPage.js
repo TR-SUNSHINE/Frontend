@@ -2,6 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 import "../../index.css";
 import "./MyWalksPage.css";
 import Walks from "../Walks/Walks";
@@ -28,7 +29,7 @@ const MyWalks = () => {
                 <Row>
                     <Col xs={12} sm={12} md={12}>
                         <div className="button__container button__container--centre" >
-                            <Button variant="accessible">Create New Walk</Button>
+                            <Button variant="accessible"><Link className="button--link" to="/AddWalk">Create Walk</Link></Button>
                         </div>
                     </Col>
                 </Row>
