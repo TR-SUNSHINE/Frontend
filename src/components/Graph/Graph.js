@@ -44,7 +44,7 @@ export default class Graph extends Component {
                         this.data.avgRatings.Nov,
                         this.data.avgRatings.Dec
                     ],
-                    label: "Star Rating",
+                    label: "Star Rating Over Time",
                     borderColor: "#296EB4",
                     backgroundColor: "#296EB4",
                     fill: false
@@ -53,7 +53,7 @@ export default class Graph extends Component {
             options: {
                 title: {
                     display: true,
-                    text: "Star Rating Over Time",
+                    //text: "Star Rating Over Time",
                     fontSize: 16,
                     fontColor: "#296EB4",
                     fontStyle: "bold"
@@ -69,7 +69,7 @@ export default class Graph extends Component {
                             max: 5,
                             stepSize: 1,
                             fontSize: 20,
-                            fontStyle: "bold",
+                            //fontStyle: "bold",
                             fontColor: "#296EB4"
                         },
                         scaleLabel: {
@@ -81,13 +81,13 @@ export default class Graph extends Component {
                         },
                         gridLines: {
                             display: true,
-                            color: "#296EB4"
+                            color: "#b8b8b8"
                         }
                     }],
                     xAxes: [{
                         ticks: {
                             fontSize: 20,
-                            fontStyle: "bold",
+                            //fontStyle: "bold",
                             fontColor: "#296EB4"
                         },
                         scaleLabel: {
@@ -99,14 +99,14 @@ export default class Graph extends Component {
                         },
                         gridLines: {
                             display: true,
-                            color: "#296EB4"
+                            color: "#8a8a8a"
                         }
                     }]
                 }
             }
         });
-
     }
+
     render() {
         return (
             <div className={classes.graphContainer}>

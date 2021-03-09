@@ -70,11 +70,17 @@ export class AddWalk extends React.Component {
         console.log("insert routeMarkers to DB");
         //Clear route from screen
         this.setState({ routeMarkers: [] });
+        this.setState({ activeMarker: null });
+        this.setState({ selectedPlace: {} });
+        this.setState({ showingInfoWindow: true });
     };
 
     clearWalk = () => {
         //Clear route from screen
         this.setState({ routeMarkers: [] });
+        this.setState({ activeMarker: null });
+        this.setState({ selectedPlace: {} });
+        this.setState({ showingInfoWindow: true });
     };
 
     render() {
@@ -93,68 +99,70 @@ export class AddWalk extends React.Component {
         }
 
         return (
-            <div>
+            <>
                 <Row>
                     <Col>
                         <h3 className="heading heading--main">Add Walk</h3>
-                    </Col>
-                </Row>
-                <Row>
-                    <GoogleMap
-                        centerAroundCurrentLocation={true}
-                        lat={lat}
-                        lng={lng}
-                        google={this.props.google}
-                        zoom={15}
-                        draggable={true}
-                        disableDoubleClickZoom={false}
-                        onClick={this.onMapClick}
-                    >
-                        {/*<Marker onClick={this.onMarkerClick} lat={this.markerLat} lng={this.markerLng} visible={this.renderMarker} clickable={this.markerClickable} />*/}
-                        {/*this.state.markers.map((coords, index) => <Marker key={`marker-${index}`} position={coords} />)*/}
-                        {console.log(this.state.routeMarkers)}
-                        {this.state.routeMarkers.map((coords, index) => {
-                            if (index === 0 || index === this.state.routeMarkers.length - 1) {
-                                return <Marker key={`marker-${index}`} position={coords} />;
-                            }
-                            return null;
-                        })}
-                        {/*<Marker onClick={this.onMarkerClick} name={"Current Location"} />*/}
-                        <InfoWindow
-                            marker={this.state.activeMarker}
-                            visible={this.state.showingInfoWindow}
-                            onClose={this.onClose}
-                        >
-                            <div>
-                                <h4>{this.state.selectedPlace.name}</h4>
-                            </div>
-                        </InfoWindow>
-
-                        <Polyline
-                            visible={true}
-                            path={this.state.routeMarkers}
-                            strokeColor="#0000ff"
-                            strokeOpacity={0.8}
-                            strokeWeight={6}
-                            editable={true}
+                        <GoogleMap
+                            centerAroundCurrentLocation={true}
+                            lat={lat}
+                            lng={lng}
+                            google={this.props.google}
+                            zoom={15}
                             draggable={true}
-                        />
-                    </GoogleMap>
+                            disableDoubleClickZoom={false}
+                            onClick={this.onMapClick}
+                        >
+                            {/*<Marker onClick={this.onMarkerClick} lat={this.markerLat} lng={this.markerLng} visible={this.renderMarker} clickable={this.markerClickable} />*/}
+                            {/*this.state.markers.map((coords, index) => <Marker key={`marker-${index}`} position={coords} />)*/}
+                            {console.log(this.state.routeMarkers)}
+                            {this.state.routeMarkers.map((coords, index) => {
+                                if (index === 0 || index === this.state.routeMarkers.length - 1) {
+                                    return <Marker key={`marker-${index}`} position={coords} />;
+                                }
+                                return null;
+                            })}
+                            {/*<Marker onClick={this.onMarkerClick} name={"Current Location"} />*/}
+                            <InfoWindow
+                                marker={this.state.activeMarker}
+                                visible={this.state.showingInfoWindow}
+                                onClose={this.onClose}
+                            >
+                                <div>
+                                    <h4>{this.state.selectedPlace.name}</h4>
+                                </div>
+                            </InfoWindow>
 
+                            <Polyline
+                                visible={true}
+                                path={this.state.routeMarkers}
+                                strokeColor="#0000ff"
+                                strokeOpacity={0.8}
+                                strokeWeight={6}
+                                editable={false}
+                                draggable={false}
+                            />
+                        </GoogleMap>
+                    </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <div className="button__container button__container--center" onClick={this.addWalk}>
-                            <Button>Add Walk</Button>
-                        </div>
-                    </Col>
-                    <Col>
-                        <div className="button__container button__container--center" onClick={this.clearWalk}>
-                            <Button>Clear Walk</Button>
-                        </div>
+                        <Row>
+                            <Col xs={12} sm={12} md={6}>
+                                <div className="button__container button__container--left" >
+                                    <Button variant="accessible" onClick={this.addWalk}>Add Walk</Button>
+                                </div>
+                            </Col>
+
+                            <Col xs={12} sm={12} md={6}>
+                                <div className="button__container button__container--right" >
+                                    <Button variant="accessible" onClick={this.clearWalk}>Clear Walk</Button>
+                                </div>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
-            </div>
+            </>
         );
     }
 };

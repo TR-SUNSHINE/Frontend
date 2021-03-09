@@ -23,6 +23,7 @@ export class GoogleMap extends React.Component {
         };
 
     }
+
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.google !== this.props.google) {
             this.loadMap();
@@ -31,6 +32,7 @@ export class GoogleMap extends React.Component {
             this.recenterMap();
         }
     }
+
     recenterMap() {
         const map = this.map;
         const current = this.state.currentLocation;
@@ -42,6 +44,7 @@ export class GoogleMap extends React.Component {
             map.panTo(center);
         }
     }
+
     componentDidMount() {
         if (this.props.centerAroundCurrentLocation) {
             if (navigator && navigator.geolocation) {
@@ -66,6 +69,7 @@ export class GoogleMap extends React.Component {
         }
         this.loadMap();
     }
+
     loadMap() {
         if (this.props && this.props.google) {
             // checks if google is available
@@ -107,6 +111,7 @@ export class GoogleMap extends React.Component {
             });
         }
     }
+
     renderChildren() {
         const { children } = this.props;
 
@@ -122,6 +127,7 @@ export class GoogleMap extends React.Component {
             });
         });
     }
+
     render() {
         //const style = Object.assign({}, mapStyles.map);
         return (
@@ -134,6 +140,7 @@ export class GoogleMap extends React.Component {
         );
     }
 }
+
 GoogleMap.defaultProps = {
     zoom: 13,
     initialCenter: {
