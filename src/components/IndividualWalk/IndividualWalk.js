@@ -7,6 +7,7 @@ import React from "react";
 import { GoogleApiWrapper, InfoWindow, Marker, Polyline } from "google-maps-react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -140,8 +141,8 @@ export class IndividualWalk extends React.Component {
                         <div className="addRating__container">
                             <h4 className="heading heading--secondary">Rate Walk</h4>
                             <RatingsBar />
-                            <div className="button__container button__container--center" onClick={this.addRating}>
-                                <Button variant="accessible">Add Rating</Button>
+                            <div className="button__container button__container--center">
+                                <Button variant="accessible" onClick={this.addRating}><Link className="button--link" to="/MyWalksPage">Add Rating</Link></Button>
                             </div>
                         </div>
                     </Col>
