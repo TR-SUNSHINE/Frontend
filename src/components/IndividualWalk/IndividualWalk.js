@@ -85,6 +85,7 @@ export class IndividualWalk extends React.Component {
             lng = middleItem.lng;
         }
 
+
         return (
             <>
                 <Row>

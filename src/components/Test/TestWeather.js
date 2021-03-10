@@ -111,7 +111,7 @@ const TestWeather = ({ google }) => {
         return <Redirect to="/NotFoundPage" />;
     }
 
-    console.log(coords);
+    console.log("in TestWeather", coords);
     return (
         <>
             <Row>
