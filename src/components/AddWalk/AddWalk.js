@@ -6,6 +6,7 @@ import { GoogleApiWrapper, InfoWindow, Marker, Polyline } from "google-maps-reac
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
+import { Form } from "react-bootstrap";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -39,7 +40,8 @@ export class AddWalk extends React.Component {
             ],
             showingInfoWindow: false,
             activeMarker: {},
-            selectedPlace: {}
+            selectedPlace: {},
+            walkName: ""
         };
     }
 
@@ -66,14 +68,21 @@ export class AddWalk extends React.Component {
         this.setState({ routeMarkers: updatedMarkers });
     };
 
+    handleChange = (event) => {
+        if (event.target.name === "walkNameInput") {
+            this.setState({ walkName: event.target.value });
+        }
+    };
+
     addWalk = () => {
-        //Add routeMarkers to DB here
+        //Add routeMarkers to DB here + walkName
         console.log("insert routeMarkers to DB");
         //Clear route from screen
         this.setState({ routeMarkers: [] });
         this.setState({ activeMarker: null });
         this.setState({ selectedPlace: {} });
         this.setState({ showingInfoWindow: true });
+        this.setState({ walkName: "" });
     };
 
     clearWalk = () => {
@@ -82,6 +91,7 @@ export class AddWalk extends React.Component {
         this.setState({ activeMarker: null });
         this.setState({ selectedPlace: {} });
         this.setState({ showingInfoWindow: true });
+        this.setState({ walkName: "" });
     };
 
     render() {
@@ -144,6 +154,18 @@ export class AddWalk extends React.Component {
                                 draggable={false}
                             />
                         </GoogleMap>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                    </Col>
+                    <Col sm={4}>
+                        <Form.Group controlId="form-row">
+                            <Form.Label style={{ fontSize: "20px", fontWeight: "bold" }}>Walk Name</Form.Label>
+                            <Form.Control as="textarea" name="walkNameInput" onChange={this.handleChange} rows={1} />
+                        </Form.Group>
+                    </Col>
+                    <Col sm={4}>
                     </Col>
                 </Row>
                 <Row>
