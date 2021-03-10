@@ -24,7 +24,9 @@ export class GoogleMap extends React.Component {
             console.log(prevProps.google, this.props.google);
             this.loadMap();
 
-        } else if (prevProps.lat !== this.props.lat) {
+        }
+
+        if (prevProps.lat !== this.props.lat) {
             console.log("in prevProps.lat in componentDidUpdate");
             console.log(prevProps.lat, this.props.lat);
             this.setState({
@@ -34,7 +36,8 @@ export class GoogleMap extends React.Component {
                 }
             });
 
-        } else if (prevState.currentLocation !== this.state.currentLocation) {
+        }
+        if (prevState.currentLocation !== this.state.currentLocation) {
             console.log("in prevState.currentLocation in componentDidUpdate");
             console.log(prevState.currentLocation, this.state.currentLocation);
             this.recenterMap();
@@ -51,8 +54,7 @@ export class GoogleMap extends React.Component {
         const maps = google.maps;
 
         if (map) {
-            // let center = new maps.LatLng(current.lat, current.lng);
-            let center = new maps.LatLng(this.props.lat, this.props.lng);
+            let center = new maps.LatLng(current.lat, current.lng);
             console.log(center);
             map.panTo(center);
         }
