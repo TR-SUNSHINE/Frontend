@@ -93,7 +93,7 @@ const RegisterPage = () => {
 
                     <Form.Group className="form-row">
                         <Col sm={12}>
-                            <Form.Label htmlFor="nameInput">Username</Form.Label>
+                            <Form.Label className="form--label" htmlFor="nameInput">Username</Form.Label>
                         </Col>
                         <Col sm={12}>
                             <Form.Control
@@ -159,12 +159,6 @@ const RegisterPage = () => {
                         <div className="form-error">
                             {details.confirmPasswordError && <p>{details.confirmPasswordError} </p>}
                         </div>
-                    </Form.Group>
-                    <Form.Group className="form-check">
-                        <Form.Check
-                            name="consent"
-                            type="checkbox"
-                            label="I consent to share my location" />
                     </Form.Group>
                     <Row>
                         <Col xs={12} sm={12} md={6}>
