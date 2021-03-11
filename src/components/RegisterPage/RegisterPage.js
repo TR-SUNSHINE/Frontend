@@ -160,7 +160,7 @@ const RegisterPage = () => {
                             {details.confirmPasswordError && <p>{details.confirmPasswordError} </p>}
                         </div>
                     </Form.Group>
-                    <Form.Group className="form-row">
+                    <Form.Group className="form-check">
                         <Form.Check
                             name="consent"
                             type="checkbox"
