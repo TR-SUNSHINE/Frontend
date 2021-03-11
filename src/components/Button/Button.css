@@ -1,13 +1,13 @@
 .button__container {
     text-align: center;
     padding: 1rem;
-  }
-  
-  .btn-accessible{
+}
+
+.btn-accessible {
     background-color: #296eb4;
     color: white;
     font-size: 18px;
-  }
+}
 
   .btn-welcome{
     background-color: #296eb4;  
@@ -19,12 +19,13 @@
     font-size: 18px;
   }
 
-  .btn-pointer{
+.btn-pointer {
     background-color: #296eb4;
     color: white;
-  }
+}
 
-  /* Media Queries to match Bootstrap viewport sizes */
+
+/* Media Queries to match Bootstrap viewport sizes */
 
 /* Small - ≥576px */
 

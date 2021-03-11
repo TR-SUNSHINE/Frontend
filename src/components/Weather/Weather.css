@@ -2,26 +2,26 @@
     overflow-x: auto;
     white-space: nowrap;
     box-sizing: border-box;
-  }
-  
-  .weather{
+}
+
+.weather {
     display: inline-block;
     padding: 1rem;
     width: 175px;
     border-left: 1px solid #296EB4;
-  }
+}
 
- .selected {
-   background-color: #FFD07B;
- }
+.selected {
+    background-color: #FFD07B;
+}
 
- .individual__weather__button__container{
-   padding:0;
- }
- 
- /* this was to try out breaking words
+.individual__weather__button__container {
+    padding: 0;
+}
+
+
+/* this was to try out breaking words
 /* .weather--description{
   word-break: break-all;
   white-space: normal;
  } */
-

@@ -6,24 +6,22 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import WeatherContainer from "../WeatherContainer/WeatherContainer";
-import "./Test.css";
+import "../WeatherPage/WeatherPage.css";
 import "../Button/Button.css";
 import GoogleMap from "../Map/GoogleMap";
-import { GoogleApiWrapper, InfoWindow, Marker, Polyline } from "google-maps-react";
+import { GoogleApiWrapper, Marker } from "google-maps-react";
 
-const TestWeather = () => {
+const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
-    // n.b. latitude & longitude hardcoded - will need to move to App & be fetched from backend?
-    // need to move api call to App - or will reload every time page reloads?
-    const [latitude, setLatitude] = useState(53.46265);
-    const [longitude, setLongitude] = useState(-2.24909);
+const TestWeather = ({ google }) => {
+
+    const [coords, setCoords] = useState({ lat: 0, long: 0 });
     const [weatherTimes, setWeatherTimes] = useState([]);
     const [date, setDate] = useState("");
     const [noResults, setNoResults] = useState(false);
     const [selectedWeatherTime, setSelectedWeatherTime] = useState(0);
     const [reminder, setReminder] = useState({ time: 0, walk: "" });
     const weatherKey = process.env.REACT_APP_WEATHER_API_KEY;
-    const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
     const toggleWeatherTimeSelected = (weatherId) => {
 
@@ -46,6 +44,7 @@ const TestWeather = () => {
 
     const getCoords = useCallback(async () => {
 
+
         try {
 
             if (navigator && navigator.geolocation) {
@@ -55,83 +54,80 @@ const TestWeather = () => {
                 });
 
                 const position = await location;
-                setLatitude(position.coords.latitude);
-                setLongitude(position.coords.longitude);
+
+                setCoords({ lat: position.coords.latitude, long: position.coords.longitude });
 
             } else {
 
-                const Manchester = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Manchester,GB&appid=${weatherKey}`);
+                // Manchester coordinates
 
-                setLatitude(Manchester.data.coord.lat);
-                setLongitude(Manchester.data.coord.lon);
+                setCoords({ lat: 53.4809, long: -2.2374 });
 
-                // hard-coded Manchester coordinates
-                /*
-                setLatitude(53.4809);
-                setLongitude(-2.2374);
-                */
             }
 
         } catch (error) {
-            // console.log(error);
-            // redirect to error page
+            console.log(error);
+            setNoResults(true);
         }
+
     }, []);
 
 
     const getWeather = useCallback(async () => {
 
-        try {
+        if (coords.lat && coords.long) {
 
-            const weatherApi = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=daily,minutely,alerts&units=metric&appid=${weatherKey}`);
+            try {
 
-            const currentDate = showLocalDate(weatherApi.data.current.dt);
+                const weatherApi = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&exclude=daily,minutely,alerts&units=metric&appid=${weatherKey}`);
 
-            const sunrise = weatherApi.data.current.sunrise;
-            const sunset = weatherApi.data.current.sunset;
+                const currentDate = showLocalDate(weatherApi.data.current.dt);
 
-            const weatherArray = weatherApi.data.hourly.slice(0, 24);
+                const sunrise = weatherApi.data.current.sunrise;
+                const sunset = weatherApi.data.current.sunset;
 
-            const updatedIconsArray = replaceIcons(weatherArray, sunrise, sunset);
-            console.log(updatedIconsArray);
-            setDate(currentDate);
-            setWeatherTimes(updatedIconsArray);
+                const weatherArray = weatherApi.data.hourly.slice(0, 24);
 
-        } catch (error) {
-            //console.log(error);
-            //setNoResults(true);
+                const updatedIconsArray = replaceIcons(weatherArray, sunrise, sunset);
+
+                setDate(currentDate);
+                setWeatherTimes(updatedIconsArray);
+
+            } catch (error) {
+                console.log(error);
+                setNoResults(true);
+            }
+
         }
 
-    }, [latitude, longitude, weatherKey]);
-
+    }, [coords.lat, coords.long, weatherKey]);
 
     useEffect(() => {
         getCoords();
         getWeather();
-    }, [getCoords, getWeather]);
+    }, [getWeather, getCoords]);
 
     if (noResults) {
         return <Redirect to="/NotFoundPage" />;
     }
 
-    console.log(weatherTimes);
+    console.log("in TestWeather", coords);
     return (
         <>
             <Row>
                 <Col>
                     <h3 className="heading heading--main">Weather today: {date}</h3>
-                    {/* <GoogleMap
+                    <GoogleMap
                         centerAroundCurrentLocation={false}
-                        lat={53.46265}
-                        lng={-2.24909}
-                        google={this.props.google}
+                        lat={coords.lat}
+                        lng={coords.long}
+                        google={google}
                         zoom={13}
                         draggable={false}
                         disableDoubleClickZoom={true}
                     >
-                        <Marker lat={53.46265} lng={-2.24909} visible={true} />
+                        <Marker lat={coords.lat} lng={coords.long} visible={true} />
                     </GoogleMap>
-                    */}
                     <WeatherContainer
                         weatherTimes={weatherTimes}
                         selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
@@ -139,8 +135,6 @@ const TestWeather = () => {
 
                 </Col>
             </Row >
-
-
 
             <Row>
                 <Col xs={12}>
@@ -160,4 +154,6 @@ const TestWeather = () => {
     );
 };
 
-export default TestWeather;
+export default GoogleApiWrapper({
+    apiKey: googleKey
+})(TestWeather);

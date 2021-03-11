@@ -4,91 +4,85 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import "../../index.css";
-import "./RegisterPage.css";
+import "../RegisterPage/RegisterPage.css";
 import { Form } from "react-bootstrap";
 
 const RegisterPage = () => {
 
-    const [userName, setUserName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [details, setDetails] = useState({ userName: "", userNameError: "", email: "", emailError: "", password: "", passwordError: "", confirmPassword: "", confirmPasswordError: "" });
 
-    const [errors, setErrors] = useState({
-        userName: "",
-        email: "",
-        password: "",
-        confirmPassword: ""
-    });
 
-    const handleChangeUserName = event => {
-        setUserName(event.target.value);
-        let errorsCopy = { ...errors };
-        errorsCopy.userName = "";
-        setErrors(errorsCopy);
+    const handleChange = (event) => {
+
+        const copyDetails = { ...details };
+
+        if (event.target.name === "userName") {
+
+            copyDetails.userNameError = "";
+            copyDetails.userName = event.target.value;
+
+            setDetails(copyDetails);
+
+        } else if (event.target.name === "email") {
+
+            copyDetails.emailError = "";
+            copyDetails.email = event.target.value;
+
+            setDetails(copyDetails);
+
+        } else if (event.target.name === "password") {
+
+            copyDetails.passwordError = "";
+            copyDetails.password = event.target.value;
+            setDetails(copyDetails);
+
+        } else {
+            copyDetails.confirmPasswordError = "";
+            copyDetails.confirmPassword = event.target.value;
+            setDetails(copyDetails);
+        }
+
     };
-
-    const handleChangeEmail = event => {
-        setEmail(event.target.value);
-        let errorsCopy = { ...errors };
-        errorsCopy.email = "";
-        setErrors(errorsCopy);
-    };
-
-    const handleChangePassword = event => {
-        setPassword(event.target.value);
-        let errorsCopy = { ...errors };
-        errorsCopy.password = "";
-        setErrors(errorsCopy);
-    };
-
-    const handleChangeConfirmPassword = event => {
-        setConfirmPassword(event.target.value);
-        let errorsCopy = { ...errors };
-        errorsCopy.confirmPassword = "";
-        setErrors(errorsCopy);
-    };
-
-
 
     const handleSubmit = event => {
-        console.log("handleSubmit", userName, email, password, confirmPassword);
+        console.log("handleSubmit", details);
 
         event.preventDefault();
-        if (!userName) {
-            let errorsCopy = { ...errors };
-            errorsCopy.userName = "Username required";
-            setErrors(errorsCopy);
-        }
-        if (!email) {
-            let errorsCopy = { ...errors };
-            errorsCopy.email = "Email required";
-            setErrors(errorsCopy);
-        }
-        else if (!/\S+@\S+\.\S+/.test(email)) {
-            let errorsCopy = { ...errors };
-            errorsCopy.email = "Email address is invalid";
-            setErrors(errorsCopy);
+
+        const copyDetails = { ...details };
+
+        if (!/\S+@\S+\.\S+/.test(details.email)) {
+            copyDetails.emailError = "invalid email format";
         }
 
-        if (password.length < 6) {
-            let errorsCopy = { ...errors };
-            errorsCopy.password = "Password needs to be 6 characters or more";
-            setErrors(errorsCopy);
-        }
-        if (confirmPassword !== password) {
-            let errorsCopy = { ...errors };
-            errorsCopy.confirmPassword = "Passwords do not match";
-            setErrors(errorsCopy);
+        if (details.password.length < 6) {
+            copyDetails.passwordError = "Password needs to be 6 characters or more";
         }
 
-        setUserName("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
+        if (details.confirmPassword !== details.password) {
+            copyDetails.confirmPasswordError = "Passwords do not match";
+        } else if (details.confirmPassword === details.password) {
+            copyDetails.confirmPasswordError = "";
+        }
+
+        if (copyDetails.emailError || copyDetails.passwordError || copyDetails.confirmPasswordError) {
+
+            setDetails(copyDetails);
+
+        } else {
+
+            copyDetails.userName = "";
+            copyDetails.email = "";
+            copyDetails.password = "";
+            copyDetails.confirmPassword = "";
+
+            setDetails(copyDetails);
+            console.log("get details & send off to the backend.");
+        }
 
     };
 
+    console.log(details);
     return (
         <Row>
             <Col>
@@ -97,29 +91,22 @@ const RegisterPage = () => {
 
                 <Form className="form-register" onSubmit={handleSubmit}>
 
-                    {/* <FormInput labelInput="Name" typeInput="small" nameInput="userName" placeHolderInput="Enter your name" /> */}
-
                     <Form.Group className="form-row">
                         <Col sm={12}>
-                            <Form.Label for="nameInput">Username</Form.Label>
+                            <Form.Label htmlFor="nameInput">Username</Form.Label>
                         </Col>
                         <Col sm={12}>
                             <Form.Control
                                 type="small"
                                 name="userName"
-                                value={userName}
-                                onChange={event => handleChangeUserName(event)}
-                                // onChange={(event) => setUserName(event.target.value)}
+                                value={details.userName}
+                                onChange={handleChange}
                                 placeholder="Enter your name" />
                         </Col>
                         <div className="form-error">
-                            {errors.userName && <p>{errors.userName} </p>}
+                            {details.userNameError && <p>{details.userNameError} </p>}
                         </div>
                     </Form.Group>
-
-
-
-                    {/* <FormInput labelInput="Firstname" typeInput="small" nameInput="userFirstName" placeHolderInput="Enter your first name" /> */}
 
                     <Form.Group className="form-row">
                         <Col sm={12}>
@@ -128,13 +115,13 @@ const RegisterPage = () => {
                         <Col sm={12}>
                             <Form.Control
                                 type="small"
-                                name="userEmail"
-                                value={email}
-                                onChange={event => handleChangeEmail(event)}
+                                name="email"
+                                value={details.email}
+                                onChange={handleChange}
                                 placeholder="Enter your email" />
                         </Col>
                         <div className="form-error">
-                            {errors.email && <p>{errors.email} </p>}
+                            {details.emailError && <p>{details.emailError} </p>}
                         </div>
 
                     </Form.Group>
@@ -146,13 +133,13 @@ const RegisterPage = () => {
                         <Col sm={12}>
                             <Form.Control
                                 type="password"
-                                name="userPassword"
-                                value={password}
-                                onChange={event => handleChangePassword(event)}
+                                name="password"
+                                value={details.password}
+                                onChange={handleChange}
                                 placeholder="Enter your password" />
                         </Col>
                         <div className="form-error">
-                            {errors.password && <p>{errors.password} </p>}
+                            {details.passwordError && <p>{details.passwordError} </p>}
                         </div>
 
                     </Form.Group>
@@ -164,15 +151,20 @@ const RegisterPage = () => {
                         <Col sm={12}>
                             <Form.Control
                                 type="password"
-                                name="userConfirmPassword"
-                                value={confirmPassword}
-                                onChange={event => handleChangeConfirmPassword(event)}
+                                name="confirmPassword"
+                                value={details.confirmPassword}
+                                onChange={handleChange}
                                 placeholder="Confirm your password" />
                         </Col>
                         <div className="form-error">
-                            {errors.confirmPassword && <p>{errors.confirmPassword} </p>}
+                            {details.confirmPasswordError && <p>{details.confirmPasswordError} </p>}
                         </div>
-
+                    </Form.Group>
+                    <Form.Group className="form-row">
+                        <Form.Check
+                            name="consent"
+                            type="checkbox"
+                            label="I consent to share my location" />
                     </Form.Group>
                     <Row>
                         <Col xs={12} sm={12} md={6}>
@@ -183,7 +175,7 @@ const RegisterPage = () => {
 
                         <Col xs={12} sm={12} md={6}>
                             <div className="button__container button__container--right" >
-                                <Button variant="accessible" type="submit" >
+                                <Button disabled={details.userName && details.email && details.password && details.confirmPassword ? false : true} variant="accessible" type="submit" >
                                     Register
                                 </Button>
                             </div>
