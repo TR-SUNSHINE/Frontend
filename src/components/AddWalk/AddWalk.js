@@ -162,7 +162,7 @@ export class AddWalk extends React.Component {
                     <Col sm={4}>
                         <Form.Group controlId="form-row">
                             <Form.Label style={{ fontSize: "20px", fontWeight: "bold" }}>Walk Name</Form.Label>
-                            <Form.Control as="textarea" name="walkNameInput" onChange={this.handleChange} rows={1} />
+                            <Form.Control as="textarea" name="walkNameInput" onChange={this.handleChange} rows={1} placeholder="Enter walk description" />
                         </Form.Group>
                     </Col>
                     <Col sm={4}>
