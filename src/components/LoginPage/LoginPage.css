@@ -18,3 +18,8 @@ padding: 1rem;
 
 }  
 
+.button--form {
+  min-width: 120px;
+  max-width: 120px;
+}  
+
