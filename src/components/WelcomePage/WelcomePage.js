@@ -19,14 +19,14 @@ const Welcome = () => {
                 <Row>
                     <Col xs={12} sm={12} md={6}>
                         <div className="button__container button__container--left" >
-                            <Button className="button--form" variant="accessible"><Link className="button--link" to="/RegisterPage">Register</Link></Button>
+                            <Button variant="accessible"><Link className="button--link" to="/RegisterPage">Register</Link></Button>
                         </div>
                     </Col>
 
                     <Col xs={12} sm={12} md={6}>
                         <div className="button__container button__container--right" >
                             {/* link to correct logiin LoginPage */}
-                            <Button className="button--form" variant="accessible"><Link className="button--link" to="/loginPage">Login</Link></Button>
+                            <Button variant="accessible"><Link className="button--link" to="/loginPage">Login</Link></Button>
                         </div>
                     </Col>
                 </Row>
