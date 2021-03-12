@@ -7,6 +7,15 @@
   border: 1px solid #296eb4;
 }
 
+
+.form-label{
+  font-size: 18px;
+  margin-top: 7px;
+  margin-bottom:5px;
+  text-align: left;
+}
+
+
 .Form.Control {
   border: 1px solid #fdbb33
   /* padding: 8px;
