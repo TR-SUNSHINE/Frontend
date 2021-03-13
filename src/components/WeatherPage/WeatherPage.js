@@ -66,8 +66,16 @@ const WeatherPage = ({ google }) => {
             }
 
         } catch (error) {
-            console.log(error);
-            setNoResults(true);
+
+            console.log("in error weather page");
+            if (error.message === "User denied Geolocation") {
+                console.log(error);
+                setCoords({ lat: 53.4809, long: -2.2374 });
+            } else {
+                console.log(error);
+                setNoResults(true);
+
+            }
         }
 
     }, []);
