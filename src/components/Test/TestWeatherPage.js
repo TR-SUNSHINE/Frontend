@@ -8,14 +8,14 @@ import Button from "react-bootstrap/Button";
 import WeatherContainer from "../WeatherContainer/WeatherContainer";
 import "../WeatherPage/WeatherPage.css";
 import "../Button/Button.css";
-import GoogleMap from "../Map/GoogleMap";
+import MapTest from "./MapTest";
 import { GoogleApiWrapper, Marker } from "google-maps-react";
 
 const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const WeatherPage = ({ google }) => {
+const TestWeatherPage = ({ google }) => {
 
-    const [coords, setCoords] = useState({ lat: 0, long: 0 });
+    const [coords, setCoords] = useState({ lat: 0, lng: 0 });
     const [weatherTimes, setWeatherTimes] = useState([]);
     const [date, setDate] = useState("");
     const [noResults, setNoResults] = useState(false);
@@ -55,13 +55,13 @@ const WeatherPage = ({ google }) => {
 
                 const position = await location;
 
-                setCoords({ lat: position.coords.latitude, long: position.coords.longitude });
+                setCoords({ lat: position.coords.latitude, lng: position.coords.longitude });
 
             } else {
 
                 // Manchester coordinates
 
-                setCoords({ lat: 53.4809, long: -2.2374 });
+                setCoords({ lat: 53.4809, lng: -2.2374 });
 
             }
 
@@ -70,7 +70,7 @@ const WeatherPage = ({ google }) => {
             console.log("in error weather page");
             if (error.message === "User denied Geolocation") {
                 console.log(error);
-                setCoords({ lat: 53.4809, long: -2.2374 });
+                setCoords({ lat: 53.4809, lng: -2.2374 });
             } else {
                 console.log(error);
                 setNoResults(true);
@@ -83,11 +83,11 @@ const WeatherPage = ({ google }) => {
 
     const getWeather = useCallback(async () => {
 
-        if (coords.lat && coords.long) {
+        if (coords.lat && coords.lng) {
 
             try {
 
-                const weatherApi = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&exclude=daily,minutely,alerts&units=metric&appid=${weatherKey}`);
+                const weatherApi = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lng}&exclude=daily,minutely,alerts&units=metric&appid=${weatherKey}`);
 
                 const currentDate = showLocalDate(weatherApi.data.current.dt);
 
@@ -108,7 +108,7 @@ const WeatherPage = ({ google }) => {
 
         }
 
-    }, [coords.lat, coords.long, weatherKey]);
+    }, [coords.lat, coords.lng, weatherKey]);
 
     useEffect(() => {
         getCoords();
@@ -125,17 +125,16 @@ const WeatherPage = ({ google }) => {
             <Row>
                 <Col>
                     <h3 className="heading heading--main">Weather today: {date}</h3>
-                    <GoogleMap
+                    <MapTest
                         centerAroundCurrentLocation={false}
-                        lat={coords.lat}
-                        lng={coords.long}
+                        currentLocation={coords}
                         google={google}
                         zoom={13}
                         draggable={false}
                         disableDoubleClickZoom={true}
                     >
                         <Marker lat={coords.lat} lng={coords.long} visible={true} />
-                    </GoogleMap>
+                    </MapTest>
                     <WeatherContainer
                         weatherTimes={weatherTimes}
                         selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
@@ -164,4 +163,4 @@ const WeatherPage = ({ google }) => {
 
 export default GoogleApiWrapper({
     apiKey: googleKey
-})(WeatherPage);
+})(TestWeatherPage);
