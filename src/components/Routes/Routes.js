@@ -9,7 +9,7 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 import LoginPage from "../LoginPage/LoginPage";
 import TestIndividualWalk from "../Test/TestIndividualWalk";
 import TestAddWalk from "../Test/TestAddWalk";
-import TestWeather from "../Test/TestWeather";
+import TestWeatherPage from "../Test/TestWeatherPage";
 
 const Routes = () => {
     return (
@@ -29,7 +29,7 @@ const Routes = () => {
                     <Route exact path="/LoginPage" component={LoginPage} />
                     <Route exact path="/TestIndividualWalk" component={TestIndividualWalk} />
                     <Route exact path="/TestAddWalk" component={TestAddWalk} />
-                    <Route exact path="/TestWeather" component={TestWeather} />
+                    <Route exact path="/TestWeatherPage" component={TestWeatherPage} />
                 </Switch>
             </BrowserRouter>
         </div>
