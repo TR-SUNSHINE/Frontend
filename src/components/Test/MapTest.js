@@ -6,14 +6,13 @@ export class MapTest extends React.Component {
 
     componentDidMount() {
 
-        console.log("in component did mount");
-        console.log(this.props.currentLocation);
         this.loadMap();
     }
 
     componentDidUpdate(prevProps, prevState) {
 
         if (prevProps.google !== this.props.google) {
+
             this.loadMap();
 
         }
@@ -21,20 +20,18 @@ export class MapTest extends React.Component {
         if (prevProps.currentLocation.lat !== this.props.currentLocation.lat) {
 
             this.recenterMap();
-
         }
 
     };
 
     recenterMap() {
         const map = this.map;
-        const current = this.props.currentLocation;
         const google = this.props.google;
         const maps = google.maps;
 
         if (map) {
-            let center = new maps.LatLng(current.lat, current.lng);
-            console.log(center);
+
+            let center = new maps.LatLng(this.props.currentLocation.lat, this.props.currentLocation.lng);
             map.panTo(center);
         }
     }
