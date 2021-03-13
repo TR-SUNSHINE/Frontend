@@ -13,7 +13,7 @@ import { GoogleApiWrapper, Marker } from "google-maps-react";
 
 const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const TestWeather = ({ google }) => {
+const WeatherPage = ({ google }) => {
 
     const [coords, setCoords] = useState({ lat: 0, long: 0 });
     const [weatherTimes, setWeatherTimes] = useState([]);
@@ -66,8 +66,16 @@ const TestWeather = ({ google }) => {
             }
 
         } catch (error) {
-            console.log(error);
-            setNoResults(true);
+
+            console.log("in error weather page");
+            if (error.message === "User denied Geolocation") {
+                console.log(error);
+                setCoords({ lat: 53.4809, long: -2.2374 });
+            } else {
+                console.log(error);
+                setNoResults(true);
+
+            }
         }
 
     }, []);
@@ -156,4 +164,4 @@ const TestWeather = ({ google }) => {
 
 export default GoogleApiWrapper({
     apiKey: googleKey
-})(TestWeather);
+})(WeatherPage);
