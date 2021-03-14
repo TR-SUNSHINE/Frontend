@@ -47,25 +47,59 @@
 
 /* Small - ≥576px */
 
-@media only screen and (min-width: 576px) and (max-width: 768px) {}
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+
+    .weather__icon {
+        height: 100px;
+        width:100px;
+    }
+
+
+}
 
 
 /* Medium - ≥768px */
 
-@media only screen and (min-width: 768px) and (max-width: 992px) {}
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    .weather__icon {
+        height: 100px;
+        width:100px;
+    }
+
+}
 
 
 /* Large - ≥992px */
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+    .weather__icon {
+        height: 125px;
+        width:125px;
+    }
+}
 
 
 /* Extra Large - ≥1200px */
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
+    .weather__icon {
+        height: 125px;
+        width:125px;
+    }
+}
 
 
 /* Extra extra Large - ≥1400px */
 
-@media only screen and (min-width: 1400px) {}
+@media only screen and (min-width: 1400px) {
+
+    .weather__icon {
+        height: 125px;
+        width:125px;
+    }
+
+}
 
