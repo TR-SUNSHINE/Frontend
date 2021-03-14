@@ -14,16 +14,21 @@ const Welcome = () => {
     return (
         <Row>
             <Col>
-                <h3 className="heading heading--main">Welcome to Sunshine</h3>
-                <Image src="./images/welcomeSunshine.jfif" fluid />
                 <Row>
-                    <Col xs={12} sm={12} md={6}>
+                    <Col >
+                        <h3 className="heading heading--main">Welcome to Sunshine</h3>
+                        <Image src="./images/welcomeSunshine.jfif" fluid />
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col xs={12} sm={6} md={6}>
                         <div className="button__container button__container--left" >
                             <Button variant="welcome"><Link className="button--link" to="/RegisterPage">Register</Link></Button>
                         </div>
                     </Col>
 
-                    <Col xs={12} sm={12} md={6}>
+                    <Col xs={12} sm={6} md={6}>
                         <div className="button__container button__container--right" >
                             <Button variant="welcome"><Link className="button--link" to="/loginPage">Login</Link></Button>
                         </div>
