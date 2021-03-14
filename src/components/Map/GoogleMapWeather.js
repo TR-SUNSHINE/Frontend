@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "../Map/GoogleMap.css";
+import "../Map/GoogleMapWeather.css";
 
 export class GoogleMapWeather extends React.Component {
 
@@ -24,17 +24,7 @@ export class GoogleMapWeather extends React.Component {
 
     };
 
-    recenterMap() {
-        const map = this.map;
-        const google = this.props.google;
-        const maps = google.maps;
 
-        if (map) {
-
-            let center = new maps.LatLng(this.props.currentLocation.lat, this.props.currentLocation.lng);
-            map.panTo(center);
-        }
-    }
 
     loadMap() {
 
@@ -68,6 +58,18 @@ export class GoogleMapWeather extends React.Component {
         }
     }
 
+    recenterMap() {
+        const map = this.map;
+        const google = this.props.google;
+        const maps = google.maps;
+
+        if (map) {
+
+            let center = new maps.LatLng(this.props.currentLocation.lat, this.props.currentLocation.lng);
+            map.panTo(center);
+        }
+    }
+
     renderChildren() {
         const { children } = this.props;
         if (!children) return;
@@ -86,8 +88,8 @@ export class GoogleMapWeather extends React.Component {
     render() {
 
         return (
-            <div className="map_location__container">
-                <div className="map_location__map" ref="map">
+            <div className="map_location__container--weather">
+                <div className="map_location__map--weather" ref="map">
                     Loading map...
             </div>
                 {this.renderChildren()}
