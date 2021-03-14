@@ -44,41 +44,44 @@ const WeatherPage = ({ google }) => {
 
     const getCoords = useCallback(async () => {
 
+        if (!coords.lat || !coords.long) {
 
-        try {
+            try {
 
-            if (navigator && navigator.geolocation) {
+                if (navigator && navigator.geolocation) {
 
-                const location = new Promise((resolve, reject) => {
-                    navigator.geolocation.getCurrentPosition(resolve, reject);
-                });
+                    const location = new Promise((resolve, reject) => {
+                        navigator.geolocation.getCurrentPosition(resolve, reject);
+                    });
 
-                const position = await location;
+                    const position = await location;
 
-                setCoords({ lat: position.coords.latitude, lng: position.coords.longitude });
+                    setCoords({ lat: position.coords.latitude, lng: position.coords.longitude });
 
-            } else {
+                } else {
 
-                // Manchester coordinates
+                    // Manchester coordinates
 
-                setCoords({ lat: 53.4809, lng: -2.2374 });
+                    setCoords({ lat: 53.4809, lng: -2.2374 });
 
+                }
+
+            } catch (error) {
+
+                console.log("in error weather page");
+                if (error.message === "User denied Geolocation") {
+                    console.log(error);
+                    setCoords({ lat: 53.4809, lng: -2.2374 });
+                } else {
+                    console.log(error);
+                    setNoResults(true);
+
+                }
             }
 
-        } catch (error) {
-
-            console.log("in error weather page");
-            if (error.message === "User denied Geolocation") {
-                console.log(error);
-                setCoords({ lat: 53.4809, lng: -2.2374 });
-            } else {
-                console.log(error);
-                setNoResults(true);
-
-            }
         }
 
-    }, []);
+    }, [coords.lat, coords.long]);
 
 
     const getWeather = useCallback(async () => {
@@ -121,9 +124,9 @@ const WeatherPage = ({ google }) => {
 
     return (
         <>
-            <Row>
+            <Row className="row__map">
                 <Col>
-                    <h3 className="heading heading--main">Weather today: {date}</h3>
+                    <h3 className="heading heading--main">Weather: {date}</h3>
                     <GoogleMapWeather
                         centerAroundCurrentLocation={false}
                         currentLocation={coords}
@@ -134,15 +137,15 @@ const WeatherPage = ({ google }) => {
                     >
                         <Marker lat={coords.lat} lng={coords.long} visible={true} />
                     </GoogleMapWeather>
-                    <WeatherContainer
-                        weatherTimes={weatherTimes}
-                        selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
-                    />
-
                 </Col>
             </Row >
 
-            <Row>
+            <WeatherContainer
+                weatherTimes={weatherTimes}
+                selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
+            />
+
+            <Row className="row__buttons">
                 <Col xs={12}>
                     <div className="reminder__container">
                         <p hidden={reminder.time ? false : true}>Reminder set for your walk at {showLocalTime(reminder.time)}</p>
@@ -150,7 +153,7 @@ const WeatherPage = ({ google }) => {
                 </Col>
 
                 <Col>
-                    <div xs={12} className="button__container button__container--center" >
+                    <div xs={12} className="button__container" >
                         <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="accessible">Set Reminder</Button>
                     </div>
                 </Col>
