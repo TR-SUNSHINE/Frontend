@@ -3,12 +3,6 @@
     padding: 1rem;
 }
 
-.btn-accessible {
-    background-color: #296eb4;
-    color: white;
-    font-size: 18px;
-}
-
 .btn-welcome{
     background-color: #296eb4;
     width: 112px; 
@@ -19,33 +13,25 @@
     font-size: 16px;
 }
 
+/* CHECK IF THIS IS USED*/
+
+.btn-accessible {
+  background-color: #296eb4;
+  color: white;
+  font-size: 16px;
+}
+
+.btn-reminder {
+  background-color: #296eb4;
+  color: white;
+  font-size: 16px;
+  width: 130px;
+}
+
 .btn-pointer {
     background-color: #296eb4;
     color: white;
 }
-
-/**REMOVE FOR DEBUGGING ONLY **/
-
-.check--left {
-  background-color:aqua;
-}
-
-.check--right{
- background-color: palegoldenrod;
-}
-
-.check--button--row{
-  background-color: palevioletred;
-}
-
-.check--title--col{
-  background-color: salmon;
-}
-
-.check--title--row{
-  background-color: powderblue
-}
-
 
 /* Media Queries to match Bootstrap viewport sizes */
 
@@ -63,12 +49,12 @@
     padding: 1rem;
   }
 
-  .btn-welcome{
-    /* width: 150px;  */
-  } 
-
-  .button--link {
+  .button--link, .btn-reminder {
     font-size: 18px;
+  }
+
+  .btn-reminder {
+    width: 150px;
   }
 
 } 
@@ -91,7 +77,11 @@
     width: 150px; 
   } 
 
-  .button--link {
+  .btn-reminder{
+    width: 170px;
+  }
+
+  .button--link, .btn-reminder {
     font-size: 24px;
   }
 
@@ -116,7 +106,11 @@
   width: 150px; 
 } 
 
-.button--link {
+.btn-reminder{
+  width: 170px;
+}
+
+.button--link, .btn-reminder {
   font-size: 24px;
 }
 
@@ -140,8 +134,12 @@
   .btn-welcome{
     width: 150px; 
   } 
+
+  .btn-reminder{
+    width: 170px;
+  }
   
-  .button--link {
+  .button--link, .btn-reminder {
     font-size: 24px;
   }
 }
@@ -165,8 +163,12 @@
   .btn-welcome{
     width: 150px; 
   } 
+
+  .btn-reminder{
+    width: 170px;
+  }
   
-  .button--link {
+  .button--link, .btn-reminder {
     font-size: 24px;
   }
 
