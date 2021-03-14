@@ -8,7 +8,7 @@ const Navibar = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="/WeatherPage">My Weather</Nav.Link>
+                    <Nav.Link href="/WeatherPage">Weather</Nav.Link>
                     <Nav.Link href="/Reminders">Reminders</Nav.Link>
                     <Nav.Link href="/MyWalksPage">My Walks</Nav.Link>
                     <Nav.Link href="/Logout">Logout</Nav.Link>
