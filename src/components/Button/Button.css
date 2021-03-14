@@ -9,19 +9,41 @@
     font-size: 18px;
 }
 
-  .btn-welcome{
-    background-color: #296eb4;  
+.btn-welcome{
+    background-color: #296eb4;
     width: 112px; 
-  }
+}
 
-  .button--link {
+.button--link {
     color: white;
-    font-size: 18px;
-  }
+    font-size: 16px;
+}
 
 .btn-pointer {
     background-color: #296eb4;
     color: white;
+}
+
+/**REMOVE FOR DEBUGGING ONLY **/
+
+.check--left {
+  background-color:aqua;
+}
+
+.check--right{
+ background-color: palegoldenrod;
+}
+
+.check--button--row{
+  background-color: palevioletred;
+}
+
+.check--title--col{
+  background-color: salmon;
+}
+
+.check--title--row{
+  background-color: powderblue
 }
 
 
@@ -29,8 +51,41 @@
 
 /* Small - ≥576px */
 
-@media only screen and (min-width: 576px) and (max-width: 768px) { 
-/* @media only screen and (min-width: 576px) { */
+@media only screen and (min-width: 576px) and (max-width: 768px) {  
+
+  .button__container--left {
+    text-align: right;
+    padding: 1rem;
+  }
+
+  .button__container--right {
+    text-align: left;
+    padding: 1rem;
+  }
+
+  .btn-welcome{
+    /* width: 150px;  */
+  } 
+
+  .button--link {
+    font-size: 18px;
+  }
+
+} 
+
+/* Medium - ≥768px */
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+
+  .button__container--left {
+    text-align: right;
+    padding: 1rem;
+  }
+
+.button__container--right {
+    text-align: left;
+    padding: 1rem;
+  }
 
   .btn-welcome{
     width: 150px; 
@@ -40,54 +95,30 @@
     font-size: 24px;
   }
 
-} 
-
-/* .btn-accessible{
-  background-color: #296eb4;
-  color: white;
-  font-size: 24px;
 }
-*/
-
-
-/* .button--link {
-  color: purple;
-  font-size: 24px;
-} */
-
-/* Medium - ≥768px */
-
-@media only screen and (min-width: 768px) and (max-width: 992px) {
-
-
-
-
-}
-
-/* .btn-accessible{
-  background-color: #296eb4;
-  color: white;
-  font-size: 24px;
-}
-
-.btn-welcome{
-  background-color: #296eb4;
-  color: white;
-  width: 112px; 
-}
-
-.button--link {
-  color: purple;
-  font-size: 24px;
-}
-
- */
 
 /* Large - ≥992px */
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
 
+  .button__container--left {
+    text-align: right;
+    padding: 1rem;
+  }
 
+.button__container--right {
+    text-align: left;
+    padding: 1rem;
+
+}
+
+.btn-welcome{
+  width: 150px; 
+} 
+
+.button--link {
+  font-size: 24px;
+}
 
 }
 
@@ -96,9 +127,23 @@
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
 
+  .button__container--left {
+    text-align: right;
+    padding: 1rem;
+  }
 
+.button__container--right {
+    text-align: left;
+    padding: 1rem;
+  }
 
-
+  .btn-welcome{
+    width: 150px; 
+  } 
+  
+  .button--link {
+    font-size: 24px;
+  }
 }
 
 
@@ -107,6 +152,22 @@
 @media only screen and (min-width: 1400px) {
 
 
+  .button__container--left {
+    text-align: right;
+    padding: 1rem;
+  }
 
+.button__container--right {
+    text-align: left;
+    padding: 1rem;
+  }
+
+  .btn-welcome{
+    width: 150px; 
+  } 
+  
+  .button--link {
+    font-size: 24px;
+  }
 
 }
