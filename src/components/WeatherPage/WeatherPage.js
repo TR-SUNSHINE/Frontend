@@ -124,7 +124,7 @@ const WeatherPage = ({ google }) => {
 
     return (
         <>
-            <Row className="row__map">
+            <Row>
                 <Col>
                     <h3 className="heading heading--main">Weather: {date}</h3>
                     <GoogleMapWeather
