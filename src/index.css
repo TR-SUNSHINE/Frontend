@@ -19,7 +19,6 @@ body {
     margin: 0;
     background-color: white;
     color: #296EB4;
-    /* text-align: center; */
 }
 
 .heading {
@@ -28,22 +27,11 @@ body {
     padding-top: 5%;
 }
 
-
 .heading--main {
   color: #296EB4;
   text-align: center;
   padding-top: 15%;
 }
-
-/* .heading3 {
-    text-align: center;
-    color: #296EB4
-}
-
-.frame {
-  border: 5px solid #1789FC;
-} */
-
 
 /* Media Queries to match Bootstrap viewport sizes - general styling*/
 
