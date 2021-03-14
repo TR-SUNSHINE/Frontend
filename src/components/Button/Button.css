@@ -3,8 +3,9 @@
     padding: 1rem;
 }
 
-.btn-welcome{
+.btn-double{
     background-color: #296eb4;
+    font-size: 16px;
     width: 112px; 
 }
 
@@ -20,6 +21,7 @@
   color: white;
   font-size: 16px;
 }
+/** **/
 
 .btn-reminder {
   background-color: #296eb4;
@@ -49,7 +51,7 @@
     padding: 1rem;
   }
 
-  .button--link, .btn-reminder {
+  .button--link, .btn-double, .btn-reminder {
     font-size: 18px;
   }
 
@@ -73,7 +75,7 @@
     padding: 1rem;
   }
 
-  .btn-welcome{
+  .btn-double{
     width: 150px; 
   } 
 
@@ -81,7 +83,7 @@
     width: 170px;
   }
 
-  .button--link, .btn-reminder {
+  .button--link, .btn-double, .btn-reminder {
     font-size: 24px;
   }
 
@@ -102,7 +104,7 @@
 
 }
 
-.btn-welcome{
+.btn-double{
   width: 150px; 
 } 
 
@@ -110,7 +112,7 @@
   width: 170px;
 }
 
-.button--link, .btn-reminder {
+.button--link, .btn-double, .btn-reminder {
   font-size: 24px;
 }
 
@@ -126,12 +128,12 @@
     padding: 1rem;
   }
 
-.button__container--right {
+  .button__container--right {
     text-align: left;
     padding: 1rem;
   }
 
-  .btn-welcome{
+  .btn-double{
     width: 150px; 
   } 
 
@@ -139,7 +141,7 @@
     width: 170px;
   }
   
-  .button--link, .btn-reminder {
+  .button--link, .btn-double, .btn-reminder {
     font-size: 24px;
   }
 }
@@ -155,12 +157,12 @@
     padding: 1rem;
   }
 
-.button__container--right {
+  .button__container--right {
     text-align: left;
     padding: 1rem;
   }
 
-  .btn-welcome{
+  .btn-double{
     width: 150px; 
   } 
 
@@ -168,7 +170,7 @@
     width: 170px;
   }
   
-  .button--link, .btn-reminder {
+  .button--link, .btn-double, .btn-reminder {
     font-size: 24px;
   }
 
