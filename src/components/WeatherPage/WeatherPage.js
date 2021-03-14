@@ -143,15 +143,11 @@ const WeatherPage = ({ google }) => {
             <WeatherContainer
                 weatherTimes={weatherTimes}
                 selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
+                reminder={reminder}
+                showLocalTime={showLocalTime}
             />
 
-            <Row className="row__buttons">
-                <Col xs={12}>
-                    <div className="reminder__container">
-                        <p hidden={reminder.time ? false : true}>Reminder set for your walk at {showLocalTime(reminder.time)}</p>
-                    </div>
-                </Col>
-
+            <Row>
                 <Col>
                     <div xs={12} className="button__container" >
                         <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="accessible">Set Reminder</Button>

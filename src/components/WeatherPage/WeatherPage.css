@@ -3,10 +3,6 @@
 body {
   text-align: center;
 }
-
- .reminder__container {
-   padding-top: 1rem;
- }
   
 /* Media Queries to match Bootstrap viewport sizes */
 
