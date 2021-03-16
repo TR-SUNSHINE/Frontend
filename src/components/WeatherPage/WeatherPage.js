@@ -150,7 +150,7 @@ const WeatherPage = ({ google }) => {
             <Row>
                 <Col>
                     <div xs={12} className="button__container" >
-                        <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="accessible">Set Reminder</Button>
+                        <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="single">Set Reminder</Button>
                     </div>
                 </Col>
             </Row>

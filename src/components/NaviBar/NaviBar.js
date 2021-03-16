@@ -1,13 +1,22 @@
 import "./NaviBar.css";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
-
 const Navibar = () => {
     return (
-        <Navbar fixed="top" bg="light" expand="lg" className="cust-nav-bar">
-            <Navbar.Brand href="#home"></Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar fixed="top" expand="md" variant="light" bg="light" className="cust-nav-bar">
+            <Navbar.Brand href="#home">
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav">
+                <img
+                    src="./images/welcomeSunshine.jfif"
+                    width="30"
+                    height="30"
+                    className="d-inline-block align-top-right navbar__img"
+                    alt="Sun"
+                />
+            </Navbar.Toggle>
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
+                {/* <Nav className="mr-auto"> */}
+                <Nav>
                     <Nav.Link href="/WeatherPage">Weather</Nav.Link>
                     <Nav.Link href="/Reminders">Reminders</Nav.Link>
                     <Nav.Link href="/MyWalksPage">My Walks</Nav.Link>
@@ -17,5 +26,4 @@ const Navibar = () => {
         </Navbar>
     );
 };
-
 export default Navibar;
