@@ -1,0 +1,19 @@
+/* individual_walk.html page */
+
+.frame--map {
+    margin: 0% auto;
+    height: 80%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+}
+
+
+.iframe--map {
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}

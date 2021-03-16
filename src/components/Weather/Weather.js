@@ -11,9 +11,9 @@ const Weather = ({ weatherTimes, selectedWeatherTime, toggleWeatherTimeSelected 
 
     const handleScroll = (direction) => {
         if (direction === "left") {
-            scrollRef.current.scrollLeft -= 175;
+            scrollRef.current.scrollLeft -= 300;
         } else {
-            scrollRef.current.scrollLeft += 175;
+            scrollRef.current.scrollLeft += 300;
         }
     };
 
@@ -38,24 +38,22 @@ const Weather = ({ weatherTimes, selectedWeatherTime, toggleWeatherTimeSelected 
                             className={selectedWeatherTime === weather.dt ? "weather selected" : "weather"}
                             onClick={(event) => { toggleWeatherTimeSelected(weather.dt); }}
                         >
-                            <div>{showLocalTime(weather.dt)}</div>
+                            <div className="weather__time">{showLocalTime(weather.dt)}</div>
                             <Row>
-                                <Col>temp:</Col>
-                                <Col>{weather.temp}ºC</Col>
-                            </Row>
-                            <Row>
-                                <Col>feels:</Col>
-                                <Col>{weather.feels_like}ºC</Col>
-                            </Row>
-                            <Row>
-                                <Col>{weather.weather[0].description}</Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Image src={weather.weather[0].icon === "50d" ? `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png` : `./images/weather_icons_dovora_interactive_2/SVG/${weather.weather[0].icon}.svg`} fluid />
+                                <Col xs={12}>
+                                    <span className="temp">temp:</span>
+                                    <span className="temp">{weather.temp}ºC</span>
                                 </Col>
+                                <Col xs={12}>
+                                    <span className="temp">feels:</span>
+                                    <span className="temp">{weather.feels_like}ºC</span>
+                                </Col>
+
+                                <Col xs={12}>
+                                    <Image className="weather__icon" src={weather.weather[0].icon === "50d" ? `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png` : `./images/weather_icons_dovora_interactive_2/SVG/${weather.weather[0].icon}.svg`} />
+                                </Col>
+                                <Col className="weather--description" xs={12}>{weather.weather[0].description}</Col>
                             </Row>
-                            <p className="weather--description">{weather.description}</p>
                         </Button>
                     );
                 })}

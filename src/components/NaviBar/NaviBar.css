@@ -1,7 +1,61 @@
 .cust-nav-bar {
-    background-color: #296EB4;
-    color: red;
-    position: absolute;
     z-index: 2;
     box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+}
+
+/* utilising Bootstrap classes */
+  
+.navbar-light .navbar-nav .nav-link {
+    color:#296EB4;  
+}
+
+.navbar__img{
+    border-radius: 4px;
+}
+
+/* Media Queries to match Bootstrap viewport sizes - general styling*/
+
+
+/* Small - ≥576px */
+
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+    .navbar-light .navbar-nav .nav-link {
+        font-size: 18px;
+    }
+}
+
+
+/* Medium - ≥768px */
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+    .navbar-light .navbar-nav .nav-link {
+        font-size: 20px;
+    }
+}
+
+
+/* Large - ≥992px */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .navbar-light .navbar-nav .nav-link {
+        font-size: 22px;
+    }
+}
+
+
+/* Extra Large - ≥1200px */
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .navbar-light .navbar-nav .nav-link {
+        font-size: 24px;
+    }
+}
+
+
+/* Extra extra Large - ≥1400px */
+
+@media only screen and (min-width: 1400px) {
+    .navbar-light .navbar-nav .nav-link {
+        font-size: 24px;
+    }
 }

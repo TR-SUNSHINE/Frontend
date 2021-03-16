@@ -28,13 +28,3 @@
   margin-bottom: 0px;
   color: red;
 }
-
-.button__container--center {
-  text-align: center;
-  padding: 1rem;
-
-}
-.button--form {
-  min-width: 120px;
-  max-width: 120px;
-}  

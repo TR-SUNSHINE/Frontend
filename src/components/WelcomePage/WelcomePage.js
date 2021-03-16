@@ -8,25 +8,29 @@ import "../../index.css";
 import "./WelcomePage.css";
 import "../Button/Button.css";
 
-const Welcome = () => {
+const WelcomePage = () => {
 
 
     return (
         <Row>
             <Col>
-                <h3 className="heading heading--main">Welcome to Sunshine</h3>
-                <Image src="./images/welcomeSunshine.jfif" fluid />
+                <Row className="check--title--row">
+                    <Col >
+                        <h3 className="heading heading--main">Welcome to Sunshine</h3>
+                        <Image src="./images/welcomeSunshine.jfif" fluid />
+                    </Col>
+                </Row>
+
                 <Row>
-                    <Col xs={12} sm={12} md={6}>
+                    <Col xs={12} sm={6} md={6}>
                         <div className="button__container button__container--left" >
-                            <Button variant="accessible"><Link className="button--link" to="/RegisterPage">Register</Link></Button>
+                            <Button variant="double"><Link className="button--link" to="/RegisterPage">Register</Link></Button>
                         </div>
                     </Col>
 
-                    <Col xs={12} sm={12} md={6}>
+                    <Col xs={12} sm={6} md={6}>
                         <div className="button__container button__container--right" >
-                            {/* link to correct logiin LoginPage */}
-                            <Button variant="accessible"><Link className="button--link" to="/loginPage">Login</Link></Button>
+                            <Button variant="double"><Link className="button--link" to="/loginPage">Login</Link></Button>
                         </div>
                     </Col>
                 </Row>
@@ -35,5 +39,5 @@ const Welcome = () => {
     );
 };
 
-export default Welcome;
+export default WelcomePage;
 

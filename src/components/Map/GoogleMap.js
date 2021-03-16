@@ -17,18 +17,12 @@ export class GoogleMap extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
 
-        console.log("in componentDidUpdate");
-
         if (prevProps.google !== this.props.google) {
-            console.log("in prevProps.google. in componentDidUpdate");
-            console.log(prevProps.google, this.props.google);
             this.loadMap();
 
         }
 
         if (prevProps.lat !== this.props.lat) {
-            console.log("in prevProps.lat in componentDidUpdate");
-            console.log(prevProps.lat, this.props.lat);
             this.setState({
                 currentLocation: {
                     lat: this.props.lat,
@@ -38,16 +32,12 @@ export class GoogleMap extends React.Component {
 
         }
         if (prevState.currentLocation !== this.state.currentLocation) {
-            console.log("in prevState.currentLocation in componentDidUpdate");
-            console.log(prevState.currentLocation, this.state.currentLocation);
             this.recenterMap();
         }
 
     };
 
     recenterMap() {
-        console.log("in recenter map");
-        console.log(this.state.currentLocation);
         const map = this.map;
         const current = this.state.currentLocation;
         const google = this.props.google;
@@ -67,6 +57,7 @@ export class GoogleMap extends React.Component {
             if (navigator && navigator.geolocation) {
 
                 navigator.geolocation.getCurrentPosition(pos => {
+
                     const coords = pos.coords;
                     this.setState({
                         currentLocation: {
@@ -78,7 +69,6 @@ export class GoogleMap extends React.Component {
             }
         }
         else {
-
             this.setState({
                 currentLocation: {
                     lat: this.props.lat,
@@ -91,13 +81,8 @@ export class GoogleMap extends React.Component {
 
     loadMap() {
 
-        console.log("in loadmap");
-        console.log(this.props);
-
         if (this.props && this.props.google) {
             // checks if google is available
-
-            console.log("in loadmap this.props.google");
 
             const { google } = this.props;
             const maps = google.maps;
@@ -114,13 +99,11 @@ export class GoogleMap extends React.Component {
 
             if (!(this.props.lat === undefined || this.props.lng === undefined)) {
 
-                console.log("in !this.props.lat");
                 lat = this.props.lat;
                 lng = this.props.lng;
 
             }
             const center = new maps.LatLng(lat, lng);
-            console.log("center" + center);
 
             const mapConfig = Object.assign(
                 {},
@@ -143,8 +126,6 @@ export class GoogleMap extends React.Component {
 
     renderChildren() {
         const { children } = this.props;
-        console.log("in render children");
-        console.log(children);
         if (!children) return;
 
         return React.Children.map(children, c => {

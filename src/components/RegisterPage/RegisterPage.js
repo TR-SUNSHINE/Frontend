@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import "../../index.css";
 import "../RegisterPage/RegisterPage.css";
+import "../Button/Button.css";
 import { Form } from "react-bootstrap";
 
 const RegisterPage = () => {
@@ -161,15 +162,16 @@ const RegisterPage = () => {
                         </div>
                     </Form.Group>
                     <Row>
-                        <Col xs={12} sm={12} md={6}>
+                        <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--left" >
-                                <Button className="button--form" variant="accessible"><Link className="button--link" to="WelcomePage">Back</Link></Button>
+                                <Button variant="double"><Link className="button--link" to="/WelcomePage">Back</Link></Button>
                             </div>
                         </Col>
 
-                        <Col xs={12} sm={12} md={6}>
+                        <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--right" >
-                                <Button className="button--form" disabled={details.userName && details.email && details.password && details.confirmPassword ? false : true} variant="accessible" type="submit" >
+                                <Button variant="double"
+                                    disabled={details.userName && details.email && details.password && details.confirmPassword ? false : true} type="submit" >
                                     Register
                                 </Button>
                             </div>
