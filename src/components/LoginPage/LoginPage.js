@@ -9,7 +9,7 @@ import { Form } from "react-bootstrap";
 
 const LoginPage = () => {
 
-    const [details, setDetails] = useState({ email: "", emailError: "", password: "", passwordError: "" });
+    const [details, setDetails] = useState({ email: "", emailError: "" });
 
     const handleChange = (event) => {
 
@@ -21,13 +21,6 @@ const LoginPage = () => {
             copyDetails.email = event.target.value;
 
             setDetails(copyDetails);
-
-        } else if (event.target.name === "password") {
-
-            copyDetails.passwordError = "";
-            copyDetails.password = event.target.value;
-            setDetails(copyDetails);
-
         }
     };
 
@@ -42,24 +35,11 @@ const LoginPage = () => {
             copyDetails.emailError = "invalid email format";
         }
 
-        if (details.password.length < 6) {
-            copyDetails.passwordError = "Password needs to be 6 characters or more";
-        }
-
-
-        if (copyDetails.emailError || copyDetails.passwordError) {
+        if (copyDetails.emailError) {
 
             setDetails(copyDetails);
 
-        } else {
-
-            copyDetails.email = "";
-            copyDetails.password = "";
-
-            setDetails(copyDetails);
-            console.log("get details & send off to the backend.");
         }
-
     };
 
     console.log(details);
@@ -90,34 +70,16 @@ const LoginPage = () => {
 
                     </Form.Group>
 
-                    <Form.Group className="form-row">
-                        <Col sm={12}>
-                            <Form.Label htmlFor="PasswordInput">Password</Form.Label>
-                        </Col>
-                        <Col sm={12}>
-                            <Form.Control
-                                type="password"
-                                name="password"
-                                value={details.password}
-                                onChange={handleChange}
-                                placeholder="Enter your password" />
-                        </Col>
-                        <div className="form-error">
-                            {details.passwordError && <p>{details.passwordError} </p>}
-                        </div>
-
-                    </Form.Group>
-
                     <Row>
                         <Col xs={12} sm={12} md={6}>
                             <div className="button__container button__container--left" >
-                                <Button variant="accessible"><Link className="button--link" to="WelcomePage">Back</Link></Button>
+                                <Button className="button--form" variant="accessible"><Link className="button--link" to="WelcomePage">Back</Link></Button>
                             </div>
                         </Col>
 
                         <Col xs={12} sm={12} md={6}>
                             <div className="button__container button__container--right" >
-                                <Button disabled={details.email && details.password ? false : true} variant="accessible" type="submit" >
+                                <Button className="button--form" disabled={details.email ? false : true} variant="accessible" type="submit" >
                                     Login
                                 </Button>
                             </div>

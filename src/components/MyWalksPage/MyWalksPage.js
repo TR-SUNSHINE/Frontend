@@ -17,7 +17,7 @@ const MyWalks = () => {
                     <div className="card p-3">
                         <div className="mt-5 d-flex justify-content-between align-items-center">
                             <h5 className="review-stat">Walk Name</h5>
-                            <div className="review-stat"> Walk Ave Rating</div>
+                            <div className="review-stat"> Average Rating</div>
                         </div>
                         <hr className="line-horizontal" />
                         <div className="mt-1 d-flex justify-content-between align-items-center">
