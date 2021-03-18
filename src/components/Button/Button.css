@@ -3,14 +3,32 @@
     padding: 1rem;
 }
 
-.btn-accessible {
+.btn-double{
     background-color: #296eb4;
+    font-size: 16px;
     color: white;
-    font-size: 18px;
+    width: 112px; 
 }
 
 .button--link {
     color: white;
+    font-size: 16px;
+}
+
+/* CHECK IF THIS IS USED*/
+
+.btn-accessible {
+  background-color: #296eb4;
+  color: white;
+  font-size: 16px;
+}
+/** **/
+
+.btn-single {
+  background-color: #296eb4;
+  color: white;
+  font-size: 16px;
+  width: 130px;
 }
 
 .btn-pointer {
@@ -18,30 +36,143 @@
     color: white;
 }
 
-
 /* Media Queries to match Bootstrap viewport sizes */
-
 
 /* Small - ≥576px */
 
-@media only screen and (min-width: 576px) and (max-width: 768px) {}
+@media only screen and (min-width: 576px) and (max-width: 768px) {  
 
+  .button__container--left {
+    text-align: right;
+    padding: 1rem;
+  }
+
+  .button__container--right {
+    text-align: left;
+    padding: 1rem;
+  }
+
+  .button--link, .btn-double, .btn-single {
+    font-size: 18px;
+  }
+
+  .btn-single {
+    width: 150px;
+  }
+
+} 
 
 /* Medium - ≥768px */
 
-@media only screen and (min-width: 768px) and (max-width: 992px) {}
+@media only screen and (min-width: 768px) and (max-width: 992px) {
 
+  .button__container--left {
+    text-align: right;
+    padding: 1rem;
+  }
+
+.button__container--right {
+    text-align: left;
+    padding: 1rem;
+  }
+
+  .btn-double{
+    width: 150px; 
+  } 
+
+  .btn-single{
+    width: 170px;
+  }
+
+  .button--link, .btn-double, .btn-single {
+    font-size: 24px;
+  }
+
+}
 
 /* Large - ≥992px */
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+  .button__container--left {
+    text-align: right;
+    padding: 1rem;
+  }
+
+.button__container--right {
+    text-align: left;
+    padding: 1rem;
+
+}
+
+.btn-double{
+  width: 150px; 
+} 
+
+.btn-single{
+  width: 170px;
+}
+
+.button--link, .btn-double, .btn-single {
+  font-size: 24px;
+}
+
+}
 
 
 /* Extra Large - ≥1200px */
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
+  .button__container--left {
+    text-align: right;
+    padding: 1rem;
+  }
+
+  .button__container--right {
+    text-align: left;
+    padding: 1rem;
+  }
+
+  .btn-double{
+    width: 150px; 
+  } 
+
+  .btn-single{
+    width: 170px;
+  }
+  
+  .button--link, .btn-double, .btn-single {
+    font-size: 24px;
+  }
+}
 
 
 /* Extra extra Large - ≥1400px */
 
-@media only screen and (min-width: 1400px) {}
+@media only screen and (min-width: 1400px) {
+
+
+  .button__container--left {
+    text-align: right;
+    padding: 1rem;
+  }
+
+  .button__container--right {
+    text-align: left;
+    padding: 1rem;
+  }
+
+  .btn-double{
+    width: 150px; 
+  } 
+
+  .btn-single{
+    width: 170px;
+  }
+  
+  .button--link, .btn-double, .btn-single {
+    font-size: 24px;
+  }
+
+}

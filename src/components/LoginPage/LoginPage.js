@@ -71,15 +71,15 @@ const LoginPage = () => {
                     </Form.Group>
 
                     <Row>
-                        <Col xs={12} sm={12} md={6}>
+                        <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--left" >
-                                <Button className="button--form" variant="accessible"><Link className="button--link" to="WelcomePage">Back</Link></Button>
+                                <Button variant="double"><Link className="button--link" to="WelcomePage">Back</Link></Button>
                             </div>
                         </Col>
 
-                        <Col xs={12} sm={12} md={6}>
+                        <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--right" >
-                                <Button className="button--form" disabled={details.email ? false : true} variant="accessible" type="submit" >
+                                <Button disabled={details.email && details.password ? false : true} variant="double" type="submit" >
                                     Login
                                 </Button>
                             </div>

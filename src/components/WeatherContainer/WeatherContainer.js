@@ -3,14 +3,15 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Weather from "../Weather/Weather";
 
-const WeatherContainer = ({ weatherTimes, selectedWeatherTime, toggleWeatherTimeSelected }) => {
+const WeatherContainer = ({ weatherTimes, selectedWeatherTime, toggleWeatherTimeSelected, reminder, showLocalTime }) => {
 
     return (
         <>
             <Row>
                 <Col className="weather__container">
-                    <h4 className="heading heading--secondary">Weather for the next 24 hours</h4>
-                    <p> Click on a time then set your walk time reminder for today.</p>
+                    <h4 className="heading heading--secondary">Weather: next 24 hours</h4>
+                    <p hidden={reminder.time ? true : false}> Click on a time to set a reminder for today.</p>
+                    <p hidden={reminder.time ? false : true}>Reminder set for your walk at {showLocalTime(reminder.time)}</p>
                 </Col>
             </Row>
             <Row>
