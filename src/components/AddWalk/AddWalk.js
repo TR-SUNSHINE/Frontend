@@ -42,17 +42,6 @@ const AddWalk = (props) => {
             walkName: ""
         }
     );
-    /*
-    const onMarkerClick = (props, marker, e) => {
-
-        setState({
-            selectedPlace: props,
-            activeMarker: marker,
-            showingInfoWindow: true
-        });
-
-    };
-    */
     const onClose = props => {
         if (state.showingInfoWindow) {
             setState({
