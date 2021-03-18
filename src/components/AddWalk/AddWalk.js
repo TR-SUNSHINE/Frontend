@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
+import "../Button/Button.css";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -168,23 +169,22 @@ export class AddWalk extends React.Component {
                     <Col sm={4}>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
-                        <Row>
-                            <Col xs={12} sm={12} md={6}>
-                                <div className="button__container button__container--left" >
-                                    <Button variant="accessible" onClick={this.addWalk}><Link className="button--link" to="/MyWalksPage">Add Walk</Link></Button>
-                                </div>
-                            </Col>
 
-                            <Col xs={12} sm={12} md={6}>
-                                <div className="button__container button__container--right" >
-                                    <Button variant="accessible" onClick={this.clearWalk}>Clear Walk</Button>
-                                </div>
-                            </Col>
-                        </Row>
+
+                <Row>
+                    <Col xs={12} sm={6} md={6}>
+                        <div className="button__container button__container--left" >
+                            <Button variant="double" onClick={this.addWalk}><Link className="button--link" to="/MyWalksPage">Add Walk</Link></Button>
+                        </div>
+                    </Col>
+
+                    <Col xs={12} sm={6} md={6}>
+                        <div className="button__container button__container--right" >
+                            <Button variant="double" onClick={this.clearWalk}>Clear Walk</Button>
+                        </div>
                     </Col>
                 </Row>
+
             </>
         );
     }

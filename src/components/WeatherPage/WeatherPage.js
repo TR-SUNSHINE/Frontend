@@ -8,14 +8,14 @@ import Button from "react-bootstrap/Button";
 import WeatherContainer from "../WeatherContainer/WeatherContainer";
 import "../WeatherPage/WeatherPage.css";
 import "../Button/Button.css";
-import GoogleMap from "../Map/GoogleMap";
+import GoogleMapWeather from "../Map/GoogleMapWeather";
 import { GoogleApiWrapper, Marker } from "google-maps-react";
 
 const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const WeatherPage = ({ google }) => {
 
-    const [coords, setCoords] = useState({ lat: 0, long: 0 });
+    const [coords, setCoords] = useState({ lat: 0, lng: 0 });
     const [weatherTimes, setWeatherTimes] = useState([]);
     const [date, setDate] = useState("");
     const [noResults, setNoResults] = useState(false);
@@ -44,42 +44,53 @@ const WeatherPage = ({ google }) => {
 
     const getCoords = useCallback(async () => {
 
+        if (!coords.lat || !coords.long) {
 
-        try {
+            try {
 
-            if (navigator && navigator.geolocation) {
+                if (navigator && navigator.geolocation) {
 
-                const location = new Promise((resolve, reject) => {
-                    navigator.geolocation.getCurrentPosition(resolve, reject);
-                });
+                    const location = new Promise((resolve, reject) => {
+                        navigator.geolocation.getCurrentPosition(resolve, reject);
+                    });
 
-                const position = await location;
+                    const position = await location;
 
-                setCoords({ lat: position.coords.latitude, long: position.coords.longitude });
+                    setCoords({ lat: position.coords.latitude, lng: position.coords.longitude });
 
-            } else {
+                } else {
 
-                // Manchester coordinates
+                    // Manchester coordinates
 
-                setCoords({ lat: 53.4809, long: -2.2374 });
+                    setCoords({ lat: 53.4809, lng: -2.2374 });
 
+                }
+
+            } catch (error) {
+
+                console.log("in error weather page");
+                if (error.message === "User denied Geolocation") {
+                    console.log(error);
+                    setCoords({ lat: 53.4809, lng: -2.2374 });
+                } else {
+                    console.log(error);
+                    setNoResults(true);
+
+                }
             }
 
-        } catch (error) {
-            console.log(error);
-            setNoResults(true);
         }
 
-    }, []);
+    }, [coords.lat, coords.long]);
 
 
     const getWeather = useCallback(async () => {
 
-        if (coords.lat && coords.long) {
+        if (coords.lat && coords.lng) {
 
             try {
 
-                const weatherApi = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&exclude=daily,minutely,alerts&units=metric&appid=${weatherKey}`);
+                const weatherApi = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lng}&exclude=daily,minutely,alerts&units=metric&appid=${weatherKey}`);
 
                 const currentDate = showLocalDate(weatherApi.data.current.dt);
 
@@ -100,7 +111,7 @@ const WeatherPage = ({ google }) => {
 
         }
 
-    }, [coords.lat, coords.long, weatherKey]);
+    }, [coords.lat, coords.lng, weatherKey]);
 
     useEffect(() => {
         getCoords();
@@ -111,41 +122,35 @@ const WeatherPage = ({ google }) => {
         return <Redirect to="/NotFoundPage" />;
     }
 
-    console.log("in TestWeather", coords);
     return (
         <>
             <Row>
                 <Col>
-                    <h3 className="heading heading--main">Weather today: {date}</h3>
-                    <GoogleMap
+                    <h3 className="heading heading--main">Weather: {date}</h3>
+                    <GoogleMapWeather
                         centerAroundCurrentLocation={false}
-                        lat={coords.lat}
-                        lng={coords.long}
+                        currentLocation={coords}
                         google={google}
                         zoom={13}
                         draggable={false}
                         disableDoubleClickZoom={true}
                     >
                         <Marker lat={coords.lat} lng={coords.long} visible={true} />
-                    </GoogleMap>
-                    <WeatherContainer
-                        weatherTimes={weatherTimes}
-                        selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
-                    />
-
+                    </GoogleMapWeather>
                 </Col>
             </Row >
 
-            <Row>
-                <Col xs={12}>
-                    <div className="reminder__container">
-                        <p hidden={reminder.time ? false : true}>Reminder set for your walk at {showLocalTime(reminder.time)}</p>
-                    </div>
-                </Col>
+            <WeatherContainer
+                weatherTimes={weatherTimes}
+                selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
+                reminder={reminder}
+                showLocalTime={showLocalTime}
+            />
 
+            <Row>
                 <Col>
-                    <div xs={12} className="button__container button__container--center" >
-                        <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="accessible">Set Reminder</Button>
+                    <div xs={12} className="button__container" >
+                        <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="single">Set Reminder</Button>
                     </div>
                 </Col>
             </Row>

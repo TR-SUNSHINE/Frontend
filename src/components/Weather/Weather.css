@@ -6,8 +6,8 @@
 
 .weather {
     display: inline-block;
-    padding: 1rem;
-    width: 175px;
+    padding: 0.5rem;
+    width: 150px;
     border-left: 1px solid #296EB4;
 }
 
@@ -15,13 +15,91 @@
     background-color: #FFD07B;
 }
 
+.temp{
+    width:70px;
+    padding:0 5px;
+}
+
+.weather__time{
+    font-size: 18px;
+    color:#296EB4;
+    font-weight: bold;
+}
+
+.weather__icon {
+    height: 75px;
+    width:75px;
+}
+
+.weather--description{
+    white-space: normal; 
+  overflow-wrap: break-word;
+ }
+
 .individual__weather__button__container {
     padding: 0;
 }
 
 
-/* this was to try out breaking words
-/* .weather--description{
-  word-break: break-all;
-  white-space: normal;
- } */
+
+/* Media Queries to match Bootstrap viewport sizes */
+
+
+/* Small - ≥576px */
+
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+
+    .weather__icon {
+        height: 100px;
+        width:100px;
+    }
+
+
+}
+
+
+/* Medium - ≥768px */
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    .weather__icon {
+        height: 100px;
+        width:100px;
+    }
+
+}
+
+
+/* Large - ≥992px */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+    .weather__icon {
+        height: 125px;
+        width:125px;
+    }
+}
+
+
+/* Extra Large - ≥1200px */
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
+    .weather__icon {
+        height: 125px;
+        width:125px;
+    }
+}
+
+
+/* Extra extra Large - ≥1400px */
+
+@media only screen and (min-width: 1400px) {
+
+    .weather__icon {
+        height: 125px;
+        width:125px;
+    }
+
+}
+
