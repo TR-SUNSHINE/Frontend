@@ -5,9 +5,10 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import "../../index.css";
 import "../RegisterPage/RegisterPage.css";
+import "../Button/Button.css";
 import { Form } from "react-bootstrap";
 
-const RachelRegisterPage = () => {
+const RegisterPage = () => {
 
     const [details, setDetails] = useState({ userName: "", userNameError: "", email: "", emailError: "", password: "", passwordError: "", confirmPassword: "", confirmPasswordError: "" });
 
@@ -93,7 +94,7 @@ const RachelRegisterPage = () => {
 
                     <Form.Group className="form-row">
                         <Col sm={12}>
-                            <Form.Label htmlFor="nameInput">Username</Form.Label>
+                            <Form.Label className="form--label" htmlFor="nameInput">Username</Form.Label>
                         </Col>
                         <Col sm={12}>
                             <Form.Control
@@ -159,18 +160,18 @@ const RachelRegisterPage = () => {
                         <div className="form-error">
                             {details.confirmPasswordError && <p>{details.confirmPasswordError} </p>}
                         </div>
-
                     </Form.Group>
                     <Row>
-                        <Col xs={12} sm={12} md={6}>
+                        <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--left" >
-                                <Button variant="accessible"><Link className="button--link" to="WelcomePage">Back</Link></Button>
+                                <Button variant="double"><Link className="button--link" to="/WelcomePage">Back</Link></Button>
                             </div>
                         </Col>
 
-                        <Col xs={12} sm={12} md={6}>
+                        <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--right" >
-                                <Button disabled={details.userName && details.email && details.password && details.confirmPassword ? false : true} variant="accessible" type="submit" >
+                                <Button variant="double"
+                                    disabled={details.userName && details.email && details.password && details.confirmPassword ? false : true} type="submit" >
                                     Register
                                 </Button>
                             </div>
@@ -185,4 +186,4 @@ const RachelRegisterPage = () => {
     );
 };
 
-export default RachelRegisterPage;
+export default RegisterPage;

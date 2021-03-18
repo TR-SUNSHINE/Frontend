@@ -9,7 +9,7 @@ import { Form } from "react-bootstrap";
 
 const LoginPage = () => {
 
-    const [details, setDetails] = useState({ email: "", emailError: "", password: "", passwordError: "" });
+    const [details, setDetails] = useState({ email: "", emailError: "" });
 
     const handleChange = (event) => {
 
@@ -21,13 +21,6 @@ const LoginPage = () => {
             copyDetails.email = event.target.value;
 
             setDetails(copyDetails);
-
-        } else if (event.target.name === "password") {
-
-            copyDetails.passwordError = "";
-            copyDetails.password = event.target.value;
-            setDetails(copyDetails);
-
         }
     };
 
@@ -42,24 +35,11 @@ const LoginPage = () => {
             copyDetails.emailError = "invalid email format";
         }
 
-        if (details.password.length < 6) {
-            copyDetails.passwordError = "Password needs to be 6 characters or more";
-        }
-
-
-        if (copyDetails.emailError || copyDetails.passwordError) {
+        if (copyDetails.emailError) {
 
             setDetails(copyDetails);
 
-        } else {
-
-            copyDetails.email = "";
-            copyDetails.password = "";
-
-            setDetails(copyDetails);
-            console.log("get details & send off to the backend.");
         }
-
     };
 
     console.log(details);
@@ -86,24 +66,6 @@ const LoginPage = () => {
                         </Col>
                         <div className="form-error">
                             {details.emailError && <p>{details.emailError} </p>}
-                        </div>
-
-                    </Form.Group>
-
-                    <Form.Group className="form-row">
-                        <Col sm={12}>
-                            <Form.Label htmlFor="PasswordInput">Password</Form.Label>
-                        </Col>
-                        <Col sm={12}>
-                            <Form.Control
-                                type="password"
-                                name="password"
-                                value={details.password}
-                                onChange={handleChange}
-                                placeholder="Enter your password" />
-                        </Col>
-                        <div className="form-error">
-                            {details.passwordError && <p>{details.passwordError} </p>}
                         </div>
 
                     </Form.Group>

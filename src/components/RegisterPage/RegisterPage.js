@@ -10,7 +10,7 @@ import { Form } from "react-bootstrap";
 
 const RegisterPage = () => {
 
-    const [details, setDetails] = useState({ userName: "", userNameError: "", email: "", emailError: "", password: "", passwordError: "", confirmPassword: "", confirmPasswordError: "" });
+    const [details, setDetails] = useState({ userName: "", userNameError: "", email: "", emailError: "" });
 
 
     const handleChange = (event) => {
@@ -30,58 +30,33 @@ const RegisterPage = () => {
             copyDetails.email = event.target.value;
 
             setDetails(copyDetails);
+        };
 
-        } else if (event.target.name === "password") {
+        const handleSubmit = event => {
+            console.log("handleSubmit", details);
 
-            copyDetails.passwordError = "";
-            copyDetails.password = event.target.value;
-            setDetails(copyDetails);
+            event.preventDefault();
 
-        } else {
-            copyDetails.confirmPasswordError = "";
-            copyDetails.confirmPassword = event.target.value;
-            setDetails(copyDetails);
-        }
+            const copyDetails = { ...details };
 
-    };
+            if (!/\S+@\S+\.\S+/.test(details.email)) {
+                copyDetails.emailError = "invalid email format";
+            }
 
-    const handleSubmit = event => {
-        console.log("handleSubmit", details);
+            if (copyDetails.emailError) {
 
-        event.preventDefault();
+                setDetails(copyDetails);
 
-        const copyDetails = { ...details };
+            } else {
 
-        if (!/\S+@\S+\.\S+/.test(details.email)) {
-            copyDetails.emailError = "invalid email format";
-        }
+                copyDetails.userName = "";
+                copyDetails.email = "";
 
-        if (details.password.length < 6) {
-            copyDetails.passwordError = "Password needs to be 6 characters or more";
-        }
+                setDetails(copyDetails);
+                console.log("get details & send off to the backend.");
+            }
 
-        if (details.confirmPassword !== details.password) {
-            copyDetails.confirmPasswordError = "Passwords do not match";
-        } else if (details.confirmPassword === details.password) {
-            copyDetails.confirmPasswordError = "";
-        }
-
-        if (copyDetails.emailError || copyDetails.passwordError || copyDetails.confirmPasswordError) {
-
-            setDetails(copyDetails);
-
-        } else {
-
-            copyDetails.userName = "";
-            copyDetails.email = "";
-            copyDetails.password = "";
-            copyDetails.confirmPassword = "";
-
-            setDetails(copyDetails);
-            console.log("get details & send off to the backend.");
-        }
-
-    };
+        };
 
     console.log(details);
     return (
@@ -127,40 +102,7 @@ const RegisterPage = () => {
 
                     </Form.Group>
 
-                    <Form.Group className="form-row">
-                        <Col sm={12}>
-                            <Form.Label htmlFor="PasswordInput">Password</Form.Label>
-                        </Col>
-                        <Col sm={12}>
-                            <Form.Control
-                                type="password"
-                                name="password"
-                                value={details.password}
-                                onChange={handleChange}
-                                placeholder="Enter your password" />
-                        </Col>
-                        <div className="form-error">
-                            {details.passwordError && <p>{details.passwordError} </p>}
-                        </div>
-
-                    </Form.Group>
-
-                    <Form.Group className="form-row">
-                        <Col sm={12}>
-                            <Form.Label htmlFor="confirmPasswordInput">Confirm Password</Form.Label>
-                        </Col>
-                        <Col sm={12}>
-                            <Form.Control
-                                type="password"
-                                name="confirmPassword"
-                                value={details.confirmPassword}
-                                onChange={handleChange}
-                                placeholder="Confirm your password" />
-                        </Col>
-                        <div className="form-error">
-                            {details.confirmPasswordError && <p>{details.confirmPasswordError} </p>}
-                        </div>
-                    </Form.Group>
+                   
                     <Row>
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--left" >
@@ -171,19 +113,18 @@ const RegisterPage = () => {
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--right" >
                                 <Button variant="double"
-                                    disabled={details.userName && details.email && details.password && details.confirmPassword ? false : true} type="submit" >
+                                    disabled={details.userName && details.email ? false : true} type="submit" >
                                     Register
                                 </Button>
                             </div>
                         </Col>
                     </Row>
                 </Form>
+                </Col>
 
-
-            </Col>
-
-        </Row >
-    );
+            </Row >
+        );
+    };
 };
 
 export default RegisterPage;
