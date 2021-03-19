@@ -1,4 +1,5 @@
 import "./IndividualWalk.css";
+import { Redirect } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import RatingsBar from "../RatingsBar/RatingsBar";
 import Graph from "../Graph/Graph";
@@ -13,7 +14,12 @@ import axios from "axios";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const IndividualWalk = (props, walkId) => {
+const IndividualWalk = (props, walkId, userId) => {
+    //Temporarily hardcoding this untill walkId and userId is passed through props from previous page.
+    walkId = "3aa59a4c-8328-4bed-bd81-aac377f1611f";
+    userId = "3bd4d097-8193-11eb-b706-062d232c43b8";
+    const [stars, setStars] = useState("");
+    const [noResults, setNoResults] = useState(false);
     const [routeMarkers, setRouteMarkers] = useState(
         []
     ); //Default state
@@ -33,39 +39,25 @@ const IndividualWalk = (props, walkId) => {
             Dec: 2
         }
     ); //Default state
+
     const addRating = () => {
+        const newRating = {
+            UserId: userId,
+            WalkId: walkId,
+            WalkRating: Number(stars)
+        };
         //Add routeMarkers to DB here
         console.log("insert rating to DB");
-    };
+        console.log(newRating);
 
-    //Temporarily hardcoding this untill walkId is passed through props from previous page.
-    walkId = "3aa59a4c-8328-4bed-bd81-aac377f1611f";
-    useEffect(() => {
-        //A function to get the tasks
-        axios
-            .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/${walkId}`)
-            .then(
-                //if the request is successful
-                response => setRouteMarkers(response.data[0].routes)
-            )
-            .catch(
-                //if the request returns an error
-                error => console.log(error));
-        /*
-                axios
-                    .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walk/rating/${walkId}`)
-                    .then(
-                        //if the request is successful
-                        response => setAvgRatingPerMonth(response.data[0].avgRating)
-                    )
-                    .catch(
-                        //if the request returns an error
-                        error => console.log(error));
-         */
-    },
-        //How often should I run this function
-        []
-    );
+        axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/ratings`, newRating)
+            //.then(() => axios.get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/ratings`))
+            //.then(response => setTasks(response.data))
+            .catch(error => console.log(error));
+    };
+    function handleChange(newValue) {
+        setStars(newValue);
+    }
     let lat = 0;
     let lng = 0;
     if (routeMarkers.length < 1) {
@@ -79,6 +71,35 @@ const IndividualWalk = (props, walkId) => {
         lat = middleItem.lat;
         lng = middleItem.lng;
     }
+    // Only run this code once, when the component first mounts
+    useEffect(() => {
+        //A function to get the tasks
+        axios
+            .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/${walkId}`)
+            .then(
+                //if the request is successful
+                response => setRouteMarkers(response.data[0].routes)
+            )
+            .catch(
+                //if the request returns an error
+                error => console.log(error)
+            );
+        /*
+                axios
+                    .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walk/rating/${walkId}`)
+                    .then(
+                        //if the request is successful
+                        response => setAvgRatingPerMonth(response.data[0].avgRating)
+                    )
+                    .catch(
+                        //if the request returns an error
+                        error => console.log(error));
+         */
+    },
+        // the array would normally contain values that may change, and React would run the above code WHEN that value changes
+        // "Array of dependencies"
+        []
+    );
     return (
         <>
             <Row>
@@ -122,7 +143,7 @@ const IndividualWalk = (props, walkId) => {
                 <Col>
                     <div className="addRating__container">
                         <h4 className="heading heading--secondary">Rate Walk</h4>
-                        <RatingsBar />
+                        <RatingsBar value={stars} disabled={false} onChange={handleChange} />
                     </div>
                 </Col>
             </Row>
