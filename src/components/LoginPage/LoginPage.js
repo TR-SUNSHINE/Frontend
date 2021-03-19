@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,10 +7,11 @@ import { Link } from "react-router-dom";
 import "../../index.css";
 import "../LoginPage/LoginPage.css";
 import { Form } from "react-bootstrap";
+import axios from "axios";
 
 const LoginPage = () => {
 
-    const [details, setDetails] = useState({ email: "", emailError: "" });
+    const [details, setDetails] = useState({ email: "", emailError: "", id: "", userName: "" });
 
     const handleChange = (event) => {
 
@@ -18,6 +20,7 @@ const LoginPage = () => {
         if (event.target.name === "email") {
 
             copyDetails.emailError = "";
+            copyDetails.id = "";
             copyDetails.email = event.target.value;
 
             setDetails(copyDetails);
@@ -25,7 +28,7 @@ const LoginPage = () => {
     };
 
     const handleSubmit = event => {
-        console.log("handleSubmit", details);
+        console.log("handleSubmit --> ", details);
 
         event.preventDefault();
 
@@ -37,9 +40,24 @@ const LoginPage = () => {
 
         if (copyDetails.emailError) {
             setDetails(copyDetails);
-        else {
-            
-        }
+        } else {
+
+            const email = details.email;
+            const response = "";
+            axios
+                .get(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/users/${email}/user`)
+                // .then(response => setDetails(response.data))
+                .then((response) => {
+                    setDetails(response.data);
+                    console.log("status:", response.status);
+                    console.log("details:", details);
+                    
+
+
+                })
+                .catch(error => console.log("error: ", error));
+            console.log("response --> ", response);
+
         }
     };
 
@@ -78,7 +96,7 @@ const LoginPage = () => {
 
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--right" >
-                                <Button disabled={details.email && details.password ? false : true} variant="double" type="submit" >
+                                <Button disabled={details.email ? false : true} variant="double" type="submit" >
                                     Login
                                 </Button>
                             </div>

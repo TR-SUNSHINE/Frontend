@@ -32,6 +32,7 @@ const RegisterPage = () => {
             setDetails(copyDetails);
         };
     };
+
     const handleSubmit = event => {
         console.log("handleSubmit", details);
 
@@ -44,17 +45,15 @@ const RegisterPage = () => {
         }
 
         if (copyDetails.emailError) {
-
             setDetails(copyDetails);
-
-        } else {
-
+        }
+        else {
             copyDetails.userName = "";
             copyDetails.email = "";
 
             setDetails(copyDetails);
             console.log("get details & send off to the backend.");
-        }
+        };
 
     };
 
