@@ -12,7 +12,8 @@ import "../Button/Button.css";
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const AddWalk = (props) => {
-    const [state, setState] = useState(
+    const [walkName, setWalkName] = useState("");
+    const [item, setItem] = useState(
         {
             user: {
                 id: 1,
@@ -43,30 +44,28 @@ const AddWalk = (props) => {
         }
     );
     const onClose = props => {
-        if (state.showingInfoWindow) {
-            setState({
+        if (item.showingInfoWindow) {
+            setItem({
                 showingInfoWindow: false,
                 activeMarker: null
             });
         }
     };
     const onMapClick = (mapProps, map, clickEvent) => {
-        const updatedMarkers = [...state.routeMarkers];
-        updatedMarkers.push({ key: state.routeMarkers.length, lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() });
-        setState({ routeMarkers: updatedMarkers });
+        const updatedMarkers = [...item.routeMarkers];
+        updatedMarkers.push({ key: item.routeMarkers.length, lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() });
+        setItem({ routeMarkers: updatedMarkers });
     };
     const handleChange = (event) => {
         if (event.target.name === "walkNameInput") {
-            setState({
-                walkName: event.target.value
-            });
+            setWalkName(event.target.value);
         }
     };
     const addWalk = () => {
         //Add routeMarkers to DB here + walkName
         console.log("insert routeMarkers to DB");
         //Clear route from screen
-        setState({
+        setItem({
             routeMarkers: [],
             activeMarker: null,
             selectedPlace: {},
@@ -76,7 +75,7 @@ const AddWalk = (props) => {
     };
     const clearWalk = () => {
         //Clear route from screen
-        setState({
+        setItem({
             routeMarkers: [],
             activeMarker: null,
             selectedPlace: {},
@@ -108,26 +107,26 @@ const AddWalk = (props) => {
                     >
                         {/*<Marker onClick={onMarkerClick} lat={markerLat} lng={markerLng} visible={renderMarker} clickable={markerClickable} />*/}
                         {/*state.markers.map((coords, index) => <Marker key={`marker-${index}`} position={coords} />)*/}
-                        {console.log(state.routeMarkers)}
-                        {state.routeMarkers.map((coords, index) => {
-                            if (index === 0 || index === state.routeMarkers.length - 1) {
+                        {console.log(item.routeMarkers)}
+                        {item.routeMarkers.map((coords, index) => {
+                            if (index === 0 || index === item.routeMarkers.length - 1) {
                                 return <Marker key={`marker-${index}`} position={coords} />;
                             }
                             return null;
                         })}
                         {/*<Marker onClick={onMarkerClick} name={"Current Location"} />*/}
                         <InfoWindow
-                            marker={state.activeMarker}
-                            visible={state.showingInfoWindow}
+                            marker={item.activeMarker}
+                            visible={item.showingInfoWindow}
                             onClose={onClose}
                         >
                             <div>
-                                <h4>{state.selectedPlace}</h4>
+                                <h4>{item.selectedPlace}</h4>
                             </div>
                         </InfoWindow>
                         <Polyline
                             visible={true}
-                            path={state.routeMarkers}
+                            path={item.routeMarkers}
                             strokeColor="#0000ff"
                             strokeOpacity={0.8}
                             strokeWeight={6}
@@ -142,7 +141,7 @@ const AddWalk = (props) => {
                 </Col>
                 <Col sm={4}>
                     <Form.Group controlId="form-row">
-                        <Form.Label style={{ fontSize: "20px", fontWeight: "bold" }}>Walk Name</Form.Label>
+                        <Form.Label id="sdf" style={{ fontSize: "20px", fontWeight: "bold" }}>Walk Name</Form.Label>
                         <Form.Control as="textarea" name="walkNameInput" onChange={handleChange} rows={1} placeholder="Enter walk description" />
                     </Form.Group>
                 </Col>
