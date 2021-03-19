@@ -3,70 +3,79 @@ import Button from "react-bootstrap/Button";
 import RatingsBar from "../RatingsBar/RatingsBar";
 import Graph from "../Graph/Graph";
 import GoogleMap from "../Map/GoogleMap";
-import React, { useState } from "react";
-import { GoogleApiWrapper, InfoWindow, Marker, Polyline } from "google-maps-react";
+import React, { useState, useEffect } from "react";
+import { GoogleApiWrapper, Marker, Polyline } from "google-maps-react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import "../Button/Button.css";
+import axios from "axios";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const IndividualWalk = (props) => {
-    const [state, setState] = useState(
+const IndividualWalk = (props, walkId) => {
+    const [routeMarkers, setRouteMarkers] = useState(
+        []
+    ); //Default state
+    const [avgRatingPerMonth, setAvgRatingPerMonth] = useState(
         {
-            user: {
-                id: 1,
-                firstName: "Alun",
-                lastName: "Groome",
-                avgRatings:
-                {
-                    Jan: 1,
-                    Feb: 3,
-                    Mar: 4,
-                    Apr: 4,
-                    May: 5,
-                    Jun: 1,
-                    Jul: 5,
-                    Aug: 3,
-                    Sep: 5,
-                    Oct: 4,
-                    Nov: 5,
-                    Dec: 2
-                }
-            }
-            , routeMarkers: [
-                { key: 0, lat: 53.28365589513839, lng: -2.439117028758835 },
-                { key: 1, lat: 53.281240718326224, lng: -2.4595447326162567 },
-                { key: 2, lat: 53.292939417021564, lng: -2.469329431102585 }
-            ],
-            showingInfoWindow: false,
-            activeMarker: {},
-            selectedPlace: {}
+            Jan: 1,
+            Feb: 3,
+            Mar: 4,
+            Apr: 4,
+            May: 5,
+            Jun: 1,
+            Jul: 5,
+            Aug: 3,
+            Sep: 5,
+            Oct: 4,
+            Nov: 5,
+            Dec: 2
         }
-    );
-    const onClose = props => {
-        if (state.showingInfoWindow) {
-            setState({
-                showingInfoWindow: false,
-                activeMarker: null
-            });
-        }
-    };
+    ); //Default state
     const addRating = () => {
         //Add routeMarkers to DB here
         console.log("insert rating to DB");
     };
+
+    //Temporarily hardcoding this untill walkId is passed through props from previous page.
+    walkId = "3aa59a4c-8328-4bed-bd81-aac377f1611f";
+    useEffect(() => {
+        //A function to get the tasks
+        axios
+            .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/${walkId}`)
+            .then(
+                //if the request is successful
+                response => setRouteMarkers(response.data[0].routes)
+            )
+            .catch(
+                //if the request returns an error
+                error => console.log(error));
+        /*
+                axios
+                    .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walk/rating/${walkId}`)
+                    .then(
+                        //if the request is successful
+                        response => setAvgRatingPerMonth(response.data[0].avgRating)
+                    )
+                    .catch(
+                        //if the request returns an error
+                        error => console.log(error));
+         */
+    },
+        //How often should I run this function
+        []
+    );
     let lat = 0;
     let lng = 0;
-    if (state.routeMarkers.length < 1) {
+    if (routeMarkers.length < 1) {
         //Default Manchester
         lat = 53.47783;
         lng = -2.24317;
     }
     else {
         //From State
-        const middleItem = state.routeMarkers[state.routeMarkers.length / 2 | 0];
+        const middleItem = routeMarkers[routeMarkers.length / 2 | 0];
         lat = middleItem.lat;
         lng = middleItem.lng;
     }
@@ -85,24 +94,15 @@ const IndividualWalk = (props) => {
                         draggable={false}
                         disableDoubleClickZoom={true}
                     >
-                        {state.routeMarkers.map((coords, index) => {
-                            if (index === 0 || index === state.routeMarkers.length - 1) {
+                        {routeMarkers.map((coords, index) => {
+                            if (index === 0 || index === routeMarkers.length - 1) {
                                 return <Marker key={`marker-${index}`} position={coords} />;
                             }
                             return null;
                         })}
-                        <InfoWindow
-                            marker={state.activeMarker}
-                            visible={state.showingInfoWindow}
-                            onClose={onClose}
-                        >
-                            <div>
-                                <h4>{state.selectedPlace.name}</h4>
-                            </div>
-                        </InfoWindow>
                         <Polyline
                             visible={true}
-                            path={state.routeMarkers}
+                            path={routeMarkers}
                             strokeColor="#0000ff"
                             strokeOpacity={0.8}
                             strokeWeight={6}
@@ -115,7 +115,7 @@ const IndividualWalk = (props) => {
             <Row>
                 <Col>
                     <h4 className="heading heading--secondary">Walk Statistics</h4>
-                    <Graph data={state.user} />
+                    <Graph data={avgRatingPerMonth} />
                 </Col>
             </Row>
             <Row>

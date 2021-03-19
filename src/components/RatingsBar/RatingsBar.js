@@ -3,7 +3,7 @@ import "./RatingsBar.css";
 import Rating from "@material-ui/lab/Rating";
 import { useState } from "react";
 
-const RatingsBar = ({ stars, disabled }) => {
+const RatingsBar = ({ stars, disabled, onChangeStars }) => {
     const [value, setValue] = useState(stars);
 
     return (
@@ -14,6 +14,7 @@ const RatingsBar = ({ stars, disabled }) => {
             size="large"
             onChange={(event) => {
                 setValue(Number(event.target.value));
+                onChangeStars = Number(event.target.value);
             }}
 
         />
