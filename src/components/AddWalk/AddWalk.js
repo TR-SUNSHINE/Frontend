@@ -20,19 +20,10 @@ const AddWalk = (props, userId) => {
     const [item, setItem] = useState(
         {
             routeMarkers: [
-            ],
-            showingInfoWindow: false,
-            activeMarker: {}
+            ]
         }
     );
-    const onClose = props => {
-        if (item.showingInfoWindow) {
-            setItem({
-                showingInfoWindow: false,
-                activeMarker: null
-            });
-        }
-    };
+
     const onMapClick = (mapProps, map, clickEvent) => {
         const updatedMarkers = [...item.routeMarkers];
         updatedMarkers.push({ Sequence: item.routeMarkers.length, lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() });
@@ -44,8 +35,6 @@ const AddWalk = (props, userId) => {
         }
     };
     const addWalk = () => {
-        console.log(item.routeMarkers.length);
-        console.log(walkName.length);
         if (item.routeMarkers.length > 1 && walkName.length > 0) {
             const newWalk = {
                 WalkName: walkName,
@@ -62,18 +51,13 @@ const AddWalk = (props, userId) => {
             //Clear route from screen
             setItem({
                 routeMarkers: [],
-                activeMarker: null,
-                showingInfoWindow: true
             });
         }
-        return <Redirect to="/NotFoundPage" />;
     };
     const clearWalk = () => {
         //Clear route from screen
         setItem({
             routeMarkers: [],
-            activeMarker: null,
-            showingInfoWindow: true
         });
     };
     let lat = 0;
@@ -98,8 +82,6 @@ const AddWalk = (props, userId) => {
                         disableDoubleClickZoom={false}
                         onClick={onMapClick}
                     >
-                        {/*<Marker onClick={onMarkerClick} lat={markerLat} lng={markerLng} visible={renderMarker} clickable={markerClickable} />*/}
-                        {/*state.markers.map((coords, index) => <Marker key={`marker-${index}`} position={coords} />)*/}
                         {console.log(item.routeMarkers)}
                         {item.routeMarkers.map((coords, index) => {
                             if (index === 0 || index === item.routeMarkers.length - 1) {
@@ -107,13 +89,6 @@ const AddWalk = (props, userId) => {
                             }
                             return null;
                         })}
-                        {/*<Marker onClick={onMarkerClick} name={"Current Location"} />*/}
-                        <InfoWindow
-                            marker={item.activeMarker}
-                            visible={item.showingInfoWindow}
-                            onClose={onClose}
-                        >
-                        </InfoWindow>
                         <Polyline
                             visible={true}
                             path={item.routeMarkers}
