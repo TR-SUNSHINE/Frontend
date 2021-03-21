@@ -47,8 +47,14 @@ function App() {
     console.log(updateReminder);
   };
 
+
+  const deleteReminder = async () => {
+    const deleteReminder = await axios.delete(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders/${myReminderId}`);
+    console.log(deleteReminder);
+  };
+
   useEffect(() => {
-    getReminder();
+    getReminders();
     // return () => {
 
     // }
