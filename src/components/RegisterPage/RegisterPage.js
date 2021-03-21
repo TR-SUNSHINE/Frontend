@@ -7,11 +7,11 @@ import "../../index.css";
 import "../RegisterPage/RegisterPage.css";
 import "../Button/Button.css";
 import { Form } from "react-bootstrap";
+import axios from "axios";
 
 const RegisterPage = () => {
 
     const [details, setDetails] = useState({ userName: "", userNameError: "", email: "", emailError: "" });
-
 
     const handleChange = (event) => {
 
@@ -52,7 +52,18 @@ const RegisterPage = () => {
             copyDetails.email = "";
 
             setDetails(copyDetails);
-            console.log("get details & send off to the backend.");
+            // const userDetails = {
+            //     email: details.email,
+            //     userName: details.userName
+            // };
+
+            // axios
+            //     .post(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/user/${userDetails}/user`, userDetails)
+            //     //If successful, make a get request for all the tasks
+            //     //If get request is successful, update tasks state with everything
+            //     .then((response) => setDetails(response.data))
+            //     //If error, log out the error
+            //     .catch(error => console.log(error));
         };
 
     };

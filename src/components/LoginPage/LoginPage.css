@@ -24,9 +24,13 @@
 .button__container--center {
 text-align: center;
 padding: 1rem;
-
 }  
 
+.login-wrror {
+  color: red;
+  font-size: 20px;
+  text-align: center;
+}
 .button--form {
   min-width: 120px;
   max-width: 120px;

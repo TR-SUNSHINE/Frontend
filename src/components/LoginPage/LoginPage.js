@@ -8,10 +8,11 @@ import "../../index.css";
 import "../LoginPage/LoginPage.css";
 import { Form } from "react-bootstrap";
 import axios from "axios";
+import idContext from "../Routes/Routes";
 
 const LoginPage = () => {
 
-    const [details, setDetails] = useState({ email: "", emailError: "", id: "", userName: "" });
+    const [details, setDetails] = useState({ email: "", id: "", userName: "", emailError: "", loginError: "" });
 
     const handleChange = (event) => {
 
@@ -20,7 +21,8 @@ const LoginPage = () => {
         if (event.target.name === "email") {
 
             copyDetails.emailError = "";
-            copyDetails.id = "";
+            copyDetails.loginError = "";
+
             copyDetails.email = event.target.value;
 
             setDetails(copyDetails);
@@ -43,24 +45,36 @@ const LoginPage = () => {
         } else {
 
             const email = details.email;
+            const myData = [];
             const response = "";
             axios
                 .get(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/users/${email}/user`)
                 // .then(response => setDetails(response.data))
                 .then((response) => {
                     setDetails(response.data);
-                    console.log("status:", response.status);
-                    console.log("details:", details);
-                    
+                    if (response.data.length === 1) {
+                        console.log("userId= ", response.data[0].id);
+                    } else {
+                        console.log("**ERROR**");
+                        copyDetails.loginError = "Unable to login";
+                        details.loginError = "Unable to login";
+                        setDetails(copyDetails);
+                        console.log("copyDetails:", copyDetails);
+                        console.log("details:", details);
 
+                    };
 
                 })
-                .catch(error => console.log("error: ", error));
-            console.log("response --> ", response);
+                .catch(error => {
+                    if (error.response) {
+                        console.log(error.response.data);
+                        copyDetails.loginError = "Error when submittig details - Unable to login";
+                        setDetails(copyDetails);
+                    };
 
-        }
+                });
+        };
     };
-
     return (
         <Row>
             <Col>
@@ -86,7 +100,13 @@ const LoginPage = () => {
                             {details.emailError && <p>{details.emailError} </p>}
                         </div>
                     </Form.Group>
-
+                    <Form.Group className="login-error">
+                        <Row>
+                            <div>
+                                {details.loginError && <p>{details.loginError} </p>}
+                            </div>
+                        </Row>
+                    </Form.Group>
                     <Row>
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--left" >
