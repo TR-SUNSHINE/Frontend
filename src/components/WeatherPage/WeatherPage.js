@@ -34,7 +34,6 @@ const WeatherPage = ({ google }) => {
         } else {
             copySelectedTimeReminder.time = 0;
             copySelectedTimeReminder.reminderTime = 0;
-            // copySelectedTimeReminder.reminder = false;
         }
 
         setSelectedTimeReminder(copySelectedTimeReminder);
@@ -46,7 +45,6 @@ const WeatherPage = ({ google }) => {
         let copySelectedTimeReminder = { ...selectedTimeReminder };
 
         if (selectedTimeReminder.time) {
-            // copySelectedTimeReminder.reminder = true;
             copySelectedTimeReminder.reminderTime = selectedTimeReminder.time;
         }
 
