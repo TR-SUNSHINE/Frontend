@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import "./App.css";
@@ -26,33 +26,6 @@ function App() {
     console.log(reminders);
   };
 
-  const postReminder = async () => {
-
-    const newTime = {
-      reminderTime: "2021-03-21T02:00"
-    };
-
-    const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`, newTime);
-
-    console.log(addReminder);
-  };
-
-  const updateReminder = async () => {
-
-    const updatedTime = {
-      reminderTime: "2021-03-21T14:30"
-    };
-
-    const updateReminder = await axios.put(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders/${myReminderId}`, updatedTime);
-    console.log(updateReminder);
-  };
-
-
-  const deleteReminder = async () => {
-    const deleteReminder = await axios.delete(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders/${myReminderId}`);
-    console.log(deleteReminder);
-  };
-
   useEffect(() => {
     getReminders();
     // return () => {
@@ -60,13 +33,12 @@ function App() {
     // }
   }, []);
 
-
   return (
     <>
       <Header />
       <Container>
-
-        <Routes />
+        <Routes
+        />
       </Container>
     </>
   );
