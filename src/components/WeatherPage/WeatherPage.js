@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import { showLocalDate, showLocalTime, replaceIcons, formatReminderTime } from "../../helperFunctions";
+import { showLocalDate, showLocalTime, replaceIcons, formatReminderTime, formatLocalDateTime } from "../../helperFunctions";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -23,7 +23,33 @@ const WeatherPage = (props) => {
     const weatherKey = process.env.REACT_APP_WEATHER_API_KEY;
 
     const myUserId = "e9f9080b-4626-41db-8504-90896859f8e5";
-    // const myReminderId = "9af357f1-67cc-4747-a21a-9a74113d7780";
+
+    const getReminders = async () => {
+
+        const reminders = await axios.get(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`);
+
+        if (reminders.data.length) {
+
+            const latestReminder = reminders.data[reminders.data.length - 1];
+            const latestReminderTime = formatLocalDateTime(latestReminder.reminderTime);
+            const timeNow = formatReminderTime(Math.floor(Date.now() / 1000)) + "Z";
+            const latestReminderTimeUnix = Date.parse(latestReminderTime) / 1000;
+
+            if (latestReminderTime > timeNow) {
+                const copySelectedTime = { ...selectedTime };
+                copySelectedTime.reminderTime = latestReminderTimeUnix;
+                copySelectedTime.reminderId = latestReminder.reminderId;
+                setSelectedTime(copySelectedTime);
+
+            } else {
+                console.log("reminder in past");
+            }
+
+        }
+
+        console.log(reminders);
+
+    };
 
     const postReminder = async (reminderTime) => {
 
