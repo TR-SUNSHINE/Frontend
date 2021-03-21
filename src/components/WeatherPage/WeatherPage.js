@@ -19,27 +19,38 @@ const WeatherPage = ({ google }) => {
     const [weatherTimes, setWeatherTimes] = useState([]);
     const [date, setDate] = useState("");
     const [noResults, setNoResults] = useState(false);
-    const [selectedWeatherTime, setSelectedWeatherTime] = useState(0);
-    const [reminder, setReminder] = useState({ time: 0, walk: "" });
+    // const [selectedWeatherTime, setSelectedWeatherTime] = useState(0);
+    const [selectedTimeReminder, setSelectedTimeReminder] = useState({ seletedTime: 0, reminder: false, reminderId: "", reminderTime: 0 });
+    // const [reminder, setReminder] = useState({ time: 0, walk: "" });
     const weatherKey = process.env.REACT_APP_WEATHER_API_KEY;
 
     const toggleWeatherTimeSelected = (weatherId) => {
 
-        if (selectedWeatherTime !== weatherId) {
-            setSelectedWeatherTime(weatherId);
+        let copySelectedTimeReminder = { ...selectedTimeReminder };
+
+        if (selectedTimeReminder.time !== weatherId) {
+            copySelectedTimeReminder.time = weatherId;
+
         } else {
-            setSelectedWeatherTime(0);
-            setReminder({ time: 0, walk: "" });
+            copySelectedTimeReminder.time = 0;
+            copySelectedTimeReminder.reminderTime = 0;
+            copySelectedTimeReminder.reminder = false;
         }
+
+        setSelectedTimeReminder(copySelectedTimeReminder);
 
     };
 
     const toggleReminder = () => {
 
-        if (selectedWeatherTime) {
-            setReminder({ time: selectedWeatherTime, walk: "" });
+        let copySelectedTimeReminder = { ...selectedTimeReminder };
+
+        if (selectedTimeReminder.time) {
+            copySelectedTimeReminder.reminder = true;
+            copySelectedTimeReminder.reminderTime = selectedTimeReminder.time;
         }
 
+        setSelectedTimeReminder(copySelectedTimeReminder);
     };
 
     const getCoords = useCallback(async () => {
@@ -142,15 +153,17 @@ const WeatherPage = ({ google }) => {
 
             <WeatherContainer
                 weatherTimes={weatherTimes}
-                selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
-                reminder={reminder}
+                selectedWeatherTime={selectedTimeReminder.time}
+                toggleWeatherTimeSelected={toggleWeatherTimeSelected}
+                reminder={selectedTimeReminder.reminder}
+                reminderTime={selectedTimeReminder.reminderTime}
                 showLocalTime={showLocalTime}
             />
 
             <Row>
                 <Col>
                     <div xs={12} className="button__container" >
-                        <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="single">Set Reminder</Button>
+                        <Button disabled={selectedTimeReminder.time ? false : true} onClick={toggleReminder} variant="single">Set Reminder</Button>
                     </div>
                 </Col>
             </Row>
