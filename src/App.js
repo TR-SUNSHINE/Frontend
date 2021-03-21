@@ -10,7 +10,7 @@ import Routes from "./components/Routes/Routes";
 function App() {
 
   const myUserId = "e9f9080b-4626-41db-8504-90896859f8e5";
-  const myReminderId = "94fc593a-7323-44ff-bb9c-13b833b38157";
+  const myReminderId = "9af357f1-67cc-4747-a21a-9a74113d7780";
 
   const getReminders = async () => {
 
@@ -24,6 +24,17 @@ function App() {
     const reminders = await axios.get(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders/${myReminderId}`);
 
     console.log(reminders);
+  };
+
+  const postReminder = async () => {
+
+    const newReminder = {
+      reminderTime: "2021-03-21T02:00"
+    };
+
+    const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`, newReminder);
+
+    console.log(addReminder);
   };
 
   useEffect(() => {
