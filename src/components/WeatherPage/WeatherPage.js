@@ -20,7 +20,7 @@ const WeatherPage = ({ google }) => {
     const [date, setDate] = useState("");
     const [noResults, setNoResults] = useState(false);
     // const [selectedWeatherTime, setSelectedWeatherTime] = useState(0);
-    const [selectedTimeReminder, setSelectedTimeReminder] = useState({ seletedTime: 0, reminder: false, reminderId: "", reminderTime: 0 });
+    const [selectedTimeReminder, setSelectedTimeReminder] = useState({ seletedTime: 0, reminderId: "", reminderTime: 0 });
     // const [reminder, setReminder] = useState({ time: 0, walk: "" });
     const weatherKey = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -34,7 +34,7 @@ const WeatherPage = ({ google }) => {
         } else {
             copySelectedTimeReminder.time = 0;
             copySelectedTimeReminder.reminderTime = 0;
-            copySelectedTimeReminder.reminder = false;
+            // copySelectedTimeReminder.reminder = false;
         }
 
         setSelectedTimeReminder(copySelectedTimeReminder);
@@ -46,7 +46,7 @@ const WeatherPage = ({ google }) => {
         let copySelectedTimeReminder = { ...selectedTimeReminder };
 
         if (selectedTimeReminder.time) {
-            copySelectedTimeReminder.reminder = true;
+            // copySelectedTimeReminder.reminder = true;
             copySelectedTimeReminder.reminderTime = selectedTimeReminder.time;
         }
 
@@ -155,7 +155,7 @@ const WeatherPage = ({ google }) => {
                 weatherTimes={weatherTimes}
                 selectedWeatherTime={selectedTimeReminder.time}
                 toggleWeatherTimeSelected={toggleWeatherTimeSelected}
-                reminder={selectedTimeReminder.reminder}
+                // reminder={selectedTimeReminder.reminder}
                 reminderTime={selectedTimeReminder.reminderTime}
                 showLocalTime={showLocalTime}
             />

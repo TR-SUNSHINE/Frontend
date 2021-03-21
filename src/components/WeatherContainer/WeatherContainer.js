@@ -10,8 +10,8 @@ const WeatherContainer = ({ weatherTimes, selectedWeatherTime, toggleWeatherTime
             <Row>
                 <Col className="weather__container">
                     <h4 className="heading heading--secondary">Weather: next 24 hours</h4>
-                    <p hidden={reminder}> Click on a time to set a reminder for today.</p>
-                    <p hidden={!reminder}>Reminder set for your walk at {showLocalTime(reminderTime)}</p>
+                    <p hidden={reminderTime}> Click on a time to set a reminder for today.</p>
+                    <p hidden={!reminderTime}>Reminder set for your walk at {showLocalTime(reminderTime)}</p>
                 </Col>
             </Row>
             <Row>
