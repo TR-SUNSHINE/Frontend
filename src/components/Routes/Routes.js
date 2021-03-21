@@ -11,18 +11,19 @@ import TestIndividualWalk from "../Test/TestIndividualWalk";
 import TestAddWalk from "../Test/TestAddWalk";
 import TestWeatherPage from "../Test/TestWeatherPage";
 
-const Routes = () => {
+const Routes = (props) => {
     return (
         <div>
-            <BrowserRouter>
-                <Switch>
+            <BrowserRouter {...props}>
+                <Switch {...props}>
                     <Route exact path="/">
                         <Redirect to="/WelcomePage" />
                     </Route>
                     <Route exact path="/WelcomePage" component={WelcomePage} />
                     <Route exact path="/IndividualWalk" component={IndividualWalk} />
                     <Route exact path="/AddWalk" component={AddWalk} />
-                    <Route exact path="/WeatherPage" component={WeatherPage} />
+                    <Route exact path="/WeatherPage"
+                        render={props => <WeatherPage {...props} />} />
                     <Route exact path="/MyWalksPage" component={MyWalksPage} />
                     <Route exact path="/NotFoundPage" component={NotFoundPage} />
                     <Route exact path="/RegisterPage" component={RegisterPage} />

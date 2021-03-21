@@ -17,14 +17,13 @@ export class GoogleMapWeather extends React.Component {
 
         }
 
-        if (prevProps.currentLocation.lat !== this.props.currentLocation.lat) {
+        else {
+            // if (prevProps.currentLocation.lat !== this.props.currentLocation.lat) {
 
             this.recenterMap();
+            // }
         }
-
     };
-
-
 
     loadMap() {
 

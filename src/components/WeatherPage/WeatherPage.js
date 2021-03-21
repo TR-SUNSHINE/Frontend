@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { showLocalDate, showLocalTime, replaceIcons, formatReminderTime, formatLocalDateTime } from "../../helperFunctions";
@@ -24,48 +24,21 @@ const WeatherPage = (props) => {
 
     const myUserId = "e9f9080b-4626-41db-8504-90896859f8e5";
 
-    const getReminders = async () => {
+    // const postReminder = async (reminderTime) => {
 
-        const reminders = await axios.get(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`);
+    //     const formattedReminder = formatReminderTime(reminderTime);
 
-        if (reminders.data.length) {
+    //     const newTime = {
+    //         reminderTime: formattedReminder
+    //     };
 
-            const latestReminder = reminders.data[reminders.data.length - 1];
-            const latestReminderTime = formatLocalDateTime(latestReminder.reminderTime);
-            const timeNow = formatReminderTime(Math.floor(Date.now() / 1000)) + "Z";
-            const latestReminderTimeUnix = Date.parse(latestReminderTime) / 1000;
+    //     const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`, newTime);
 
-            if (latestReminderTime > timeNow) {
-                const copySelectedTime = { ...selectedTime };
-                copySelectedTime.reminderTime = latestReminderTimeUnix;
-                copySelectedTime.reminderId = latestReminder.reminderId;
-                setSelectedTime(copySelectedTime);
-
-            } else {
-                console.log("reminder in past");
-            }
-
-        }
-
-        console.log(reminders);
-
-    };
-
-    const postReminder = async (reminderTime) => {
-
-        const formattedReminder = formatReminderTime(reminderTime);
-
-        const newTime = {
-            reminderTime: formattedReminder
-        };
-
-        const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`, newTime);
-
-        let copySelectedTime = { ...selectedTime };
-        copySelectedTime.reminderId = addReminder.data.reminderId;
-        copySelectedTime.reminderTime = reminderTime;
-        setSelectedTime(copySelectedTime);
-    };
+    //     let copySelectedTime = { ...selectedTime };
+    //     copySelectedTime.reminderId = addReminder.data.reminderId;
+    //     copySelectedTime.reminderTime = reminderTime;
+    //     setSelectedTime(copySelectedTime);
+    // };
 
     const updateReminder = async (reminderTime) => {
 
@@ -111,7 +84,7 @@ const WeatherPage = (props) => {
 
         if ((selectedTime.selectedTime !== selectedTime.reminderTime) && !selectedTime.reminderId) {
 
-            postReminder(selectedTime.selectedTime);
+            // postReminder(selectedTime.selectedTime);
 
         } else if ((selectedTime.selectedTime !== selectedTime.reminderTime) && selectedTime.reminderId) {
 
