@@ -1,4 +1,3 @@
-
 const showLocalTime = (unixTime) => {
 
     let currentDate = new Date(unixTime * 1000);
@@ -14,6 +13,18 @@ const showLocalDate = (unixTime) => {
     let currentDate = new Date(unixTime * 1000);
     let dateFormated = currentDate.toDateString();
     return dateFormated;
+};
+
+const formatReminderTime = (unixTime) => {
+    let reminderDate = new Date(unixTime * 1000);
+    let minutes = "0" + reminderDate.getMinutes();
+    let hours = "0" + reminderDate.getHours();
+    let day = "0" + reminderDate.getDate();
+    let month = reminderDate.getMonth() + 1;
+    month = "0" + month;
+    let year = reminderDate.getFullYear();
+    let formattedReminder = `${year}-${month.substr(-2)}-${day.substr(-2)}T${hours.substr(-2)}:${minutes.substr(-2)}`;
+    return formattedReminder;
 };
 
 const dayTime = (time, sunrise, sunset) => {
@@ -224,6 +235,7 @@ const replaceIcons = (array, sunrise, sunset) => {
 module.exports = {
     showLocalTime,
     showLocalDate,
+    formatReminderTime,
     dayTime,
     substituteIconsDay,
     substituteIconsNight,
