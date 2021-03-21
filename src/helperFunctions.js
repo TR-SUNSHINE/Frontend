@@ -27,6 +27,16 @@ const formatReminderTime = (unixTime) => {
     return formattedReminder;
 };
 
+const formatLocalDateTime = (localDateTime) => {
+    let minutes = "0" + localDateTime.minute;
+    let hours = "0" + localDateTime.hour;
+    let day = "0" + localDateTime.dayOfMonth;
+    let month = "0" + localDateTime.monthValue;
+    let year = localDateTime.year;
+    let formattedReminder = `${year}-${month.substr(-2)}-${day.substr(-2)}T${hours.substr(-2)}:${minutes.substr(-2)}Z`;
+    return formattedReminder;
+};
+
 const dayTime = (time, sunrise, sunset) => {
 
     return time > sunrise && time < sunset;
@@ -236,6 +246,7 @@ module.exports = {
     showLocalTime,
     showLocalDate,
     formatReminderTime,
+    formatLocalDateTime,
     dayTime,
     substituteIconsDay,
     substituteIconsNight,
