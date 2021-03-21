@@ -28,13 +28,23 @@ function App() {
 
   const postReminder = async () => {
 
-    const newReminder = {
+    const newTime = {
       reminderTime: "2021-03-21T02:00"
     };
 
-    const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`, newReminder);
+    const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`, newTime);
 
     console.log(addReminder);
+  };
+
+  const updateReminder = async () => {
+
+    const updatedTime = {
+      reminderTime: "2021-03-21T14:30"
+    };
+
+    const updateReminder = await axios.put(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders/${myReminderId}`, updatedTime);
+    console.log(updateReminder);
   };
 
   useEffect(() => {
