@@ -7,11 +7,11 @@ import "../../index.css";
 import "../RegisterPage/RegisterPage.css";
 import "../Button/Button.css";
 import { Form } from "react-bootstrap";
+import axios from "axios";
 
 const RegisterPage = () => {
 
     const [details, setDetails] = useState({ userName: "", userNameError: "", email: "", emailError: "" });
-
 
     const handleChange = (event) => {
 
@@ -31,34 +31,44 @@ const RegisterPage = () => {
 
             setDetails(copyDetails);
         };
+    };
 
-        const handleSubmit = event => {
-            console.log("handleSubmit", details);
+    const handleSubmit = event => {
+        console.log("handleSubmit", details);
 
-            event.preventDefault();
+        event.preventDefault();
 
-            const copyDetails = { ...details };
+        const copyDetails = { ...details };
 
-            if (!/\S+@\S+\.\S+/.test(details.email)) {
-                copyDetails.emailError = "invalid email format";
-            }
+        if (!/\S+@\S+\.\S+/.test(details.email)) {
+            copyDetails.emailError = "invalid email format";
+        }
 
-            if (copyDetails.emailError) {
+        if (copyDetails.emailError) {
+            setDetails(copyDetails);
+        }
+        else {
+            copyDetails.userName = "";
+            copyDetails.email = "";
 
-                setDetails(copyDetails);
+            setDetails(copyDetails);
+            // const userDetails = {
+            //     email: details.email,
+            //     userName: details.userName
+            // };
 
-            } else {
-
-                copyDetails.userName = "";
-                copyDetails.email = "";
-
-                setDetails(copyDetails);
-                console.log("get details & send off to the backend.");
-            }
-
+            // axios
+            //     .post(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/user/${userDetails}/user`, userDetails)
+            //     //If successful, make a get request for all the tasks
+            //     //If get request is successful, update tasks state with everything
+            //     .then((response) => setDetails(response.data))
+            //     //If error, log out the error
+            //     .catch(error => console.log(error));
         };
 
-    console.log(details);
+    };
+
+    // console.log(details);
     return (
         <Row>
             <Col>
@@ -102,7 +112,7 @@ const RegisterPage = () => {
 
                     </Form.Group>
 
-                   
+
                     <Row>
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--left" >
@@ -120,11 +130,9 @@ const RegisterPage = () => {
                         </Col>
                     </Row>
                 </Form>
-                </Col>
-
-            </Row >
-        );
-    };
+            </Col>
+        </Row >
+    );
 };
 
 export default RegisterPage;
