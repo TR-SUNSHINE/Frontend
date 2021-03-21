@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import { showLocalDate, showLocalTime, replaceIcons } from "../../helperFunctions";
+import { showLocalDate, showLocalTime, replaceIcons, formatReminderTime } from "../../helperFunctions";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -13,42 +13,85 @@ import { GoogleApiWrapper, Marker } from "google-maps-react";
 
 const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const WeatherPage = ({ google }) => {
+const WeatherPage = (props) => {
 
     const [coords, setCoords] = useState({ lat: 0, lng: 0 });
     const [weatherTimes, setWeatherTimes] = useState([]);
     const [date, setDate] = useState("");
     const [noResults, setNoResults] = useState(false);
-    // const [selectedWeatherTime, setSelectedWeatherTime] = useState(0);
-    const [selectedTimeReminder, setSelectedTimeReminder] = useState({ seletedTime: 0, reminderId: "", reminderTime: 0 });
-    // const [reminder, setReminder] = useState({ time: 0, walk: "" });
+    const [selectedTime, setSelectedTime] = useState({ selectedTime: 0, reminderId: "", reminderTime: 0 });
     const weatherKey = process.env.REACT_APP_WEATHER_API_KEY;
 
-    const toggleWeatherTimeSelected = (weatherId) => {
+    const myUserId = "e9f9080b-4626-41db-8504-90896859f8e5";
+    // const myReminderId = "9af357f1-67cc-4747-a21a-9a74113d7780";
 
-        let copySelectedTimeReminder = { ...selectedTimeReminder };
+    const postReminder = async (reminderTime) => {
 
-        if (selectedTimeReminder.time !== weatherId) {
-            copySelectedTimeReminder.time = weatherId;
+        const formattedReminder = formatReminderTime(reminderTime);
+
+        const newTime = {
+            reminderTime: formattedReminder
+        };
+
+        const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`, newTime);
+
+        let copySelectedTime = { ...selectedTime };
+        copySelectedTime.reminderId = addReminder.data.reminderId;
+        copySelectedTime.reminderTime = reminderTime;
+        setSelectedTime(copySelectedTime);
+    };
+
+    const updateReminder = async (reminderTime) => {
+
+        const formattedReminder = formatReminderTime(reminderTime);
+
+        const updatedTime = {
+            reminderTime: formattedReminder
+        };
+
+        const updateReminder = await axios.put(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders/${selectedTime.reminderId}`, updatedTime);
+        console.log(updateReminder);
+        let copySelectedTime = { ...selectedTime };
+        copySelectedTime.reminderTime = reminderTime;
+        setSelectedTime(copySelectedTime);
+    };
+
+    const deleteReminder = async () => {
+        const deleteReminder = await axios.delete(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders/${selectedTime.reminderId}`);
+        console.log(deleteReminder);
+        let copySelectedTime = { ...selectedTime };
+        copySelectedTime.selectedTime = 0;
+        copySelectedTime.reminderTime = 0;
+        copySelectedTime.reminderId = 0;
+        setSelectedTime(copySelectedTime);
+    };
+
+    const toggleSelectedTime = (weatherId) => {
+
+        let copySelectedTime = { ...selectedTime };
+
+        if (selectedTime.selectedTime !== weatherId) {
+            copySelectedTime.selectedTime = weatherId;
+            setSelectedTime(copySelectedTime);
 
         } else {
-            copySelectedTimeReminder.time = 0;
-            copySelectedTimeReminder.reminderTime = 0;
-        }
 
-        setSelectedTimeReminder(copySelectedTimeReminder);
+            deleteReminder();
+        }
 
     };
 
     const toggleReminder = () => {
 
-        let copySelectedTimeReminder = { ...selectedTimeReminder };
+        if ((selectedTime.selectedTime !== selectedTime.reminderTime) && !selectedTime.reminderId) {
 
-        if (selectedTimeReminder.time) {
-            copySelectedTimeReminder.reminderTime = selectedTimeReminder.time;
+            postReminder(selectedTime.selectedTime);
+
+        } else if ((selectedTime.selectedTime !== selectedTime.reminderTime) && selectedTime.reminderId) {
+
+            updateReminder(selectedTime.selectedTime);
         }
 
-        setSelectedTimeReminder(copySelectedTimeReminder);
     };
 
     const getCoords = useCallback(async () => {
@@ -139,7 +182,7 @@ const WeatherPage = ({ google }) => {
                     <GoogleMapWeather
                         centerAroundCurrentLocation={false}
                         currentLocation={coords}
-                        google={google}
+                        google={props.google}
                         zoom={13}
                         draggable={false}
                         disableDoubleClickZoom={true}
@@ -151,17 +194,16 @@ const WeatherPage = ({ google }) => {
 
             <WeatherContainer
                 weatherTimes={weatherTimes}
-                selectedWeatherTime={selectedTimeReminder.time}
-                toggleWeatherTimeSelected={toggleWeatherTimeSelected}
-                // reminder={selectedTimeReminder.reminder}
-                reminderTime={selectedTimeReminder.reminderTime}
+                selectedWeatherTime={selectedTime.selectedTime}
+                toggleWeatherTimeSelected={toggleSelectedTime}
+                reminderTime={selectedTime.reminderTime}
                 showLocalTime={showLocalTime}
             />
 
             <Row>
                 <Col>
                     <div xs={12} className="button__container" >
-                        <Button disabled={selectedTimeReminder.time ? false : true} onClick={toggleReminder} variant="single">Set Reminder</Button>
+                        <Button disabled={selectedTime.selectedTime ? false : true} onClick={toggleReminder} variant="single">Set Reminder</Button>
                     </div>
                 </Col>
             </Row>
