@@ -8,52 +8,25 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import "../Button/Button.css";
+import { Redirect } from "react-router-dom";
+import axios from "axios";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const AddWalk = (props) => {
+const AddWalk = (props, userId) => {
+    //Temporarily hardcoding this untill walkId and userId is passed through props from previous page.
+    userId = "3bd4d097-8193-11eb-b706-062d232c43b8";
     const [walkName, setWalkName] = useState("");
     const [item, setItem] = useState(
         {
-            user: {
-                id: 1,
-                firstName: "Alun",
-                lastName: "Groome",
-                avgRatings:
-                {
-                    Jan: 1,
-                    Feb: 3,
-                    Mar: 4,
-                    Apr: 4,
-                    May: 5,
-                    Jun: 1,
-                    Jul: 5,
-                    Aug: 3,
-                    Sep: 5,
-                    Oct: 4,
-                    Nov: 5,
-                    Dec: 2
-                }
-            }
-            , routeMarkers: [
-            ],
-            showingInfoWindow: false,
-            activeMarker: {},
-            selectedPlace: {},
-            walkName: ""
+            routeMarkers: [
+            ]
         }
     );
-    const onClose = props => {
-        if (item.showingInfoWindow) {
-            setItem({
-                showingInfoWindow: false,
-                activeMarker: null
-            });
-        }
-    };
+
     const onMapClick = (mapProps, map, clickEvent) => {
         const updatedMarkers = [...item.routeMarkers];
-        updatedMarkers.push({ key: item.routeMarkers.length, lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() });
+        updatedMarkers.push({ Sequence: item.routeMarkers.length, lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() });
         setItem({ routeMarkers: updatedMarkers });
     };
     const handleChange = (event) => {
@@ -62,25 +35,29 @@ const AddWalk = (props) => {
         }
     };
     const addWalk = () => {
-        //Add routeMarkers to DB here + walkName
-        console.log("insert routeMarkers to DB");
-        //Clear route from screen
-        setItem({
-            routeMarkers: [],
-            activeMarker: null,
-            selectedPlace: {},
-            showingInfoWindow: true,
-            walkName: ""
-        });
+        if (item.routeMarkers.length > 1 && walkName.length > 0) {
+            const newWalk = {
+                WalkName: walkName,
+                UserID: userId,
+                Routes: item.routeMarkers
+            };
+            console.log("insert routeMarkers to DB");
+            console.log(newWalk);
+
+            axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/`, newWalk)
+                //.then(() => axios.get(`https://e19u87cs8e.execute-api.eu-west-2.amazonaws.com/dev/users/${userId}/tasks`))
+                //.then(response => setTasks(response.data))
+                .catch(error => console.log(error));
+            //Clear route from screen
+            setItem({
+                routeMarkers: [],
+            });
+        }
     };
     const clearWalk = () => {
         //Clear route from screen
         setItem({
             routeMarkers: [],
-            activeMarker: null,
-            selectedPlace: {},
-            showingInfoWindow: true,
-            walkName: ""
         });
     };
     let lat = 0;
@@ -105,25 +82,13 @@ const AddWalk = (props) => {
                         disableDoubleClickZoom={false}
                         onClick={onMapClick}
                     >
-                        {/*<Marker onClick={onMarkerClick} lat={markerLat} lng={markerLng} visible={renderMarker} clickable={markerClickable} />*/}
-                        {/*state.markers.map((coords, index) => <Marker key={`marker-${index}`} position={coords} />)*/}
                         {console.log(item.routeMarkers)}
                         {item.routeMarkers.map((coords, index) => {
                             if (index === 0 || index === item.routeMarkers.length - 1) {
-                                return <Marker key={`marker-${index}`} position={coords} />;
+                                return <Marker Sequence={`marker-${index}`} position={coords} />;
                             }
                             return null;
                         })}
-                        {/*<Marker onClick={onMarkerClick} name={"Current Location"} />*/}
-                        <InfoWindow
-                            marker={item.activeMarker}
-                            visible={item.showingInfoWindow}
-                            onClose={onClose}
-                        >
-                            <div>
-                                <h4>{item.selectedPlace}</h4>
-                            </div>
-                        </InfoWindow>
                         <Polyline
                             visible={true}
                             path={item.routeMarkers}

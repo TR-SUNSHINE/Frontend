@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,10 +7,12 @@ import { Link } from "react-router-dom";
 import "../../index.css";
 import "../LoginPage/LoginPage.css";
 import { Form } from "react-bootstrap";
+import axios from "axios";
+import idContext from "../Routes/Routes";
 
 const LoginPage = () => {
 
-    const [details, setDetails] = useState({ email: "", emailError: "" });
+    const [details, setDetails] = useState({ email: "", id: "", userName: "", emailError: "", loginError: "" });
 
     const handleChange = (event) => {
 
@@ -18,6 +21,8 @@ const LoginPage = () => {
         if (event.target.name === "email") {
 
             copyDetails.emailError = "";
+            copyDetails.loginError = "";
+
             copyDetails.email = event.target.value;
 
             setDetails(copyDetails);
@@ -25,7 +30,7 @@ const LoginPage = () => {
     };
 
     const handleSubmit = event => {
-        console.log("handleSubmit", details);
+        console.log("handleSubmit --> ", details);
 
         event.preventDefault();
 
@@ -36,13 +41,40 @@ const LoginPage = () => {
         }
 
         if (copyDetails.emailError) {
-
             setDetails(copyDetails);
+        } else {
 
-        }
+            const email = details.email;
+            const myData = [];
+            const response = "";
+            axios
+                .get(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/users/${email}/user`)
+                // .then(response => setDetails(response.data))
+                .then((response) => {
+                    setDetails(response.data);
+                    if (response.data.length === 1) {
+                        console.log("userId= ", response.data[0].id);
+                    } else {
+                        console.log("**ERROR**");
+                        copyDetails.loginError = "Unable to login";
+                        details.loginError = "Unable to login";
+                        setDetails(copyDetails);
+                        console.log("copyDetails:", copyDetails);
+                        console.log("details:", details);
+
+                    };
+
+                })
+                .catch(error => {
+                    if (error.response) {
+                        console.log(error.response.data);
+                        copyDetails.loginError = "Error when submittig details - Unable to login";
+                        setDetails(copyDetails);
+                    };
+
+                });
+        };
     };
-
-    console.log(details);
     return (
         <Row>
             <Col>
@@ -67,9 +99,14 @@ const LoginPage = () => {
                         <div className="form-error">
                             {details.emailError && <p>{details.emailError} </p>}
                         </div>
-
                     </Form.Group>
-
+                    <Form.Group className="login-error">
+                        <Row>
+                            <div>
+                                {details.loginError && <p>{details.loginError} </p>}
+                            </div>
+                        </Row>
+                    </Form.Group>
                     <Row>
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--left" >
@@ -79,17 +116,14 @@ const LoginPage = () => {
 
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--right" >
-                                <Button disabled={details.email && details.password ? false : true} variant="double" type="submit" >
+                                <Button disabled={details.email ? false : true} variant="double" type="submit" >
                                     Login
                                 </Button>
                             </div>
                         </Col>
                     </Row>
                 </Form>
-
-
             </Col>
-
         </Row >
     );
 };
