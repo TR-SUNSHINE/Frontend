@@ -8,12 +8,10 @@ import "../../index.css";
 import "../LoginPage/LoginPage.css";
 import { Form } from "react-bootstrap";
 import axios from "axios";
-// import { DetailsContext } from "../Context/Context";
 
-function LoginPage() {
+const LoginPage = (props) => {
 
     const [details, setDetails] = useState({ email: "", id: "", userName: "", emailError: "", loginError: "" });
-    // const [context, setContext] = useContext(DetailsContext);
 
     const handleChange = (event) => {
 
@@ -53,11 +51,8 @@ function LoginPage() {
                     setDetails(response.data);
                     if (response.data.length === 1) {
                         console.log("user Id= ", response.data[0].id);
-                        // setContext(response.data[0].id);
-                        // console.log("context :", context);
-                        //redirecting to weatherPage
-                        window.location.href = "/WeatherPage/";
-
+                        props.setUserId(response.data[0].id);
+                        // window.location.href = "/WeatherPage/";
                     } else {
                         details.loginError = "Sorry! Unable to login";
                         setDetails(copyDetails);
@@ -128,6 +123,8 @@ function LoginPage() {
             </Col>
         </Row>
     );
-}
+
+};
+
 
 export default LoginPage;

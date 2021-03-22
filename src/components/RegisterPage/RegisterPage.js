@@ -7,13 +7,11 @@ import "../../index.css";
 import "../RegisterPage/RegisterPage.css";
 import "../Button/Button.css";
 import { Form } from "react-bootstrap";
-// import { DetailsContext } from "../Context/Context";
 import axios from "axios";
 
-const RegisterPage = () => {
+const RegisterPage = (props) => {
 
     const [details, setDetails] = useState({ userName: "", userNameError: "", email: "", emailError: "" });
-    // const [context, setContext] = useContext(DetailsContext);
 
     const handleChange = (event) => {
 
@@ -66,26 +64,10 @@ const RegisterPage = () => {
                     console.log("status: ", response.status);
                     console.log("data: ", response.data);
                     window.location.href = "/WeatherPage/";
+                    //                    props.setUserId("any id");
                 })
                 .catch(error => console.log(error));
 
-            // axios
-            //     .post(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/user/${newUser}/user`, newUser)
-            //     .then(response => {
-            //         axios.get(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/users/${email}/user`)
-            //             .then(response => {
-            //                 setDetails(response.data);
-            //                 setContext(response.data[0].id);
-            //             });
-
-            //     })
-            //     .catch(error => {
-            //         if (error.response) {
-            //             console.log(error.response.data);
-            //             copyDetails.loginError = "Error when submittig details - Unable to register";
-            //             setDetails(copyDetails);
-            //         };
-            //     });
         };
     };
     return (
