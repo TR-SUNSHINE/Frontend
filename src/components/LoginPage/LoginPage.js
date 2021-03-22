@@ -8,13 +8,10 @@ import "../../index.css";
 import "../LoginPage/LoginPage.css";
 import { Form } from "react-bootstrap";
 import axios from "axios";
-import { Context } from "../Context/Context";
 
-export default function LoginPage() {
-    // const LoginPage = () => {
+const LoginPage = (props) => {
 
     const [details, setDetails] = useState({ email: "", id: "", userName: "", emailError: "", loginError: "" });
-    const [context, setContext] = useContext(Context);
 
     const handleChange = (event) => {
 
@@ -54,10 +51,10 @@ export default function LoginPage() {
                     setDetails(response.data);
                     if (response.data.length === 1) {
                         console.log("user Id= ", response.data[0].id);
-                        setContext(response.data[0].id);
+                        props.setUserId(response.data[0].id);
+                        // window.location.href = "/WeatherPage/";
                     } else {
-                        console.log("**ERROR**");
-                        details.loginError = "Unable to login";
+                        details.loginError = "Sorry! Unable to login";
                         setDetails(copyDetails);
                         console.log("copyDetails:", copyDetails);
                         console.log("details:", details);
@@ -74,6 +71,7 @@ export default function LoginPage() {
                 });
         };
     };
+
     return (
         <Row>
             <Col>
@@ -100,7 +98,7 @@ export default function LoginPage() {
                         </div>
                     </Form.Group>
                     <Form.Group>
-                        <Row >
+                        <Row>
                             <div className="form-lerror">
                                 {details.loginError && <p>{details.loginError} </p>}
                             </div>
@@ -108,14 +106,14 @@ export default function LoginPage() {
                     </Form.Group>
                     <Row>
                         <Col xs={12} sm={6} md={6}>
-                            <div className="button__container button__container--left" >
+                            <div className="button__container button__container--left">
                                 <Button variant="double"><Link className="button--link" to="WelcomePage">Back</Link></Button>
                             </div>
                         </Col>
 
                         <Col xs={12} sm={6} md={6}>
-                            <div className="button__container button__container--right" >
-                                <Button disabled={details.email ? false : true} variant="double" type="submit" >
+                            <div className="button__container button__container--right">
+                                <Button disabled={details.email ? false : true} variant="double" type="submit">
                                     Login
                                 </Button>
                             </div>
@@ -123,8 +121,10 @@ export default function LoginPage() {
                     </Row>
                 </Form>
             </Col>
-        </Row >
+        </Row>
     );
+
 };
 
-// export default LoginPage;
+
+export default LoginPage;

@@ -19,8 +19,8 @@ import LoginPage from "./components/LoginPage/LoginPage";
 function App() {
 
   const [selectedTime, setSelectedTime] = useState({ selectedTime: 0, reminderId: "", reminderTime: 0 });
-
-  const [userId, setUserId] = useState("e9f9080b-4626-41db-8504-90896859f8e5");
+  const [userId, setUserId] = useState("");
+  //  const [userId, setUserId] = useState("2804f8e1-8b27-4d4a-841b-64b3b3d440be");
 
   const getReminders = async () => {
     console.log(userId);
@@ -70,12 +70,24 @@ function App() {
                 selectedTime={selectedTime}
                 setSelectedTime={setSelectedTime}
                 userId={userId}
+                {...props}
               />}
             />
             <Route exact path="/MyWalksPage" component={MyWalksPage} />
             <Route exact path="/NotFoundPage" component={NotFoundPage} />
-            <Route exact path="/RegisterPage" component={RegisterPage} />
-            <Route exact path="/LoginPage" component={LoginPage} />
+            <Route exact path="/RegisterPage" render={() =>
+              <RegisterPage
+                userId={userId}
+                setUserId={setUserId}
+              />}
+            />
+            <Route exact path="/LoginPage" render={(props) =>
+              <LoginPage
+                userId={userId}
+                setUserId={setUserId}
+                {...props}
+              />}
+            />
           </Switch>
         </BrowserRouter>
       </Container>
