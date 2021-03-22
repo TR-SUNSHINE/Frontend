@@ -17,14 +17,13 @@ export class GoogleMapWeather extends React.Component {
 
         }
 
-        if (prevProps.currentLocation.lat !== this.props.currentLocation.lat) {
+        else {
+            if (prevProps.currentLocation.lat !== this.props.currentLocation.lat) {
 
-            this.recenterMap();
+                this.recenterMap();
+            }
         }
-
     };
-
-
 
     loadMap() {
 
@@ -73,7 +72,6 @@ export class GoogleMapWeather extends React.Component {
     renderChildren() {
         const { children } = this.props;
         if (!children) return;
-
         return React.Children.map(children, c => {
             if (!c) return;
 
