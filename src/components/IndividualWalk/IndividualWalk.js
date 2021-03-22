@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import RatingsBar from "../RatingsBar/RatingsBar";
 import Graph from "../Graph/Graph";
 import GoogleMap from "../Map/GoogleMap";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { GoogleApiWrapper, Marker, Polyline } from "google-maps-react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -22,37 +22,18 @@ const IndividualWalk = (props, walkId, userId) => {
     const [noResults, setNoResults] = useState(false);
     const [routeMarkers, setRouteMarkers] = useState(
         []
-    ); //Default state
+    );
     const [avgRatingPerMonth, setAvgRatingPerMonth] = useState(
-        {
-            Jan: 1,
-            Feb: 3,
-            Mar: 4,
-            Apr: 4,
-            May: 5,
-            Jun: 1,
-            Jul: 5,
-            Aug: 3,
-            Sep: 5,
-            Oct: 4,
-            Nov: 5,
-            Dec: 2
-        }
-    ); //Default state
-
+        []
+    );
     const addRating = () => {
         const newRating = {
             UserId: userId,
             WalkId: walkId,
             WalkRating: Number(stars)
         };
-        //Add routeMarkers to DB here
-        console.log("insert rating to DB");
         console.log(newRating);
-
         axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/ratings`, newRating)
-            //.then(() => axios.get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/ratings`))
-            //.then(response => setTasks(response.data))
             .catch(error => console.log(error));
     };
     function handleChange(newValue) {
@@ -73,35 +54,46 @@ const IndividualWalk = (props, walkId, userId) => {
     }
     // Only run this code once, when the component first mounts
     useEffect(() => {
-        //A function to get the tasks
         axios
             .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/${walkId}`)
             .then(
-                //if the request is successful
                 response => setRouteMarkers(response.data[0].routes)
             )
             .catch(
-                //if the request returns an error
                 error => console.log(error)
             );
-        /*
-                axios
-                    .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walk/rating/${walkId}`)
-                    .then(
-                        //if the request is successful
-                        response => setAvgRatingPerMonth(response.data[0].avgRating)
-                    )
-                    .catch(
-                        //if the request returns an error
-                        error => console.log(error));
-         */
     },
         // the array would normally contain values that may change, and React would run the above code WHEN that value changes
         // "Array of dependencies"
         []
     );
+    useEffect(() => {
+        axios
+            .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/rating/${walkId}`)
+            .then(
+                console.log("alun0")
+            )
+            .then(
+                response => setAvgRatingPerMonth(response.data)
+            )
+            .catch(
+                error => console.log(error));
+    },
+        []
+    );
+    let renderGraph = false;
+    if (avgRatingPerMonth.length > 0) {
+        renderGraph = true;
+        console.log("renderGraph true");
+    }
+    else {
+        renderGraph = false;
+        console.log("renderGraph false");
+    }
     return (
         <>
+            { console.log("Individual walk render method")};
+            {console.log(avgRatingPerMonth)};
             <Row>
                 <Col>
                     <h3 className="heading heading--main">Individual Walk</h3>
@@ -136,7 +128,7 @@ const IndividualWalk = (props, walkId, userId) => {
             <Row>
                 <Col>
                     <h4 className="heading heading--secondary">Walk Statistics</h4>
-                    <Graph data={avgRatingPerMonth} />
+                    {renderGraph === true && <Graph data={avgRatingPerMonth} />}
                 </Col>
             </Row>
             <Row>
