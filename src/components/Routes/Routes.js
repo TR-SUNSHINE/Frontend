@@ -23,7 +23,7 @@ const Routes = (props) => {
                     <Route exact path="/IndividualWalk" component={IndividualWalk} />
                     <Route exact path="/AddWalk" component={AddWalk} />
                     <Route exact path="/WeatherPage"
-                        render={props => <WeatherPage {...props} />} />
+                        render={(props) => (<WeatherPage {...props} />)} />
                     <Route exact path="/MyWalksPage" component={MyWalksPage} />
                     <Route exact path="/NotFoundPage" component={NotFoundPage} />
                     <Route exact path="/RegisterPage" component={RegisterPage} />
