@@ -7,6 +7,7 @@ import "../../index.css";
 import "../RegisterPage/RegisterPage.css";
 import "../Button/Button.css";
 import { Form } from "react-bootstrap";
+
 import axios from "axios";
 
 const RegisterPage = () => {
