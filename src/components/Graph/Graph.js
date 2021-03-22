@@ -12,12 +12,6 @@ export default class Graph extends Component {
     chartRef = React.createRef();
 
     componentDidMount() {
-        console.log("graph method componentDidMount");
-        console.log(this.data);
-
-        console.log(this.data.find(element => element.monthR === "Feb"));
-        console.log(this.data.find(element => element.monthR === "Mar"));
-
         const myChartRef = this.chartRef.current.getContext("2d");
         //data.avgRatings.Feb
         new Chart(myChartRef, {
