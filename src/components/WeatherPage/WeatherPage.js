@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import { showLocalDate, showLocalTime, replaceIcons, formatReminderTime, formatLocalDateTime } from "../../helperFunctions";
+import { showLocalDate, showLocalTime, replaceIcons, formatReminderTime } from "../../helperFunctions";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -19,10 +19,7 @@ const WeatherPage = (props) => {
     const [weatherTimes, setWeatherTimes] = useState([]);
     const [date, setDate] = useState("");
     const [noResults, setNoResults] = useState(false);
-    const [selectedTime, setSelectedTime] = useState({ selectedTime: 0, reminderId: "", reminderTime: 0 });
     const weatherKey = process.env.REACT_APP_WEATHER_API_KEY;
-
-    const myUserId = "e9f9080b-4626-41db-8504-90896859f8e5";
 
     const postReminder = async (reminderTime) => {
 
@@ -32,12 +29,12 @@ const WeatherPage = (props) => {
             reminderTime: formattedReminder
         };
 
-        const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`, newTime);
+        const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.userId}/reminders`, newTime);
 
-        let copySelectedTime = { ...selectedTime };
+        let copySelectedTime = { ...props.selectedTime };
         copySelectedTime.reminderId = addReminder.data.reminderId;
         copySelectedTime.reminderTime = reminderTime;
-        setSelectedTime(copySelectedTime);
+        props.setSelectedTime(copySelectedTime);
     };
 
     const updateReminder = async (reminderTime) => {
@@ -48,29 +45,31 @@ const WeatherPage = (props) => {
             reminderTime: formattedReminder
         };
 
-        await axios.put(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders/${selectedTime.reminderId}`, updatedTime);
-        let copySelectedTime = { ...selectedTime };
+        await axios.put(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.userId}/reminders/${props.selectedTime.reminderId}`, updatedTime);
+
+        let copySelectedTime = { ...props.selectedTime };
         copySelectedTime.reminderTime = reminderTime;
-        setSelectedTime(copySelectedTime);
+        props.setSelectedTime(copySelectedTime);
     };
 
     const deleteReminder = async () => {
-        const deleteReminder = await axios.delete(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders/${selectedTime.reminderId}`);
-        console.log(deleteReminder);
-        let copySelectedTime = { ...selectedTime };
+
+        await axios.delete(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.userId}/reminders/${props.selectedTime.reminderId}`);
+
+        let copySelectedTime = { ...props.selectedTime };
         copySelectedTime.selectedTime = 0;
         copySelectedTime.reminderTime = 0;
         copySelectedTime.reminderId = 0;
-        setSelectedTime(copySelectedTime);
+        props.setSelectedTime(copySelectedTime);
     };
 
     const toggleSelectedTime = (weatherId) => {
 
-        let copySelectedTime = { ...selectedTime };
+        let copySelectedTime = { ...props.selectedTime };
 
-        if (selectedTime.selectedTime !== weatherId) {
+        if (props.selectedTime.selectedTime !== weatherId) {
             copySelectedTime.selectedTime = weatherId;
-            setSelectedTime(copySelectedTime);
+            props.setSelectedTime(copySelectedTime);
 
         } else {
 
@@ -81,13 +80,13 @@ const WeatherPage = (props) => {
 
     const toggleReminder = () => {
 
-        if ((selectedTime.selectedTime !== selectedTime.reminderTime) && !selectedTime.reminderId) {
+        if ((props.selectedTime.selectedTime !== props.selectedTime.reminderTime) && !props.selectedTime.reminderId) {
 
-            postReminder(selectedTime.selectedTime);
+            postReminder(props.selectedTime.selectedTime);
 
-        } else if ((selectedTime.selectedTime !== selectedTime.reminderTime) && selectedTime.reminderId) {
+        } else if ((props.selectedTime.selectedTime !== props.selectedTime.reminderTime) && props.selectedTime.reminderId) {
 
-            updateReminder(selectedTime.selectedTime);
+            updateReminder(props.selectedTime.selectedTime);
         }
 
     };
@@ -118,7 +117,6 @@ const WeatherPage = (props) => {
 
             } catch (error) {
 
-                console.log("in error weather page");
                 if (error.message === "User denied Geolocation") {
                     console.log(error);
                     setCoords({ lat: 53.4809, lng: -2.2374 });
@@ -192,16 +190,16 @@ const WeatherPage = (props) => {
 
             <WeatherContainer
                 weatherTimes={weatherTimes}
-                selectedWeatherTime={selectedTime.selectedTime}
+                selectedWeatherTime={props.selectedTime.selectedTime}
                 toggleWeatherTimeSelected={toggleSelectedTime}
-                reminderTime={selectedTime.reminderTime}
+                reminderTime={props.selectedTime.reminderTime}
                 showLocalTime={showLocalTime}
             />
 
             <Row>
                 <Col>
                     <div xs={12} className="button__container" >
-                        <Button disabled={selectedTime.selectedTime ? false : true} onClick={toggleReminder} variant="single">Set Reminder</Button>
+                        <Button disabled={props.selectedTime.selectedTime ? false : true} onClick={toggleReminder} variant="single">Set Reminder</Button>
                     </div>
                 </Col>
             </Row>
