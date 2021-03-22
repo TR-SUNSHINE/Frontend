@@ -6,12 +6,13 @@ export default class Graph extends Component {
     constructor(props) {
         super(props);
         this.data = props.data;
+        console.log("graph constructor");
+        console.log(props.data);
     }
     chartRef = React.createRef();
 
     componentDidMount() {
         const myChartRef = this.chartRef.current.getContext("2d");
-
         //data.avgRatings.Feb
         new Chart(myChartRef, {
             type: "line",
@@ -31,18 +32,18 @@ export default class Graph extends Component {
                     "Dec"],
                 datasets: [{
                     data: [
-                        this.data.Jan,
-                        this.data.Feb,
-                        this.data.Mar,
-                        this.data.Apr,
-                        this.data.May,
-                        this.data.Jun,
-                        this.data.Jul,
-                        this.data.Aug,
-                        this.data.Sep,
-                        this.data.Oct,
-                        this.data.Nov,
-                        this.data.Dec
+                        this.data.find(element => element.monthR === "Jan").monthAveRating,
+                        this.data.find(element => element.monthR === "Feb").monthAveRating,
+                        this.data.find(element => element.monthR === "Mar").monthAveRating,
+                        this.data.find(element => element.monthR === "Apr").monthAveRating,
+                        this.data.find(element => element.monthR === "May").monthAveRating,
+                        this.data.find(element => element.monthR === "Jun").monthAveRating,
+                        this.data.find(element => element.monthR === "Jul").monthAveRating,
+                        this.data.find(element => element.monthR === "Aug").monthAveRating,
+                        this.data.find(element => element.monthR === "Sep").monthAveRating,
+                        this.data.find(element => element.monthR === "Oct").monthAveRating,
+                        this.data.find(element => element.monthR === "Nov").monthAveRating,
+                        this.data.find(element => element.monthR === "Dec").monthAveRating
                     ],
                     label: "Star Rating Over Time",
                     borderColor: "#296EB4",
@@ -106,8 +107,9 @@ export default class Graph extends Component {
             }
         });
     }
-
     render() {
+        console.log("graph method render");
+        console.log(this.data);
         return (
             <div className={classes.graphContainer}>
                 <canvas
