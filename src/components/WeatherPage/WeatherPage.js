@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import { showLocalDate, showLocalTime, replaceIcons } from "../../helperFunctions";
+import { showLocalDate, showLocalTime, replaceIcons, formatReminderTime } from "../../helperFunctions";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -13,31 +13,80 @@ import { GoogleApiWrapper, Marker } from "google-maps-react";
 
 const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const WeatherPage = ({ google }) => {
+const WeatherPage = (props) => {
 
     const [coords, setCoords] = useState({ lat: 0, lng: 0 });
     const [weatherTimes, setWeatherTimes] = useState([]);
     const [date, setDate] = useState("");
     const [noResults, setNoResults] = useState(false);
-    const [selectedWeatherTime, setSelectedWeatherTime] = useState(0);
-    const [reminder, setReminder] = useState({ time: 0, walk: "" });
     const weatherKey = process.env.REACT_APP_WEATHER_API_KEY;
 
-    const toggleWeatherTimeSelected = (weatherId) => {
+    const postReminder = async (reminderTime) => {
 
-        if (selectedWeatherTime !== weatherId) {
-            setSelectedWeatherTime(weatherId);
+        const formattedReminder = formatReminderTime(reminderTime);
+
+        const newTime = {
+            reminderTime: formattedReminder
+        };
+
+        const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.userId}/reminders`, newTime);
+
+        let copySelectedTime = { ...props.selectedTime };
+        copySelectedTime.reminderId = addReminder.data.reminderId;
+        copySelectedTime.reminderTime = reminderTime;
+        props.setSelectedTime(copySelectedTime);
+    };
+
+    const updateReminder = async (reminderTime) => {
+
+        const formattedReminder = formatReminderTime(reminderTime);
+
+        const updatedTime = {
+            reminderTime: formattedReminder
+        };
+
+        await axios.put(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.userId}/reminders/${props.selectedTime.reminderId}`, updatedTime);
+
+        let copySelectedTime = { ...props.selectedTime };
+        copySelectedTime.reminderTime = reminderTime;
+        props.setSelectedTime(copySelectedTime);
+    };
+
+    const deleteReminder = async () => {
+
+        await axios.delete(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.userId}/reminders/${props.selectedTime.reminderId}`);
+
+        let copySelectedTime = { ...props.selectedTime };
+        copySelectedTime.selectedTime = 0;
+        copySelectedTime.reminderTime = 0;
+        copySelectedTime.reminderId = 0;
+        props.setSelectedTime(copySelectedTime);
+    };
+
+    const toggleSelectedTime = (weatherId) => {
+
+        let copySelectedTime = { ...props.selectedTime };
+
+        if (props.selectedTime.selectedTime !== weatherId) {
+            copySelectedTime.selectedTime = weatherId;
+            props.setSelectedTime(copySelectedTime);
+
         } else {
-            setSelectedWeatherTime(0);
-            setReminder({ time: 0, walk: "" });
+
+            deleteReminder();
         }
 
     };
 
     const toggleReminder = () => {
 
-        if (selectedWeatherTime) {
-            setReminder({ time: selectedWeatherTime, walk: "" });
+        if ((props.selectedTime.selectedTime !== props.selectedTime.reminderTime) && !props.selectedTime.reminderId) {
+
+            postReminder(props.selectedTime.selectedTime);
+
+        } else if ((props.selectedTime.selectedTime !== props.selectedTime.reminderTime) && props.selectedTime.reminderId) {
+
+            updateReminder(props.selectedTime.selectedTime);
         }
 
     };
@@ -68,7 +117,6 @@ const WeatherPage = ({ google }) => {
 
             } catch (error) {
 
-                console.log("in error weather page");
                 if (error.message === "User denied Geolocation") {
                     console.log(error);
                     setCoords({ lat: 53.4809, lng: -2.2374 });
@@ -130,7 +178,7 @@ const WeatherPage = ({ google }) => {
                     <GoogleMapWeather
                         centerAroundCurrentLocation={false}
                         currentLocation={coords}
-                        google={google}
+                        google={props.google}
                         zoom={13}
                         draggable={false}
                         disableDoubleClickZoom={true}
@@ -142,15 +190,16 @@ const WeatherPage = ({ google }) => {
 
             <WeatherContainer
                 weatherTimes={weatherTimes}
-                selectedWeatherTime={selectedWeatherTime} toggleWeatherTimeSelected={toggleWeatherTimeSelected}
-                reminder={reminder}
+                selectedWeatherTime={props.selectedTime.selectedTime}
+                toggleWeatherTimeSelected={toggleSelectedTime}
+                reminderTime={props.selectedTime.reminderTime}
                 showLocalTime={showLocalTime}
             />
 
             <Row>
                 <Col>
                     <div xs={12} className="button__container" >
-                        <Button disabled={selectedWeatherTime ? false : true} onClick={toggleReminder} variant="single">Set Reminder</Button>
+                        <Button disabled={props.selectedTime.selectedTime ? false : true} onClick={toggleReminder} variant="single">Set Reminder</Button>
                     </div>
                 </Col>
             </Row>

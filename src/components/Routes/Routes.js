@@ -10,9 +10,17 @@ import LoginPage from "../LoginPage/LoginPage";
 import TestIndividualWalk from "../Test/TestIndividualWalk";
 import TestAddWalk from "../Test/TestAddWalk";
 import TestWeatherPage from "../Test/TestWeatherPage";
-
+<<<<<<< HEAD
+=======
+import React from "react";
+>>>>>>> main
 
 const Routes = () => {
+
+<<<<<<< HEAD
+const Routes = () => {
+=======
+>>>>>>> main
 
     return (
         <div>
@@ -35,7 +43,10 @@ const Routes = () => {
                 </Switch>
             </BrowserRouter>
         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     );
 };
 export default Routes;
