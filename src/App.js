@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import Routes from "./components/Routes/Routes";
 
 function App() {
+
   return (
     <>
       <Header />
@@ -14,6 +15,7 @@ function App() {
         <Routes />
       </Container>
     </>
+
   );
 }
 export default App;
