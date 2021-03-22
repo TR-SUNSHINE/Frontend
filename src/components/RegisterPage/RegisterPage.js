@@ -65,6 +65,7 @@ const RegisterPage = () => {
                 .then(response => {
                     console.log("status: ", response.status);
                     console.log("data: ", response.data);
+                    window.location.href = "/WeatherPage/";
                 })
                 .catch(error => console.log(error));
 

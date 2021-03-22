@@ -55,6 +55,8 @@ function LoginPage() {
                         console.log("user Id= ", response.data[0].id);
                         // setContext(response.data[0].id);
                         // console.log("context :", context);
+                        //redirecting to weatherPage
+                        window.location.href = "/WeatherPage/";
 
                     } else {
                         details.loginError = "Sorry! Unable to login";
