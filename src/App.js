@@ -1,4 +1,5 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect } from "react";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { formatReminderTime, formatLocalDateTime } from "./helperFunctions";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
@@ -6,16 +7,24 @@ import "./App.css";
 import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Header from "./components/Header/Header";
-import Routes from "./components/Routes/Routes";
+import WelcomePage from "./components/WelcomePage/WelcomePage";
+import IndividualWalk from "./components/IndividualWalk/IndividualWalk";
+import AddWalk from "./components/AddWalk/AddWalk";
+import WeatherPage from "./components/WeatherPage/WeatherPage";
+import MyWalksPage from "./components/MyWalksPage/MyWalksPage";
+import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
+import RegisterPage from "./components/RegisterPage/RegisterPage";
+import LoginPage from "./components/LoginPage/LoginPage";
 
 function App() {
 
-  const myUserId = "e9f9080b-4626-41db-8504-90896859f8e5";
-  const [selectedTime, setSelectedTime] = useState({ selectedTime: 0, reminderId: "", reminderTime: 0, userId: "" });
+  const [selectedTime, setSelectedTime] = useState({ selectedTime: 0, reminderId: "", reminderTime: 0 });
+
+  const [userId, setUserId] = useState("e9f9080b-4626-41db-8504-90896859f8e5");
 
   const getReminders = async () => {
-
-    const reminders = await axios.get(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`);
+    console.log(userId);
+    const reminders = await axios.get(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${userId}/reminders`);
 
     if (reminders.data.length) {
 
@@ -46,14 +55,31 @@ function App() {
 
   return (
     <>
-
       <Header />
       <Container>
-        <Routes />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/">
+              <Redirect to="/WelcomePage" />
+            </Route>
+            <Route exact path="/WelcomePage" component={WelcomePage} />
+            <Route exact path="/IndividualWalk" component={IndividualWalk} />
+            <Route exact path="/AddWalk" component={AddWalk} />
+            <Route exact path="/WeatherPage" render={(props) =>
+              <WeatherPage
+                selectedTime={selectedTime}
+                setSelectedTime={setSelectedTime}
+                userId={userId}
+              />}
+            />
+            <Route exact path="/MyWalksPage" component={MyWalksPage} />
+            <Route exact path="/NotFoundPage" component={NotFoundPage} />
+            <Route exact path="/RegisterPage" component={RegisterPage} />
+            <Route exact path="/LoginPage" component={LoginPage} />
+          </Switch>
+        </BrowserRouter>
       </Container>
-
     </>
-
   );
 }
 export default App;
