@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -8,11 +8,13 @@ import "../../index.css";
 import "../LoginPage/LoginPage.css";
 import { Form } from "react-bootstrap";
 import axios from "axios";
-import idContext from "../Routes/Routes";
+import { Context } from "../Context/Context";
 
-const LoginPage = () => {
+export default function LoginPage() {
+    // const LoginPage = () => {
 
     const [details, setDetails] = useState({ email: "", id: "", userName: "", emailError: "", loginError: "" });
+    const [context, setContext] = useContext(Context);
 
     const handleChange = (event) => {
 
@@ -45,23 +47,20 @@ const LoginPage = () => {
         } else {
 
             const email = details.email;
-            const myData = [];
-            const response = "";
             axios
                 .get(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/users/${email}/user`)
                 // .then(response => setDetails(response.data))
                 .then((response) => {
                     setDetails(response.data);
                     if (response.data.length === 1) {
-                        console.log("userId= ", response.data[0].id);
+                        console.log("user Id= ", response.data[0].id);
+                        setContext(response.data[0].id);
                     } else {
                         console.log("**ERROR**");
-                        copyDetails.loginError = "Unable to login";
                         details.loginError = "Unable to login";
                         setDetails(copyDetails);
                         console.log("copyDetails:", copyDetails);
                         console.log("details:", details);
-
                     };
 
                 })
@@ -100,9 +99,9 @@ const LoginPage = () => {
                             {details.emailError && <p>{details.emailError} </p>}
                         </div>
                     </Form.Group>
-                    <Form.Group className="login-error">
-                        <Row>
-                            <div>
+                    <Form.Group>
+                        <Row >
+                            <div className="form-lerror">
                                 {details.loginError && <p>{details.loginError} </p>}
                             </div>
                         </Row>
@@ -128,4 +127,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+// export default LoginPage;
