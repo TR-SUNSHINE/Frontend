@@ -18,12 +18,8 @@ const AddWalk = (props, userId) => {
     userId = "3bd4d097-8193-11eb-b706-062d232c43b8";
     const [walkName, setWalkName] = useState("");
     const [item, setItem] = useState(
-        {
-            routeMarkers: [
-            ]
-        }
+        { routeMarkers: [] }
     );
-
     const onMapClick = (mapProps, map, clickEvent) => {
         const updatedMarkers = [...item.routeMarkers];
         updatedMarkers.push({ Sequence: item.routeMarkers.length, lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() });
@@ -41,32 +37,24 @@ const AddWalk = (props, userId) => {
                 UserID: userId,
                 Routes: item.routeMarkers
             };
-            console.log("insert routeMarkers to DB");
             console.log(newWalk);
-
             axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/`, newWalk)
-                //.then(() => axios.get(`https://e19u87cs8e.execute-api.eu-west-2.amazonaws.com/dev/users/${userId}/tasks`))
-                //.then(response => setTasks(response.data))
                 .catch(error => console.log(error));
-            //Clear route from screen
             setItem({
                 routeMarkers: [],
             });
         }
     };
     const clearWalk = () => {
-        //Clear route from screen
         setItem({
             routeMarkers: [],
         });
     };
     let lat = 0;
     let lng = 0;
-
     //Default Manchester
     lat = 53.47783;
     lng = -2.24317;
-
     return (
         <>
             <Row>

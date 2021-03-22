@@ -7,14 +7,12 @@
   border: 1px solid #296eb4;
 }
 
-
 .form-label{
   font-size: 18px;
   margin-top: 7px;
   margin-bottom:5px;
   text-align: left;
 }
-
 
 .Form.Control {
   border: 1px solid #fdbb33
@@ -24,11 +22,11 @@
 .button__container--center {
 text-align: center;
 padding: 1rem;
-
 }  
 
-.button--form {
-  min-width: 120px;
-  max-width: 120px;
-}  
-
+.form-lerror {
+  color: red;
+  font-size: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
