@@ -51,7 +51,9 @@ const LoginPage = (props) => {
                     setDetails(response.data);
                     if (response.data.length === 1) {
                         console.log("user Id= ", response.data[0].id);
-                        props.setUserId(response.data[0].id);
+                        const copyProps = { ...props.details };
+                        copyProps.userId = response.data[0].id;
+                        props.setDetails(copyProps);
                         // window.location.href = "/WeatherPage/";
                     } else {
                         details.loginError = "Sorry! Unable to login";
