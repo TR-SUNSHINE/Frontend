@@ -11,7 +11,7 @@ import Routes from "./components/Routes/Routes";
 function App() {
 
   const myUserId = "e9f9080b-4626-41db-8504-90896859f8e5";
-  const [selectedTime, setSelectedTime] = useState({ selectedTime: 0, reminderId: "", reminderTime: 0 });
+  const [selectedTime, setSelectedTime] = useState({ selectedTime: 0, reminderId: "", reminderTime: 0, userId: "" });
 
   const getReminders = async () => {
 
@@ -40,37 +40,18 @@ function App() {
 
   };
 
-
-  const postReminder = async (reminderTime) => {
-
-    const formattedReminder = formatReminderTime(reminderTime);
-
-    const newTime = {
-      reminderTime: formattedReminder
-    };
-
-    const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`, newTime);
-
-    let copySelectedTime = { ...selectedTime };
-    copySelectedTime.reminderId = addReminder.data.reminderId;
-    copySelectedTime.reminderTime = reminderTime;
-    setSelectedTime(copySelectedTime);
-  };
-
   useEffect(() => {
     getReminders();
-    // return () => {
-
-    // }
   }, []);
 
   return (
     <>
+
       <Header />
       <Container>
-        <Routes
-          postReminder={postReminder} />
+        <Routes />
       </Container>
+
     </>
 
   );

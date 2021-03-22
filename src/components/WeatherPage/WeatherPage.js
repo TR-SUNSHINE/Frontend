@@ -24,21 +24,21 @@ const WeatherPage = (props) => {
 
     const myUserId = "e9f9080b-4626-41db-8504-90896859f8e5";
 
-    // const postReminder = async (reminderTime) => {
+    const postReminder = async (reminderTime) => {
 
-    //     const formattedReminder = formatReminderTime(reminderTime);
+        const formattedReminder = formatReminderTime(reminderTime);
 
-    //     const newTime = {
-    //         reminderTime: formattedReminder
-    //     };
+        const newTime = {
+            reminderTime: formattedReminder
+        };
 
-    //     const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`, newTime);
+        const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders`, newTime);
 
-    //     let copySelectedTime = { ...selectedTime };
-    //     copySelectedTime.reminderId = addReminder.data.reminderId;
-    //     copySelectedTime.reminderTime = reminderTime;
-    //     setSelectedTime(copySelectedTime);
-    // };
+        let copySelectedTime = { ...selectedTime };
+        copySelectedTime.reminderId = addReminder.data.reminderId;
+        copySelectedTime.reminderTime = reminderTime;
+        setSelectedTime(copySelectedTime);
+    };
 
     const updateReminder = async (reminderTime) => {
 
@@ -48,8 +48,7 @@ const WeatherPage = (props) => {
             reminderTime: formattedReminder
         };
 
-        const updateReminder = await axios.put(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders/${selectedTime.reminderId}`, updatedTime);
-        console.log(updateReminder);
+        await axios.put(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${myUserId}/reminders/${selectedTime.reminderId}`, updatedTime);
         let copySelectedTime = { ...selectedTime };
         copySelectedTime.reminderTime = reminderTime;
         setSelectedTime(copySelectedTime);
@@ -84,7 +83,7 @@ const WeatherPage = (props) => {
 
         if ((selectedTime.selectedTime !== selectedTime.reminderTime) && !selectedTime.reminderId) {
 
-            // postReminder(selectedTime.selectedTime);
+            postReminder(selectedTime.selectedTime);
 
         } else if ((selectedTime.selectedTime !== selectedTime.reminderTime) && selectedTime.reminderId) {
 
