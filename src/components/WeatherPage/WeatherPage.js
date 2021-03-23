@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import { showLocalDate, showLocalTime, replaceIcons, formatReminderTime } from "../../helperFunctions";
+import { showLocalDate, showLocalTime, replaceIcons, formatReminderTime, formatLocalDateTime } from "../../helperFunctions";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -21,6 +21,33 @@ const WeatherPage = (props) => {
     const [noResults, setNoResults] = useState(false);
     const weatherKey = process.env.REACT_APP_WEATHER_API_KEY;
 
+    const getReminders = async () => {
+        console.log(props.details.userId);
+        const reminders = await axios.get(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders`);
+
+        if (reminders.data.length) {
+
+            const latestReminder = reminders.data[reminders.data.length - 1];
+            const latestReminderTime = formatLocalDateTime(latestReminder.reminderTime);
+            const timeNow = formatReminderTime(Math.floor(Date.now() / 1000)) + "Z";
+            const latestReminderTimeUnix = Date.parse(latestReminderTime) / 1000;
+
+            if (latestReminderTime > timeNow) {
+                const copyDetails = { ...props.details };
+                copyDetails.reminderTime = latestReminderTimeUnix;
+                copyDetails.reminderId = latestReminder.reminderId;
+                props.setDetails(copyDetails);
+
+            } else {
+                console.log("reminder in past");
+            }
+
+        }
+
+        console.log(reminders);
+
+    };
+
     const postReminder = async (reminderTime) => {
 
         const formattedReminder = formatReminderTime(reminderTime);
@@ -29,12 +56,12 @@ const WeatherPage = (props) => {
             reminderTime: formattedReminder
         };
 
-        const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.userId}/reminders`, newTime);
+        const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders`, newTime);
 
-        let copySelectedTime = { ...props.selectedTime };
-        copySelectedTime.reminderId = addReminder.data.reminderId;
-        copySelectedTime.reminderTime = reminderTime;
-        props.setSelectedTime(copySelectedTime);
+        let copyDetails = { ...props.details };
+        copyDetails.reminderId = addReminder.data.reminderId;
+        copyDetails.reminderTime = reminderTime;
+        props.setDetails(copyDetails);
     };
 
     const updateReminder = async (reminderTime) => {
@@ -45,31 +72,31 @@ const WeatherPage = (props) => {
             reminderTime: formattedReminder
         };
 
-        await axios.put(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.userId}/reminders/${props.selectedTime.reminderId}`, updatedTime);
+        await axios.put(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders/${props.details.reminderId}`, updatedTime);
 
-        let copySelectedTime = { ...props.selectedTime };
-        copySelectedTime.reminderTime = reminderTime;
-        props.setSelectedTime(copySelectedTime);
+        let copyDetails = { ...props.details };
+        copyDetails.reminderTime = reminderTime;
+        props.setDetails(copyDetails);
     };
 
     const deleteReminder = async () => {
 
-        await axios.delete(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.userId}/reminders/${props.selectedTime.reminderId}`);
+        await axios.delete(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders/${props.details.reminderId}`);
 
-        let copySelectedTime = { ...props.selectedTime };
-        copySelectedTime.selectedTime = 0;
-        copySelectedTime.reminderTime = 0;
-        copySelectedTime.reminderId = 0;
-        props.setSelectedTime(copySelectedTime);
+        let copyDetails = { ...props.details };
+        copyDetails.selectedTime = 0;
+        copyDetails.reminderTime = 0;
+        copyDetails.reminderId = 0;
+        props.setDetails(copyDetails);
     };
 
     const toggleSelectedTime = (weatherId) => {
 
-        let copySelectedTime = { ...props.selectedTime };
+        let copyDetails = { ...props.details };
 
-        if (props.selectedTime.selectedTime !== weatherId) {
-            copySelectedTime.selectedTime = weatherId;
-            props.setSelectedTime(copySelectedTime);
+        if (props.details.selectedTime !== weatherId) {
+            copyDetails.selectedTime = weatherId;
+            props.setDetails(copyDetails);
 
         } else {
 
@@ -80,13 +107,13 @@ const WeatherPage = (props) => {
 
     const toggleReminder = () => {
 
-        if ((props.selectedTime.selectedTime !== props.selectedTime.reminderTime) && !props.selectedTime.reminderId) {
+        if ((props.details.selectedTime !== props.details.reminderTime) && !props.details.reminderId) {
 
-            postReminder(props.selectedTime.selectedTime);
+            postReminder(props.details.selectedTime);
 
-        } else if ((props.selectedTime.selectedTime !== props.selectedTime.reminderTime) && props.selectedTime.reminderId) {
+        } else if ((props.details.selectedTime !== props.details.reminderTime) && props.details.reminderId) {
 
-            updateReminder(props.selectedTime.selectedTime);
+            updateReminder(props.details.selectedTime);
         }
 
     };
@@ -162,6 +189,10 @@ const WeatherPage = (props) => {
     }, [coords.lat, coords.lng, weatherKey]);
 
     useEffect(() => {
+        getReminders();
+    }, []);
+
+    useEffect(() => {
         getCoords();
         getWeather();
     }, [getWeather, getCoords]);
@@ -190,16 +221,16 @@ const WeatherPage = (props) => {
 
             <WeatherContainer
                 weatherTimes={weatherTimes}
-                selectedWeatherTime={props.selectedTime.selectedTime}
+                selectedWeatherTime={props.details.selectedTime}
                 toggleWeatherTimeSelected={toggleSelectedTime}
-                reminderTime={props.selectedTime.reminderTime}
+                reminderTime={props.details.reminderTime}
                 showLocalTime={showLocalTime}
             />
 
             <Row>
                 <Col>
                     <div xs={12} className="button__container" >
-                        <Button disabled={props.selectedTime.selectedTime ? false : true} onClick={toggleReminder} variant="single">Set Reminder</Button>
+                        <Button disabled={props.details.selectedTime ? false : true} onClick={toggleReminder} variant="single">Set Reminder</Button>
                     </div>
                 </Col>
             </Row>

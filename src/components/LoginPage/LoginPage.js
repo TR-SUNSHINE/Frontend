@@ -16,6 +16,7 @@ const LoginPage = (props) => {
     const handleChange = (event) => {
 
         const copyDetails = { ...details };
+        setDetails(copyDetails);
 
         if (event.target.name === "email") {
 
@@ -31,6 +32,7 @@ const LoginPage = (props) => {
     const handleSubmit = event => {
         console.log("handleSubmit --> ", details);
         event.preventDefault();
+        console.log("email2:", details.email);
 
         const copyDetails = { ...details };
 
@@ -50,7 +52,7 @@ const LoginPage = (props) => {
                     setDetails(response.data);
                     if (response.data.length === 1) {
                         console.log("recieved userId= ", response.data[0].id);
-                        props.setUserId(response.data[0].id);
+                        //    props.setUserId(response.data[0].id);
                         window.location.href = "/WeatherPage/";
                     } else {
                         details.loginError = "Sorry! Unable to login";
