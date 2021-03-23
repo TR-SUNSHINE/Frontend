@@ -13,10 +13,12 @@ import MyWalksPage from "./components/MyWalksPage/MyWalksPage";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import LoginPage from "./components/LoginPage/LoginPage";
+import Logout from "./components/Logout/Logout";
 
 function App() {
 
-  const [details, setDetails] = useState({ selectedTime: 0, reminderId: "", reminderTime: 0, userId: "2804f8e1-8b27-4d4a-841b-64b3b3d440be" });
+  const userId = localStorage.getItem("userId");
+  const [details, setDetails] = useState({ selectedTime: 0, reminderId: "", reminderTime: 0, userId: userId });
 
   return (
     <>
@@ -52,6 +54,7 @@ function App() {
                 {...props}
               />}
             />
+            <Route exact path="/Logout" component={Logout} />
           </Switch>
         </BrowserRouter>
       </Container>

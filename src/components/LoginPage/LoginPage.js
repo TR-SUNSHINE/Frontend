@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -51,9 +51,16 @@ const LoginPage = (props) => {
                 .then((response) => {
                     setDetails(response.data);
                     if (response.data.length === 1) {
-                        console.log("recieved userId= ", response.data[0].id);
-                        //    props.setUserId(response.data[0].id);
-                        window.location.href = "/WeatherPage/";
+
+                        console.log("user Id= ", response.data[0].id);
+                        const copyProps = { ...props.details };
+                        copyProps.userId = response.data[0].id;
+                        props.setDetails(copyProps);
+                        localStorage.setItem("userId", copyProps.userId);
+                        // remove in Logout ***********
+                        // window.location.href = "/WeatherPage/";
+                        // window.location.href = "/WeatherPage/";
+
                     } else {
                         details.loginError = "Sorry! Unable to login";
                         setDetails(copyDetails);
