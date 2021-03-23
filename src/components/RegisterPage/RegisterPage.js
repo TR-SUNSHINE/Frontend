@@ -55,16 +55,25 @@ const RegisterPage = (props) => {
             copyDetails.email = "";
 
             setDetails(copyDetails);
-
-            // const email = details.email;
             console.log("insert user to DB: ", userDetails);
+            const email = details.email;
+
             axios
-                .post(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/user/{userDetails}/user`, userDetails)
-                .then(response => {
-                    console.log("status: ", response.status);
-                    console.log("data: ", response.data);
-                    window.location.href = "/WeatherPage/";
-                    //                    props.setUserId("any id");
+                .post(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/user/{email}/user`, userDetails)
+                .then((response) => {
+                    setDetails(response.data);
+                    if (response.data.length === 1) {
+                        console.log("status: ", response.status);
+                        console.log("data: ", response.data);
+                        console.log("Created userId= ", response.data[0].id);
+                        props.setUserId(response.data[0].id);
+                        window.location.href = "/WeatherPage/";
+                    } else {
+                        details.loginError = "Sorry! Unable to login";
+                        setDetails(copyDetails);
+                        console.log("copyDetails:", copyDetails);
+                        console.log("details:", details);
+                    };
                 })
                 .catch(error => console.log(error));
 
