@@ -43,11 +43,14 @@ const RegisterPage = (props) => {
 
         const copyDetails = { ...details };
 
+        if (details.userName.length === 0) {
+            copyDetails.emailError = "invalid username";
+        }
         if (!/\S+@\S+\.\S+/.test(details.email)) {
             copyDetails.emailError = "invalid email format";
         }
 
-        if (copyDetails.emailError) {
+        if (copyDetails.emailError || copyDetails.userNameError) {
             setDetails(copyDetails);
         }
         else {
@@ -59,18 +62,24 @@ const RegisterPage = (props) => {
             const email = details.email;
 
             axios
-                .post(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/user/{email}/user`, userDetails)
+                .post(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/user/${email}/user`, userDetails)
                 .then((response) => {
                     setDetails(response.data);
+                    console.log("response_data: ", response.data);
                     if (response.data.length === 1) {
-                        console.log("status: ", response.status);
-                        console.log("data: ", response.data);
-                        console.log("Created userId= ", response.data[0].id);
-                        props.setUserId(response.data[0].id);
-                        window.location.href = "/WeatherPage/";
+                        // console.log("status: ", response.status);
+                        // console.log("data: ", response.data);
+                        // console.log("Created userId= ", response.data[0].id);
+                        const copyProps = { ...props.details };
+                        copyProps.userId = response.data[0].id;
+                        props.setDetails(copyProps);
+                        localStorage.setItem("userId", copyProps.userId);
+                        props.history.push("/WeatherPage");
+
                     } else {
                         details.loginError = "Sorry! Unable to login";
                         setDetails(copyDetails);
+                        details.loginError = "Sorry! Unable to login";
                         console.log("copyDetails:", copyDetails);
                         console.log("details:", details);
                     };

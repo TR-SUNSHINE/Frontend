@@ -16,6 +16,7 @@ const LoginPage = (props) => {
     const handleChange = (event) => {
 
         const copyDetails = { ...details };
+        setDetails(copyDetails);
 
         if (event.target.name === "email") {
 
@@ -31,6 +32,7 @@ const LoginPage = (props) => {
     const handleSubmit = event => {
         console.log("handleSubmit --> ", details);
         event.preventDefault();
+        console.log("email2:", details.email);
 
         const copyDetails = { ...details };
 
@@ -55,9 +57,7 @@ const LoginPage = (props) => {
                         copyProps.userId = response.data[0].id;
                         props.setDetails(copyProps);
                         localStorage.setItem("userId", copyProps.userId);
-                        // remove in Logout ***********
-                        // window.location.href = "/WeatherPage/";
-                        // window.location.href = "/WeatherPage/";
+                        props.history.push("/WeatherPage");
 
                     } else {
                         details.loginError = "Sorry! Unable to login";
