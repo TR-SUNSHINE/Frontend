@@ -41,13 +41,13 @@ const IndividualWalk = (props, walkId, userId) => {
                 error => setHasError(true)
             );
     };
-    function handleChange(newValue) {
+    const handleChange = (newValue) => {
         try {
             setStars(newValue);
         } catch {
             setHasError(true);
         }
-    }
+    };
     if (routeMarkers.length < 1) {
         //Default Manchester
         lat = 53.47783;
