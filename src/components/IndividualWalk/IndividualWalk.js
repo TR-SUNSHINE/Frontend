@@ -18,8 +18,12 @@ const IndividualWalk = (props, walkId, userId) => {
     //Temporarily hardcoding this untill walkId and userId is passed through props from previous page.
     walkId = "3aa59a4c-8328-4bed-bd81-aac377f1611f";
     userId = "3bd4d097-8193-11eb-b706-062d232c43b8";
-    const [stars, setStars] = useState("");
+    let lat = 0;
+    let lng = 0;
+    let renderGraph = false;
     const [noResults, setNoResults] = useState(false);
+    const [stars, setStars] = useState("");
+    const [hasError, setHasError] = useState(false);
     const [routeMarkers, setRouteMarkers] = useState(
         []
     );
@@ -34,13 +38,17 @@ const IndividualWalk = (props, walkId, userId) => {
         };
         console.log(newRating);
         axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/ratings`, newRating)
-            .catch(error => console.log(error));
+            .catch(
+                error => setHasError(true)
+            );
     };
     function handleChange(newValue) {
-        setStars(newValue);
+        try {
+            setStars(newValue);
+        } catch {
+            setHasError(true);
+        }
     }
-    let lat = 0;
-    let lng = 0;
     if (routeMarkers.length < 1) {
         //Default Manchester
         lat = 53.47783;
@@ -52,6 +60,12 @@ const IndividualWalk = (props, walkId, userId) => {
         lat = middleItem.lat;
         lng = middleItem.lng;
     }
+    if (avgRatingPerMonth.length > 0) {
+        renderGraph = true;
+    }
+    else {
+        renderGraph = false;
+    }
     // Only run this code once, when the component first mounts
     useEffect(() => {
         axios
@@ -60,7 +74,7 @@ const IndividualWalk = (props, walkId, userId) => {
                 response => setRouteMarkers(response.data[0].routes)
             )
             .catch(
-                error => console.log(error)
+                error => setHasError(true)
             );
     },
         // the array would normally contain values that may change, and React would run the above code WHEN that value changes
@@ -71,89 +85,84 @@ const IndividualWalk = (props, walkId, userId) => {
         axios
             .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/rating/${walkId}`)
             .then(
-                console.log("alun0")
-            )
-            .then(
                 response => setAvgRatingPerMonth(response.data)
             )
             .catch(
-                error => console.log(error));
+                error => setHasError(true)
+            );
     },
         []
     );
-    let renderGraph = false;
-    if (avgRatingPerMonth.length > 0) {
-        renderGraph = true;
-        console.log("renderGraph true");
-    }
-    else {
-        renderGraph = false;
-        console.log("renderGraph false");
-    }
     return (
         <>
-            { console.log("Individual walk render method")};
-            {console.log(avgRatingPerMonth)};
-            <Row>
-                <Col>
-                    <h3 className="heading heading--main">Individual Walk</h3>
-                    <h4 className="heading heading--secondary">Top Rated Walk</h4>
-                    <GoogleMap
-                        centerAroundCurrentLocation={false}
-                        lat={lat}
-                        lng={lng}
-                        google={props.google}
-                        zoom={13}
-                        draggable={false}
-                        disableDoubleClickZoom={true}
-                    >
-                        {routeMarkers.map((coords, index) => {
-                            if (index === 0 || index === routeMarkers.length - 1) {
-                                return <Marker key={`marker-${index}`} position={coords} />;
-                            }
-                            return null;
-                        })}
-                        <Polyline
-                            visible={true}
-                            path={routeMarkers}
-                            strokeColor="#0000ff"
-                            strokeOpacity={0.8}
-                            strokeWeight={6}
-                            editable={false}
-                            draggable={false}
-                        />
-                    </GoogleMap>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <h4 className="heading heading--secondary">Walk Statistics</h4>
-                    {renderGraph === true && <Graph data={avgRatingPerMonth} />}
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <div className="addRating__container">
-                        <h4 className="heading heading--secondary">Rate Walk</h4>
-                        <RatingsBar value={stars} disabled={false} onChange={handleChange} />
-                    </div>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={12} sm={6}>
-                    <div className="button__container button__container--left" >
-                        <Button variant="double"><Link className="button--link" to="/MyWalksPage">My Walks</Link></Button>
-                    </div>
-                </Col>
-                <Col xs={12} sm={6} >
-                    <div className="button__container button__container--right" >
-                        <Button variant="double" onClick={addRating}><Link className="button--link" to="/MyWalksPage">Rate Walk</Link></Button>
-                    </div>
-                </Col>
-            </Row>
+            {!hasError && (
+                <div>
+                    <Row>
+                        <Col>
+                            <h3 className="heading heading--main">Individual Walk</h3>
+                            <h4 className="heading heading--secondary">Top Rated Walk</h4>
+                            <GoogleMap
+                                centerAroundCurrentLocation={false}
+                                lat={lat}
+                                lng={lng}
+                                google={props.google}
+                                zoom={13}
+                                draggable={false}
+                                disableDoubleClickZoom={true}
+                            >
+                                {routeMarkers.map((coords, index) => {
+                                    if (index === 0 || index === routeMarkers.length - 1) {
+                                        return <Marker key={`marker-${index}`} position={coords} />;
+                                    }
+                                    return null;
+                                })}
+                                <Polyline
+                                    visible={true}
+                                    path={routeMarkers}
+                                    strokeColor="#0000ff"
+                                    strokeOpacity={0.8}
+                                    strokeWeight={6}
+                                    editable={false}
+                                    draggable={false}
+                                />
+                            </GoogleMap>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <h4 className="heading heading--secondary">Walk Statistics</h4>
+                            {renderGraph === true && <Graph data={avgRatingPerMonth} />}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <div className="addRating__container">
+                                <h4 className="heading heading--secondary">Rate Walk</h4>
+                                <RatingsBar value={stars} disabled={false} onChange={handleChange} />
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={12} sm={6}>
+                            <div className="button__container button__container--left" >
+                                <Button variant="double"><Link className="button--link" to="/MyWalksPage">My Walks</Link></Button>
+                            </div>
+                        </Col>
+                        <Col xs={12} sm={6} >
+                            <div className="button__container button__container--right" >
+                                <Button variant="double" onClick={addRating}><Link className="button--link" to="/MyWalksPage">Rate Walk</Link></Button>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
+            )};
+            {hasError && <ErrorComponent></ErrorComponent>}
         </>
     );
 };
+function ErrorComponent() {
+    return <Redirect to="/NotFoundPage" />;
+}
 export default GoogleApiWrapper({
     apiKey: API_KEY
 })(IndividualWalk);
