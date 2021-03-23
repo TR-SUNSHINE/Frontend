@@ -10,38 +10,43 @@ import LoginPage from "../LoginPage/LoginPage";
 import TestIndividualWalk from "../Test/TestIndividualWalk";
 import TestAddWalk from "../Test/TestAddWalk";
 import TestWeatherPage from "../Test/TestWeatherPage";
-import React, { useState } from "react";
-import { Context } from "../Context/Context";
+<<<<<<< HEAD
+=======
+import React from "react";
+>>>>>>> main
 
+const Routes = () => {
 
-export default function Routes() {
-    // const Routes = () => {
-    const [context, setContext] = useState();
+<<<<<<< HEAD
+const Routes = () => {
+=======
+>>>>>>> main
 
     return (
-        <Context.Provider value={[context, setContext]}>
-            <div>
-                <BrowserRouter>
-                    <Switch>
-                        <Route exact path="/">
-                            <Redirect to="/WelcomePage" />
-                        </Route>
-                        <Route exact path="/WelcomePage" component={WelcomePage} />
-                        <Route exact path="/IndividualWalk" component={IndividualWalk} />
-                        <Route exact path="/AddWalk" component={AddWalk} />
-                        <Route exact path="/WeatherPage" component={WeatherPage} />
-                        <Route exact path="/MyWalksPage" component={MyWalksPage} />
-                        <Route exact path="/NotFoundPage" component={NotFoundPage} />
-                        <Route exact path="/RegisterPage" component={RegisterPage} />
-                        <Route exact path="/LoginPage" component={LoginPage} />
-                        <Route exact path="/TestIndividualWalk" component={TestIndividualWalk} />
-                        <Route exact path="/TestAddWalk" component={TestAddWalk} />
-                        <Route exact path="/TestWeatherPage" component={TestWeatherPage} />
-                    </Switch>
-                </BrowserRouter>
-            </div>
-        </Context.Provider>
+        <div>
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/">
+                        <Redirect to="/WelcomePage" />
+                    </Route>
+                    <Route exact path="/WelcomePage" component={WelcomePage} />
+                    <Route exact path="/IndividualWalk" component={IndividualWalk} />
+                    <Route exact path="/AddWalk" component={AddWalk} />
+                    <Route exact path="/WeatherPage" component={WeatherPage} />
+                    <Route exact path="/MyWalksPage" component={MyWalksPage} />
+                    <Route exact path="/NotFoundPage" component={NotFoundPage} />
+                    <Route exact path="/RegisterPage" component={RegisterPage} />
+                    <Route exact path="/LoginPage" component={LoginPage} />
+                    <Route exact path="/TestIndividualWalk" component={TestIndividualWalk} />
+                    <Route exact path="/TestAddWalk" component={TestAddWalk} />
+                    <Route exact path="/TestWeatherPage" component={TestWeatherPage} />
+                </Switch>
+            </BrowserRouter>
+        </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     );
 };
-//export default Routes;
+export default Routes;

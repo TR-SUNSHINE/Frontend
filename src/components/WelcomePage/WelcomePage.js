@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
@@ -8,9 +8,11 @@ import "../../index.css";
 import "./WelcomePage.css";
 import "../Button/Button.css";
 
+
 const WelcomePage = () => {
-
-
+    // eslint-disable-next-line no-undef
+    // const details = useContext(DetailsContext);
+    // console.log("details: ", details);
     return (
         <Row>
             <Col>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -7,10 +7,9 @@ import "../../index.css";
 import "../RegisterPage/RegisterPage.css";
 import "../Button/Button.css";
 import { Form } from "react-bootstrap";
-
 import axios from "axios";
 
-const RegisterPage = () => {
+const RegisterPage = (props) => {
 
     const [details, setDetails] = useState({ userName: "", userNameError: "", email: "", emailError: "" });
 
@@ -36,7 +35,10 @@ const RegisterPage = () => {
 
     const handleSubmit = event => {
         console.log("handleSubmit", details);
-
+        const userDetails = {
+            "email": details.email,
+            "userName": details.userName
+        };
         event.preventDefault();
 
         const copyDetails = { ...details };
@@ -53,23 +55,30 @@ const RegisterPage = () => {
             copyDetails.email = "";
 
             setDetails(copyDetails);
-            // const userDetails = {
-            //     email: details.email,
-            //     userName: details.userName
-            // };
+            console.log("insert user to DB: ", userDetails);
+            const email = details.email;
 
-            // axios
-            //     .post(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/user/${userDetails}/user`, userDetails)
-            //     //If successful, make a get request for all the tasks
-            //     //If get request is successful, update tasks state with everything
-            //     .then((response) => setDetails(response.data))
-            //     //If error, log out the error
-            //     .catch(error => console.log(error));
+            axios
+                .post(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/user/{email}/user`, userDetails)
+                .then((response) => {
+                    setDetails(response.data);
+                    if (response.data.length === 1) {
+                        console.log("status: ", response.status);
+                        console.log("data: ", response.data);
+                        console.log("Created userId= ", response.data[0].id);
+                        props.setUserId(response.data[0].id);
+                        window.location.href = "/WeatherPage/";
+                    } else {
+                        details.loginError = "Sorry! Unable to login";
+                        setDetails(copyDetails);
+                        console.log("copyDetails:", copyDetails);
+                        console.log("details:", details);
+                    };
+                })
+                .catch(error => console.log(error));
+
         };
-
     };
-
-    // console.log(details);
     return (
         <Row>
             <Col>
