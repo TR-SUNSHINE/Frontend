@@ -17,10 +17,6 @@ import React from "react";
 
 const Routes = () => {
 
-<<<<<<< HEAD
-const Routes = () => {
-=======
->>>>>>> main
 
     return (
         <div>
@@ -43,10 +39,6 @@ const Routes = () => {
                 </Switch>
             </BrowserRouter>
         </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> main
     );
 };
 export default Routes;
