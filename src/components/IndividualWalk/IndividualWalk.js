@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import RatingsBar from "../RatingsBar/RatingsBar";
 import Graph from "../Graph/Graph";
 import GoogleMap from "../Map/GoogleMap";
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { GoogleApiWrapper, Marker, Polyline } from "google-maps-react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -21,7 +21,6 @@ const IndividualWalk = (props, walkId, userId) => {
     let lat = 0;
     let lng = 0;
     let renderGraph = false;
-    const [noResults, setNoResults] = useState(false);
     const [stars, setStars] = useState("");
     const [hasError, setHasError] = useState(false);
     const [routeMarkers, setRouteMarkers] = useState(
