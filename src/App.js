@@ -41,10 +41,11 @@ function App() {
             />
             <Route exact path="/MyWalksPage" component={MyWalksPage} />
             <Route exact path="/NotFoundPage" component={NotFoundPage} />
-            <Route exact path="/RegisterPage" render={() =>
+            <Route exact path="/RegisterPage" render={(props) =>
               <RegisterPage
                 details={details}
                 setDetails={setDetails}
+                {...props}
               />}
             />
             <Route exact path="/LoginPage" render={(props) =>
