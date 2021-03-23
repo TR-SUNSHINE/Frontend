@@ -30,7 +30,6 @@ const LoginPage = (props) => {
 
     const handleSubmit = event => {
         console.log("handleSubmit --> ", details);
-
         event.preventDefault();
 
         const copyDetails = { ...details };
@@ -50,16 +49,15 @@ const LoginPage = (props) => {
                 .then((response) => {
                     setDetails(response.data);
                     if (response.data.length === 1) {
-                        console.log("user Id= ", response.data[0].id);
+                        console.log("recieved userId= ", response.data[0].id);
                         props.setUserId(response.data[0].id);
-                        // window.location.href = "/WeatherPage/";
+                        window.location.href = "/WeatherPage/";
                     } else {
                         details.loginError = "Sorry! Unable to login";
                         setDetails(copyDetails);
                         console.log("copyDetails:", copyDetails);
                         console.log("details:", details);
                     };
-
                 })
                 .catch(error => {
                     if (error.response) {
@@ -67,7 +65,6 @@ const LoginPage = (props) => {
                         copyDetails.loginError = "Error when submittig details - Unable to login";
                         setDetails(copyDetails);
                     };
-
                 });
         };
     };
