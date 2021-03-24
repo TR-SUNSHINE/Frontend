@@ -24,7 +24,12 @@ text-align: center;
 padding: 1rem;
 }  
 
-.form-lerror {
+.logged {
+  color:red;
+  font-size: 18px;;
+}
+
+.log-error {
   color: red;
   font-size: 20px;
   margin-top: 20px;
