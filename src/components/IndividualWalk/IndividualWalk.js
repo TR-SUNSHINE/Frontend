@@ -104,8 +104,8 @@ const IndividualWalk = (props) => {
                                 lng={lng}
                                 google={props.google}
                                 zoom={13}
-                                draggable={false}
-                                disableDoubleClickZoom={true}
+                                draggable={true}
+                                disableDoubleClickZoom={false}
                             >
                                 {routeMarkers.map((coords, index) => {
                                     if (index === 0 || index === routeMarkers.length - 1) {
