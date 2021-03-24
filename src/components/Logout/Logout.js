@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Logout = () => {
+const Logout = (props) => {
 
     const removeFromLocalStorage = () => localStorage.removeItem("userId");
 
@@ -28,7 +28,7 @@ const Logout = () => {
                 <Row>
                     <Col xs={12}>
                         <div className="button__container" >
-                            <Button variant="single"><Link className="button--link" to="/Loginpage">Login</Link></Button>
+                            <Button variant="single" onClick={() => props.history.push("/LoginPage")}>Login</Button>
                         </div>
                     </Col>
                 </Row>

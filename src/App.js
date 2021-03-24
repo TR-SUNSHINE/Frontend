@@ -30,7 +30,7 @@ function App() {
               <Redirect to="/WelcomePage" />
             </Route>
             <Route exact path="/WelcomePage" render={props => (
-              !details.userId ?
+              !localStorage.getItem("userId") ?
                 <WelcomePage
                   details={details}
                   setDetails={setDetails}
@@ -68,7 +68,13 @@ function App() {
                 {...props}
               />}
             />
-            <Route exact path="/NotFoundPage" component={NotFoundPage} />
+            <Route exact path="/NotFoundPage" render={(props) =>
+              <NotFoundPage
+                details={details}
+                setDetails={setDetails}
+                {...props}
+              />} />
+
             <Route exact path="/RegisterPage" render={(props) =>
               <RegisterPage
                 details={details}
@@ -83,7 +89,13 @@ function App() {
                 {...props}
               />}
             />
-            <Route exact path="/Logout" component={Logout} />
+            <Route exact path="/Logout" render={(props) =>
+              <Logout
+                details={details}
+                setDetails={setDetails}
+                {...props}
+              />}
+            />
           </Switch>
         </BrowserRouter>
       </Container>

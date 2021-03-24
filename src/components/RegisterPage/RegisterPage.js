@@ -132,7 +132,7 @@ const RegisterPage = (props) => {
                     <Row>
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--left" >
-                                <Button variant="double"><Link className="button--link" to="/WelcomePage">Back</Link></Button>
+                                <Button variant="double" onClick={() => props.history.push("/WelcomePage")}>Back</Button>
                             </div>
                         </Col>
 
