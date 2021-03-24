@@ -1,5 +1,3 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -9,10 +7,8 @@ import "./WelcomePage.css";
 import "../Button/Button.css";
 
 
-const WelcomePage = () => {
-    // eslint-disable-next-line no-undef
-    // const details = useContext(DetailsContext);
-    // console.log("details: ", details);
+const WelcomePage = (props) => {
+
     return (
         <Row>
             <Col>
@@ -26,13 +22,13 @@ const WelcomePage = () => {
                 <Row>
                     <Col xs={12} sm={6} md={6}>
                         <div className="button__container button__container--left" >
-                            <Button variant="double"><Link className="button--link" to="/RegisterPage">Register</Link></Button>
+                            <Button variant="double" onClick={() => props.history.push("/RegisterPage")}>Register</Button>
                         </div>
                     </Col>
 
                     <Col xs={12} sm={6} md={6}>
                         <div className="button__container button__container--right" >
-                            <Button variant="double"><Link className="button--link" to="/loginPage">Login</Link></Button>
+                            <Button variant="double" onClick={() => props.history.push("/LoginPage")}>Login</Button>
                         </div>
                     </Col>
                 </Row>
