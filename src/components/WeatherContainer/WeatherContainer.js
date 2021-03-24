@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Weather from "../Weather/Weather";
 import "./WeatherContainer.css";
 
-const WeatherContainer = ({ weatherTimes, selectedWeatherTime, toggleWeatherTimeSelected, reminder, reminderTime, showLocalTime }) => {
+const WeatherContainer = ({ weatherTimes, selectedWeatherTime, toggleWeatherTimeSelected, reminderTime, showLocalTime }) => {
 
     return (
         <>
