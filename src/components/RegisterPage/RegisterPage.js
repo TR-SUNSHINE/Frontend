@@ -67,9 +67,6 @@ const RegisterPage = (props) => {
                     setDetails(response.data);
                     console.log("response_data: ", response.data);
                     if (response.data.length === 1) {
-                        // console.log("status: ", response.status);
-                        // console.log("data: ", response.data);
-                        // console.log("Created userId= ", response.data[0].id);
                         const copyProps = { ...props.details };
                         copyProps.userId = response.data[0].id;
                         props.setDetails(copyProps);
