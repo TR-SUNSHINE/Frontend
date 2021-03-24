@@ -26,9 +26,9 @@ const Logout = () => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12} sm={6} md={6}>
-                        <div className="button__container button__container--left" >
-                            <Button variant="double"><Link className="button--link" to="/Loginpage">Login</Link></Button>
+                    <Col xs={12}>
+                        <div className="button__container" >
+                            <Button variant="single"><Link className="button--link" to="/Loginpage">Login</Link></Button>
                         </div>
                     </Col>
                 </Row>
