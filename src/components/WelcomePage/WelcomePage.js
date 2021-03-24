@@ -10,9 +10,7 @@ import "../Button/Button.css";
 
 
 const WelcomePage = () => {
-    // eslint-disable-next-line no-undef
-    // const details = useContext(DetailsContext);
-    // console.log("details: ", details);
+
     return (
         <Row>
             <Col>
