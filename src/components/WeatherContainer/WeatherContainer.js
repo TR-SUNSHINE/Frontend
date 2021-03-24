@@ -16,7 +16,7 @@ const WeatherContainer = ({ weatherTimes, selectedWeatherTime, toggleWeatherTime
                         Reminder set for your walk at {showLocalTime(reminderTime)}
                     </p>
                     <p hidden={!reminderTime} className="reminder--info">
-                        Click on the time to remove the reminder</p>
+                        Click on the button to delete the reminder</p>
                 </Col>
             </Row>
             <Row>
