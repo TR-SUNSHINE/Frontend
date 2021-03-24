@@ -16,7 +16,14 @@ const MyWalks = (props) => {
     useEffect(() => {
         axios
             .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/user/${props.details.userId}`)
-            .then(response => setWalks(response.data)
+            .then(response => {
+                console.log(response);
+                if (!response.data) {
+                    setWalks([]);
+                } else {
+                    setWalks(response.data);
+                }
+            }
             )
             .catch(error => console.log(error));
     }, []);

@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 import WeatherContainer from "../WeatherContainer/WeatherContainer";
 import "../WeatherPage/WeatherPage.css";
 import "../Button/Button.css";
-import GoogleMapWeather from "../Map/GoogleMapWeather";
+import TestGoogleMapWeather from "../Test/TestGoogleMapWeather";
 import { GoogleApiWrapper, Marker } from "google-maps-react";
 
 const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
@@ -22,12 +22,13 @@ const WeatherPage = (props) => {
     const weatherKey = process.env.REACT_APP_WEATHER_API_KEY;
 
     const getReminders = async () => {
-        console.log(props.details.userId);
+
         const reminders = await axios.get(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders`);
 
         if (reminders.data.length) {
 
             const latestReminder = reminders.data[reminders.data.length - 1];
+
             const latestReminderTime = formatLocalDateTime(latestReminder.reminderTime);
             const timeNow = formatReminderTime(Math.floor(Date.now() / 1000)) + "Z";
             const latestReminderTimeUnix = Date.parse(latestReminderTime) / 1000;
@@ -206,16 +207,17 @@ const WeatherPage = (props) => {
             <Row>
                 <Col>
                     <h3 className="heading heading--main">Weather: {date}</h3>
-                    <GoogleMapWeather
+                    <TestGoogleMapWeather
                         centerAroundCurrentLocation={false}
                         currentLocation={coords}
                         google={props.google}
                         zoom={13}
                         draggable={false}
                         disableDoubleClickZoom={true}
+                        reminderId={props.details.reminderId}
                     >
                         <Marker lat={coords.lat} lng={coords.long} visible={true} />
-                    </GoogleMapWeather>
+                    </TestGoogleMapWeather>
                 </Col>
             </Row >
 

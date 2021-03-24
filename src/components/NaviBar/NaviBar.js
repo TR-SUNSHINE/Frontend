@@ -15,7 +15,6 @@ const Navibar = () => {
                 />
             </Navbar.Toggle>
             <Navbar.Collapse id="basic-navbar-nav">
-                {/* <Nav className="mr-auto"> */}
                 <Nav>
                     <Nav.Link href="/WeatherPage">Weather</Nav.Link>
                     <Nav.Link href="/Reminders">Reminders</Nav.Link>
