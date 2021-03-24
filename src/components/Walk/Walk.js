@@ -12,10 +12,8 @@ import RatingsBar from "../RatingsBar/RatingsBar";
 function Walk({ walk }) {
     return (
         <Row>
-            <Col>
+            <Col xs={6}>
                 <h5 className="review-stat">
-
-
                     <Link className="text--hyperlink" to={`/IndividualWalk/${walk.id}`}
                         id={walk.id}
                         text={walk.walkName}
@@ -27,10 +25,8 @@ function Walk({ walk }) {
                     </Link>
 
                 </h5>
-
-
             </Col>
-            <Col>
+            <Col xs={6}>
                 <RatingsBar value={walk.aveRating} disabled={true} />
             </Col>
         </Row>
