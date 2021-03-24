@@ -10,13 +10,12 @@ import "../Button/Button.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const MyWalks = (props, userId) => {
-    userId = "3bd4d097-8193-11eb-b706-062d232c43b8";
+const MyWalks = (props) => {
     const [walks, setWalks] = useState([]);
 
     useEffect(() => {
         axios
-            .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/user/${userId}`)
+            .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/user/${props.details.userId}`)
             .then(response => setWalks(response.data)
             )
             .catch(error => console.log(error));
@@ -47,7 +46,7 @@ const MyWalks = (props, userId) => {
                     <Col xs={12} sm={12} md={12}>
                         <div className="button__container" >
                             <Button variant="single">
-                                <Link className="button--link" to={`/AddWalk/${userId}`}>
+                                <Link className="button--link" to={`/AddWalk`}>
                                     Create Walk
                             </Link>
                             </Button>

@@ -1,5 +1,5 @@
 import "./IndividualWalk.css";
-import { Redirect } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import RatingsBar from "../RatingsBar/RatingsBar";
 import Graph from "../Graph/Graph";
@@ -14,10 +14,8 @@ import axios from "axios";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const IndividualWalk = (props, walkId, userId) => {
-    //Temporarily hardcoding this untill walkId and userId is passed through props from previous page.
-    walkId = "3aa59a4c-8328-4bed-bd81-aac377f1611f";
-    userId = "3bd4d097-8193-11eb-b706-062d232c43b8";
+const IndividualWalk = (props) => {
+    const { walkId } = useParams();
     let lat = 0;
     let lng = 0;
     let renderGraph = false;
@@ -31,7 +29,7 @@ const IndividualWalk = (props, walkId, userId) => {
     );
     const addRating = () => {
         const newRating = {
-            UserId: userId,
+            UserId: props.details.userId,
             WalkId: walkId,
             WalkRating: Number(stars)
         };
