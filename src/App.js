@@ -30,7 +30,6 @@ function App() {
               <Redirect to="/WelcomePage" />
             </Route>
             <Route exact path="/WelcomePage" component={WelcomePage} />
-            <Route exact path="/AddWalk" component={AddWalk} />
             <Route exact path="/WeatherPage" render={(props) =>
               <WeatherPage
                 details={details}
@@ -40,6 +39,13 @@ function App() {
             />
             <Route exact path="/MyWalksPage" render={(props) =>
               <MyWalksPage
+                setDetails={setDetails}
+                details={details}
+                {...props}
+              />}
+            />
+            <Route exact path="/AddWalk" render={(props) =>
+              <AddWalk
                 setDetails={setDetails}
                 details={details}
                 {...props}

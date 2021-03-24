@@ -46,7 +46,7 @@ const MyWalks = (props) => {
                     <Col xs={12} sm={12} md={12}>
                         <div className="button__container" >
                             <Button variant="single">
-                                <Link className="button--link" to={`/AddWalk/${props.userId}`}>
+                                <Link className="button--link" to={`/AddWalk`}>
                                     Create Walk
                             </Link>
                             </Button>
