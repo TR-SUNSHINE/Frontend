@@ -54,11 +54,7 @@ const MyWalks = (props) => {
                 <Row>
                     <Col xs={12} sm={12} md={12}>
                         <div className="button__container" >
-                            <Button variant="single">
-                                <Link className="button--link" to={`/AddWalk`}>
-                                    Create Walk
-                            </Link>
-                            </Button>
+                            <Button variant="single" onClick={() => props.history.push("/AddWalk")}>Create Walk</Button>
                         </div>
                     </Col>
                 </Row>

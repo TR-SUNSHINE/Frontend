@@ -27,6 +27,7 @@ const IndividualWalk = (props) => {
     const [avgRatingPerMonth, setAvgRatingPerMonth] = useState(
         []
     );
+
     const addRating = () => {
         const newRating = {
             UserId: props.details.userId,
@@ -35,6 +36,9 @@ const IndividualWalk = (props) => {
         };
         console.log(newRating);
         axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/ratings`, newRating)
+            .then(response => {
+                props.history.push("/MyWalksPage");
+            })
             .catch(
                 error => setHasError(true)
             );
@@ -142,12 +146,12 @@ const IndividualWalk = (props) => {
                     <Row>
                         <Col xs={12} sm={6}>
                             <div className="button__container button__container--left" >
-                                <Button variant="double"><Link className="button--link" to="/MyWalksPage">My Walks</Link></Button>
+                                <Button variant="double" onClick={() => props.history.push("/MyWalksPage")}>My Walks</Button>
                             </div>
                         </Col>
                         <Col xs={12} sm={6} >
                             <div className="button__container button__container--right" >
-                                <Button variant="double" onClick={addRating}><Link className="button--link" to="/MyWalksPage">Rate Walk</Link></Button>
+                                <Button variant="double" onClick={addRating}>Rate Walk</Button>
                             </div>
                         </Col>
                     </Row>

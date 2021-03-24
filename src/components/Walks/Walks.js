@@ -13,6 +13,7 @@ function Walks({ walks }) {
                 walks.map(walk =>
 
                     <Walk
+                        key={walk.id}
                         walk={walk}
 
                     />
