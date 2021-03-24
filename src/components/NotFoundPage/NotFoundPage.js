@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import "../../index.css";
 import "./NotFoundPage.css";
 
-const NotFoundPage = () => {
+const NotFoundPage = (props) => {
     return (
 
         <Row>
@@ -25,7 +25,7 @@ const NotFoundPage = () => {
                 <Row>
                     <Col xs={12} sm={12} md={12}>
                         <div className="button__container button__container--centre" >
-                            <Button variant="accessible">Return to Home</Button>
+                            <Button variant="accessible" onClick={() => { props.history.push("/"); }}>Return to Home</Button>
                         </div>
                     </Col>
                 </Row>
