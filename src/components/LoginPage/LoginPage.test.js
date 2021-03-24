@@ -13,20 +13,31 @@ describe("LoginPage component", () => {
         );
         expect(screen.getByText("Login to Sunshine")).toBeInTheDocument();
     });
-    // test(`Given the component is rendered, 
-    //     then the Back button should be present`, () => {
-    //     render(
-    //         <Router>
-    //             <LoginPage />
-    //         </Router>
-    //     );
-    //     expect(screen.getAllByRole("button").find(button => button.textContent === "Back").length).toBe(1);
-    // });
+    test(`Given the component is rendered, 
+        then the Back button should be present`, () => {
+        render(
+            <Router>
+                <LoginPage />
+            </Router>
+        );
+        expect(screen.getAllByRole("button").find(button => button.textContent === "Back")).toBeInTheDocument();
+    });
 
     test(`Given the required props,
 when the component is rendered, 
-then the Login button should be present`, () => { }
+then the Login button should be present`, () => {
+        const validEmail = "email@email.com";
+        render(
+            <Router>
+                <LoginPage />
+            </Router>
+        );
+
+    }
+
+
     );
+
     test(`Given the email input ,
 when the component is rendered, 
 then the Login button should be enabled`, () => { }

@@ -17,7 +17,6 @@ function Walk({ walk }) {
 
 
                     <Link className="text--hyperlink" to={`/IndividualWalk/${walk.id}`}
-
                         id={walk.id}
                         text={walk.walkName}
                         key={walk.id}

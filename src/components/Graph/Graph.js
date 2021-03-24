@@ -6,8 +6,11 @@ export default class Graph extends Component {
     constructor(props) {
         super(props);
         this.data = props.data;
+        console.log("graph constructor");
+        console.log(props.data);
     }
     chartRef = React.createRef();
+
     componentDidMount() {
         const myChartRef = this.chartRef.current.getContext("2d");
         //data.avgRatings.Feb
@@ -61,6 +64,7 @@ export default class Graph extends Component {
                 maintainAspectRatio: true,
                 scales: {
                     yAxes: [{
+
                         ticks: {
                             min: 0,
                             max: 5,

@@ -6,13 +6,14 @@ import Walk from "../Walk/Walk";
 
 
 function Walks({ walks }) {
-    console.log(typeof walks);
+    console.log(walks);
     return (
         <div>
             {
                 walks.map(walk =>
 
                     <Walk
+                        key={walk.id}
                         walk={walk}
 
                     />

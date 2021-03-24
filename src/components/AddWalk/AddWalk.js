@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import { GoogleApiWrapper, InfoWindow, Marker, Polyline } from "google-maps-react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import "../Button/Button.css";
 import { Redirect } from "react-router-dom";
@@ -13,9 +12,7 @@ import axios from "axios";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const AddWalk = (props, userId) => {
-    //Temporarily hardcoding this untill walkId and userId is passed through props from previous page.
-    userId = "3bd4d097-8193-11eb-b706-062d232c43b8";
+const AddWalk = (props) => {
     //Default Manchester
     let lat = 53.47783;
     let lng = -2.24317;
@@ -46,11 +43,16 @@ const AddWalk = (props, userId) => {
         if (item.routeMarkers.length > 1 && walkName.length > 0) {
             const newWalk = {
                 WalkName: walkName,
-                UserID: userId,
+                UserID: props.details.userId,
                 Routes: item.routeMarkers
             };
             console.log(newWalk);
             axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/`, newWalk)
+                .then(response => {
+                    console.log(response);
+                    props.history.push("/MyWalksPage");
+                }
+                )
                 .catch(
                     error => setHasError(true)
                 );
@@ -85,7 +87,7 @@ const AddWalk = (props, userId) => {
                                 disableDoubleClickZoom={false}
                                 onClick={onMapClick}
                             >
-                                {console.log(item.routeMarkers)}
+                                {/* {console.log(item.routeMarkers)} */}
                                 {item.routeMarkers.map((coords, index) => {
                                     if (index === 0 || index === item.routeMarkers.length - 1) {
                                         return <Marker Sequence={`marker-${index}`} position={coords} />;
@@ -119,7 +121,7 @@ const AddWalk = (props, userId) => {
                     <Row>
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--left" >
-                                <Button variant="double" onClick={addWalk}><Link className="button--link" to="/MyWalksPage">Add Walk</Link></Button>
+                                <Button variant="double" onClick={addWalk}>Add Walk</Button>
                             </div>
                         </Col>
                         <Col xs={12} sm={6} md={6}>
