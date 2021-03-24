@@ -1,5 +1,5 @@
 import "./IndividualWalk.css";
-import { Redirect } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import RatingsBar from "../RatingsBar/RatingsBar";
 import Graph from "../Graph/Graph";
@@ -14,10 +14,8 @@ import axios from "axios";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const IndividualWalk = (props, walkId, userId) => {
-    //Temporarily hardcoding this untill walkId and userId is passed through props from previous page.
-    walkId = "3aa59a4c-8328-4bed-bd81-aac377f1611f";
-    userId = "3bd4d097-8193-11eb-b706-062d232c43b8";
+const IndividualWalk = (props) => {
+    const { walkId } = useParams();
     let lat = 0;
     let lng = 0;
     let renderGraph = false;
@@ -29,14 +27,18 @@ const IndividualWalk = (props, walkId, userId) => {
     const [avgRatingPerMonth, setAvgRatingPerMonth] = useState(
         []
     );
+
     const addRating = () => {
         const newRating = {
-            UserId: userId,
+            UserId: props.details.userId,
             WalkId: walkId,
             WalkRating: Number(stars)
         };
         console.log(newRating);
         axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/ratings`, newRating)
+            .then(response => {
+                props.history.push("/MyWalksPage");
+            })
             .catch(
                 error => setHasError(true)
             );
@@ -106,8 +108,8 @@ const IndividualWalk = (props, walkId, userId) => {
                                 lng={lng}
                                 google={props.google}
                                 zoom={13}
-                                draggable={false}
-                                disableDoubleClickZoom={true}
+                                draggable={true}
+                                disableDoubleClickZoom={false}
                             >
                                 {routeMarkers.map((coords, index) => {
                                     if (index === 0 || index === routeMarkers.length - 1) {
@@ -144,12 +146,12 @@ const IndividualWalk = (props, walkId, userId) => {
                     <Row>
                         <Col xs={12} sm={6}>
                             <div className="button__container button__container--left" >
-                                <Button variant="double"><Link className="button--link" to="/MyWalksPage">My Walks</Link></Button>
+                                <Button variant="double" onClick={() => props.history.push("/MyWalksPage")}>My Walks</Button>
                             </div>
                         </Col>
                         <Col xs={12} sm={6} >
                             <div className="button__container button__container--right" >
-                                <Button variant="double" onClick={addRating}><Link className="button--link" to="/MyWalksPage">Rate Walk</Link></Button>
+                                <Button variant="double" onClick={addRating}>Rate Walk</Button>
                             </div>
                         </Col>
                     </Row>

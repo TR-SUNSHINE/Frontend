@@ -1,7 +1,21 @@
 .weather__container {
-    margin-top: 1rem; 
+    margin-top: 0; 
   
   }
+
+.reminder {
+  background-color: #FFD07B;
+  padding: 0.25em;
+  display:inline-block;
+  font-weight: bold;
+  color: #296EB4;
+  margin: 0.1em;
+}
+
+.reminder--info{
+  margin-top:0.1em;
+  margin-bottom: 0.25em;
+}
 
 /* Media Queries to match Bootstrap viewport sizes */
 

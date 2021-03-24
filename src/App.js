@@ -29,9 +29,17 @@ function App() {
             <Route exact path="/">
               <Redirect to="/WelcomePage" />
             </Route>
-            <Route exact path="/WelcomePage" component={WelcomePage} />
-            <Route exact path="/IndividualWalk" component={IndividualWalk} />
-            <Route exact path="/AddWalk" component={AddWalk} />
+            <Route exact path="/WelcomePage" render={props => (
+              !localStorage.getItem("userId") ?
+                <WelcomePage
+                  details={details}
+                  setDetails={setDetails}
+                  {...props}
+                /> :
+                <Redirect to="/WeatherPage" />
+            )
+            }
+            />
             <Route exact path="/WeatherPage" render={(props) =>
               <WeatherPage
                 details={details}
@@ -39,8 +47,34 @@ function App() {
                 {...props}
               />}
             />
-            <Route exact path="/MyWalksPage" component={MyWalksPage} />
-            <Route exact path="/NotFoundPage" component={NotFoundPage} />
+            <Route exact path="/MyWalksPage" render={(props) =>
+              <MyWalksPage
+                setDetails={setDetails}
+                details={details}
+                {...props}
+              />}
+            />
+            <Route exact path="/AddWalk" render={(props) =>
+              <AddWalk
+                setDetails={setDetails}
+                details={details}
+                {...props}
+              />}
+            />
+            <Route exact path="/IndividualWalk/:walkId" render={(props) =>
+              <IndividualWalk
+                setDetails={setDetails}
+                details={details}
+                {...props}
+              />}
+            />
+            <Route exact path="/NotFoundPage" render={(props) =>
+              <NotFoundPage
+                details={details}
+                setDetails={setDetails}
+                {...props}
+              />} />
+
             <Route exact path="/RegisterPage" render={(props) =>
               <RegisterPage
                 details={details}
@@ -55,7 +89,13 @@ function App() {
                 {...props}
               />}
             />
-            <Route exact path="/Logout" component={Logout} />
+            <Route exact path="/Logout" render={(props) =>
+              <Logout
+                details={details}
+                setDetails={setDetails}
+                {...props}
+              />}
+            />
           </Switch>
         </BrowserRouter>
       </Container>

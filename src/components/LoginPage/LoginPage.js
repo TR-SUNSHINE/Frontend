@@ -19,10 +19,8 @@ const LoginPage = (props) => {
         setDetails(copyDetails);
 
         if (event.target.name === "email") {
-
             copyDetails.emailError = "";
             copyDetails.loginError = "";
-
             copyDetails.email = event.target.value;
 
             setDetails(copyDetails);
@@ -64,6 +62,7 @@ const LoginPage = (props) => {
                         setDetails(copyDetails);
                         console.log("copyDetails:", copyDetails);
                         console.log("details:", details);
+                        // props.history.push("/ErrorPage");
                     };
                 })
                 .catch(error => {
@@ -82,9 +81,11 @@ const LoginPage = (props) => {
 
                 <h3 className="heading heading--main">Login to Sunshine</h3>
 
+                <p className="logged" hidden={!localStorage.getItem("userId")}>
+                    You are already logged in !
+                </p>
+
                 <Form className="form-register" onSubmit={handleSubmit}>
-
-
                     <Form.Group className="form-row">
                         <Col sm={12}>
                             <Form.Label htmlFor="EmailInput">Email</Form.Label>
@@ -111,13 +112,13 @@ const LoginPage = (props) => {
                     <Row>
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--left">
-                                <Button variant="double"><Link className="button--link" to="WelcomePage">Back</Link></Button>
+                                <Button variant="double" onClick={() => props.history.push("/WelcomePage")}>Back</Button>
                             </div>
                         </Col>
 
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--right">
-                                <Button disabled={details.email ? false : true} variant="double" type="submit">
+                                <Button disabled={details.email && !localStorage.getItem("userId") ? false : true} variant="double" type="submit">
                                     Login
                                 </Button>
                             </div>
