@@ -25,7 +25,12 @@ describe("LoginPage component", () => {
 
     test(`Given the required props,
 when the component is rendered, 
-then the Login button should be present`, () => { }
+then the Login button should be present`, () => {
+        const email = "email@email.com";
+
+    }
+
+
     );
 
     test(`Given the email input ,
