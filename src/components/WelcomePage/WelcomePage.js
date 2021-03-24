@@ -9,16 +9,6 @@ import "../Button/Button.css";
 
 const WelcomePage = (props) => {
 
-    const routeToLogin = () => {
-
-        props.history.push("/RegisterPage");
-
-    };
-
-    const routeToRegister = () => {
-        props.history.push("/LoginPage");
-    };
-
     return (
         <Row>
             <Col>
@@ -32,13 +22,13 @@ const WelcomePage = (props) => {
                 <Row>
                     <Col xs={12} sm={6} md={6}>
                         <div className="button__container button__container--left" >
-                            <Button variant="double" onClick={routeToRegister}>Register</Button>
+                            <Button variant="double" onClick={() => props.history.push("/RegisterPage")}>Register</Button>
                         </div>
                     </Col>
 
                     <Col xs={12} sm={6} md={6}>
                         <div className="button__container button__container--right" >
-                            <Button variant="double" onClick={routeToLogin}>Login</Button>
+                            <Button variant="double" onClick={() => props.history.push("/LoginPage")}>Login</Button>
                         </div>
                     </Col>
                 </Row>
