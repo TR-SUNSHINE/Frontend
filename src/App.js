@@ -29,7 +29,17 @@ function App() {
             <Route exact path="/">
               <Redirect to="/WelcomePage" />
             </Route>
-            <Route exact path="/WelcomePage" component={WelcomePage} />
+            <Route exact path="/WelcomePage" render={props => (
+              !details.userId ?
+                <WelcomePage
+                  details={details}
+                  setDetails={setDetails}
+                  {...props}
+                /> :
+                <Redirect to="/WeatherPage" />
+            )
+            }
+            />
             <Route exact path="/WeatherPage" render={(props) =>
               <WeatherPage
                 details={details}
