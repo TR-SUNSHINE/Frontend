@@ -13,10 +13,12 @@ import MyWalksPage from "./components/MyWalksPage/MyWalksPage";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import LoginPage from "./components/LoginPage/LoginPage";
+import Logout from "./components/Logout/Logout";
 
 function App() {
 
-const [details, setDetails] = useState({ selectedTime: 0, reminderId: "", reminderTime: 0, userId: "2804f8e1-8b27-4d4a-841b-64b3b3d440be" });
+  const userId = localStorage.getItem("userId");
+  const [details, setDetails] = useState({ selectedTime: 0, reminderId: "", reminderTime: 0, userId: userId });
 
   return (
     <>
@@ -28,8 +30,6 @@ const [details, setDetails] = useState({ selectedTime: 0, reminderId: "", remind
               <Redirect to="/WelcomePage" />
             </Route>
             <Route exact path="/WelcomePage" component={WelcomePage} />
-            <Route exact path="/IndividualWalk" component={IndividualWalk} />
-            <Route exact path="/AddWalk" component={AddWalk} />
             <Route exact path="/WeatherPage" render={(props) =>
               <WeatherPage
                 details={details}
@@ -37,12 +37,33 @@ const [details, setDetails] = useState({ selectedTime: 0, reminderId: "", remind
                 {...props}
               />}
             />
-            <Route exact path="/MyWalksPage" component={MyWalksPage} />
+            <Route exact path="/MyWalksPage" render={(props) =>
+              <MyWalksPage
+                setDetails={setDetails}
+                details={details}
+                {...props}
+              />}
+            />
+            <Route exact path="/AddWalk" render={(props) =>
+              <AddWalk
+                setDetails={setDetails}
+                details={details}
+                {...props}
+              />}
+            />
+            <Route exact path="/IndividualWalk/:walkId" render={(props) =>
+              <IndividualWalk
+                setDetails={setDetails}
+                details={details}
+                {...props}
+              />}
+            />
             <Route exact path="/NotFoundPage" component={NotFoundPage} />
-            <Route exact path="/RegisterPage" render={() =>
+            <Route exact path="/RegisterPage" render={(props) =>
               <RegisterPage
                 details={details}
                 setDetails={setDetails}
+                {...props}
               />}
             />
             <Route exact path="/LoginPage" render={(props) =>
@@ -52,6 +73,7 @@ const [details, setDetails] = useState({ selectedTime: 0, reminderId: "", remind
                 {...props}
               />}
             />
+            <Route exact path="/Logout" component={Logout} />
           </Switch>
         </BrowserRouter>
       </Container>
