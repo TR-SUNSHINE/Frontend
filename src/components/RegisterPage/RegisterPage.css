@@ -30,3 +30,8 @@
     margin-bottom: 0px;
     color: red;
 }
+
+.logged {
+    color:red;
+    font-size: 18px;;
+}

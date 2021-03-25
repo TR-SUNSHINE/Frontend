@@ -90,6 +90,10 @@ const RegisterPage = (props) => {
             <Col>
 
                 <h3 className="heading heading--main">Register with Sunshine</h3>
+                <p className="logged" hidden={!localStorage.getItem("userId")}>
+                    You are already logged in!
+                </p>
+
 
                 <Form className="form-register" onSubmit={handleSubmit}>
 
@@ -139,7 +143,7 @@ const RegisterPage = (props) => {
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--right" >
                                 <Button variant="double"
-                                    disabled={details.userName && details.email ? false : true} type="submit" >
+                                    disabled={details.userName && details.email && !localStorage.getItem("userId") ? false : true} type="submit" >
                                     Register
                                 </Button>
                             </div>
