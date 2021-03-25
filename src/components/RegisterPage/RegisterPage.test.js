@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 describe("RegisterPage component", () => {
     afterEach(() => jest.clearAllMocks());
-    const requiredDetails = { email: "aaa@bbb", userName: "Alice" }
+
     test(`Given the component is rendered, 
             then the Register with Sunshine text should be present`, () => {
         render(
@@ -39,5 +39,22 @@ describe("RegisterPage component", () => {
 
         const submitBtn = getByRole("button", { name: "Register" });
         expect(submitBtn).toHaveAttribute("disabled");
+    });
+
+    test(`Register Button should not be disabled when email and userName are not empty`, () => {
+
+        const { getByPlaceholderText, getByRole } =
+            render(
+                <Router>
+                    <RegisterPage />
+                </Router>
+            );
+        const input1 = getByPlaceholderText("Enter your email");
+        fireEvent.change(input1, { "target": { "value": "email@email.com" } });
+        const input2 = getByPlaceholderText("Enter your name");
+        fireEvent.change(input2, { "target": { "value": "a_name" } });
+
+        const submitBtn = getByRole("button", { name: "Register" });
+        expect(submitBtn).not.toHaveAttribute("disabled");
     });
 });
