@@ -162,6 +162,7 @@ const WeatherPage = (props) => {
 
                 const weatherApi = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lng}&exclude=daily,minutely,alerts&units=metric&appid=${weatherKey}`);
 
+                console.log(weatherApi.data);
                 const currentDate = showLocalDate(weatherApi.data.current.dt);
 
                 const sunrise = weatherApi.data.current.sunrise;
