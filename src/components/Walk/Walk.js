@@ -15,11 +15,11 @@ function Walk({ walk }) {
             <Col xs={6}>
                 <h5 className="review-stat">
                     <Link className="text--hyperlink" to={`/IndividualWalk/${walk.id}`}
-                        id={walk.id}
-                        text={walk.walkName}
+                        id={walk.Id}
+                        text={walk.WalkName}
                         key={walk.id}
-                        walkAveRating={walk.aveRating}
-                        userID={walk.userID}
+                        walkaverating={walk.AveRating}
+                        userid={walk.UserID}
                     >
                         {walk.walkName}
                     </Link>
