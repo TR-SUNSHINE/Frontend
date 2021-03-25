@@ -45,7 +45,6 @@ const LoginPage = (props) => {
             const email = details.email;
             axios
                 .get(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/users/${email}/user`)
-                // .then(response => setDetails(response.data))
                 .then((response) => {
                     setDetails(response.data);
                     if (response.data.length === 1) {
@@ -62,14 +61,22 @@ const LoginPage = (props) => {
                         setDetails(copyDetails);
                         console.log("copyDetails:", copyDetails);
                         console.log("details:", details);
-                        // props.history.push("/ErrorPage");
-                    };
+                        props.history.push({
+                            pathname: "/ErrorPage",
+                            state: { message: "Unable to login" }
+                        });
+                    }
                 })
                 .catch(error => {
                     if (error.response) {
                         console.log(error.response.data);
                         copyDetails.loginError = "Error when submittig details - Unable to login";
                         setDetails(copyDetails);
+                        props.history.push({
+                            pathname: "/ErrorPage",
+                            state: { message: error.response.message }
+                        });
+
                     };
                 });
         };
