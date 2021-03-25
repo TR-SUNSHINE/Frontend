@@ -107,7 +107,7 @@ const IndividualWalk = (props) => {
                                 lat={lat}
                                 lng={lng}
                                 google={props.google}
-                                zoom={13}
+                                zoom={15}
                                 draggable={true}
                                 disableDoubleClickZoom={false}
                             >

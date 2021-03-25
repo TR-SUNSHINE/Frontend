@@ -58,7 +58,7 @@ const LoginPage = (props) => {
                         props.history.push("/WeatherPage");
 
                     } else {
-                        details.loginError = "Sorry! Unable to login";
+                        copyDetails.loginError = "Sorry! Unable to login";
                         setDetails(copyDetails);
                         console.log("copyDetails:", copyDetails);
                         console.log("details:", details);
@@ -102,13 +102,6 @@ const LoginPage = (props) => {
                             {details.emailError && <p>{details.emailError} </p>}
                         </div>
                     </Form.Group>
-                    <Form.Group>
-                        <Row>
-                            <div className="form-lerror">
-                                {details.loginError && <p>{details.loginError} </p>}
-                            </div>
-                        </Row>
-                    </Form.Group>
                     <Row>
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--left">
@@ -125,6 +118,9 @@ const LoginPage = (props) => {
                         </Col>
                     </Row>
                 </Form>
+                <p className="log-error" hidden={!details.loginError} >
+                    Error - unable to log on!
+                </p>
             </Col>
         </Row>
     );

@@ -13,6 +13,7 @@ describe("LoginPage component", () => {
         );
         expect(screen.getByText("Login to Sunshine")).toBeInTheDocument();
     });
+<<<<<<< HEAD
     test(`Given the component is rendered, 
         then the Back button should be present`, () => {
         render(
@@ -33,6 +34,22 @@ then the Login button should be present`, () => {
 
     );
 
+=======
+    // test(`Given the component is rendered, 
+    //     then the Back button should be present`, () => {
+    //     render(
+    //         <Router>
+    //             <LoginPage />
+    //         </Router>
+    //     );
+    //     expect(screen.getAllByRole("button").find(button => button.textContent === "Back").length).toBe(1);
+    // });
+
+    test(`Given the required props,
+when the component is rendered, 
+then the Login button should be present`, () => { }
+    );
+>>>>>>> 1034a7b3255944ce54dd0f83653bbf467a48e0aa
     test(`Given the email input ,
 when the component is rendered, 
 then the Login button should be enabled`, () => { }
