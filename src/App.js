@@ -41,18 +41,24 @@ function App() {
             }
             />
             <Route exact path="/WeatherPage" render={(props) =>
-              <WeatherPage
-                details={details}
-                setDetails={setDetails}
-                {...props}
-              />}
+              localStorage.getItem("userId") ?
+                <WeatherPage
+                  details={details}
+                  setDetails={setDetails}
+                  {...props}
+                /> :
+                <Redirect to="/WelcomePage" />
+            }
             />
             <Route exact path="/MyWalksPage" render={(props) =>
-              <MyWalksPage
-                setDetails={setDetails}
-                details={details}
-                {...props}
-              />}
+              localStorage.getItem("userId") ?
+                <MyWalksPage
+                  setDetails={setDetails}
+                  details={details}
+                  {...props}
+                /> :
+                <Redirect to="/WelcomePage" />
+            }
             />
             <Route exact path="/AddWalk" render={(props) =>
               <AddWalk
