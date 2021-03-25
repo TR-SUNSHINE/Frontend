@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import LoginPage from "./LoginPage";
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -23,25 +23,37 @@ describe("LoginPage component", () => {
         expect(screen.getAllByRole("button").find(button => button.textContent === "Back")).toBeInTheDocument();
     });
 
-    test(`Given the required props,
-when the component is rendered, 
-then the Login button should be present`, () => {
-        const validEmail = "email@email.com";
-        render(
-            <Router>
-                <LoginPage />
-            </Router>
-        );
+    test(`Login Button should be disabled when email is empty`, () => {
 
-    }
+        const { getByPlaceholderText, getByRole } =
+            render(
+                <Router>
+                    <LoginPage />
+                </Router>
+            );
+        const input = getByPlaceholderText("Enter your email");
+        fireEvent.change(input, { "target": { "value": "" } });
+        const submitBtn = getByRole("button", { name: "Login" });
+        expect(submitBtn).toHaveAttribute("disabled");
+    });
+
+    test(`Given the user enter an invalid email format,
+    the invalid email format text should be present`, () => {
+
+        const { getByPlaceholderText, getByRole } =
+            render(
+                <Router>
+                    <LoginPage />
+                </Router>
+            );
+        const input = getByPlaceholderText("Enter your email");
+        fireEvent.change(input, { "target": { "value": "emailaddress" } });
+        expect(screen.getByText("invalid email format")).toBeInTheDocument();
+    });
 
 
-    );
 
-    test(`Given the email input ,
-when the component is rendered, 
-then the Login button should be enabled`, () => { }
-    );
+
     test(`Given the absence of email,
 when the component is rendered, 
 then the Login button should be disabled`, () => { }
