@@ -65,20 +65,6 @@ const WeatherPage = (props) => {
         props.setDetails(copyDetails);
     };
 
-    // const updateReminder = async (reminderTime) => {
-
-    //     const formattedReminder = formatReminderTime(reminderTime);
-
-    //     const updatedTime = {
-    //         reminderTime: formattedReminder
-    //     };
-
-    //     await axios.put(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders/${props.details.reminderId}`, updatedTime);
-
-    //     let copyDetails = { ...props.details };
-    //     copyDetails.reminderTime = reminderTime;
-    //     props.setDetails(copyDetails);
-    // };
 
     const deleteReminder = async () => {
 
