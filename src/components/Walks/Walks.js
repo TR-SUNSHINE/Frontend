@@ -8,7 +8,7 @@ import Walk from "../Walk/Walk";
 function Walks({ walks }) {
     console.log(walks);
     return (
-        <div>
+        <div className="walks__container">
             {
                 walks.map(walk =>
 

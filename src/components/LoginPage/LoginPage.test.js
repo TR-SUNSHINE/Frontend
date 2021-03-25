@@ -13,6 +13,7 @@ describe("LoginPage component", () => {
         );
         expect(screen.getByText("Login to Sunshine")).toBeInTheDocument();
     });
+
     test(`Given the component is rendered, 
         then the Back button should be present`, () => {
         render(
@@ -54,6 +55,10 @@ describe("LoginPage component", () => {
 
 
 
+    test(`Given the email input ,
+when the component is rendered, 
+then the Login button should be enabled`, () => { }
+    );
     test(`Given the absence of email,
 when the component is rendered, 
 then the Login button should be disabled`, () => { }

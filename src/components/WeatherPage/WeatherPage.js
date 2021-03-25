@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 import WeatherContainer from "../WeatherContainer/WeatherContainer";
 import "../WeatherPage/WeatherPage.css";
 import "../Button/Button.css";
-import TestGoogleMapWeather from "../Test/TestGoogleMapWeather";
+import GoogleMapWeather from "../Map/GoogleMapWeather";
 import { GoogleApiWrapper, Marker } from "google-maps-react";
 
 const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
@@ -65,20 +65,20 @@ const WeatherPage = (props) => {
         props.setDetails(copyDetails);
     };
 
-    const updateReminder = async (reminderTime) => {
+    // const updateReminder = async (reminderTime) => {
 
-        const formattedReminder = formatReminderTime(reminderTime);
+    //     const formattedReminder = formatReminderTime(reminderTime);
 
-        const updatedTime = {
-            reminderTime: formattedReminder
-        };
+    //     const updatedTime = {
+    //         reminderTime: formattedReminder
+    //     };
 
-        await axios.put(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders/${props.details.reminderId}`, updatedTime);
+    //     await axios.put(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders/${props.details.reminderId}`, updatedTime);
 
-        let copyDetails = { ...props.details };
-        copyDetails.reminderTime = reminderTime;
-        props.setDetails(copyDetails);
-    };
+    //     let copyDetails = { ...props.details };
+    //     copyDetails.reminderTime = reminderTime;
+    //     props.setDetails(copyDetails);
+    // };
 
     const deleteReminder = async () => {
 
@@ -101,21 +101,15 @@ const WeatherPage = (props) => {
 
         } else {
 
-            deleteReminder();
+            copyDetails.selectedTime = 0;
+            props.setDetails(copyDetails);
         }
 
     };
 
-    const toggleReminder = () => {
+    const addReminder = () => {
 
-        if ((props.details.selectedTime !== props.details.reminderTime) && !props.details.reminderId) {
-
-            postReminder(props.details.selectedTime);
-
-        } else if ((props.details.selectedTime !== props.details.reminderTime) && props.details.reminderId) {
-
-            updateReminder(props.details.selectedTime);
-        }
+        postReminder(props.details.selectedTime);
 
     };
 
@@ -207,7 +201,7 @@ const WeatherPage = (props) => {
             <Row>
                 <Col>
                     <h3 className="heading heading--main">Weather: {date}</h3>
-                    <TestGoogleMapWeather
+                    <GoogleMapWeather
                         centerAroundCurrentLocation={false}
                         currentLocation={coords}
                         google={props.google}
@@ -217,7 +211,7 @@ const WeatherPage = (props) => {
                         reminderId={props.details.reminderId}
                     >
                         <Marker lat={coords.lat} lng={coords.long} visible={true} />
-                    </TestGoogleMapWeather>
+                    </GoogleMapWeather>
                 </Col>
             </Row >
 
@@ -231,8 +225,11 @@ const WeatherPage = (props) => {
 
             <Row>
                 <Col>
-                    <div xs={12} className="button__container" >
-                        <Button disabled={props.details.selectedTime ? false : true} onClick={toggleReminder} variant="single">Set Reminder</Button>
+                    <div xs={12} hidden={props.details.reminderTime ? true : false} className="button__container" >
+                        <Button disabled={props.details.selectedTime ? false : true} onClick={addReminder} variant="single">Set Reminder</Button>
+                    </div>
+                    <div xs={12} hidden={props.details.reminderTime ? false : true} className="button__container" >
+                        <Button onClick={deleteReminder} variant="single">Delete</Button>
                     </div>
                 </Col>
             </Row>

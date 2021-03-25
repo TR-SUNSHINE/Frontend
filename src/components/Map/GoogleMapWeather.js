@@ -90,8 +90,8 @@ export class GoogleMapWeather extends React.Component {
             <div className="map_location__container--weather">
                 <div className="map_location__map--weather" ref="map">
                     Loading map...
-            </div>
-                {this.renderChildren()}
+                    {this.renderChildren()}
+                </div>
             </div>
         );
     }

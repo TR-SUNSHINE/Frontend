@@ -8,7 +8,7 @@ describe("WeatherPage component", () => {
 
         render(<WeatherPage />);
 
-        expect(screen.getByText("Weather for the next 24 hours")).toBeInTheDocument();
+        expect(screen.getByText("Weather: next 24 hours")).toBeInTheDocument();
     });
 
     test("Given a WeatherPage component is rendered, When the component is rendered, a Set Reminder button should be present", () => {

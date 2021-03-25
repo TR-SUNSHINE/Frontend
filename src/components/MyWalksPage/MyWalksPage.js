@@ -32,22 +32,24 @@ const MyWalks = (props) => {
         <Row>
             <Col>
                 <Row>
-                    <h3 className="heading heading--main">My Walks</h3>
-                    <div className="container d-flex justify-content-center align-items-center">
-                        <div className="card p-3">
-                            <div className="mt-5 d-flex justify-content-between align-items-center">
-                                <h5 className="review-stat">Walk Name</h5>
-                                <div className="review-stat"> Average Rating</div>
-                            </div>
-                            <hr className="line-horizontal" />
-                            <div className="mt-1 d-flex justify-content-between align-items-center">
-                                <Walks
-                                    walks={walks}
-                                >
-                                </Walks>
+                    <Col xs={12}>
+                        <h3 className="heading heading--main">My Walks</h3>
+                        <div className="container d-flex justify-content-center align-items-center">
+                            <div className="card p-3">
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <h5 className="review-stat">Walk Name</h5>
+                                    <div className="review-stat"> Average Rating</div>
+                                </div>
+                                <hr className="line-horizontal" />
+                                <div className="mt-1 d-flex justify-content-between align-items-center">
+                                    <Walks
+                                        walks={walks}
+                                    >
+                                    </Walks>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </Col>
                 </Row>
                 <Row>
                     <Col xs={12} sm={12} md={12}>

@@ -1,0 +1,6 @@
+.walks__container{
+    width:85vw;
+    height:50vh;
+    margin:auto;
+    overflow-y: scroll;
+}
