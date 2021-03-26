@@ -2,7 +2,6 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
 import Walks from "../Walks/Walks";
 import "../../index.css";
 import "./MyWalksPage.css";
@@ -34,21 +33,22 @@ const MyWalks = (props) => {
                 <Row>
                     <Col xs={12}>
                         <h3 className="heading heading--main">My Walks</h3>
-                        <div className="container d-flex justify-content-center align-items-center">
-                            <div className="card p-3">
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <h5 className="review-stat">Walk Name</h5>
-                                    <div className="review-stat"> Average Rating</div>
-                                </div>
-                                <hr className="line-horizontal" />
-                                <div className="mt-1 d-flex justify-content-between align-items-center">
-                                    <Walks
-                                        walks={walks}
-                                    >
-                                    </Walks>
-                                </div>
+                        <Row className="walks__table">
+                            <div className="title--walk__name">
+                                <h5 className="review-stat">Walk Name</h5>
                             </div>
-                        </div>
+                            <div className="title--ratings">
+                                <div className="review-stat"> Average Rating</div>
+                            </div>
+                            <div className="title--delete">
+                                <div className="review-stat"> Delete</div>
+                            </div>
+                        </Row>
+                        <hr className="line-horizontal" />
+                        <Walks
+                            walks={walks}
+                        >
+                        </Walks>
                     </Col>
                 </Row>
                 <Row>
@@ -60,7 +60,7 @@ const MyWalks = (props) => {
                 </Row>
 
             </Col>
-        </Row>
+        </Row >
     );
 };
 
