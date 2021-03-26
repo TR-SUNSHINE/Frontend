@@ -6,8 +6,7 @@ export default class Graph extends Component {
     constructor(props) {
         super(props);
         this.data = props.data;
-        console.log("graph constructor");
-        console.log(props.data);
+
     }
     chartRef = React.createRef();
 
