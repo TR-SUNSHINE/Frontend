@@ -63,6 +63,7 @@ const AddWalk = (props) => {
     };
     const clearWalk = () => {
         try {
+            setWalkName("");
             setItem({
                 routeMarkers: [],
             });
@@ -112,7 +113,7 @@ const AddWalk = (props) => {
                         <Col sm={4}>
                             <Form.Group controlId="form-row">
                                 <Form.Label id="sdf" style={{ fontSize: "20px", fontWeight: "bold" }}>Walk Name</Form.Label>
-                                <Form.Control as="textarea" name="walkNameInput" onChange={handleChange} rows={1} placeholder="Enter walk description" />
+                                <Form.Control as="textarea" name="walkNameInput" value={walkName} onChange={handleChange} rows={1} placeholder="Enter walk description" />
                             </Form.Group>
                         </Col>
                         <Col sm={4}>
@@ -131,7 +132,7 @@ const AddWalk = (props) => {
                         </Col>
                     </Row>
                 </div>
-            )};
+            )}
             {hasError && <ErrorComponent></ErrorComponent>}
         </>
     );
