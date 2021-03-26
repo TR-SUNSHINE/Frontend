@@ -16,6 +16,7 @@ const AddWalk = (props) => {
     //Default Manchester
     let lat = 53.47783;
     let lng = -2.24317;
+
     const [hasError, setHasError] = useState(false);
     const [walkName, setWalkName] = useState("");
     const [item, setItem] = useState(
@@ -40,26 +41,24 @@ const AddWalk = (props) => {
         }
     };
     const addWalk = () => {
-        if (item.routeMarkers.length > 1 && walkName.length > 0) {
-            const newWalk = {
-                WalkName: walkName,
-                UserID: props.details.userId,
-                Routes: item.routeMarkers
-            };
-            console.log(newWalk);
-            axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/`, newWalk)
-                .then(response => {
-                    console.log(response);
-                    props.history.push("/MyWalksPage");
-                }
-                )
-                .catch(
-                    error => setHasError(true)
-                );
-            setItem({
-                routeMarkers: [],
-            });
-        }
+        const newWalk = {
+            WalkName: walkName,
+            UserID: props.details.userId,
+            Routes: item.routeMarkers
+        };
+        console.log(newWalk);
+        axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/`, newWalk)
+            .then(response => {
+                console.log(response);
+                props.history.push("/MyWalksPage");
+            }
+            )
+            .catch(
+                error => setHasError(true)
+            );
+        setItem({
+            routeMarkers: [],
+        });
     };
     const clearWalk = () => {
         try {
@@ -122,9 +121,10 @@ const AddWalk = (props) => {
                     <Row>
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--left" >
-                                <Button variant="double" onClick={addWalk}>Add Walk</Button>
+                                <Button variant="double" disabled={item.routeMarkers.length > 1 && walkName.length > 0 ? false : true} onClick={addWalk}>Add Walk</Button>
                             </div>
                         </Col>
+
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--right" >
                                 <Button variant="double" onClick={clearWalk}>Clear Walk</Button>
