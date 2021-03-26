@@ -19,7 +19,8 @@ describe("MyWalkPage component", () => {
                 <MyWalks />
             </Router>
         );
-        expect(screen.getByText("My Walks")).toBeInTheDocument();
+
+        expect(screen.getByText("My aWalks")).toBeInTheDocument();
     });
 
     //     test(`Given the component is rendered, 
