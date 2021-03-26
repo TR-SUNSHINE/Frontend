@@ -24,12 +24,7 @@ describe("IndividualWalk component", () => {
                 <IndividualWalk />
             </Router>
         );
-        expect(screen.getByText("My Walks")).toBeInTheDocument();
+        expect(screen.getAllByRole("button").find(button => button.textContent === "My Walks")).toBeInTheDocument();
 
-        // expect(
-        //     screen
-        //         .getAllByRole("button")
-        //         .find((button) => button.textContent === "My Walks")
-        // ).toBeInTheDocument();
     });
 });
