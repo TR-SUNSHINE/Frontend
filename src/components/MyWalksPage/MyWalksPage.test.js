@@ -2,9 +2,6 @@ import { render, screen } from "@testing-library/react";
 import MyWalks from "./MyWalksPage";
 import { BrowserRouter as Router } from "react-router-dom";
 
-
-
-
 describe("MyWalkPage component", () => {
     afterEach(() => jest.clearAllMocks());
     test(`Given the component is rendered, 
