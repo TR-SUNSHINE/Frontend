@@ -27,7 +27,7 @@ const ErrorPage = (props) => {
                 <Row>
                     <Col xs={12} sm={12} md={12}>
                         <div className="button__container button__container--centre" >
-                            <Button variant="accessible" onClick={() => { props.history.push("/"); }}>Return to Home</Button>
+                            <Button variant="accessible" onClick={() => { props.history.push("/"); }}>Home</Button>
                         </div>
                     </Col>
                 </Row>

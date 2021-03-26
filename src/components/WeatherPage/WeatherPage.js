@@ -18,34 +18,43 @@ const WeatherPage = (props) => {
     const [coords, setCoords] = useState({ lat: 0, lng: 0 });
     const [weatherTimes, setWeatherTimes] = useState([]);
     const [date, setDate] = useState("");
-    const [noResults, setNoResults] = useState(false);
     const weatherKey = process.env.REACT_APP_WEATHER_API_KEY;
 
     const getReminders = async () => {
 
-        const reminders = await axios.get(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders`);
+        try {
 
-        if (reminders.data.length) {
+            const reminders = await axios.get(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders`);
 
-            const latestReminder = reminders.data[reminders.data.length - 1];
+            if (reminders.data.length) {
 
-            const latestReminderTime = formatLocalDateTime(latestReminder.reminderTime);
-            const timeNow = formatReminderTime(Math.floor(Date.now() / 1000)) + "Z";
-            const latestReminderTimeUnix = Date.parse(latestReminderTime) / 1000;
+                const latestReminder = reminders.data[reminders.data.length - 1];
 
-            if (latestReminderTime > timeNow) {
-                const copyDetails = { ...props.details };
-                copyDetails.reminderTime = latestReminderTimeUnix;
-                copyDetails.reminderId = latestReminder.reminderId;
-                props.setDetails(copyDetails);
+                const latestReminderTime = formatLocalDateTime(latestReminder.reminderTime);
+                const timeNow = formatReminderTime(Math.floor(Date.now() / 1000)) + "Z";
+                const latestReminderTimeUnix = Date.parse(latestReminderTime) / 1000;
 
-            } else {
-                console.log("reminder in past");
+                if (latestReminderTime > timeNow) {
+                    const copyDetails = { ...props.details };
+                    copyDetails.reminderTime = latestReminderTimeUnix;
+                    copyDetails.reminderId = latestReminder.reminderId;
+                    props.setDetails(copyDetails);
+
+                } else {
+                    console.log("reminder in past");
+                }
+
+                console.log(reminders);
+
             }
-
+        } catch (error) {
+            props.history.push({
+                pathname: "/ErrorPage",
+                state: { message: "Unable to load reminders" }
+            });
         }
 
-        console.log(reminders);
+
 
     };
 
@@ -57,24 +66,43 @@ const WeatherPage = (props) => {
             reminderTime: formattedReminder
         };
 
-        const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders`, newTime);
+        try {
 
-        let copyDetails = { ...props.details };
-        copyDetails.reminderId = addReminder.data.reminderId;
-        copyDetails.reminderTime = reminderTime;
-        props.setDetails(copyDetails);
+            const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders`, newTime);
+
+            let copyDetails = { ...props.details };
+            copyDetails.reminderId = addReminder.data.reminderId;
+            copyDetails.reminderTime = reminderTime;
+            props.setDetails(copyDetails);
+
+        } catch (error) {
+            props.history.push({
+                pathname: "/ErrorPage",
+                state: { message: "Unable to set a reminder" }
+            });
+
+        }
     };
 
 
     const deleteReminder = async () => {
 
-        await axios.delete(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders/${props.details.reminderId}`);
+        try {
 
-        let copyDetails = { ...props.details };
-        copyDetails.selectedTime = 0;
-        copyDetails.reminderTime = 0;
-        copyDetails.reminderId = 0;
-        props.setDetails(copyDetails);
+            await axios.delete(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders/${props.details.reminderId}`);
+
+            let copyDetails = { ...props.details };
+            copyDetails.selectedTime = 0;
+            copyDetails.reminderTime = 0;
+            copyDetails.reminderId = 0;
+            props.setDetails(copyDetails);
+
+        } catch (error) {
+            props.history.push({
+                pathname: "/ErrorPage",
+                state: { message: "Unable to delete reminder" }
+            });
+        }
     };
 
     const toggleSelectedTime = (weatherId) => {
@@ -129,15 +157,17 @@ const WeatherPage = (props) => {
                     console.log(error);
                     setCoords({ lat: 53.4809, lng: -2.2374 });
                 } else {
-                    console.log(error);
-                    setNoResults(true);
+                    props.history.push({
+                        pathname: "/ErrorPage",
+                        state: { message: "Unable get your coordinates" }
+                    });
 
                 }
             }
 
         }
 
-    }, [coords.lat, coords.long]);
+    }, [coords.lat, coords.long, props.history]);
 
 
     const getWeather = useCallback(async () => {
@@ -162,13 +192,15 @@ const WeatherPage = (props) => {
                 setWeatherTimes(updatedIconsArray);
 
             } catch (error) {
-                console.log(error);
-                setNoResults(true);
+                props.history.push({
+                    pathname: "/ErrorPage",
+                    state: { message: "Unable to get weather information" }
+                });
             }
 
         }
 
-    }, [coords.lat, coords.lng, weatherKey]);
+    }, [coords.lat, coords.lng, weatherKey, props.history]);
 
     useEffect(() => {
         getReminders();
@@ -178,10 +210,6 @@ const WeatherPage = (props) => {
         getCoords();
         getWeather();
     }, [getWeather, getCoords]);
-
-    if (noResults) {
-        return <Redirect to="/NotFoundPage" />;
-    }
 
     return (
         <>
