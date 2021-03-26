@@ -156,7 +156,7 @@ const IndividualWalk = (props) => {
                         </Col>
                     </Row>
                 </div>
-            )};
+            )}
             {hasError && <ErrorComponent></ErrorComponent>}
         </>
     );
