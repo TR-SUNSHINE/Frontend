@@ -35,12 +35,12 @@ function Walk({ walk }) {
                         id={walk.id}
                         text={walk.walkName}
                         key={walk.id}
-                        walkAveRating={walk.aveRating}
-                        userID={walk.userID}
+                        walkaverating={walk.aveRating}
+                        userid={walk.userID}
                         walktime={walk.walktime}
-                        yearOf={walk.yearOf}
-                        monthOf={walk.monthOf}
-                        dayOf={walk.dayOf}
+                        yearof={walk.yearOf}
+                        monthof={walk.monthOf}
+                        dayof={walk.dayOf}
                     >
                         {walk.walkName}
                     </Link>
