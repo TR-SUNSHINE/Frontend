@@ -16,7 +16,6 @@ body {
   padding-top: 19%;
 }
 
-
 /* styling common to Register, Login & AddWalk pages */
 
 /* bootstrap class */
@@ -28,6 +27,11 @@ body {
   color: #296eb4;
 }
 
+.form-group {
+  margin-bottom: 0;
+  text-align: left;
+}
+
 /* html element inside bootstrap */
 form{
   padding-block: 5px;
@@ -35,11 +39,6 @@ form{
   padding: 10px;
   margin: 5%;
   border: 1px solid #296eb4;
-}
-
-.form-group {
-  margin-bottom: 0;
-  text-align: left;
 }
 
 /* styling common to Register & AddWalk*/
@@ -55,6 +54,7 @@ form{
 
   .heading--main {
     padding-top: 21%;
+    font-size: 1.5em;
   }
 }
 
@@ -66,14 +66,20 @@ form{
 
   .heading--main {
     padding-top: 12%;
-  }
 
-  .heading--secondary{
-    font-size: 1.5em;
+  }
+  .logged {
+    font-size: 20px;;
   }
   
+  .form-label {
+    font-size: 20px;
+  }
+  
+  input.form-control{
+    font-size: 20px;
+  }
 }
-
 
 /* Medium - ≥768px */
 
@@ -82,19 +88,110 @@ form{
   .heading--main {
     padding-top: 10%;
   }
+
+  .heading--secondary{
+    font-size: 1.5em;
+  }
+
+  .heading--tertiary{
+    font-size: 1.5em;
+} 
+
+.logged {
+  font-size: 22px;;
+}
+
+.form-label {
+  font-size: 22px;
+}
+
+input.form-control{
+  font-size: 22px;
+}
 }
 
 
 /* Large - ≥992px */
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+  .heading--main {
+    padding-top: 8%;
+    font-size: 2em;
+  
+  }
+
+  .heading--secondary{
+    font-size: 1.65em;
+    padding-top: 1em;
+  }
+
+  .heading--tertiary{
+    font-size: 1.5em;
+} 
+
+.logged {
+  font-size: 22px;;
+}
+
+.form-label {
+  font-size: 22px;
+}
+
+input.form-control{
+  font-size: 22px;
+}
+}
 
 
 /* Extra Large - ≥1200px */
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .heading--main {
+    padding-top: 7%;
+    font-size: 2em;
+  
+  }
 
+  .heading--secondary{
+    font-size:1.75em;
+    padding-top:0.85em;
+  }
 
+  .heading--tertiary{
+    font-size: 1.5em;
+    padding-top: 1.25em;
+} 
+
+.logged {
+  font-size: 24px;;
+}
+
+.form-label {
+  font-size: 24px;
+}
+
+input.form-control{
+  font-size: 24px;
+}
+}
 /* Extra extra Large - ≥1400px */
 
-@media only screen and (min-width: 1400px) {}
+@media only screen and (min-width: 1400px) {
+
+  .heading--main {
+    padding-top: 8%;
+    font-size: 2em;
+  
+  }
+
+  .heading--secondary{
+    font-size:1.75em;
+    padding-top:0.85em;
+  }
+
+  .heading--tertiary{
+    font-size: 1.5em;
+    padding-top: 1.25em;
+} 
+}

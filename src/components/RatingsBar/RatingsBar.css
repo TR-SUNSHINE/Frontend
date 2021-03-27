@@ -12,9 +12,6 @@
     color:#fbc634;
 }   
 
-#addrating {
-    color:black;  
-  }
 /* Super Small screens */
 
 @media only screen and (max-width: 300px) {
@@ -29,3 +26,41 @@
   
   }
 
+  /* Large - ≥992px */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+    .MuiRating-icon.MuiRating-iconEmpty{
+        font-size: 1.25em;
+    }   
+    
+    .MuiRating-iconFilled{
+        font-size: 1.25em;
+    }   
+}
+
+  /* Extra Large - ≥1200px */
+  @media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
+    .MuiRating-icon.MuiRating-iconEmpty{
+        font-size: 1.25em;
+    }   
+    
+    .MuiRating-iconFilled{
+        font-size: 1.25em;
+    }   
+  
+  }
+
+  /* Extra extra Large - ≥1400px */
+
+@media only screen and (min-width: 1400px) {
+
+    .MuiRating-icon.MuiRating-iconEmpty{
+        font-size: 1.25em;
+    }   
+    
+    .MuiRating-iconFilled{
+        font-size: 1.25em;
+    }   
+}

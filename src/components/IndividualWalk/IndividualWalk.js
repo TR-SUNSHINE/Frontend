@@ -133,15 +133,15 @@ const IndividualWalk = (props) => {
                     </Row>
                     <Row>
                         <Col>
-                            <h5 className="heading heading--secondary">Walk Statistics</h5>
+                            <h5 className="heading heading--tertiary">Walk Statistics</h5>
                             {renderGraph === true && <Graph data={avgRatingPerMonth} />}
                         </Col>
                     </Row>
 
-                    <h5 className="heading heading--secondary">Rate Walk</h5>
+                    <h5 className="heading heading--tertiary">Rate Walk</h5>
                     <Row className="addrating__container">
                         <Col xs={6}>
-                            <div className="addrating__container--right" >
+                            <div className="addrating__container--left" >
                                 <RatingsBar value={Number(stars)} disabled={false} onChange={handleChange} />
                             </div>
                         </Col>

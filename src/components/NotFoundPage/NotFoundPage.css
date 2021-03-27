@@ -45,6 +45,11 @@
         text-align: left;
         padding: 1rem;
       }
+
+    .image--notfound{
+      max-width: 80vw;
+      max-height: 50vh;
+    }
 }
 
 /* Extra Large - ≥1200px */
@@ -60,6 +65,11 @@
         text-align: left;
         padding: 1rem;
       }
+
+      .image--notfound{
+        max-width: 80vw;
+        max-height: 50vh;
+      }
 }
 
 /* Extra extra Large - ≥1400px */
@@ -74,5 +84,10 @@
     .button__container--right {
         text-align: left;
         padding: 1rem;
+      }
+
+      .image--notfound{
+        max-width: 80vw;
+        max-height: 50vh;
       }
 }

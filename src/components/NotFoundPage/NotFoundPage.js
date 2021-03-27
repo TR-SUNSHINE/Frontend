@@ -15,13 +15,13 @@ const NotFoundPage = (props) => {
 
                 <Row>
                     <Col>
-                        <Image src="./images/ErrorPage.png" alt="404 Page NotFound" fluid />
+                        <Image className="image--notfound" src="./images/ErrorPage.png" alt="404 Page NotFound" fluid />
                     </Col>
                 </Row>
                 <Row>
                     <Col xs={12} sm={12} md={12}>
                         <div className="button__container button__container--centre" >
-                            <Button variant="accessible" onClick={() => { props.history.push("/"); }}>Home</Button>
+                            <Button variant="single" onClick={() => { props.history.push("/"); }}>Home</Button>
                         </div>
                     </Col>
                 </Row>

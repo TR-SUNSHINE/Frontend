@@ -1,12 +1,13 @@
 
 .addrating__container--left {
     text-align: right;
-    padding: 1rem;
+    padding: 1em;
   }
 
 .addrating__container--right {
     text-align: left;
-    padding: 1rem;
+    margin-left:1em;
+    padding: 1em;
   }
 
 
@@ -15,5 +16,61 @@
     margin-left: 0.4em;
     margin-right: 0.4em;
     border: 1px solid #296EB4;
+}
+
+/* Media Queries to match Bootstrap viewport sizes - general styling*/
+
+/* Small - ≥576px */
+
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+  
+}
+
+
+/* Medium - ≥768px */
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+
+  .addrating__container.row{
+    
+    margin-left: 8em;
+    margin-right: 8em;
+   
+}
+ 
+}
+
+
+/* Large - ≥992px */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+  .addrating__container.row{
+    margin-left: 12em;
+    margin-right: 12em;
+}
+}
+
+
+/* Extra Large - ≥1200px */
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
+  .addrating__container.row{
+    margin-left: 16em;
+    margin-right: 16em;
+}
+
+}
+
+
+/* Extra extra Large - ≥1400px */
+
+@media only screen and (min-width: 1400px) {
+  .addrating__container.row{
+    margin-left: 16em;
+    margin-right: 16em;
+}
+
 }
 

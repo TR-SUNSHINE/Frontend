@@ -28,12 +28,58 @@
   display:inline-block;
 }
 
-/* Super Small screens */
 
-@media only screen and (max-width: 300px) {
-
-  .walks__table{
-    font-size: 16px;
+/* Media Queries to match Bootstrap viewport sizes - general styling*/
+  
+  /* Small - ≥576px */
+  
+  @media only screen and (min-width: 576px) and (max-width: 768px) {
+  
+    .review-stat {
+      font-size: 22px;
+    }
+    
   }
+  
+  
+  /* Medium - ≥768px */
+  
+  @media only screen and (min-width: 768px) and (max-width: 992px) {
+  
+    .review-stat {
+      font-size: 24px;
+    }
+  
+    
+  }
+  
+  
+  /* Large - ≥992px */
+  
+  @media only screen and (min-width: 992px) and (max-width: 1199px) {
+  
+    .review-stat {
+      font-size: 24px;
+    }
+  
+  }
+  
+  
+  /* Extra Large - ≥1200px */
+  
+  @media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    
+    .review-stat {
+      font-size: 26px;
+    }
+  }
+  
+  
+  /* Extra extra Large - ≥1400px */
+  
+  @media only screen and (min-width: 1400px) {
 
-}
+    .review-stat {
+      font-size: 26px;
+    }
+  }

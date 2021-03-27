@@ -26,3 +26,57 @@
     width: 20%;
     display:inline-block;
 }
+
+  /* Media Queries to match Bootstrap viewport sizes - general styling*/
+  
+  /* Small - ≥576px */
+  
+  @media only screen and (min-width: 576px) and (max-width: 768px) {
+  
+   .text--hyperlink, .text--newtask{
+       font-size: 18px;
+   }
+    
+  }
+  
+  
+  /* Medium - ≥768px */
+  
+  @media only screen and (min-width: 768px) and (max-width: 992px) {
+  
+    .text--hyperlink, .text--newtask{
+        font-size: 20px;
+    }
+  
+    
+  }
+  
+  
+  /* Large - ≥992px */
+  
+  @media only screen and (min-width: 992px) and (max-width: 1199px) {
+  
+    .text--hyperlink, .text--newtask{
+        font-size: 22px;
+    }
+  
+  }
+  
+  
+  /* Extra Large - ≥1200px */
+  
+  @media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .text--hyperlink, .text--newtask{
+        font-size: 24px;
+    }
+  }
+  
+  
+  /* Extra extra Large - ≥1400px */
+  
+  @media only screen and (min-width: 1400px) {
+
+    .text--hyperlink, .text--newtask{
+        font-size: 24px;
+    }
+  }

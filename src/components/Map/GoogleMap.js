@@ -112,9 +112,8 @@ export class GoogleMap extends React.Component {
     }
     render() {
         return (
-            // <div className="map_location__container">
-            <div>
-                <div className={this.props.maptype == "addwalk" ? "map_location__container--addwalk" : "map_location__container--individualwalk"} ref="map">
+            <div className={this.props.maptype === "addwalk" ? "map_location__container--addwalk" : "map_location__container--individualwalk"} >
+                <div className="map_location__map" ref="map">
                     Loading map...
                 </div>
                 {this.renderChildren()}

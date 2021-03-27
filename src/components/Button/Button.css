@@ -15,15 +15,6 @@
     font-size: 16px;
 }
 
-/* CHECK IF THIS IS USED*/
-
-.btn-accessible {
-  background-color: #296eb4;
-  color: white;
-  font-size: 16px;
-}
-/** **/
-
 .btn-single {
   background-color: #296eb4;
   color: white;
@@ -54,7 +45,7 @@
   color: white;
   font-size: 16px;
   width: 60px;
-  margin-top: 1em;
+  margin-top: 1em; 
 }
 /* Media Queries to match Bootstrap viewport sizes */
 
@@ -72,12 +63,16 @@
     padding: 1rem;
   }
 
-  .button--link, .btn-double, .btn-single {
+  .button--link, .btn-double, .btn-single, .btn-addwalk, .btn-delete {
     font-size: 18px;
   }
 
   .btn-single {
     width: 150px;
+  }
+
+  .btn-addwalk {
+    width: 130px;
   }
 
 } 
@@ -104,8 +99,13 @@
     width: 170px;
   }
 
-  .button--link, .btn-double, .btn-single {
-    font-size: 24px;
+  .button--link, .btn-double, .btn-single, .btn-delete {
+    font-size: 20px;
+  }
+
+  .btn-addwalk {
+    font-size: 20px;
+    width: 130px;
   }
 
 }
@@ -130,13 +130,22 @@
 } 
 
 .btn-single{
-  width: 170px;
+  width: 150px;
 }
 
-.button--link, .btn-double, .btn-single {
-  font-size: 24px;
+.button--link, .btn-double, .btn-single, .btn-delete {
+  font-size: 20px;
 }
 
+.btn-addrating{
+  font-size: 20px;
+  width: 90px;
+}
+
+.btn-addwalk {
+  font-size: 20px;
+  width: 130px;
+}
 }
 
 
@@ -159,11 +168,21 @@
   } 
 
   .btn-single{
-    width: 170px;
+    width: 150px;
   }
   
-  .button--link, .btn-double, .btn-single {
-    font-size: 24px;
+  .button--link, .btn-double, .btn-single, .btn-delete {
+    font-size: 22px;
+  }
+
+  .btn-addrating{
+    font-size: 20px;
+    width: 90px;
+  }
+
+  .btn-addwalk {
+    font-size: 20px;
+    width: 130px;
   }
 }
 
@@ -191,8 +210,18 @@
     width: 170px;
   }
   
-  .button--link, .btn-double, .btn-single {
+  .button--link, .btn-double, .btn-single, .btn-delete {
     font-size: 24px;
   }
 
+  .btn-addwalk {
+    font-size: 22px;
+    width: 130px;
+  }
+
+  .btn-addrating{
+    font-size: 22px;
+    width: 70px;
+
+  }
 }
