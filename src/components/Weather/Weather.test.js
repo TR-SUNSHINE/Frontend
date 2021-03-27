@@ -1,6 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import Weather from "./Weather";
 import { faSun, faBolt, faWind } from "@fortawesome/free-solid-svg-icons";
+import { BrowserRouter as Router } from 'react-router-dom';
+import React from "react";
+
+
+const useEffect = jest.spyOn(React, "useEffect").mockImplementation(() => { });
 
 describe("Weather component", () => {
     afterEach(() => jest.clearAllMocks());
@@ -18,9 +23,12 @@ describe("Weather component", () => {
     test(`Given the required props, 
     When the component is rendered, then an array of weather div elements should be present.`, () => {
 
-        render(<Weather weatherTimes={requiredWeatherTimes} selectedWeatherTime={requiredSelectedWeatherTime} toggleWeatherTimeSelected={requiredToggleWeatherTimeSelected} />);
-
-        screen.debug();
+        render(
+            <Router>
+                <Weather weatherTimes={requiredWeatherTimes} selectedWeatherTime={requiredSelectedWeatherTime} toggleWeatherTimeSelected={requiredToggleWeatherTimeSelected} />);
+            </Router>
+        );
+        // screen.debug()
 
         expect(screen.getByText("windy")).toBeInTheDocument();
         expect(screen.getByText("lightening")).toBeInTheDocument();
@@ -32,7 +40,5 @@ describe("Weather component", () => {
         expect(screen.getByText("23°")).toBeInTheDocument();
         expect(screen.getByText("24°")).toBeInTheDocument();
     });
-
-
 });
 

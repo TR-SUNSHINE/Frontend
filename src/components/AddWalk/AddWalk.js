@@ -16,6 +16,7 @@ const AddWalk = (props) => {
     //Default Manchester
     let lat = 53.47783;
     let lng = -2.24317;
+
     const [hasError, setHasError] = useState(false);
     const [walkName, setWalkName] = useState("");
     const [item, setItem] = useState(
@@ -24,7 +25,7 @@ const AddWalk = (props) => {
     const onMapClick = (mapProps, map, clickEvent) => {
         try {
             const updatedMarkers = [...item.routeMarkers];
-            updatedMarkers.push({ Sequence: item.routeMarkers.length, lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() });
+            updatedMarkers.push({ key: item.routeMarkers.length, lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() });
             setItem({ routeMarkers: updatedMarkers });
         } catch {
             setHasError(true);
@@ -40,29 +41,27 @@ const AddWalk = (props) => {
         }
     };
     const addWalk = () => {
-        if (item.routeMarkers.length > 1 && walkName.length > 0) {
-            const newWalk = {
-                WalkName: walkName,
-                UserID: props.details.userId,
-                Routes: item.routeMarkers
-            };
-            console.log(newWalk);
-            axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/`, newWalk)
-                .then(response => {
-                    console.log(response);
-                    props.history.push("/MyWalksPage");
-                }
-                )
-                .catch(
-                    error => setHasError(true)
-                );
-            setItem({
-                routeMarkers: [],
-            });
-        }
+        const newWalk = {
+            WalkName: walkName,
+            UserID: props.details.userId,
+            Routes: item.routeMarkers
+        };
+        axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/`, newWalk)
+            .then(response => {
+                console.log(response);
+                props.history.push("/MyWalksPage");
+            }
+            )
+            .catch(
+                error => setHasError(true)
+            );
+        setItem({
+            routeMarkers: [],
+        });
     };
     const clearWalk = () => {
         try {
+            setWalkName("");
             setItem({
                 routeMarkers: [],
             });
@@ -90,7 +89,7 @@ const AddWalk = (props) => {
                                 {/* {console.log(item.routeMarkers)} */}
                                 {item.routeMarkers.map((coords, index) => {
                                     if (index === 0 || index === item.routeMarkers.length - 1) {
-                                        return <Marker Sequence={`marker-${index}`} position={coords} />;
+                                        return <Marker key={`marker-${index}`} position={coords} />;
                                     }
                                     return null;
                                 })}
@@ -112,7 +111,7 @@ const AddWalk = (props) => {
                         <Col sm={4}>
                             <Form.Group controlId="form-row">
                                 <Form.Label id="sdf" style={{ fontSize: "20px", fontWeight: "bold" }}>Walk Name</Form.Label>
-                                <Form.Control as="textarea" name="walkNameInput" onChange={handleChange} rows={1} placeholder="Enter walk description" />
+                                <Form.Control as="textarea" name="walkNameInput" value={walkName} onChange={handleChange} rows={1} placeholder="Enter walk description" />
                             </Form.Group>
                         </Col>
                         <Col sm={4}>
@@ -121,9 +120,10 @@ const AddWalk = (props) => {
                     <Row>
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--left" >
-                                <Button variant="double" onClick={addWalk}>Add Walk</Button>
+                                <Button variant="double" disabled={item.routeMarkers.length > 1 && walkName.length > 0 ? false : true} onClick={addWalk}>Add Walk</Button>
                             </div>
                         </Col>
+
                         <Col xs={12} sm={6} md={6}>
                             <div className="button__container button__container--right" >
                                 <Button variant="double" onClick={clearWalk}>Clear Walk</Button>
@@ -131,7 +131,7 @@ const AddWalk = (props) => {
                         </Col>
                     </Row>
                 </div>
-            )};
+            )}
             {hasError && <ErrorComponent></ErrorComponent>}
         </>
     );
