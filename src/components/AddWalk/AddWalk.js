@@ -75,7 +75,7 @@ const AddWalk = (props) => {
                 <div>
                     <Row>
                         <Col>
-                            <h3 className="heading heading--main">Add Walk</h3>
+                            <h3 className="heading heading--main">Create Walk</h3>
                             <GoogleMap
                                 centerAroundCurrentLocation={true}
                                 lat={lat}
