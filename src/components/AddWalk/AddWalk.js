@@ -25,7 +25,7 @@ const AddWalk = (props) => {
     const onMapClick = (mapProps, map, clickEvent) => {
         try {
             const updatedMarkers = [...item.routeMarkers];
-            updatedMarkers.push({ Sequence: item.routeMarkers.length, lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() });
+            updatedMarkers.push({ key: item.routeMarkers.length, lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() });
             setItem({ routeMarkers: updatedMarkers });
         } catch {
             setHasError(true);
@@ -46,7 +46,6 @@ const AddWalk = (props) => {
             UserID: props.details.userId,
             Routes: item.routeMarkers
         };
-        console.log(newWalk);
         axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/`, newWalk)
             .then(response => {
                 console.log(response);
@@ -90,7 +89,7 @@ const AddWalk = (props) => {
                                 {/* {console.log(item.routeMarkers)} */}
                                 {item.routeMarkers.map((coords, index) => {
                                     if (index === 0 || index === item.routeMarkers.length - 1) {
-                                        return <Marker Sequence={`marker-${index}`} position={coords} />;
+                                        return <Marker key={`marker-${index}`} position={coords} />;
                                     }
                                     return null;
                                 })}

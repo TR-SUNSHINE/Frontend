@@ -16,6 +16,7 @@ function Walk({ walk }) {
 
         axios.delete(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/`, { data: { Id: walk.id } })
             .then(response => {
+                console.log(response);
                 window.location.reload(false);
             })
             .catch(
