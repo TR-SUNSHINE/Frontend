@@ -1,15 +1,28 @@
-.review-stat {
-    font-weight: 500;
-    color: #296EB4;
-    font-size: 18px;
-    margin-bottom: 2px
+.container--walk__name{
+    width: 30%;
+    overflow-wrap: break-word;
+    margin-bottom: 1em; 
+    display:inline-block;
 }
 
-.text--hyperlink {
-    color: #30353a;
-    ;
+.text--hyperlink {  
+    color: #296EB4;
+    font-size: 16px;
+    margin-bottom: 1em;
 }
 
 .text--newtask {
     color: goldenrod;
+    font-size: 16px;
+    margin-bottom: 1em;
+}
+
+.container--ratings{
+    width: 50%;
+    display:inline-block;
+}
+
+.container--button__delete{
+    width: 20%;
+    display:inline-block;
 }

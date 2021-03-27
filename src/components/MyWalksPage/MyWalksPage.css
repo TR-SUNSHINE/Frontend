@@ -1,44 +1,29 @@
-.dflex{
-  margin-top: 0;
-}
-  
-  .line-horizontal {
+ .line-horizontal {
     color: #296EB4;
     size: 5;
     width: 100%;
+    margin-top:0;
+    margin: bottom 0.7em;
   }
-  .card {
-    width: 380px;
-    border: none
-  }
-
-.ratings {
-    margin-right: 10px
-}
-
-.ratings i {
-    color: #cecece;
-    font-size: 32px;
-}
-
-.rating-color {
-  color: #fbc634 !important;
-}
-
-.review-count {
-  font-weight: 400;
-  color: #296eb4;
-  margin-bottom: 2px;
-  font-size: 24px !important;
-}
-
-.small-ratings i {
-  color: #cecece;
-}
 
 .review-stat {
   font-weight: 500;
   color: #296eb4;
   font-size: 18px;
   margin-bottom: 2px;
+}
+
+.title--walk__name{
+  width: 30%;
+  display: inline-block;
+}
+
+.title--ratings{
+  width: 50%;
+  display:inline-block;
+}
+
+.title--delete{
+  width: 20%;
+  display:inline-block;
 }

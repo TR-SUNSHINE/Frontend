@@ -25,9 +25,9 @@ function Walk({ walk }) {
     };
 
     return (
-        <Row>
-            <Col xs={6}>
-                <h5 className="review-stat">
+        <>
+            <div className="container--walk__name">
+                <h5 className="walk__name">
                     <Link className={walk.dayOf === today.getDate().toString() &&
                         walk.monthOf === (today.getMonth() + 1).toString() &&
                         walk.yearOf === today.getFullYear().toString()
@@ -46,14 +46,15 @@ function Walk({ walk }) {
                         {walk.walkName}
                     </Link>
                 </h5>
-            </Col>
-            <Col xs={6}>
+            </div>
+            <div className="container--ratings">
                 <RatingsBar value={walk.aveRating} disabled={true} />
-            </Col>
-            <Col xs={6}>
-                <Button onClick={deleteWalk}>Delete</Button>
-            </Col>
-        </Row>
+            </div>
+
+            <div className="container--button__delete">
+                <Button onClick={deleteWalk} variant="delete">x</Button>
+            </div>
+        </>
     );
 }
 export default Walk;
