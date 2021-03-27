@@ -60,7 +60,7 @@ export default class Graph extends Component {
 
                 },
                 responsive: true,
-                maintainAspectRatio: true,
+                maintainAspectRatio: false,
                 scales: {
                     yAxes: [{
 
@@ -108,7 +108,7 @@ export default class Graph extends Component {
     }
     render() {
         return (
-            <div className={classes.graphContainer}>
+            <div className={classes.graphContainer} style={{ position: "relative", height: "30vh", width: "90vw" }}>
                 <canvas
                     id="myChart"
                     ref={this.chartRef}

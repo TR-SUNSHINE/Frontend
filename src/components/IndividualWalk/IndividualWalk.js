@@ -16,6 +16,7 @@ const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const IndividualWalk = (props) => {
     const { walkId } = useParams();
+    const { walkName } = useParams();
     let lat = 0;
     let lng = 0;
     let renderGraph = false;
@@ -106,8 +107,8 @@ const IndividualWalk = (props) => {
                 <div>
                     <Row>
                         <Col>
-                            <h3 className="heading heading--main">Individual Walk</h3>
-                            <h4 className="heading heading--secondary">Top Rated Walk</h4>
+                            <h3 className="heading heading--main">Top Rated Walk</h3>
+                            <h4 className="heading heading--secondary">{walkName}</h4>
                             <GoogleMap
                                 centerAroundCurrentLocation={false}
                                 lat={lat}

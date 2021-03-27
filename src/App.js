@@ -61,7 +61,7 @@ function App() {
                 {...props}
               />}
             />
-            <Route exact path="/IndividualWalk/:walkId" render={(props) =>
+            <Route exact path="/IndividualWalk/:walkId/:walkName" render={(props) =>
               <IndividualWalk
                 setDetails={setDetails}
                 details={details}
