@@ -18,6 +18,7 @@ const Navibar = () => {
                 <Nav>
                     <Nav.Link href="/WeatherPage">Weather</Nav.Link>
                     <Nav.Link href="/MyWalksPage">My Walks</Nav.Link>
+                    <Nav.Link href="/AddWalk">Add Walk</Nav.Link>
                     <Nav.Link href="/Logout">Logout</Nav.Link>
                 </Nav>
             </Navbar.Collapse>

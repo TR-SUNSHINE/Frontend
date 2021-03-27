@@ -1,37 +1,9 @@
 
-.form-register {
-  padding-block: 5px;
-  color: #296eb4;
-  padding: 10px;
-  margin: 5%;
-  border: 1px solid #296eb4;
-}
-
-.form-label{
-  font-size: 18px;
-  margin-top: 7px;
-  margin-bottom:5px;
-  text-align: left;
-}
-
-.Form.Control {
-  border: 1px solid #fdbb33
-  /* padding: 8px;
-  margin-top: 4px; */
-}
-.button__container--center {
-text-align: center;
-padding: 1rem;
-}  
-
-.logged {
-  color:red;
-  font-size: 18px;;
-}
-
 .log-error {
   color: red;
   font-size: 20px;
   margin-top: 20px;
   text-align: center;
 }
+
+/* see index.css for css common to Register, Login & AddWalk pages */

@@ -31,39 +31,32 @@ const MyWalks = (props) => {
     }, []);
 
     return (
-        <Row>
-            <Col>
-                <Row>
-                    <Col xs={12}>
-                        <h3 className="heading heading--main">My Walks</h3>
-                        <Row className="walks__table">
-                            <div className="title--walk__name">
-                                <h5 className="review-stat">Walk Name</h5>
-                            </div>
-                            <div className="title--ratings">
-                                <div className="review-stat"> Average Rating</div>
-                            </div>
-                            <div className="title--delete">
-                                <div className="review-stat"> Delete</div>
-                            </div>
-                        </Row>
-                        <hr className="line-horizontal" />
-                        <Walks
-                            walks={walks}
-                        >
-                        </Walks>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={12} sm={12} md={12}>
-                        <div className="button__container" >
-                            <Button variant="single" onClick={() => props.history.push("/AddWalk")}>Create Walk</Button>
+        <>
+            <Row>
+                <Col xs={12}>
+                    <h3 className="heading heading--main">My Walks</h3>
+                    <div className="walks__table">
+                        <div className="title--walk__name">
+                            <h5 className="review-stat"> Name</h5>
                         </div>
-                    </Col>
-                </Row>
+                        <div className="title--ratings">
+                            <div className="review-stat"> Rating</div>
+                        </div>
+                        <div className="title--delete">
+                            <div className="review-stat"> Delete</div>
+                        </div>
+                    </div>
+                    <hr className="line-horizontal" />
+                    <Walks
+                        walks={walks}
+                        history={props.history}
+                    >
+                    </Walks>
+                    <Button variant="addwalk" onClick={() => props.history.push("/AddWalk")}>Add Walk</Button>
+                </Col>
+            </Row>
 
-            </Col>
-        </Row >
+        </>
     );
 };
 

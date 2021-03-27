@@ -8,7 +8,6 @@ import React, { useState, useEffect } from "react";
 import { GoogleApiWrapper, Marker, Polyline } from "google-maps-react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
 import "../Button/Button.css";
 import axios from "axios";
 
@@ -57,7 +56,6 @@ const IndividualWalk = (props) => {
         lng = -2.24317;
     }
     else {
-        //From State
         const middleItem = routeMarkers[routeMarkers.length / 2 | 0];
         lat = middleItem.lat;
         lng = middleItem.lng;
@@ -68,7 +66,7 @@ const IndividualWalk = (props) => {
     else {
         renderGraph = false;
     }
-    // Only run this code once, when the component first mounts
+
     useEffect(() => {
         axios
             .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/${walkId}`)
@@ -81,10 +79,7 @@ const IndividualWalk = (props) => {
             .catch(
                 error => setHasError(true)
             );
-    },
-        // the array would normally contain values that may change, and React would run the above code WHEN that value changes
-        // "Array of dependencies"
-        []
+    }, []
     );
     useEffect(() => {
         axios
@@ -104,11 +99,10 @@ const IndividualWalk = (props) => {
     return (
         <>
             {!hasError && (
-                <div>
+                <>
                     <Row>
                         <Col>
-                            <h3 className="heading heading--main">Top Rated Walk</h3>
-                            <h4 className="heading heading--secondary">{walkName}</h4>
+                            <h3 className="heading heading--main">{walkName}</h3    >
                             <GoogleMap
                                 centerAroundCurrentLocation={false}
                                 lat={lat}
@@ -117,6 +111,7 @@ const IndividualWalk = (props) => {
                                 zoom={15}
                                 draggable={true}
                                 disableDoubleClickZoom={false}
+                                maptype={"individualwalk"}
                             >
                                 {routeMarkers.map((coords, index) => {
                                     if (index === 0 || index === routeMarkers.length - 1) {
@@ -142,27 +137,28 @@ const IndividualWalk = (props) => {
                             {renderGraph === true && <Graph data={avgRatingPerMonth} />}
                         </Col>
                     </Row>
-                    <Row>
-                        <Col>
-                            <div className="addRating__container">
-                                <h4 className="heading heading--secondary">Rate Walk</h4>
+
+                    <h4 className="heading heading--secondary">Rate Walk</h4>
+                    <Row className="addrating__container">
+                        <Col xs={6} sm={12}>
+                            <div className="addrating__container--right" >
                                 <RatingsBar value={Number(stars)} disabled={false} onChange={handleChange} />
+                            </div>
+                        </Col>
+                        <Col xs={6} sm={12}>
+                            <div className="addrating_container--right" >
+                                <Button variant="addrating" onClick={addRating}>Rate</Button>
                             </div>
                         </Col>
                     </Row>
                     <Row>
                         <Col xs={12} sm={6}>
-                            <div className="button__container button__container--left" >
-                                <Button variant="double" onClick={() => props.history.push("/MyWalksPage")}>My Walks</Button>
-                            </div>
-                        </Col>
-                        <Col xs={12} sm={6} >
-                            <div className="button__container button__container--right" >
-                                <Button variant="double" onClick={addRating}>Rate Walk</Button>
+                            <div className="button__container" >
+                                <Button variant="single" onClick={() => props.history.push("/MyWalksPage")}>My Walks</Button>
                             </div>
                         </Col>
                     </Row>
-                </div>
+                </>
             )}
             {hasError && <ErrorComponent></ErrorComponent>}
         </>

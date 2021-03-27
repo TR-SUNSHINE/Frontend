@@ -1,4 +1,4 @@
-.map_location__container--weather {
+/* .map_location__container--weather {
     height: 40vh;
 }
 
@@ -32,4 +32,4 @@
 
 /* Extra extra Large - ≥1400px */
 
-@media only screen and (min-width: 1400px) {}
+@media only screen and (min-width: 1400px) {} 

@@ -4,6 +4,12 @@ body {
   text-align: center;
 }
   
+/* Super Small screens */
+
+@media only screen and (max-width: 300px) {
+
+
+}
 /* Media Queries to match Bootstrap viewport sizes */
 
 
