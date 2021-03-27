@@ -2,7 +2,7 @@ import "./AddWalk.css";
 import Button from "react-bootstrap/Button";
 import GoogleMap from "../Map/GoogleMap";
 import React, { useState } from "react";
-import { GoogleApiWrapper, InfoWindow, Marker, Polyline } from "google-maps-react";
+import { GoogleApiWrapper, Marker, Polyline } from "google-maps-react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Form } from "react-bootstrap";

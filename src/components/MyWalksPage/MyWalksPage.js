@@ -24,7 +24,10 @@ const MyWalks = (props) => {
                 }
             }
             )
-            .catch(error => console.log(error));
+            .catch(error => props.history.push({
+                pathname: "/ErrorPage",
+                state: { message: "Unable get your walks" }
+            }));
     }, []);
 
     return (

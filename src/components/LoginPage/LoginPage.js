@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
 import "../../index.css";
 import "../LoginPage/LoginPage.css";
 import { Form } from "react-bootstrap";
@@ -28,9 +26,7 @@ const LoginPage = (props) => {
     };
 
     const handleSubmit = event => {
-        console.log("handleSubmit --> ", details);
         event.preventDefault();
-        console.log("email2:", details.email);
 
         const copyDetails = { ...details };
 
@@ -41,16 +37,13 @@ const LoginPage = (props) => {
         if (copyDetails.emailError) {
             setDetails(copyDetails);
         } else {
-
             const email = details.email;
             axios
                 .get(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/users/${email}/user`)
-                // .then(response => setDetails(response.data))
                 .then((response) => {
+                    console.log(response.data);
                     setDetails(response.data);
                     if (response.data.length === 1) {
-
-                        console.log("user Id= ", response.data[0].id);
                         const copyProps = { ...props.details };
                         copyProps.userId = response.data[0].id;
                         props.setDetails(copyProps);
@@ -60,16 +53,21 @@ const LoginPage = (props) => {
                     } else {
                         copyDetails.loginError = "Sorry! Unable to login";
                         setDetails(copyDetails);
-                        console.log("copyDetails:", copyDetails);
-                        console.log("details:", details);
-                        // props.history.push("/ErrorPage");
-                    };
+                        props.history.push({
+                            pathname: "/ErrorPage",
+                            state: { message: "Unable to login" }
+                        });
+                    }
                 })
                 .catch(error => {
                     if (error.response) {
-                        console.log(error.response.data);
                         copyDetails.loginError = "Error when submittig details - Unable to login";
                         setDetails(copyDetails);
+                        props.history.push({
+                            pathname: "/ErrorPage",
+                            state: { message: error.response.message }
+                        });
+
                     };
                 });
         };

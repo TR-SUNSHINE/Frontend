@@ -14,6 +14,7 @@ import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import Logout from "./components/Logout/Logout";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 function App() {
 
@@ -41,18 +42,24 @@ function App() {
             }
             />
             <Route exact path="/WeatherPage" render={(props) =>
-              <WeatherPage
-                details={details}
-                setDetails={setDetails}
-                {...props}
-              />}
+              localStorage.getItem("userId") ?
+                <WeatherPage
+                  details={details}
+                  setDetails={setDetails}
+                  {...props}
+                /> :
+                <Redirect to="/WelcomePage" />
+            }
             />
             <Route exact path="/MyWalksPage" render={(props) =>
-              <MyWalksPage
-                setDetails={setDetails}
-                details={details}
-                {...props}
-              />}
+              localStorage.getItem("userId") ?
+                <MyWalksPage
+                  setDetails={setDetails}
+                  details={details}
+                  {...props}
+                /> :
+                <Redirect to="/WelcomePage" />
+            }
             />
             <Route exact path="/AddWalk" render={(props) =>
               <AddWalk
@@ -70,6 +77,12 @@ function App() {
             />
             <Route exact path="/NotFoundPage" render={(props) =>
               <NotFoundPage
+                details={details}
+                setDetails={setDetails}
+                {...props}
+              />} />
+            <Route exact path="/ErrorPage" render={(props) =>
+              <ErrorPage
                 details={details}
                 setDetails={setDetails}
                 {...props}
