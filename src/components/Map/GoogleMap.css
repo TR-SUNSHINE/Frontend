@@ -1,7 +1,3 @@
-.map_location__container {
-    height: 60vh;
-}
-
 .map_location__container--addwalk {
     height: 60vh;
 }
@@ -12,8 +8,8 @@
 }
 
 .map_location__map {
-    width: 95vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
 .map_location__container--weather {
@@ -25,7 +21,9 @@
 
 /* Small - ≥576px */
 
-@media only screen and (min-width: 576px) and (max-width: 768px) {}
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+
+}
 
 
 /* Medium - ≥768px */
@@ -35,14 +33,30 @@
 
 /* Large - ≥992px */
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+    .map_location__container--weather {
+        height: 55vh;
+    }
+
+}
 
 
 /* Extra Large - ≥1200px */
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+}
 
 
 /* Extra extra Large - ≥1400px */
 
-@media only screen and (min-width: 1400px) {} 
+@media only screen and (min-width: 1400px) {
+
+    .map_location__container--weather {
+        height: 50vh;
+    }
+
+    .map_location__container--individualwalk {
+        height: 45vh;
+    }
+} 

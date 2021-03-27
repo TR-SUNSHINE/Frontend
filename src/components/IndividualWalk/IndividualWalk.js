@@ -133,28 +133,21 @@ const IndividualWalk = (props) => {
                     </Row>
                     <Row>
                         <Col>
-                            <h4 className="heading heading--secondary">Walk Statistics</h4>
+                            <h5 className="heading heading--tertiary">Walk Statistics</h5>
                             {renderGraph === true && <Graph data={avgRatingPerMonth} />}
                         </Col>
                     </Row>
 
-                    <h4 className="heading heading--secondary">Rate Walk</h4>
+                    <h5 className="heading heading--tertiary">Rate Walk</h5>
                     <Row className="addrating__container">
-                        <Col xs={6} sm={12}>
-                            <div className="addrating__container--right" >
+                        <Col xs={6}>
+                            <div className="addrating__container--left" >
                                 <RatingsBar value={Number(stars)} disabled={false} onChange={handleChange} />
                             </div>
                         </Col>
-                        <Col xs={6} sm={12}>
+                        <Col xs={6}>
                             <div className="addrating_container--right" >
                                 <Button variant="addrating" onClick={addRating}>Rate</Button>
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={12} sm={6}>
-                            <div className="button__container" >
-                                <Button variant="single" onClick={() => props.history.push("/MyWalksPage")}>My Walks</Button>
                             </div>
                         </Col>
                     </Row>

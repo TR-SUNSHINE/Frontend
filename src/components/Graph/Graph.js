@@ -44,7 +44,7 @@ export default class Graph extends Component {
                         this.data.find(element => element.monthR === "Nov").monthAveRating,
                         this.data.find(element => element.monthR === "Dec").monthAveRating
                     ],
-                    label: "Star Rating Over Time",
+                    label: "Star Rating Over Last Twelve Months",
                     borderColor: "#296EB4",
                     backgroundColor: "#296EB4",
                     fill: false

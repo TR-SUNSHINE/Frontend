@@ -13,10 +13,7 @@ body {
 }
 
 .heading--main {
-  color: #296EB4;
-  text-align: center;
   padding-top: 19%;
-  text-align: center;
 }
 
 /* styling common to Register, Login & AddWalk pages */
@@ -30,6 +27,11 @@ body {
   color: #296eb4;
 }
 
+.form-group {
+  margin-bottom: 0;
+  text-align: left;
+}
+
 /* html element inside bootstrap */
 form{
   padding-block: 5px;
@@ -39,11 +41,6 @@ form{
   border: 1px solid #296eb4;
 }
 
-.form-group {
-  margin-bottom: 0;
-  text-align: left;
-}
-
 /* styling common to Register & AddWalk*/
 
 .logged {
@@ -51,37 +48,150 @@ form{
   font-size: 18px;;
 }
 
-/* Media Queries to match Bootstrap viewport sizes - general styling*/
-
 /* Super Small - ≥300px */
 
 @media only screen and (max-width: 300px) {
 
   .heading--main {
     padding-top: 21%;
+    font-size: 1.5em;
   }
 }
 
+/* Media Queries to match Bootstrap viewport sizes - general styling*/
+
 /* Small - ≥576px */
 
-@media only screen and (min-width: 576px) and (max-width: 768px) {}
+@media only screen and (min-width: 576px) and (max-width: 768px) {
 
+  .heading--main {
+    padding-top: 12%;
+
+  }
+  .logged {
+    font-size: 20px;;
+  }
+  
+  .form-label {
+    font-size: 20px;
+  }
+  
+  input.form-control{
+    font-size: 20px;
+  }
+}
 
 /* Medium - ≥768px */
 
-@media only screen and (min-width: 768px) and (max-width: 992px) {}
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+
+  .heading--main {
+    padding-top: 10%;
+  }
+
+  .heading--secondary{
+    font-size: 1.5em;
+  }
+
+  .heading--tertiary{
+    font-size: 1.5em;
+} 
+
+.logged {
+  font-size: 22px;;
+}
+
+.form-label {
+  font-size: 22px;
+}
+
+input.form-control{
+  font-size: 22px;
+}
+}
 
 
 /* Large - ≥992px */
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+  .heading--main {
+    padding-top: 8%;
+    font-size: 2em;
+  
+  }
+
+  .heading--secondary{
+    font-size: 1.65em;
+    padding-top: 1em;
+  }
+
+  .heading--tertiary{
+    font-size: 1.5em;
+} 
+
+.logged {
+  font-size: 22px;;
+}
+
+.form-label {
+  font-size: 22px;
+}
+
+input.form-control{
+  font-size: 22px;
+}
+}
 
 
 /* Extra Large - ≥1200px */
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .heading--main {
+    padding-top: 7%;
+    font-size: 2em;
+  
+  }
 
+  .heading--secondary{
+    font-size:1.75em;
+    padding-top:0.85em;
+  }
 
+  .heading--tertiary{
+    font-size: 1.5em;
+    padding-top: 1.25em;
+} 
+
+.logged {
+  font-size: 24px;;
+}
+
+.form-label {
+  font-size: 24px;
+}
+
+input.form-control{
+  font-size: 24px;
+}
+}
 /* Extra extra Large - ≥1400px */
 
-@media only screen and (min-width: 1400px) {}
+@media only screen and (min-width: 1400px) {
+
+  .heading--main {
+    padding-top: 8%;
+    font-size: 2em;
+  
+  }
+
+  .heading--secondary{
+    font-size:1.75em;
+    padding-top:0.85em;
+  }
+
+  .heading--tertiary{
+    font-size: 1.5em;
+    padding-top: 1.25em;
+} 
+}

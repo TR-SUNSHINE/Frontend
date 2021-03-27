@@ -19,15 +19,15 @@ const ErrorPage = (props) => {
                 </Row>
                 <Row>
                     <Col>
-                        <p>
-                            {props.location.state.message}
+                        <p className="message--error">
+                            {props.location.state ? props.location.state.message : "Sorry, there has been an error."}
                         </p>
                     </Col>
                 </Row>
                 <Row>
                     <Col xs={12} sm={12} md={12}>
                         <div className="button__container button__container--centre" >
-                            <Button variant="accessible" onClick={() => { props.history.push("/"); }}>Home</Button>
+                            <Button variant="single" onClick={() => { props.history.push("/"); }}>Home</Button>
                         </div>
                     </Col>
                 </Row>
