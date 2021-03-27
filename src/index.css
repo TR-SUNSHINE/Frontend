@@ -13,11 +13,9 @@ body {
 }
 
 .heading--main {
-  color: #296EB4;
-  text-align: center;
   padding-top: 19%;
-  text-align: center;
 }
+
 
 /* styling common to Register, Login & AddWalk pages */
 
@@ -51,8 +49,6 @@ form{
   font-size: 18px;;
 }
 
-/* Media Queries to match Bootstrap viewport sizes - general styling*/
-
 /* Super Small - ≥300px */
 
 @media only screen and (max-width: 300px) {
@@ -62,14 +58,31 @@ form{
   }
 }
 
+/* Media Queries to match Bootstrap viewport sizes - general styling*/
+
 /* Small - ≥576px */
 
-@media only screen and (min-width: 576px) and (max-width: 768px) {}
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+
+  .heading--main {
+    padding-top: 12%;
+  }
+
+  .heading--secondary{
+    font-size: 1.5em;
+  }
+  
+}
 
 
 /* Medium - ≥768px */
 
-@media only screen and (min-width: 768px) and (max-width: 992px) {}
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+
+  .heading--main {
+    padding-top: 10%;
+  }
+}
 
 
 /* Large - ≥992px */
