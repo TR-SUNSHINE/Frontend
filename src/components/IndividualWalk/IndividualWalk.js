@@ -34,9 +34,9 @@ const IndividualWalk = (props) => {
             WalkId: walkId,
             WalkRating: Number(stars)
         };
-        console.log(newRating);
         axios.post(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/ratings`, newRating)
             .then(response => {
+                console.log(response);
                 props.history.push("/MyWalksPage");
             })
             .catch(
@@ -72,7 +72,10 @@ const IndividualWalk = (props) => {
         axios
             .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/${walkId}`)
             .then(
-                response => setRouteMarkers(response.data[0].routes)
+                response => {
+                    console.log(response);
+                    setRouteMarkers(response.data[0].routes);
+                }
             )
             .catch(
                 error => setHasError(true)
@@ -86,7 +89,10 @@ const IndividualWalk = (props) => {
         axios
             .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/rating/${walkId}`)
             .then(
-                response => setAvgRatingPerMonth(response.data)
+                response => {
+                    console.log(response);
+                    setAvgRatingPerMonth(response.data);
+                }
             )
             .catch(
                 error => setHasError(true)
@@ -139,7 +145,7 @@ const IndividualWalk = (props) => {
                         <Col>
                             <div className="addRating__container">
                                 <h4 className="heading heading--secondary">Rate Walk</h4>
-                                <RatingsBar value={stars} disabled={false} onChange={handleChange} />
+                                <RatingsBar value={Number(stars)} disabled={false} onChange={handleChange} />
                             </div>
                         </Col>
                     </Row>
