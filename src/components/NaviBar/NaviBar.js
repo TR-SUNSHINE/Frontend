@@ -1,5 +1,5 @@
 import "./NaviBar.css";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 const Navibar = () => {
     return (
         <Navbar fixed="top" expand="md" variant="light" bg="light" className="cust-nav-bar">

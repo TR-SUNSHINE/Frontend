@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
 import "../../index.css";
 import "../RegisterPage/RegisterPage.css";
 import "../Button/Button.css";
@@ -34,7 +33,6 @@ const RegisterPage = (props) => {
     };
 
     const handleSubmit = event => {
-        console.log("handleSubmit", details);
         const userDetails = {
             "email": details.email,
             "userName": details.userName
@@ -58,13 +56,11 @@ const RegisterPage = (props) => {
             copyDetails.email = "";
 
             setDetails(copyDetails);
-            console.log("insert user to DB: ", userDetails);
             const email = details.email;
 
             axios
                 .post(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/user/${email}/user`, userDetails)
                 .then((response) => {
-                    setDetails(response.data);
                     console.log("response_data: ", response.data);
                     if (response.data.length === 1) {
                         const copyProps = { ...props.details };
@@ -76,14 +72,13 @@ const RegisterPage = (props) => {
                     } else {
                         details.loginError = "Sorry! Unable to login";
                         setDetails(copyDetails);
-                        details.loginError = "Sorry! Unable to login";
-                        console.log("copyDetails:", copyDetails);
-                        console.log("details:", details);
                     };
                 })
-                .catch(error => console.log(error));
-
-        };
+                .catch(error => props.history.push({
+                    pathname: "/ErrorPage",
+                    state: { message: error.response.message }
+                }));
+        }
     };
     return (
         <Row>

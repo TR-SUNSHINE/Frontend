@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { showLocalDate, showLocalTime, replaceIcons, formatReminderTime, formatLocalDateTime } from "../../helperFunctions";
 import Row from "react-bootstrap/Row";
@@ -70,6 +69,8 @@ const WeatherPage = (props) => {
 
             const addReminder = await axios.post(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders`, newTime);
 
+            console.log(addReminder);
+
             let copyDetails = { ...props.details };
             copyDetails.reminderId = addReminder.data.reminderId;
             copyDetails.reminderTime = reminderTime;
@@ -89,7 +90,9 @@ const WeatherPage = (props) => {
 
         try {
 
-            await axios.delete(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders/${props.details.reminderId}`);
+            const deleted = await axios.delete(`https://ia7thtfozg.execute-api.eu-west-2.amazonaws.com/users/${props.details.userId}/reminders/${props.details.reminderId}`);
+
+            console.log(deleted);
 
             let copyDetails = { ...props.details };
             copyDetails.selectedTime = 0;
@@ -141,6 +144,8 @@ const WeatherPage = (props) => {
 
                     const position = await location;
 
+                    console.log(position);
+
                     setCoords({ lat: position.coords.latitude, lng: position.coords.longitude });
 
                 } else {
@@ -154,7 +159,6 @@ const WeatherPage = (props) => {
             } catch (error) {
 
                 if (error.message === "User denied Geolocation") {
-                    console.log(error);
                     setCoords({ lat: 53.4809, lng: -2.2374 });
                 } else {
                     props.history.push({
