@@ -1,18 +1,19 @@
-/* individual_walk.html page */
 
-.frame--map {
-    margin: 0% auto;
-    height: 80%;
-    width: 90%;
-    display: flex;
-    align-items: center;
+.addrating__container--left {
+    text-align: right;
+    padding: 1rem;
+  }
+
+.addrating__container--right {
+    text-align: left;
+    padding: 1rem;
+  }
+
+
+.addrating__container{
+    background-color: rgb(248, 246, 246);
+    margin-left: 0.4em;
+    margin-right: 0.4em;
+    border: 1px solid #296EB4;
 }
 
-.iframe--map {
-    display: block;
-    margin: 0 auto;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-}

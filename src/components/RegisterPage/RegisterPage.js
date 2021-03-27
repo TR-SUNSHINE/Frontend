@@ -90,11 +90,10 @@ const RegisterPage = (props) => {
                 </p>
 
 
-                <Form className="form-register" onSubmit={handleSubmit}>
-
-                    <Form.Group className="form-row">
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group>
                         <Col sm={12}>
-                            <Form.Label className="form--label" htmlFor="nameInput">Username</Form.Label>
+                            <Form.Label htmlFor="nameInput">Username</Form.Label>
                         </Col>
                         <Col sm={12}>
                             <Form.Control
@@ -109,7 +108,7 @@ const RegisterPage = (props) => {
                         </div>
                     </Form.Group>
 
-                    <Form.Group className="form-row">
+                    <Form.Group>
                         <Col sm={12}>
                             <Form.Label htmlFor="EmailInput">Email</Form.Label>
                         </Col>

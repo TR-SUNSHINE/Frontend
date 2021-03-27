@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "../Map/GoogleMapWeather.css";
+import "../Map/GoogleMap.css";
 
 export class GoogleMapWeather extends React.Component {
 
@@ -77,7 +77,7 @@ export class GoogleMapWeather extends React.Component {
     render() {
         return (
             <div className="map_location__container--weather">
-                <div className="map_location__map--weather" ref="map">
+                <div className="map_location__map" ref="map">
                     Loading map...
                     {this.renderChildren()}
                 </div>

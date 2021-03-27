@@ -2,6 +2,7 @@ import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
 import "../../index.css";
 import "./NotFoundPage.css";
 
@@ -14,23 +15,18 @@ const NotFoundPage = (props) => {
 
                 <Row>
                     <Col>
-
-                        <div className="container d-flex justify-content-center align-items-center">
-                            <div className="card p-3">
-                                <img className="img--sunshine" src="./images/ErrorPage.png" alt="404 Page NotFound"></img>
-                            </div>
-                        </div>
+                        <Image src="./images/ErrorPage.png" alt="404 Page NotFound" fluid />
                     </Col>
                 </Row>
                 <Row>
                     <Col xs={12} sm={12} md={12}>
                         <div className="button__container button__container--centre" >
-                            <Button variant="accessible" onClick={() => { props.history.push("/"); }}>Return to Home</Button>
+                            <Button variant="accessible" onClick={() => { props.history.push("/"); }}>Home</Button>
                         </div>
                     </Col>
                 </Row>
             </Col>
-        </Row>
+        </Row >
     );
 };
 

@@ -1,0 +1,12 @@
+/* n.b. see index.css for styling common to Register Page, AddWalk Page & Login Page */
+
+#label--walk{
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin-top: 1em;
+}
+
+#container--add{
+    margin-top:0;
+}

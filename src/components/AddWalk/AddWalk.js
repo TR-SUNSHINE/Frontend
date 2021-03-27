@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Form } from "react-bootstrap";
 import "../Button/Button.css";
+import "../../index.css";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
@@ -85,8 +86,8 @@ const AddWalk = (props) => {
                                 draggable={true}
                                 disableDoubleClickZoom={false}
                                 onClick={onMapClick}
+                                maptype={"addwalk"}
                             >
-                                {/* {console.log(item.routeMarkers)} */}
                                 {item.routeMarkers.map((coords, index) => {
                                     if (index === 0 || index === item.routeMarkers.length - 1) {
                                         return <Marker key={`marker-${index}`} position={coords} />;
@@ -106,27 +107,24 @@ const AddWalk = (props) => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col sm={4}>
-                        </Col>
-                        <Col sm={4}>
-                            <Form.Group controlId="form-row">
-                                <Form.Label id="sdf" style={{ fontSize: "20px", fontWeight: "bold" }}>Walk Name</Form.Label>
-                                <Form.Control as="textarea" name="walkNameInput" value={walkName} onChange={handleChange} rows={1} placeholder="Enter walk description" />
+                        <Col>
+                            {/* <Form.Group controlId="form-row"> */}
+                            <Form.Group>
+                                <Form.Label id={"label--walk"}>Walk Name</Form.Label>
+                                <Form.Control as="textarea" name="walkNameInput" value={walkName} onChange={handleChange} rows={1} placeholder="Enter a short walk description" />
                             </Form.Group>
-                        </Col>
-                        <Col sm={4}>
                         </Col>
                     </Row>
                     <Row>
-                        <Col xs={12} sm={6} md={6}>
-                            <div className="button__container button__container--left" >
+                        <Col xs={6}>
+                            <div className="button__container button__container--left" id="container--add" >
                                 <Button variant="double" disabled={item.routeMarkers.length > 1 && walkName.length > 0 ? false : true} onClick={addWalk}>Add Walk</Button>
                             </div>
                         </Col>
 
-                        <Col xs={12} sm={6} md={6}>
-                            <div className="button__container button__container--right" >
-                                <Button variant="double" onClick={clearWalk}>Clear Walk</Button>
+                        <Col xs={6}>
+                            <div className="button__container button__container--right" id="container--clear" >
+                                <Button variant="double" disabled={item.routeMarkers.length > 1 && walkName.length > 0 ? false : true} onClick={clearWalk}>Clear Walk</Button>
                             </div>
                         </Col>
                     </Row>

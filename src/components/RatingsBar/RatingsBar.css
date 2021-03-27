@@ -1,15 +1,31 @@
 .small-ratings i {
     /* color: #cecece */
-    color: #296EB4;
+    /* color: #296EB4; */
+    color: red;
 }
 
  .MuiRating-icon.MuiRating-iconEmpty{
-    color:#296EB4;
-}   
+    color:#296EB4;  
+}    
 
 .MuiRating-iconFilled{
     color:#fbc634;
 }   
 
+#addrating {
+    color:black;  
+  }
+/* Super Small screens */
 
+@media only screen and (max-width: 300px) {
+
+    .MuiRating-icon.MuiRating-iconEmpty{
+        font-size: 0.75em;
+    }   
+    
+    .MuiRating-iconFilled{
+        font-size: 0.75em;
+    }   
+  
+  }
 
