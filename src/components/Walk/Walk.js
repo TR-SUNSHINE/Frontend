@@ -32,7 +32,7 @@ function Walk({ walk }) {
                         walk.monthOf === (today.getMonth() + 1).toString() &&
                         walk.yearOf === today.getFullYear().toString()
                         ? "text--newtask" : "text--hyperlink"}
-                        to={`/IndividualWalk/${walk.id}`}
+                        to={`/IndividualWalk/${walk.id}/${walk.walkName}/`}
                         id={walk.id}
                         text={walk.walkName}
                         key={walk.id}
