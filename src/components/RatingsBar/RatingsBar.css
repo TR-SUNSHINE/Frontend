@@ -1,6 +1,15 @@
 .small-ratings i {
-    color: #cecece
+    /* color: #cecece */
+    color: #296EB4;
 }
-.rating-color {
-    color: #fbc634 !important
-}
+
+ .MuiRating-icon.MuiRating-iconEmpty{
+    color:#296EB4;
+}   
+
+.MuiRating-iconFilled{
+    color:#fbc634;
+}   
+
+
+

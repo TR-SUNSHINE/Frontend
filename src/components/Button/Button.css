@@ -36,6 +36,11 @@
     color: white;
 }
 
+.btn-delete{
+  background-color: #296eb4;
+  color: white;
+}
+
 /* Media Queries to match Bootstrap viewport sizes */
 
 /* Small - ≥576px */
