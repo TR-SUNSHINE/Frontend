@@ -14,4 +14,14 @@ describe("WelcomePage component", () => {
 
         expect(screen.getByText("Welcome to Sunshine")).toBeInTheDocument();
     });
+
+    test("Given a WelcomePage component is rendered, When the component is rendered, Two buttons should be displayed", () => {
+        render(
+            <Router>
+                <WelcomePage />
+            </Router>
+        );
+
+        expect(screen.getAllByRole("button")).toHaveLength(2);
+    });
 });
