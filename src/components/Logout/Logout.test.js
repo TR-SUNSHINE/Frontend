@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import LogoutPage from "./Logout";
 import { BrowserRouter as Router } from "react-router-dom";
 
