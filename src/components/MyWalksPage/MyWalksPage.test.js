@@ -1,11 +1,12 @@
 import { render, screen, cleanup, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
+// import "@testing-library/jest-dom/extend-expect";
 // importing axios & calling it axiosMock
 import axiosMock from "axios";
 import MyWalks from "./MyWalksPage";
 import { BrowserRouter as Router } from "react-router-dom";
 
-const data = [
+// data returned
+const mockData = [
     {
         aveRating: 1, dayOf: "27",
         id: "f77d9d24-485d-458b-9fb7-493b987ccde9",
@@ -26,15 +27,17 @@ const data = [
     }
 ];
 
+// props
+
+const mockDetails = { selectedTime: 0, reminderId: "", reminderTime: 0, userId: "5e37e4d7-d053-4936-8827-01500c10a123" };
+
+const mockHistory = {};
+
 describe("MyWalksPage component tests", () => {
     afterEach(cleanup);
-
     test("fetches & displays walks", async () => {
 
-        axiosMock.get.mockResolvedValueOnce({ data: data });
-
-        const mockDetails = { selectedTime: 0, reminderId: "", reminderTime: 0, userId: "5e37e4d7-d053-4936-8827-01500c10a123" };
-        const mockHistory = {};
+        axiosMock.get.mockResolvedValueOnce({ data: mockData });
 
         const { getByTestId } = render(
             <Router>
@@ -54,7 +57,6 @@ describe("MyWalksPage component tests", () => {
         await waitFor(() => expect(screen.getAllByRole("button")[0]).toHaveTextContent("x"));
         await waitFor(() => expect(screen.getAllByRole("button")[2]).toHaveTextContent("Add Walk"));
         await waitFor(() => expect(axiosMock.get).toHaveBeenCalledTimes(1));
-
     });
 
 });
