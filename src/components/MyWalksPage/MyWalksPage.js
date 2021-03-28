@@ -9,22 +9,24 @@ import "../Button/Button.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const MyWalks = (props) => {
+const MyWalks = ({ details, history }) => {
     const [walks, setWalks] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         axios
-            .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/user/${props.details.userId}`)
+            .get(`https://gt63kubuik.execute-api.eu-west-2.amazonaws.com/Prod/v1/walks/user/${details.userId}`)
             .then(response => {
                 console.log(response);
                 if (!response.data) {
                     setWalks([]);
+                    setLoading(false);
                 } else {
                     setWalks(response.data);
+                    setLoading(false);
                 }
-            }
-            )
-            .catch(error => props.history.push({
+            })
+            .catch(error => history.push({
                 pathname: "/ErrorPage",
                 state: { message: "Unable get your walks" }
             }));
@@ -34,25 +36,29 @@ const MyWalks = (props) => {
         <>
             <Row>
                 <Col xs={12}>
-                    <h3 className="heading heading--main">My Walks</h3>
+                    <h3 data-testid="title" className="heading heading--main">My Walks</h3>
                     <div className="walks__table">
                         <div className="title--walk__name">
-                            <h5 className="review-stat"> Name</h5>
+                            <h5 className="review-stat" data-testid="name"> Name</h5>
                         </div>
                         <div className="title--ratings">
-                            <div className="review-stat"> Rating</div>
+                            <div className="review-stat" data-testid="rating"> Rating</div>
                         </div>
                         <div className="title--delete">
-                            <div className="review-stat"> Delete</div>
+                            <div className="review-stat" data-testid="delete"> Delete</div>
                         </div>
                     </div>
                     <hr className="line-horizontal" />
-                    <Walks
-                        walks={walks}
-                        history={props.history}
-                    >
-                    </Walks>
-                    <Button variant="addwalk" onClick={() => props.history.push("/AddWalk")}>Add Walk</Button>
+                    {loading ? <p data-testid="loading">...loading</p> :
+                        <>
+                            <Walks
+                                walks={walks}
+                                history={history}
+                            >
+                            </Walks>
+                            <Button variant="addwalk" onClick={() => history.push("/AddWalk")}>Add Walk</Button>
+                        </>
+                    }
                 </Col>
             </Row>
 

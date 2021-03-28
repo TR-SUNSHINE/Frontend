@@ -28,10 +28,12 @@ function Walk({ walk }) {
         <>
             <div className="container--walk__name">
                 <h5 className="walk__name">
-                    <Link className={walk.dayOf === today.getDate().toString() &&
-                        walk.monthOf === (today.getMonth() + 1).toString() &&
-                        walk.yearOf === today.getFullYear().toString()
-                        ? "text--newtask" : "text--hyperlink"}
+                    <Link
+                        data-testid="walk_name"
+                        className={walk.dayOf === today.getDate().toString() &&
+                            walk.monthOf === (today.getMonth() + 1).toString() &&
+                            walk.yearOf === today.getFullYear().toString()
+                            ? "text--newtask" : "text--hyperlink"}
                         to={`/IndividualWalk/${walk.id}/${walk.walkName}/`}
                         id={walk.id}
                         text={walk.walkName}
