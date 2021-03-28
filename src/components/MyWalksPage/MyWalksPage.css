@@ -28,6 +28,14 @@
   display:inline-block;
 }
 
+.loading {
+
+  padding: 1em;
+  font-weight: bold;
+  color:#296eb4;
+
+}
+
 
 /* Media Queries to match Bootstrap viewport sizes - general styling*/
   

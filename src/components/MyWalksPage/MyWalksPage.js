@@ -49,7 +49,7 @@ const MyWalks = ({ details, history }) => {
                         </div>
                     </div>
                     <hr className="line-horizontal" />
-                    {loading ? <p data-testid="loading">...loading</p> :
+                    {loading ? <p data-testid="loading" className="loading">...Loading</p> :
                         <>
                             <Walks
                                 walks={walks}

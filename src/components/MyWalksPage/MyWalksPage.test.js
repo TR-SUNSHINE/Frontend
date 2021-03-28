@@ -46,7 +46,7 @@ describe("MyWalksPage component tests", () => {
 
         );
 
-        expect(getByTestId("loading")).toHaveTextContent("loading");
+        expect(getByTestId("loading")).toHaveTextContent("...Loading");
         expect(getByTestId("title")).toHaveTextContent("My Walks");
         expect(getByTestId("rating")).toHaveTextContent("Rating");
         expect(getByTestId("delete")).toHaveTextContent("Delete");
