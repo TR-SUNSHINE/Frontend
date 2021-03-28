@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Weather from "./Weather";
-import { faSun, faBolt, faWind } from "@fortawesome/free-solid-svg-icons";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from "react-router-dom";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 
