@@ -2,8 +2,6 @@ import { waitFor, render, screen, cleanup } from "@testing-library/react";
 import IndividualWalk from "./IndividualWalk";
 import { BrowserRouter as Router } from "react-router-dom";
 
-
-
 describe("IndividualWalk component", () => {
 
     afterEach(cleanup);
@@ -18,7 +16,6 @@ describe("IndividualWalk component", () => {
         );
 
         await waitFor(() => expect(screen.getByText("Loading...")).toBeInTheDocument());
-
 
     });
 });
