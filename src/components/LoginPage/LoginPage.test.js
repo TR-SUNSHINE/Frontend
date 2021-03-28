@@ -3,7 +3,7 @@ import LoginPage from "./LoginPage";
 import { BrowserRouter as Router } from "react-router-dom";
 
 describe("LoginPage component", () => {
-    afterEach(() => jest.clearAllMocks());
+
     test(`Given the component is rendered, 
             then the Login to Sunshine text should be present`, () => {
         render(

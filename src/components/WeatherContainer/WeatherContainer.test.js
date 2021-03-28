@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import WeatherContainer from "./WeatherContainer";
 
 describe("WeatherContainer component", () => {
-    afterEach(() => jest.clearAllMocks());
 
     const requiredWeatherTimes = [
         {

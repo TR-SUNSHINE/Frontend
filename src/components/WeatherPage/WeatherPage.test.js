@@ -1,4 +1,4 @@
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 // import "@testing-library/jest-dom/extend-expect";
 // importing axios & calling it axiosMock
 import axiosMock from "axios";
@@ -12,7 +12,6 @@ const mockHistory = {};
 const mockData = {};
 
 describe("WeatherPage", () => {
-    afterEach(cleanup);
 
     test("initial rendering", async () => {
 

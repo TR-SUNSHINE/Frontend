@@ -1,4 +1,4 @@
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Walk from "./Walk";
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -16,7 +16,6 @@ const mockWalk = {
 const mockHistory = {};
 
 describe("Walk component", () => {
-    afterEach(cleanup);
 
     test("Given the required props, When the component is rendered, Then a walk should be rendered", () => {
 

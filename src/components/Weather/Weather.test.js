@@ -60,8 +60,6 @@ const requiredToggleWeatherTimeSelected = jest.fn();
 
 describe("Weather component tests", () => {
 
-    afterEach(() => jest.clearAllMocks());
-
     test(`Given the required props, 
     When the component is rendered, then an array of weather div elements should be present.`, () => {
 
