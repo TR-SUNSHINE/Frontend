@@ -1,6 +1,4 @@
 import { render, screen, cleanup, waitFor } from "@testing-library/react";
-// import "@testing-library/jest-dom/extend-expect";
-// importing axios & calling it axiosMock
 import axiosMock from "axios";
 import MyWalks from "./MyWalksPage";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -34,7 +32,9 @@ const mockDetails = { selectedTime: 0, reminderId: "", reminderTime: 0, userId: 
 const mockHistory = {};
 
 describe("MyWalksPage component tests", () => {
+
     afterEach(cleanup);
+
     test("fetches & displays walks", async () => {
 
         axiosMock.get.mockResolvedValueOnce({ data: mockData });
