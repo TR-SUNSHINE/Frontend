@@ -1,28 +1,33 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, cleanup, waitFor, getByText } from "@testing-library/react";
+// import "@testing-library/jest-dom/extend-expect";
+// importing axios & calling it axiosMock
+import axiosMock from "axios";
 import WeatherPage from "./WeatherPage";
 import { BrowserRouter as Router } from "react-router-dom";
 
-describe("WeatherPage component", () => {
-    afterEach(() => jest.clearAllMocks());
+const mockDetails = { selectedTime: 0, reminderId: "", reminderTime: 0, userId: "5e37e4d7-d053-4936-8827-01500c10a123" };
 
-    test("Given a WeatherPage component is rendered, When the component is rendered, The title and a description should be displayed", () => {
+const mockHistory = {};
 
-        render(
-            <Router>
-                <WeatherPage />
-            </Router>
-        );
+const mockData = {};
 
-        expect(screen.getByText("Weather: next 24 hours")).toBeInTheDocument();
-    });
+describe("WeatherPage", () => {
+    afterEach(cleanup);
 
-    test("Given a WeatherPage component is rendered, When the component is rendered, a Set Reminder button should be present", () => {
+    test("initial rendering", async () => {
+
+        axiosMock.get.mockResolvedValueOnce({ data: mockData });
 
         render(
             <Router>
-                <WeatherPage />
+                <WeatherPage details={mockDetails} history={mockHistory} />
             </Router>
+
         );
-        expect(screen.getAllByRole("button")).toHaveLength(2);
+
+        expect(screen.getByText("Loading...")).toBeInTheDocument();
+
     });
 });
+
+
