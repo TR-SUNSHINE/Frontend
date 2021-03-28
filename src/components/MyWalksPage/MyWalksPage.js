@@ -53,6 +53,7 @@ const MyWalks = ({ details, history }) => {
                         <>
                             <Walks
                                 walks={walks}
+                                history={history}
                             >
                             </Walks>
                             <Button variant="addwalk" onClick={() => history.push("/AddWalk")}>Add Walk</Button>
