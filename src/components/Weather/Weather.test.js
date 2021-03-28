@@ -128,5 +128,7 @@ describe("Weather component tests", () => {
 
         expect(weatherButton).toHaveTextContent("18:00temp:13.25ºCfeels:7.59ºCovercast clouds");
 
+        screen.debug();
+
     });
 });
