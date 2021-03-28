@@ -90,7 +90,6 @@ describe("Weather component tests", () => {
 
 
         const rightButton = screen.getAllByRole("button").find(button => button.textContent === ">");
-
         const leftButton = screen.getAllByRole("button").find(button => button.textContent === "<");
 
         expect(leftButton).toBeInTheDocument();
@@ -113,6 +112,21 @@ describe("Weather component tests", () => {
 
         userEvent.click(weatherButton);
         expect(requiredToggleWeatherTimeSelected).toHaveBeenCalled();
+
+    });
+
+    test(`Given the required props, When a the page is rendered, a passed in weather item in the array should contain the expected text.`, () => {
+
+        render(
+            <Router>
+                <Weather weatherTimes={requiredWeatherTimes} selectedWeatherTime={requiredSelectedWeatherTime} toggleWeatherTimeSelected={requiredToggleWeatherTimeSelected} />;
+                </Router>
+        );
+
+
+        const weatherButton = screen.getAllByRole("button")[1];
+
+        expect(weatherButton).toHaveTextContent("18:00temp:13.25ºCfeels:7.59ºCovercast clouds");
 
     });
 });
