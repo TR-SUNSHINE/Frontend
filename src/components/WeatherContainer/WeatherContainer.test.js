@@ -1,8 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import WeatherContainer from "./WeatherContainer";
 
-
-
 describe("WeatherContainer component", () => {
     afterEach(() => jest.clearAllMocks());
 
@@ -64,7 +62,7 @@ describe("WeatherContainer component", () => {
 
     test("Given the required props, When the component is rendered, The title and a description should be displayed", () => {
 
-        const { getByTestId } = render(<WeatherContainer weatherTimes={requiredWeatherTimes} selectedWeatherTime={requiredSelectedWeatherTime} toggleWeatherTimeSelected={requiredToggleWeatherTimeSelected} reminderTime={0} showLocalTime={requiredShowLocalTime} />);
+        render(<WeatherContainer weatherTimes={requiredWeatherTimes} selectedWeatherTime={requiredSelectedWeatherTime} toggleWeatherTimeSelected={requiredToggleWeatherTimeSelected} reminderTime={0} showLocalTime={requiredShowLocalTime} />);
 
         expect(screen.getByText("Weather: next 24 hours")).toBeInTheDocument();
 
