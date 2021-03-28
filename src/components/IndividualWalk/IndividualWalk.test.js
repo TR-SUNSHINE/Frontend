@@ -1,33 +1,15 @@
-import axios from "axios";
-import { waitFor, render, screen } from "@testing-library/react";
+import { waitFor, render, screen, cleanup } from "@testing-library/react";
 import IndividualWalk from "./IndividualWalk";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from "react-router-dom";
+
+
 
 describe("IndividualWalk component", () => {
 
-    test(`Given a IndividualWalk component is rendered, When the component is rendered, 
-    The text individual Walk should be displayed`, () => {
+    afterEach(cleanup);
 
-        render(
-            <Router>
-                <IndividualWalk />
-            </Router>
-        )
-        waitFor(() => expect(screen.getByText("Individual Walk")).toBeInTheDocument());
-
-
-
-
-
-
-
-
-
-        // expect(screen.getByText("Individual Walk")).toBeInTheDocument();
-    });
-
-    test(`Given a IndividualWalk component is rendered, When the component is rendered, a 'Add New Rating' 
-    button should be present`, () => {
+    test(`Given a IndividualWalk component is rendered, Before the component is rendered, 
+    The text "Loading... should be displayed`, async () => {
 
         render(
             <Router>
@@ -35,7 +17,8 @@ describe("IndividualWalk component", () => {
             </Router>
         );
 
-        waitFor(expect(screen.getAllByRole("button").find(button => button.textContent === "My Walks")).toBeInTheDocument(1));
+        await waitFor(() => expect(screen.getByText("Loading...")).toBeInTheDocument());
+
 
     });
 });
