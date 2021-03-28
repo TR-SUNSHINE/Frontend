@@ -1,4 +1,4 @@
-import { render, screen, cleanup, waitFor, getByText } from "@testing-library/react";
+import { render, screen, cleanup } from "@testing-library/react";
 // import "@testing-library/jest-dom/extend-expect";
 // importing axios & calling it axiosMock
 import axiosMock from "axios";
@@ -26,7 +26,6 @@ describe("WeatherPage", () => {
         );
 
         expect(screen.getByText("Loading...")).toBeInTheDocument();
-
     });
 });
 
