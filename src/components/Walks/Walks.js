@@ -3,10 +3,9 @@ import "../../index.css";
 import "./Walks.css";
 import "../Button/Button.css";
 import Walk from "../Walk/Walk";
-import Button from "react-bootstrap/Button";
-
 
 function Walks({ walks, history }) {
+
     return (
         <div className="walks__container">
             {

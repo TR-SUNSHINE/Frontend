@@ -11,9 +11,6 @@ const Logout = (props) => {
     }, []);
 
     return (
-        // <Row>
-        //     <Col>
-        //         <h3 className="heading heading--main">Logged Out</h3>\
         <>
             <Row>
                 <Col>

@@ -1,7 +1,5 @@
 import "../../index.css";
 import React from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import "../../index.css";
 import "./Walk.css";
 import { Link } from "react-router-dom";
@@ -28,10 +26,12 @@ function Walk({ walk }) {
         <>
             <div className="container--walk__name">
                 <h5 className="walk__name">
-                    <Link className={walk.dayOf === today.getDate().toString() &&
-                        walk.monthOf === (today.getMonth() + 1).toString() &&
-                        walk.yearOf === today.getFullYear().toString()
-                        ? "text--newtask" : "text--hyperlink"}
+                    <Link
+                        data-testid="walk_name"
+                        className={walk.dayOf === today.getDate().toString() &&
+                            walk.monthOf === (today.getMonth() + 1).toString() &&
+                            walk.yearOf === today.getFullYear().toString()
+                            ? "text--newtask" : "text--hyperlink"}
                         to={`/IndividualWalk/${walk.id}/${walk.walkName}/`}
                         id={walk.id}
                         text={walk.walkName}

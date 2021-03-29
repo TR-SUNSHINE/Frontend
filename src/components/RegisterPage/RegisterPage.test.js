@@ -1,9 +1,8 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import RegisterPage from "./RegisterPage";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from "react-router-dom";
 
 describe("RegisterPage component", () => {
-    afterEach(() => jest.clearAllMocks());
 
     test(`Given the component is rendered, 
             then the Register with Sunshine text should be present`, () => {
