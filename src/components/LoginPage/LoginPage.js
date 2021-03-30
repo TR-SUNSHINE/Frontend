@@ -9,12 +9,11 @@ import axios from "axios";
 
 const LoginPage = (props) => {
 
-    const [details, setDetails] = useState({ email: "", id: "", userName: "", emailError: "", loginError: "" });
+    const [details, setDetails] = useState({ email: "", emailError: "", loginError: "" });
 
     const handleChange = (event) => {
 
         const copyDetails = { ...details };
-        setDetails(copyDetails);
 
         if (event.target.name === "email") {
             copyDetails.emailError = "";
@@ -42,7 +41,7 @@ const LoginPage = (props) => {
                 .get(`https://wolne3lm7h.execute-api.eu-west-2.amazonaws.com/dev/users/${email}/user`)
                 .then((response) => {
                     console.log(response.data);
-                    setDetails(response.data);
+
                     if (response.data.length === 1) {
                         const copyProps = { ...props.details };
                         copyProps.userId = response.data[0].id;
