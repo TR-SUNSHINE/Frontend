@@ -107,11 +107,7 @@ describe("Weather component tests", () => {
                 </Router>
         );
 
-
         const weatherButton = screen.getAllByRole("button")[1];
-
-        /* commenting out test - need to investigate time offset for British Summer Time - passed test locally, but CircleCi is failing as one hour behind */
-        // expect(weatherButton).toHaveTextContent("18:00temp:13.25ºCfeels:7.59ºCovercast clouds");
 
         userEvent.click(weatherButton);
         expect(requiredToggleWeatherTimeSelected).toHaveBeenCalled();
