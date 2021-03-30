@@ -15,5 +15,7 @@ describe("AddWalk component", () => {
 
         await waitFor(() => expect(screen.getByText("Loading...")).toBeInTheDocument());
 
+        screen.debug();
+
     });
 });
