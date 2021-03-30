@@ -10,7 +10,7 @@ import axios from "axios";
 
 const RegisterPage = (props) => {
 
-    const [details, setDetails] = useState({ userName: "", userNameError: "", email: "", emailError: "" });
+    const [details, setDetails] = useState({ userName: "", userNameError: "", email: "", emailError: "", loginError: "" });
 
     const handleChange = (event) => {
 
@@ -21,15 +21,14 @@ const RegisterPage = (props) => {
             copyDetails.userNameError = "";
             copyDetails.userName = event.target.value;
 
-            setDetails(copyDetails);
-
         } else if (event.target.name === "email") {
 
             copyDetails.emailError = "";
             copyDetails.email = event.target.value;
-
-            setDetails(copyDetails);
         };
+
+        copyDetails.loginError = "";
+        setDetails(copyDetails);
     };
 
     const handleSubmit = event => {
@@ -70,7 +69,8 @@ const RegisterPage = (props) => {
                         props.history.push("/WeatherPage");
 
                     } else {
-                        details.loginError = "Sorry! Unable to login";
+                        const copyDetails = { ...details };
+                        copyDetails.loginError = "Sorry! Unable to register";
                         setDetails(copyDetails);
                     };
                 })
@@ -87,6 +87,9 @@ const RegisterPage = (props) => {
                 <h3 className="heading heading--main">Register with Sunshine</h3>
                 <p className="logged" hidden={!localStorage.getItem("userId")}>
                     You are already logged in!
+                </p>
+                <p className="logged" hidden={!details.loginError}>
+                    {details.loginError}
                 </p>
 
 
