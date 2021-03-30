@@ -60,7 +60,7 @@ const LoginPage = (props) => {
                 })
                 .catch(error => {
                     if (error.response) {
-                        copyDetails.loginError = "Error when submittig details - Unable to login";
+                        copyDetails.loginError = "Error when submitting details - Unable to login";
                         setDetails(copyDetails);
                         props.history.push({
                             pathname: "/ErrorPage",
